@@ -13,6 +13,7 @@ For this update my goals are at least to:
 
 
 
+
 1.
   Profile Dependent Bools 1
   	RainbowAddedTimesToggleScript
@@ -22,3 +23,7 @@ For this update my goals are at least to:
   	KeepLastAddedToggle[Tcs]
 Will finish list later lol
 
+
+
+Bug Fixes:
+  Pressing enter at all will add time(or at least attempt to)
