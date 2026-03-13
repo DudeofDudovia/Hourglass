@@ -5140,12 +5140,12 @@ Transform:
   m_GameObject: {fileID: 301739422}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.0375, y: -0.1453, z: 960.7}
+  m_LocalPosition: {x: -1185.5829, y: -66.443245, z: 960.7}
   m_LocalScale: {x: 5.2862177, y: 10.983526, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 848509314}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 838219046}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &306860254
 GameObject:
@@ -10207,6 +10207,8 @@ GameObject:
   - component: {fileID: 674989046}
   - component: {fileID: 674989048}
   - component: {fileID: 674989047}
+  - component: {fileID: 674989049}
+  - component: {fileID: 674989050}
   m_Layer: 5
   m_Name: Toggle
   m_TagString: Untagged
@@ -10241,7 +10243,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 674989045}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2183607390c85554a88a77da9f71f8e7, type: 3}
   m_Name: 
@@ -10307,7 +10309,89 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 674989049}
+        m_TargetAssemblyTypeName: OptionToggleScript, Assembly-CSharp
+        m_MethodName: SaveMSToggle
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
+--- !u!114 &674989049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 674989045}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b4aa954071dc5242be1a779baf59183, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  Togg: {fileID: 674989048}
+  TCS: {fileID: 1829068701}
+  ObjectLayer: 4
+  DataLayer: 0
+  VarToToggle:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1829068701}
+        m_TargetAssemblyTypeName: TimeControllerScript, Assembly-CSharp
+        m_MethodName: MSTimerFunc
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &674989050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 674989045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9722c07e9b54ee409c54b50190696e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  Label: 
+  Togg: {fileID: 674989048}
+  Slide: {fileID: 0}
+  TCS: {fileID: 1829068701}
+  ObjectLayer: 2
+  DataLayer: 0
+  VarToToggle:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1829068701}
+        m_TargetAssemblyTypeName: TimeControllerScript, Assembly-CSharp
+        m_MethodName: MSTimerFunc
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  toggle: 1
+  DefaultBool: 0
+  flot: 0
+  DefaultFloat: -1
+  integr: 0
+  DefaultInt: -1
 --- !u!1 &676486794
 GameObject:
   m_ObjectHideFlags: 0
@@ -10398,7 +10482,6 @@ MonoBehaviour:
   tmp3: {fileID: 237556193}
   togg: {fileID: 1875130798}
   tmp2: {fileID: 1166437313}
-  wastogg: 0
 --- !u!114 &696861759
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11735,6 +11818,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 589375229}
+  - {fileID: 301739423}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &839247914
@@ -13125,7 +13209,6 @@ MonoBehaviour:
   tmp3: {fileID: 237556193}
   togg: {fileID: 1924138190}
   tmp2: {fileID: 1166437313}
-  wastogg: 0
 --- !u!114 &918437834
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15408,6 +15491,7 @@ GameObject:
   - component: {fileID: 1092634466}
   - component: {fileID: 1092634464}
   - component: {fileID: 1092634467}
+  - component: {fileID: 1092634468}
   m_Layer: 8
   m_Name: ChangelogFontSize
   m_TagString: Untagged
@@ -15531,6 +15615,33 @@ MonoBehaviour:
   MouseUp: 0
   DoubleClick: 0
   Adjusted: 0
+--- !u!114 &1092634468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1092634463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9722c07e9b54ee409c54b50190696e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SavableValueScript
+  Label: FontSize
+  Togg: {fileID: 0}
+  Slide: {fileID: 1092634464}
+  TCS: {fileID: 1829068701}
+  ObjectLayer: 3
+  DataLayer: 0
+  VarToToggle:
+    m_PersistentCalls:
+      m_Calls: []
+  toggle: 0
+  DefaultBool: 0
+  flot: 1
+  DefaultFloat: 9.3
+  integr: 0
+  DefaultInt: -1
 --- !u!1 &1096052174
 GameObject:
   m_ObjectHideFlags: 0
@@ -16084,7 +16195,6 @@ MonoBehaviour:
   tmp3: {fileID: 237556193}
   togg: {fileID: 2114996956}
   tmp2: {fileID: 1166437313}
-  wastogg: 0
 --- !u!114 &1136847919
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24367,12 +24477,8 @@ MonoBehaviour:
   Profiles: 0
   ProfilesView: {fileID: 1811114065}
   ProfileToAdd: {fileID: 3311102170427947228, guid: 2a9b8ccb78d1a65448be5ea2abef52f0, type: 3}
-  DEBUGLOAD: 0
-  DEDELCURRENTPROFILE: 0
-  DEBUGCLEARPLAYERPREFS: 0
   ProfileName: Profile
   ProfileNameSetter: {fileID: 3466609}
-  ADVFRMTTogg: {fileID: 1875130798}
   AddProf: 0
   AddProfDelay: 0
   ResetApp: {fileID: 0}
@@ -24381,6 +24487,7 @@ MonoBehaviour:
   appresettime: 0.4167
   CountUp: 0
   ResetReset: 0
+  ADVFMT: 1
   MSTimer: 0
   MSAddeds: 0
   MSLeftDisplay: 0
@@ -24394,6 +24501,14 @@ MonoBehaviour:
   AddedTimesFadeOutSat: 0
   AddedTimesFadeOutVal: 0
   AddedTimesRainbow: 0
+  makefile: 0
+  readfile: 0
+  FileName: AtestJson.json
+  FileContents: Hmm
+  ObjIndex: Saves/
+  dataind: 0
+  Objind: 0
+  DataToSave: erg
 --- !u!4 &1829068702
 Transform:
   m_ObjectHideFlags: 0
@@ -25327,6 +25442,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1875130797}
   - component: {fileID: 1875130798}
+  - component: {fileID: 1875130799}
   m_Layer: 5
   m_Name: Toggle
   m_TagString: Untagged
@@ -25412,8 +25528,59 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 0
+      - m_Target: {fileID: 1875130799}
+        m_TargetAssemblyTypeName: SavableValueScript, Assembly-CSharp
+        m_MethodName: SaveValue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
         m_CallState: 2
   m_IsOn: 1
+--- !u!114 &1875130799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1875130796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9722c07e9b54ee409c54b50190696e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SavableValueScript
+  Label: RIch Formating
+  Togg: {fileID: 1875130798}
+  Slide: {fileID: 0}
+  TCS: {fileID: 1829068701}
+  ObjectLayer: 3
+  DataLayer: 0
+  VarToToggle:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1829068701}
+        m_TargetAssemblyTypeName: TimeControllerScript, Assembly-CSharp
+        m_MethodName: ADVFMTFunc
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 0
+  toggle: 1
+  DefaultBool: 0
+  flot: 0
+  DefaultFloat: -1
+  integr: 0
+  DefaultInt: -1
 --- !u!1 &1891326449
 GameObject:
   m_ObjectHideFlags: 0
@@ -25932,6 +26099,7 @@ GameObject:
   - component: {fileID: 1924138189}
   - component: {fileID: 1924138190}
   - component: {fileID: 1924138191}
+  - component: {fileID: 1924138192}
   m_Layer: 5
   m_Name: Toggle
   m_TagString: Untagged
@@ -26017,6 +26185,18 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 0
+      - m_Target: {fileID: 1924138192}
+        m_TargetAssemblyTypeName: SavableValueScript, Assembly-CSharp
+        m_MethodName: SaveValue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
         m_CallState: 2
   m_IsOn: 0
 --- !u!114 &1924138191
@@ -26026,12 +26206,51 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1924138188}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6cfb9e4f46ef52a44ad62d34b6f5cc4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
   TCS: {fileID: 1829068701}
+--- !u!114 &1924138192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1924138188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9722c07e9b54ee409c54b50190696e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SavableValueScript
+  Label: Keep Last Added Time
+  Togg: {fileID: 1924138190}
+  Slide: {fileID: 0}
+  TCS: {fileID: 1829068701}
+  ObjectLayer: 3
+  DataLayer: 1
+  VarToToggle:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1829068701}
+        m_TargetAssemblyTypeName: TimeControllerScript, Assembly-CSharp
+        m_MethodName: KeepTimeInAddBoxFunc
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  toggle: 1
+  DefaultBool: 0
+  flot: 0
+  DefaultFloat: -1
+  integr: 0
+  DefaultInt: -1
 --- !u!1 &1935564656
 GameObject:
   m_ObjectHideFlags: 0
@@ -27033,6 +27252,7 @@ GameObject:
   - component: {fileID: 2034600209}
   - component: {fileID: 2034600211}
   - component: {fileID: 2034600210}
+  - component: {fileID: 2034600212}
   m_Layer: 5
   m_Name: Toggle
   m_TagString: Untagged
@@ -27067,7 +27287,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2034600208}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d054ec865302974a850dfa8027dcdd0, type: 3}
   m_Name: 
@@ -27134,6 +27354,45 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   m_IsOn: 0
+--- !u!114 &2034600212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2034600208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9722c07e9b54ee409c54b50190696e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SavableValueScript
+  Label: 
+  Togg: {fileID: 2034600211}
+  Slide: {fileID: 0}
+  TCS: {fileID: 1829068701}
+  ObjectLayer: 4
+  DataLayer: 1
+  VarToToggle:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1829068701}
+        m_TargetAssemblyTypeName: TimeControllerScript, Assembly-CSharp
+        m_MethodName: MSAddedsFunc
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  toggle: 1
+  DefaultBool: 0
+  flot: 0
+  DefaultFloat: -1
+  integr: 0
+  DefaultInt: -1
 --- !u!1 &2038094140
 GameObject:
   m_ObjectHideFlags: 0
@@ -28766,6 +29025,5 @@ SceneRoots:
   - {fileID: 17028223}
   - {fileID: 667572244}
   - {fileID: 838219046}
-  - {fileID: 301739423}
   - {fileID: 966479439}
   - {fileID: 1340966942}

@@ -9,13 +9,6 @@ public class RichFormatToggling : MonoBehaviour
     public TMP_InputField tmp3;
     public Toggle togg;
     public TextMeshProUGUI tmp2;
-    public bool wastogg;
-    void Awake()
-    {
-        if (PlayerPrefs.GetInt("AdvancedFormatting", 0) == 1) { togg.isOn = true; }
-    }
-
-    // Update is called once per frame
     void Update()
     {
         if (togg.isOn)
@@ -34,17 +27,5 @@ public class RichFormatToggling : MonoBehaviour
             tmp2.fontSize = 14f;
             togg.targetGraphic.color = new Color(1, 1, 1);
         }
-        if (togg.isOn != wastogg)
-        {
-            SaveTogg();
-        }
-        wastogg = togg.isOn;
-    }
-    public void SaveTogg()
-    {
-        int ADVFRMT = 0;
-        if (togg.isOn) { ADVFRMT = 1; }
-        PlayerPrefs.SetInt("AdvancedFormatting", ADVFRMT);
-        PlayerPrefs.Save();
     }
 }

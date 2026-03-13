@@ -1,5 +1,9 @@
 using System;
+using System.IO;
+using System.Security.Cryptography;
 using TMPro;
+using TreeEditor;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -31,12 +35,9 @@ public class TimeControllerScript : MonoBehaviour
     public int Profiles;
     public GameObject ProfilesView;
     public GameObject ProfileToAdd;
-    public bool DEBUGLOAD = false;
-    public bool DEDELCURRENTPROFILE = false;
-    public bool DEBUGCLEARPLAYERPREFS = false;
     public string ProfileName = "Profile";
     public TMP_InputField ProfileNameSetter;
-    public Toggle ADVFRMTTogg;
+
     public int AddProf;
     public int AddProfDelay;
 
@@ -46,24 +47,94 @@ public class TimeControllerScript : MonoBehaviour
     public float appresettime = 0.4167f;
     public bool CountUp = false;
     public bool ResetReset;
+    //public Toggle ADVFRMTTogg;
 
+    /*public bool ADVFMT = true;
+    public void ADVFMTFunc(bool tog)
+    {
+        ADVFMT = tog;
+    }*/
     public bool MSTimer = true;
+    public void MSTimerFunc(bool tog)
+    {
+        MSTimer = tog;
+    }
     public bool MSAddeds = false;
+    public void MSAddedsFunc(bool tog)
+    {
+        MSAddeds = tog;
+    }
     public bool MSLeftDisplay = false;
+    public void MSLeftDisplayFunc(bool tog)
+    {
+        MSLeftDisplay = tog;
+    }
     public bool MSUsedDisplay = false;
+    public void MSUsedDisplayFunc(bool tog)
+    {
+        MSUsedDisplay = tog;
+    }
 
     public bool KeepTimeInAddBox = false;
-
+    public void KeepTimeInAddBoxFunc(bool tog)
+    {
+        KeepTimeInAddBox = tog;
+    }
     public int DeletedProfLifeTime = 120;
-
+    public void DeletedProfLifeTimeFunc(int inte)
+    {
+        DeletedProfLifeTime = inte;
+    }
     public float AddedTimesHue;
+    public void AddedTimesHueFunc(float flot)
+    {
+        AddedTimesHue = flot;
+    }
     public float AddedTimesSat;
+    public void AddedTimesSatFunc(float flot)
+    {
+        AddedTimesSat = flot;
+    }
     public float AddedTimesVal;
+    public void AddedTimesValFunc(float flot)
+    {
+        AddedTimesVal = flot;
+    }
 
     public float AddedTimesFadeOutHue;
+    public void AddedTimesFadeOutHueFunc(float flot)
+    {
+        AddedTimesFadeOutHue = flot;
+    }
     public float AddedTimesFadeOutSat;
+    public void AddedTimesFadeOutSatFunc(float flot)
+    {
+        AddedTimesFadeOutSat = flot;
+    }
     public float AddedTimesFadeOutVal;
+    public void AddedTimesFadeOutValFunc(float flot)
+    {
+        AddedTimesFadeOutVal = flot;
+    }
     public bool AddedTimesRainbow = false;
+    public void AddedTimesRainbowFunc(bool tog)
+    {
+        AddedTimesRainbow = tog;
+    }
+
+    //tmp
+    public bool makefile = false;
+    public bool readfile = false;
+    public string FileName = "Test.txt";
+    public string FileContents = "Hmm";
+    public string ObjIndex = "Saves/";
+
+
+    public int dataind = 0;
+    public int Objind = 0;
+    public string DataToSave = "erg";
+
+
 
     void Awake()
     {
@@ -79,8 +150,163 @@ public class TimeControllerScript : MonoBehaviour
         }
         else { KeepTimeInAddBox = false; }
     }
+    [System.Serializable]
+    public class SaveObjectList
+    {
+        public SaveObject[] Objects;
+    }
+    [System.Serializable]
+    public class SaveObject
+    {
+        public string[] datas;
+    }
+    /*One Master File to contain profiles(Profiles.txt for example, just needs to store the int of how many there are)
+     *Each Profile will be is own file
+     *Follow Options: Sections -> Value
+        *Therefore We See:
+        *3:Misc
+        *4:Milli
+        *5:Background
+        *6:Animatino
+        *7:LoggedTimes
+     *added times will be in Object[0]
+     *Things saved with the current save() func will be in Object[1]
+    */
+    /*public void MKfile(int Objindex,int DataLength, string[] data)
+    {
+            if (!Directory.Exists(Application.dataPath + @"\Savedata\")) { Directory.CreateDirectory(Application.dataPath + @"\Savedata\"); }
+            //if (!File.Exists(Application.dataPath + FileName)) { File.Create(Application.dataPath + @"\Savedata\" + FileName); }
+
+            //File.WriteAllText(Application.dataPath + @"\Savedata\" + FileName, JsonUtility.ToJson(FileContents));
+            SaveObject saveobj = new SaveObject();
+            saveobj.datas = new string[DataLength];
+            for (int i = 0; i < DataLength; i++)
+            {
+                saveobj.datas[i] = data[i];
+            }
+            SaveObjectList sol = new SaveObjectList();
+            sol.Objects = new SaveObject[Objindex+1];
+            sol.Objects[Objindex] = saveobj;
+            JsonUtility.ToJson(saveobj);
+            Debug.Log(sol);
+            File.WriteAllText(Application.dataPath + @"\Savedata\Profile" + Profile.ToString() + ".json", JsonUtility.ToJson(sol)); 
+
+            //JsonUtility.ToJson(FileContents);
+
+
+    }*/
+    public void MKfile(int Objindex, int Dataindex, string Data)
+    {
+            MKfile(Objindex, Dataindex, Data,-1);
+    }
+    public void MKfile(int Objindex, int Dataindex, string Data, int MaxData)
+    {
+        MKfile(Objindex, Dataindex, Data, MaxData , Profile);
+    }
+    public void MKfile(int Objindex, int Dataindex, string Data, int MaxData, int Prof)
+    {
+        if (!Directory.Exists(Application.dataPath + @"\Savedata\")) { Directory.CreateDirectory(Application.dataPath + @"\Savedata\"); }
+
+        SaveObjectList sol = new SaveObjectList();
+        
+        if (File.Exists(Application.dataPath + @"\Savedata\Profile" + Prof.ToString() + ".json")) {
+            int ObjLength = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(Application.dataPath + @"\Savedata\Profile" + Prof.ToString() + ".json")).Objects.Length;
+            sol.Objects = new SaveObject[ObjLength];
+            if (Objindex+1 >= ObjLength)
+            {
+                sol.Objects = new SaveObject[Objindex+1];
+            }
+            
+            for (int i = 0; i < sol.Objects.Length; i++)
+            {
+                SaveObject saveobj = new SaveObject();
+                int SaveObjIndex = 1;
+                if (i == Objindex && MaxData > 0)
+                {
+                    saveobj.datas = new string[MaxData];
+                }
+                else
+                {
+                    try
+                    {
+                        SaveObjIndex = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(Application.dataPath + @"\Savedata\Profile" + Prof.ToString() + ".json")).Objects[i].datas.Length;
+                    }
+                    catch {  }
+                    if (Dataindex + 1  > SaveObjIndex) { SaveObjIndex = Dataindex + 1; }
+                    saveobj.datas = new string[SaveObjIndex + 1];
+                }
+                
+                SaveObjIndex = saveobj.datas.Length-1;
+                for (int j = 0; j < SaveObjIndex; j++)
+                {
+                    try
+                    {
+                        saveobj.datas[j] = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(Application.dataPath + @"\Savedata\Profile" + Prof.ToString() + ".json")).Objects[i].datas[j];
+                    }
+                    catch { saveobj.datas[j] = "#"; }
+                    
+                }
+                if (i == Objindex) { saveobj.datas[Dataindex] = Data; } // Debug.Log("Then Why" + i + ":" + Data + ":" + Dataindex); }
+                /*if (i == 1 && Objindex == i) //{ Debug.Log("eawsgaseru8i9gaguiolerhgherg"); }
+                if (i == 2) { Debug.Log("anything"); sol.Objects[i] = saveobj;  Debug.Log(saveobj); }
+                if (i == 2) { Debug.Log("anything at all"); sol.Objects[i] = saveobj; Debug.Log(saveobj); }*/
+                sol.Objects[i] = saveobj;
+                //Debug.Log(i);
+            }
+            /*sol.Objects = new SaveObject[Objindex + 1];
+            sol.Objects[Objindex] = saveobj;*/
+
+            //File.WriteAllText(Application.dataPath + @"\Savedata\COPYProfile" + Profile.ToString() + ".json", JsonUtility.ToJson(sol));
+        }
+        else
+        {
+            SaveObject saveobj = new SaveObject();
+            saveobj.datas = new string[Dataindex+1];
+            saveobj.datas[Dataindex] = Data;
+            sol.Objects = new SaveObject[Objindex + 1];
+            sol.Objects[Objindex] = saveobj;
+            //JsonUtility.ToJson(saveobj);
+            
+
+        }
+
+
+        File.WriteAllText(Application.dataPath + @"\Savedata\Profile" + Prof.ToString() + ".json", JsonUtility.ToJson(sol));
+    }
+    public string RDfile(int Objindex, int Dataindex)
+    {  
+        string read = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(Application.dataPath + @"\Savedata\Profile" + Profile.ToString() + ".json")).Objects[Objindex].datas[Dataindex];
+        return read;
+    }
+    public string RDfile(int Objindex, int Dataindex,int Prof)
+    {
+        string read = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(Application.dataPath + @"\Savedata\Profile" + Prof.ToString() + ".json")).Objects[Objindex].datas[Dataindex];
+        return read;
+    }
+    public bool CheckFile()
+    {
+        return CheckFile(Profile);
+    }
+    public bool CheckFile(int Prof)
+    {
+        if (File.Exists(Application.dataPath + @"\Savedata\Profile" + Prof.ToString() + ".json")) { return true; }
+        return false;
+    }
     void Update()
     {
+        /*
+        if (makefile)
+        {
+            string[] d = new string[1];
+            d[0] = "3";
+            MKfile(Objind, dataind, DataToSave);
+            makefile = false;
+        }
+        if (readfile)
+        {
+            //RDfile();
+            readfile = false;
+        }*/
         Application.targetFrameRate = (int)Screen.currentResolution.refreshRateRatio.value;
         if (ResetReset)
         {
@@ -93,12 +319,6 @@ public class TimeControllerScript : MonoBehaviour
         if (Input.GetMouseButton(0) && (pendingreset || pendingtimerappreset || pendingtimerreset || pendingappreset)) 
         { 
         //    ResetReset = true;
-        }
-
-        if (DEBUGCLEARPLAYERPREFS)
-        {
-            DEBUGCLEARPLAYERPREFS = false;
-            PlayerPrefs.DeleteAll();
         }
         viewCurrentTick = CurrentTick;
         RemainingTime = TotalTime - UsedTime;
@@ -150,16 +370,6 @@ public class TimeControllerScript : MonoBehaviour
             Instantiate(TimetoAdd, new Vector3((float)(CurrentTick - TicksWhenTimerStarted) / 600000000, transform.position.y, 0), transform.rotation, ContentView.transform);
             WasRunTimer = false;
         }
-        if (DEBUGLOAD)
-        {
-            Load(Profile);
-            DEBUGLOAD = false;
-        }
-        if (DEDELCURRENTPROFILE)
-        {
-            DelProf(Profile);
-            DEDELCURRENTPROFILE = false;
-        }
         AddProfDelay -= 1;
         if (AddProfDelay == 0)
         {
@@ -169,15 +379,19 @@ public class TimeControllerScript : MonoBehaviour
 
         }
     }
-    public void Save(int Prof)
+    public void SavePlayerPrefs(int Prof)
     {
         Profile = Prof;
-        if (RunTimer) { PlayerPrefs.SetString("TimerRunning" + Prof.ToString(), TicksWhenTimerStarted.ToString()); }
-        else { PlayerPrefs.SetString("TimerRunning" + Prof.ToString(), (-1).ToString()); }
+        /*if (RunTimer) { PlayerPrefs.SetString("TimerRunning" + Prof.ToString(), TicksWhenTimerStarted.ToString()); }
+        else { PlayerPrefs.SetString("TimerRunning" + Prof.ToString(), (-1).ToString()); }*/
+
+        if (RunTimer) { MKfile(1, 0, TicksWhenTimerStarted.ToString(), -1); }
+        else { MKfile(1, 0, (-1).ToString(), -1);Debug.Log("Culprit"); }
+        //1,0 = TimerRunning
 
         PlayerPrefs.SetFloat("DefaultTime" + Prof.ToString(), DefaultTime);
         PlayerPrefs.SetFloat("UsedTime" + Prof.ToString(), UsedTime);
-        PlayerPrefs.SetFloat("TotalTime"    + Prof.ToString(), TotalTime);
+        PlayerPrefs.SetFloat("TotalTime" + Prof.ToString(), TotalTime);
         int objso = PlayerPrefs.GetInt("MarkersCount" + Prof.ToString(), -1);
         for (int i = 0; i < objso; i++)
         {
@@ -188,8 +402,10 @@ public class TimeControllerScript : MonoBehaviour
         PlayerPrefs.SetInt("MarkersCount" + Prof.ToString(), objs);
         for (int i = 0; i < objs; i++)
         {
+
             if (TimeMarkers[i].GetComponent<AddedTimesScript>().MinutesAdded != 0)
             {
+                MKfile(0, i, TimeMarkers[i].GetComponent<AddedTimesScript>().MinutesAdded.ToString(), objs);
                 PlayerPrefs.SetFloat(i.ToString() + ("Marker") + "MinutesAdded" + Prof.ToString(), TimeMarkers[i].GetComponent<AddedTimesScript>().MinutesAdded);
             }
             //Debug.Log(TimeMarkers[i].GetComponent<AddedTimesScript>().gameObject.name);
@@ -205,12 +421,64 @@ public class TimeControllerScript : MonoBehaviour
             if (DoesProf == -1) { EndofProfiles = true; }
             else { Profiles += 1; }
         }
-        PlayerPrefs.SetInt("Profiles",Profiles);
+        PlayerPrefs.SetInt("Profiles", Profiles);
         //int ADVFRMT = 0;
         //if (ADVFRMTTogg.isOn) {ADVFRMT = 1; }
         //PlayerPrefs.SetInt("AdvancedFormatting",ADVFRMT);
 
         PlayerPrefs.Save();
+        //Load(Prof);
+    }
+    public void Save(int Prof)
+    {
+        Profile = Prof;
+        /*if (RunTimer) { PlayerPrefs.SetString("TimerRunning" + Prof.ToString(), TicksWhenTimerStarted.ToString()); }
+        else { PlayerPrefs.SetString("TimerRunning" + Prof.ToString(), (-1).ToString()); }*/
+
+        if (RunTimer) { MKfile(1, 0, TicksWhenTimerStarted.ToString(), 4, Prof); }
+        else { MKfile(1, 0, (-1).ToString(), 4, Prof);  }
+        //1,0 = TimerRunning
+
+        MKfile(1, 1, DefaultTime.ToString(), 4, Prof);
+        MKfile(1, 2, UsedTime.ToString(), 4, Prof);
+        MKfile(1, 3, TotalTime.ToString(), 4,Prof);
+        PlayerPrefs.SetFloat("DefaultTime" + Prof.ToString(), DefaultTime);
+        PlayerPrefs.SetFloat("UsedTime" + Prof.ToString(), UsedTime);
+        PlayerPrefs.SetFloat("TotalTime"    + Prof.ToString(), TotalTime);
+        /*int objso = PlayerPrefs.GetInt("MarkersCount" + Prof.ToString(), -1);
+        for (int i = 0; i < objso; i++)
+        {
+            PlayerPrefs.DeleteKey(i.ToString() + ("Marker") + "MinutesAdded" + Prof.ToString());
+        }*/
+        GameObject[] TimeMarkers = GameObject.FindGameObjectsWithTag("DelonReset");
+        int objs = TimeMarkers.Length;
+        //PlayerPrefs.SetInt("MarkersCount" + Prof.ToString(), objs);
+        for (int i = 0; i < objs; i++)
+        {
+            if (TimeMarkers[i].GetComponent<AddedTimesScript>().MinutesAdded != 0)
+            {
+                MKfile(0,i, TimeMarkers[i].GetComponent<AddedTimesScript>().MinutesAdded.ToString(),objs);
+                //PlayerPrefs.SetFloat(i.ToString() + ("Marker") + "MinutesAdded" + Prof.ToString(), TimeMarkers[i].GetComponent<AddedTimesScript>().MinutesAdded);
+            }
+            //Debug.Log(TimeMarkers[i].GetComponent<AddedTimesScript>().gameObject.name);
+            //if (PlayerPrefs.HasKey((i + 1).ToString() + ("Marker") + "MinutesAdded" + Prof.ToString())) { PlayerPrefs.DeleteKey((i + 1).ToString() + ("Marker") + "MinutesAdded" + Prof.ToString()); }
+        }
+        PlayerPrefs.SetInt("Profile" + Prof.ToString(), 1);
+        PlayerPrefs.SetString("Profile" + Prof.ToString() + "Name", ProfileName);
+        PlayerPrefs.SetInt("Profile", Profile);
+        bool EndofProfiles = false;
+        while (!EndofProfiles)
+        {
+            int DoesProf = PlayerPrefs.GetInt("Profile" + Profiles, -1);
+            if (DoesProf == -1) { EndofProfiles = true; }
+            else { Profiles += 1; }
+        }
+        PlayerPrefs.SetInt("Profiles",Profiles);
+        //int ADVFRMT = 0;
+        //if (ADVFRMTTogg.isOn) {ADVFRMT = 1; }
+        //PlayerPrefs.SetInt("AdvancedFormatting",ADVFRMT);
+        
+        //PlayerPrefs.Save();
         //Load(Prof);
     }
     public void Load() { 
@@ -221,6 +489,90 @@ public class TimeControllerScript : MonoBehaviour
         Load(Prof, false);
     }
     public void Load(int Prof, bool Internal)
+    {
+        if (CheckFile(Prof))
+        {
+            int DoesThisProf = PlayerPrefs.GetInt("Profile" + Prof, -1);
+            //if (DoesThisProf == -1 && Initiate) { Save(Prof); }
+            //if (DoesThisProf == -1 && Initiate) { Save(Prof); }
+            Profiles = 0;
+            ProfilesView.GetComponent<TimesAdded>().TimesAppeneded = 0;
+            bool EndofProfiles = false;
+            while (!EndofProfiles)
+            {
+                int DoesProf = PlayerPrefs.GetInt("Profile" + Profiles, -1);
+                if (DoesProf == -1) { EndofProfiles = true; }
+                else { Profiles += 1; }
+            }
+            if (!Internal)
+            {
+
+
+                GameObject[] DeleteProf = GameObject.FindGameObjectsWithTag("ProfileDelete");
+                foreach (GameObject Obj in DeleteProf)
+                {
+                    Destroy(Obj);
+                }
+                int objsProf = Profiles;
+
+
+                for (int i = 0; i < objsProf; i++)
+                {
+                    //ContentView.GetComponent<TimesAdded>().TimesAppeneded += 1;
+                    Instantiate(ProfileToAdd, new Vector3(0, transform.position.y, 0), transform.rotation, ProfilesView.transform);
+                }
+
+
+
+
+
+                GameObject[] Delete = GameObject.FindGameObjectsWithTag("DelonReset");
+                foreach (GameObject Obj in Delete)
+                {
+                    Destroy(Obj);
+                }
+                int objs = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(Application.dataPath + @"\Savedata\Profile" + Profile.ToString() + ".json")).Objects[0].datas.Length;
+
+                for (int i = 0; i < objs; i++)
+                {
+                    //ContentView.GetComponent<TimesAdded>().TimesAppeneded += 1;
+                    try
+                    {
+
+                        Instantiate(TimetoAdd, new Vector3(float.Parse(RDfile(0, i)), transform.position.y, 0), transform.rotation, ContentView.transform);
+                    }
+
+                    catch
+                    {
+
+                    }
+                    //Instantiate(TimetoAdd, new Vector3(PlayerPrefs.GetFloat(i.ToString() + ("Marker") + "MinutesAdded" + Prof.ToString(), -2), transform.position.y, 0), transform.rotation, ContentView.transform);
+                    //Debug.Log((PlayerPrefs.GetFloat(i.ToString() + ("Marker") + "MinutesAdded" + Prof.ToString(), 0)));
+
+                    //Debug.Log((PlayerPrefs.GetFloat(i.ToString() + ("Marker") + "MinutesAdded" + Prof.ToString(), -2))==0);
+                }
+            }
+
+            UsedTime = PlayerPrefs.GetFloat("UsedTime" + Prof.ToString(), 0);
+            TotalTime = PlayerPrefs.GetFloat("TotalTime" + Prof.ToString(), DefaultTime);
+            DefaultTime = PlayerPrefs.GetFloat("DefaultTime" + Prof.ToString(), DefaultTime);
+            ContentView.GetComponent<TimesAdded>().TimesAppeneded = 0;
+            long timerrunning = -1;
+            try { 
+                timerrunning = long.Parse(RDfile(1, 0));
+            }
+            catch {  }
+            
+            if (timerrunning >= 0) { RunTimer = true; WasRunTimer = true; TicksWhenTimerStarted = timerrunning; }
+            else
+            {
+                RunTimer = false; WasRunTimer = false;
+            }
+            ProfileName = PlayerPrefs.GetString("Profile" + Prof.ToString() + "Name", "Profile " + Prof);
+            Profile = Prof;
+        }
+    }
+    public void LoadPlayerPrefs(int Prof, bool Internal)
     {
         int DoesThisProf = PlayerPrefs.GetInt("Profile" + Prof, -1);
         //if (DoesThisProf == -1 && Initiate) { Save(Prof); }
@@ -265,7 +617,9 @@ public class TimeControllerScript : MonoBehaviour
                 //ContentView.GetComponent<TimesAdded>().TimesAppeneded += 1;
                 if (!(PlayerPrefs.GetFloat(i.ToString() + ("Marker") + "MinutesAdded" + Prof.ToString(), -2) == -2) && !(PlayerPrefs.GetFloat(i.ToString() + ("Marker") + "MinutesAdded" + Prof.ToString(), -2) == 0))
                 {
-                    Instantiate(TimetoAdd, new Vector3(PlayerPrefs.GetFloat(i.ToString() + ("Marker") + "MinutesAdded" + Prof.ToString(), -2), transform.position.y, 0), transform.rotation, ContentView.transform);
+                    //Instantiate(TimetoAdd, new Vector3(PlayerPrefs.GetFloat(i.ToString() + ("Marker") + "MinutesAdded" + Prof.ToString(), -2), transform.position.y, 0), transform.rotation, ContentView.transform);
+                    Instantiate(TimetoAdd, new Vector3(float.Parse(RDfile(0, i)), transform.position.y, 0), transform.rotation, ContentView.transform);
+
                     //Debug.Log((PlayerPrefs.GetFloat(i.ToString() + ("Marker") + "MinutesAdded" + Prof.ToString(), -2)));
                 }
                 //Instantiate(TimetoAdd, new Vector3(PlayerPrefs.GetFloat(i.ToString() + ("Marker") + "MinutesAdded" + Prof.ToString(), -2), transform.position.y, 0), transform.rotation, ContentView.transform);

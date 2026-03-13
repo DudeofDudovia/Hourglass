@@ -3,38 +3,16 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class ChangeLogFontSizeSliderScript : MonoBehaviour
+public class ResetableValueScript : MonoBehaviour
 {
-    public Slider Slider;
-    public void SaveSlider()
-    {
-
-        PlayerPrefs.SetFloat("ChangeLogFontSize", Slider.value);
-        PlayerPrefs.Save();
-    }
-    public void Awake()
-    {
-        if (PlayerPrefs.HasKey("ChangeLogFontSize"))
-        {
-            if (PlayerPrefs.GetFloat("ChangeLogFontSize") > 150)
-            {
-                Slider.maxValue = PlayerPrefs.GetFloat("ChangeLogFontSize");
-            }
-            Slider.value = PlayerPrefs.GetFloat("ChangeLogFontSize");
-        }
-        else { Slider.value = 9.3f; }
-    }
-    public void Start()
-    {
-        Adjusted = false;
-    }
     public bool Ishovering = false;
     public bool MouseDown = false;
     public bool MouseD2 = false;
     public bool MouseUp = false;
     public int DoubleClick = 0;
-    public bool Adjusted = false;
-
+    public Slider Slide;
+    public SavableValueScript SVS;
+    public bool integ;
     public void Update()
     {
         MouseDown = false;
@@ -44,7 +22,8 @@ public class ChangeLogFontSizeSliderScript : MonoBehaviour
         Ishovering = IsPointerOver(GetEventSystemRaycastResults());
         if (DoubleClick > 0 && MouseDown && Ishovering && MouseUp)
         {
-            Slider.value = 9.3f;
+            Slide.value = SVS.DefaultFloat;
+            if (SVS.integr) { Slide.value = SVS.DefaultInt; }
         }
         if (Ishovering && MouseDown)
         {
@@ -52,7 +31,6 @@ public class ChangeLogFontSizeSliderScript : MonoBehaviour
         }
         DoubleClick--;
         if (MouseDown) { MouseUp = false; }
-        if (Adjusted) { }
 
     }
     public bool IsPointerOver(List<RaycastResult> eventSystemRaycastResults)
