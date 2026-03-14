@@ -25,7 +25,9 @@ For this update my goals are at least to:
   	KeepLastAddedToggle[Tcs]
 Will finish list later lol
 
-
+I was hasty to declare complete, there are still some PlayerPrefs that need to be cleaned
+New BUG
+  Profiles Aren't Loading Propperly
 
 Bug Fixes:
   Pressing enter at all will add time(or at least attempt to)
