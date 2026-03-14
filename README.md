@@ -8,7 +8,7 @@ For this update my goals are at least to:
        This would be impractical and a waste of time and space as I'm the only person using a version with PlayerPrefs. Therefore:
      COMPLETE
   5. Potentially make widscreen support better
-
+     COMPLETE
 
 
 
