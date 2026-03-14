@@ -5,6 +5,8 @@ For this update my goals are at least to:
      COMPLETE
   3. Change to using a custom file rather than player prefs
      This would require an import saves feature (preferably automatic)
+       This would be impractical and a waste of time and space as I'm the only person using a version with PlayerPrefs. Therefore:
+     COMPLETE
   5. Potentially make widscreen support better
 
 
