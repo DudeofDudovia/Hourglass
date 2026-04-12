@@ -31,3 +31,6 @@ New BUG
 
 Bug Fixes:
   Pressing enter at all will add time(or at least attempt to)
+
+
+Made Background Change Hue Better
