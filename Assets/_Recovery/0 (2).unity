@@ -228,6 +228,8 @@ MonoBehaviour:
   value: 0.81
   horizontal: 0.84
   scale: 1
+  FindRat: 1
+  rRAT: 1
 --- !u!114 &3466609
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -434,6 +436,8 @@ MonoBehaviour:
   value: 0.63
   horizontal: 1.25
   scale: 0.22
+  FindRat: 1
+  rRAT: 1
 --- !u!114 &13356456
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -561,6 +565,8 @@ MonoBehaviour:
   value: 0.63
   horizontal: 0.77
   scale: 1
+  FindRat: 1
+  rRAT: 1
 --- !u!114 &24582993
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1040,6 +1046,8 @@ MonoBehaviour:
   value: 1.0055
   horizontal: 1
   scale: 0.19
+  FindRat: 1
+  rRAT: 1
 --- !u!114 &40646556
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1969,6 +1977,8 @@ MonoBehaviour:
   value: 1.335
   horizontal: 1
   scale: 1
+  FindRat: 1
+  rRAT: 1
 --- !u!114 &147670988
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2106,6 +2116,8 @@ MonoBehaviour:
   value: 0.81
   horizontal: 1.23
   scale: 1
+  FindRat: 1
+  rRAT: 1
 --- !u!114 &147721003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2875,7 +2887,7 @@ MonoBehaviour:
   toggle: 0
   DefaultBool: 0
   flot: 1
-  DefaultFloat: 0.5
+  DefaultFloat: 1
   integr: 0
   DefaultInt: -1
   LoadOnProfileChange: 1
@@ -4118,6 +4130,8 @@ MonoBehaviour:
   value: 1.0055
   horizontal: 1
   scale: 0.19
+  FindRat: 1
+  rRAT: 1
 --- !u!114 &242349386
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4426,6 +4440,8 @@ MonoBehaviour:
   value: 0.75
   horizontal: 1
   scale: 1
+  FindRat: 1
+  rRAT: 1
 --- !u!114 &268871975
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5677,6 +5693,8 @@ MonoBehaviour:
   value: 1.0055
   horizontal: 1
   scale: 0.19
+  FindRat: 1
+  rRAT: 1
 --- !u!114 &314375621
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7627,6 +7645,8 @@ MonoBehaviour:
   value: 1.0055
   horizontal: 1
   scale: 0.19
+  FindRat: 1
+  rRAT: 1
 --- !u!114 &456048333
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8722,7 +8742,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 1
+  m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -10258,6 +10278,8 @@ MonoBehaviour:
   value: 1.435
   horizontal: 0.65
   scale: 0.7
+  FindRat: 1
+  rRAT: 1
 --- !u!114 &655513249
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11853,6 +11875,8 @@ MonoBehaviour:
   value: 1.45
   horizontal: 1.4
   scale: 1
+  FindRat: 1
+  rRAT: 1
 --- !u!114 &793811449
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12442,6 +12466,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 527459770}
+  - {fileID: 1747800935}
   - {fileID: 203370508}
   m_Father: {fileID: 306860255}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -12466,6 +12491,8 @@ MonoBehaviour:
   value: 1.125
   horizontal: 1
   scale: 1
+  FindRat: 1
+  rRAT: 1
 --- !u!114 &849783050
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12554,7 +12581,6 @@ MonoBehaviour:
   Adjusted: 0
   ClearColor: {r: 1, g: 1, b: 1, a: 0}
   Clear: 1
-  HSMat: {fileID: 0}
 --- !u!114 &849783054
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13175,6 +13201,8 @@ MonoBehaviour:
   value: 1.0055
   horizontal: 1
   scale: 0.19
+  FindRat: 1
+  rRAT: 1
 --- !u!114 &904009037
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14770,6 +14798,8 @@ MonoBehaviour:
   value: 1.23
   horizontal: 1
   scale: 1
+  FindRat: 1
+  rRAT: 1
 --- !u!114 &1006123256
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18145,7 +18175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
-  m_Material: {fileID: 2100000, guid: a001230af3299514cbe40383b271fcb9, type: 2}
+  m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -18153,7 +18183,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -6657904534883204269, guid: 3434696520b3bd24cad35804cc0132c6, type: 3}
+  m_Sprite: {fileID: 1786012909420367173, guid: fff2ea6568525e3429151f9a8bde3bf1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -18187,7 +18217,6 @@ MonoBehaviour:
   HueSlider: {fileID: 1465861246}
   SaturationSlider: {fileID: 2014016120}
   ValueSlider: {fileID: 185528866}
-  HSMat: {fileID: 2100000, guid: a001230af3299514cbe40383b271fcb9, type: 2}
 --- !u!1 &1247137117
 GameObject:
   m_ObjectHideFlags: 0
@@ -18333,6 +18362,8 @@ MonoBehaviour:
   value: 0
   horizontal: 1
   scale: 1
+  FindRat: 1
+  rRAT: 1
 --- !u!114 &1253178738
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18449,6 +18480,8 @@ MonoBehaviour:
   value: 0.81
   horizontal: 1.39
   scale: 1
+  FindRat: 1
+  rRAT: 1
 --- !u!114 &1254203177
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18788,6 +18821,8 @@ MonoBehaviour:
   value: 1.0055
   horizontal: 1
   scale: 0.19
+  FindRat: 1
+  rRAT: 1
 --- !u!114 &1285931881
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20776,7 +20811,7 @@ MonoBehaviour:
   toggle: 0
   DefaultBool: 0
   flot: 1
-  DefaultFloat: 0.33333334
+  DefaultFloat: 0
   integr: 0
   DefaultInt: -1
   LoadOnProfileChange: 1
@@ -21846,7 +21881,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
-  m_Material: {fileID: 2100000, guid: a001230af3299514cbe40383b271fcb9, type: 2}
+  m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 0.9411765}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -21854,7 +21889,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -6657904534883204269, guid: 3434696520b3bd24cad35804cc0132c6, type: 3}
+  m_Sprite: {fileID: 1786012909420367173, guid: fff2ea6568525e3429151f9a8bde3bf1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -21892,7 +21927,6 @@ MonoBehaviour:
   Adjusted: 0
   ClearColor: {r: 0, g: 0, b: 0, a: 0}
   Clear: 0
-  HSMat: {fileID: 2100000, guid: a001230af3299514cbe40383b271fcb9, type: 2}
 --- !u!1 &1540550131
 GameObject:
   m_ObjectHideFlags: 0
@@ -23281,6 +23315,8 @@ MonoBehaviour:
   value: 0.92
   horizontal: 1
   scale: 1
+  FindRat: 1
+  rRAT: 1
 --- !u!114 &1594594833
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23916,7 +23952,6 @@ RectTransform:
   - {fileID: 1309417408}
   - {fileID: 1376031260}
   - {fileID: 1253178735}
-  - {fileID: 1747800935}
   m_Father: {fileID: 491239681}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -24655,12 +24690,12 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1239192805}
-  m_Father: {fileID: 1640083702}
+  m_Father: {fileID: 849783048}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 187.25, y: 361.25}
-  m_SizeDelta: {x: -155.75, y: 20}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: -12, y: 20}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1747800936
 MonoBehaviour:
@@ -24900,6 +24935,8 @@ MonoBehaviour:
   value: 0.63
   horizontal: 0.77
   scale: 1
+  FindRat: 1
+  rRAT: 1
 --- !u!114 &1750480326
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25447,8 +25484,6 @@ MonoBehaviour:
   Profiles: 0
   ProfilesView: {fileID: 1811114065}
   ProfileToAdd: {fileID: 3311102170427947228, guid: 2a9b8ccb78d1a65448be5ea2abef52f0, type: 3}
-  ProfileButtonCollection:
-  - {fileID: 0}
   ProfileName: Profile
   ProfileNameSetter: {fileID: 3466609}
   AddProf: 0
@@ -26126,6 +26161,8 @@ MonoBehaviour:
   value: 0.745
   horizontal: 1
   scale: 1
+  FindRat: 1
+  rRAT: 1
 --- !u!114 &1858786502
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26297,6 +26334,8 @@ MonoBehaviour:
   value: 1.0055
   horizontal: 1
   scale: 0.19
+  FindRat: 1
+  rRAT: 1
 --- !u!114 &1872157910
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27685,6 +27724,8 @@ MonoBehaviour:
   value: 1.445
   horizontal: 0.92
   scale: 0.95
+  FindRat: 1
+  rRAT: 1
 --- !u!1 &1976796636
 GameObject:
   m_ObjectHideFlags: 0
@@ -28346,7 +28387,7 @@ MonoBehaviour:
   toggle: 0
   DefaultBool: 0
   flot: 1
-  DefaultFloat: 1
+  DefaultFloat: 0
   integr: 0
   DefaultInt: -1
   LoadOnProfileChange: 1
@@ -29315,6 +29356,8 @@ MonoBehaviour:
   value: 1
   horizontal: 1
   scale: 1
+  FindRat: 1
+  rRAT: 1
 --- !u!114 &2071521725
 MonoBehaviour:
   m_ObjectHideFlags: 0

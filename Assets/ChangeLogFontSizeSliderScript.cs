@@ -34,9 +34,10 @@ public class ChangeLogFontSizeSliderScript : MonoBehaviour
     public bool MouseUp = false;
     public int DoubleClick = 0;
     public bool Adjusted = false;
-
+    /*
     public void Update()
     {
+
         MouseDown = false;
         if (Input.GetMouseButton(0)) { MouseDown = true; }
         if (MouseD2 != MouseDown && DoubleClick <= 29) { MouseUp = true; }
@@ -72,5 +73,5 @@ public class ChangeLogFontSizeSliderScript : MonoBehaviour
         List<RaycastResult> raycastResults = new List<RaycastResult>();
         EventSystem.current.RaycastAll(eventData, raycastResults);
         return raycastResults;
-    }
+    }*/
 }

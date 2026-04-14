@@ -234,13 +234,14 @@ public class AddedTimesScript : MonoBehaviour
     }
     public void RemoveTime()
     {
-        gameObject.tag = "Untagged";
+        gameObject.tag = "BeingRemoved";
         GameObject TCS = Object.FindFirstObjectByType<TimeControllerScript>().gameObject;
         TCS.GetComponent<TimeControllerScript>().RemoTime(MinutesAdded);
         
         Life = TCS.GetComponent<TimeControllerScript>().DeletedProfLifeTime;
         LifeTime = TCS.GetComponent<TimeControllerScript>().DeletedProfLifeTime;
-        BeingDeleted = true; ;
+        BeingDeleted = true;
+        BeingRemoved();
     }
     private void FixedUpdate()
     {
@@ -253,6 +254,7 @@ public class AddedTimesScript : MonoBehaviour
     public void BeingRemoved()
     {
         GameObject TCS = Object.FindFirstObjectByType<TimeControllerScript>().gameObject;
+        if (Life < LifeTime) { gameObject.tag = "Untagged"; }
         Life--;
         CanV.overrideSorting = true;
         CanV.sortingOrder = 0;

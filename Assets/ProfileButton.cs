@@ -26,8 +26,11 @@ public class ProfileButton : MonoBehaviour
     public float diffY = 0;
     public float exitdiffY = 40;
     public Image ButtonToColorChange;
+    public TimeControllerScript TCS;
     private void Start()
     {
+        //Debug.Log(gameObject.tag);
+        if (TCS == null) { TCS = Object.FindFirstObjectByType<TimeControllerScript>().gameObject.GetComponent<TimeControllerScript>(); }
         AddedId = transform.parent.GetComponent<TimesAdded>().TimesAppeneded;
         transform.parent.GetComponent<TimesAdded>().TimesAppeneded += 1;
 
@@ -36,6 +39,18 @@ public class ProfileButton : MonoBehaviour
 
         transform.localPosition = new Vector3(98, AddedId * -30 + 10, 0);
         ProfileName = PlayerPrefs.GetString("Profile" + AddedId.ToString() + "Name", "Profile " + AddedId);
+        try
+        {
+            ProfileName = TCS.RDfile(1, AddedId, true);
+        }
+        catch { }
+        string ProfName = ("Profile" + AddedId.ToString()).ToString();
+        try
+        {
+            if (int.Parse(TCS.RDfile(1, AddedId, true)) == -792) { ProfileName = ProfName; }
+        }
+        catch { }
+        
     }
     public bool IsPointerOver(List<RaycastResult> eventSystemRaycastResults)
     {

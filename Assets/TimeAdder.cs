@@ -20,11 +20,18 @@ public class TimeAdder: MonoBehaviour
     {
         RT.anchoredPosition = new Vector3(0, (-Screen.height) + Screen.height * value, 0);
         RT.localScale = new Vector3(Screen.height / 481.6f, Screen.height / 481.6f, Screen.height / 481.6f) * 1.3f;
-        if (Input.GetKeyDown(KeyCode.KeypadEnter) && !KPDown) { AppenedTime(); KPDown = true; }
-        if (Input.GetKeyDown(KeyCode.Return) && !RTDown) { AppenedTime(); RTDown = true; }
+        if (Input.GetKeyDown(KeyCode.KeypadEnter) && !KPDown) { KPDown = true; }
+        if (Input.GetKeyDown(KeyCode.Return) && !RTDown) {  RTDown = true; }
         if (Input.GetKeyUp(KeyCode.KeypadEnter)) { KPDown = false; }
         if (Input.GetKeyUp(KeyCode.Return)) { RTDown = false; }
+        
 
+    }
+    public void StopEditing()
+    {
+        if (Input.GetKeyDown(KeyCode.KeypadEnter) && !KPDown) { KPDown = true; }
+        if (Input.GetKeyDown(KeyCode.Return) && !RTDown) { RTDown = true; }
+        if (KPDown || RTDown) { AppenedTime(); }
     }
     public void AppenedTime()
     {

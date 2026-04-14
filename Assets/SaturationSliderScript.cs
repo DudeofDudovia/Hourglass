@@ -9,7 +9,7 @@ using static UnityEngine.LowLevelPhysics2D.PhysicsWorld;
 public class SaturationSliderScript : MonoBehaviour
 {
     public Slider Slider;
-    public void SaveSlider()
+    /*public void SaveSlider()
     {
         PlayerPrefs.SetFloat(TCS.Profile + "Saturation", Slider.value);
         PlayerPrefs.Save();
@@ -25,7 +25,7 @@ public class SaturationSliderScript : MonoBehaviour
             Slider.value = PlayerPrefs.GetFloat(TCS.Profile + "Saturation");
         }
         else { Slider.value = 1; }
-    }
+    }*/
     public bool Ishovering = false;
     public bool MouseDown = false;
     public bool MouseD2 = false;
@@ -38,12 +38,13 @@ public class SaturationSliderScript : MonoBehaviour
     public int OldProfile;
     public void Start()
     {
-        LoadProfile();
+        //LoadProfile();
         Adjusted = false;
     }
     public void Update()
     {
-
+        if (Adjusted) { TMP.color = Color.HSVToRGB(HueSlider.value, Slider.value, 1); }
+        /*
         MouseDown = false;
         if (Input.GetMouseButton(0)) { MouseDown = true; }
         if (MouseD2 != MouseDown && DoubleClick <= 29) { MouseUp = true; }
@@ -59,13 +60,14 @@ public class SaturationSliderScript : MonoBehaviour
         }
         DoubleClick--;
         if (MouseDown) { MouseUp = false; }
-        if (Adjusted) { TMP.color = Color.HSVToRGB(HueSlider.value, Slider.value, 1); }
+        
         if (OldProfile != TCS.Profile)
         {
             LoadProfile();
         }
-        OldProfile = TCS.Profile;
+        OldProfile = TCS.Profile;*/
     }
+    /*
     public bool IsPointerOver(List<RaycastResult> eventSystemRaycastResults)
     {
         for (int i = 0; i < eventSystemRaycastResults.Count; i++)
@@ -84,6 +86,7 @@ public class SaturationSliderScript : MonoBehaviour
         EventSystem.current.RaycastAll(eventData, raycastResults);
         return raycastResults;
     }
+    */
     public void AdjSat()
     {
         Adjusted = true;

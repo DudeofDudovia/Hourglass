@@ -9,7 +9,7 @@ public class HueSliderScript : MonoBehaviour
 {
     public Slider Slider;
 
-    public void SaveSlider()
+   /*public void SaveSlider()
     {
         PlayerPrefs.SetFloat(TCS.Profile+"Hue", Slider.value);
         PlayerPrefs.Save();
@@ -25,7 +25,7 @@ public class HueSliderScript : MonoBehaviour
             Slider.value = PlayerPrefs.GetFloat(TCS.Profile + "Hue");
         }
         else { Slider.value = 0.1719923f; }
-    }
+    }*/
 
     public bool Ishovering = false;
     public bool MouseDown = false;
@@ -39,13 +39,13 @@ public class HueSliderScript : MonoBehaviour
 
     public void Start()
     {
-        LoadProfile();
+        //LoadProfile();
         Adjusted = false;
     }
     public void Update()
     {
-
-        MouseDown = false;
+        if (Adjusted) { TMP.color = Color.HSVToRGB(Slider.value, 1, 1); }
+        /*MouseDown = false;
         if (Input.GetMouseButton(0)) { MouseDown = true;  }
         if (MouseD2 != MouseDown && DoubleClick <= 29) { MouseUp = true; }
         MouseD2 = MouseDown;
@@ -59,15 +59,15 @@ public class HueSliderScript : MonoBehaviour
             DoubleClick = 30;
         }
         DoubleClick--;
-        if (MouseDown) { MouseUp = false; }
-        if (Adjusted) { TMP.color = Color.HSVToRGB(Slider.value, 1, 1); }
-        if (OldProfile != TCS.Profile)
+        if (MouseDown) { MouseUp = false; }*/
+
+        /*if (OldProfile != TCS.Profile)
         {
             LoadProfile();
         }
-        OldProfile = TCS.Profile;
+        OldProfile = TCS.Profile;*/
     }
-    public bool IsPointerOver(List<RaycastResult> eventSystemRaycastResults)
+    /*public bool IsPointerOver(List<RaycastResult> eventSystemRaycastResults)
     {
         for (int i = 0; i < eventSystemRaycastResults.Count; i++)
         {
@@ -84,7 +84,7 @@ public class HueSliderScript : MonoBehaviour
         List<RaycastResult> raycastResults = new List<RaycastResult>();
         EventSystem.current.RaycastAll(eventData, raycastResults);
         return raycastResults;
-    }
+    }*/
     public void AdjHue()
     {
         Adjusted = true;

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class ValueSliderScript : MonoBehaviour
 {
     public Slider Slider;
-    public void SaveSlider()
+    /*public void SaveSlider()
     {
         PlayerPrefs.SetFloat(TCS.Profile + "Value", Slider.value);
         PlayerPrefs.Save();
@@ -22,7 +22,7 @@ public class ValueSliderScript : MonoBehaviour
             Slider.value = PlayerPrefs.GetFloat(TCS.Profile + "Value");
         }
         else { Slider.value = 1; }
-    }
+    }*/
     public bool Ishovering = false;
     public bool MouseDown = false;
     public bool MouseD2 = false;
@@ -36,12 +36,13 @@ public class ValueSliderScript : MonoBehaviour
     public int OldProfile;
     public void Start()
     {
-        LoadProfile();
+        //LoadProfile();
         Adjusted = false;
     }
     public void Update()
     {
-
+        if (Adjusted) { TMP.color = Color.HSVToRGB(HueSlider.value, SatSlider.value, Slider.value); }
+        /*
         MouseDown = false;
         if (Input.GetMouseButton(0)) { MouseDown = true; }
         if (MouseD2 != MouseDown && DoubleClick <= 29) { MouseUp = true; }
@@ -57,14 +58,15 @@ public class ValueSliderScript : MonoBehaviour
         }
         DoubleClick--;
         if (MouseDown) { MouseUp = false; }
-        if (Adjusted) { TMP.color = Color.HSVToRGB(HueSlider.value, SatSlider.value, Slider.value); }
+        
 
         if (OldProfile != TCS.Profile)
         {
             LoadProfile();
         }
-        OldProfile = TCS.Profile;
+        OldProfile = TCS.Profile;*/
     }
+    /*
     public bool IsPointerOver(List<RaycastResult> eventSystemRaycastResults)
     {
         for (int i = 0; i < eventSystemRaycastResults.Count; i++)
@@ -82,7 +84,7 @@ public class ValueSliderScript : MonoBehaviour
         List<RaycastResult> raycastResults = new List<RaycastResult>();
         EventSystem.current.RaycastAll(eventData, raycastResults);
         return raycastResults;
-    }
+    }*/
     public void AdjVal()
     {
         Adjusted = true;

@@ -8,7 +8,7 @@ using UnityEngine.Rendering.Universal;
 public class CountUpAnimScript : MonoBehaviour
 {
     public Slider Slider;
-    public void SaveSlider()
+    /*public void SaveSlider()
     {
 
         PlayerPrefs.SetFloat("UpDownAnimTime", Slider.value);
@@ -26,7 +26,7 @@ public class CountUpAnimScript : MonoBehaviour
         }
         else { Slider.value = 30; }
     }
-
+    */
     public bool Ishovering = false;
     public bool MouseDown = false;
     public bool MouseD2 = false;
