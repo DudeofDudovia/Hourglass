@@ -33,4 +33,7 @@ Bug Fixes:
   Pressing enter at all will add time(or at least attempt to)
   Profiles Aren't Loading Propperly
   UpOrDown Will Flip When Removing The Last Time Log and CountUp in TCS is True
-Made Background Change Hue Better
+
+Extras:
+  Made Background Change Hue Better
+  Logged Times Now Log When They Were Log
