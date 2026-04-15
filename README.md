@@ -26,7 +26,7 @@ Will finish list later lol
 
 I was hasty to declare complete, there are still some PlayerPrefs that need to be cleaned
 New BUG
-  UpOrDown Will Randomly Flip When Removing Time Logs
+  UpOrDown Will Flip When Removing The Last Time Log and CountUp in TCS is True
   Rounding on Used Time Display isn't quite right
   
 
