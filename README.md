@@ -27,13 +27,14 @@ Will finish list later lol
 I was hasty to declare complete, there are still some PlayerPrefs that need to be cleaned
 New BUGs:
   Rounding on Used Time Display isn't quite right
-  Make the Time Logs Sit in the Box Correctly
-  Make Keep Last Added Times Toggle Work
+  
+  
 Bug Fixes:
   Pressing enter at all will add time(or at least attempt to)
   Profiles Aren't Loading Propperly
   UpOrDown Will Flip When Removing The Last Time Log and CountUp in TCS is True
-
+  Make the Time Logs Sit in the Box Correctly
+  Make Keep Last Added Times Toggle Work
 Extras:
   Made Background Change Hue Better
   Logged Times Now Log When They Were Log
