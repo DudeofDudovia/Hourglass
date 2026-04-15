@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
@@ -32,6 +31,8 @@ public class SavableValueScript : MonoBehaviour
 
     public bool Resetable = false;
     
+    public bool ForceLoadSaved = false;
+
     public void SaveValue()
     {
         if (FirstFrame) { return; }
@@ -78,6 +79,8 @@ public class SavableValueScript : MonoBehaviour
     }
     public void Update()
     {
+
+
         FirstFrame = false;
         if (LoadOnProfileChange)
         {
@@ -86,6 +89,11 @@ public class SavableValueScript : MonoBehaviour
                 LoadProfile(TCS.Profile);
             }
             OldProf = TCS.Profile;
+        }
+        if (TCS.ResetValues)
+        {
+            LoadProfile(TCS.Profile);
+            Debug.Log("Saving");
         }
 
         if (Resetable)
@@ -108,6 +116,10 @@ public class SavableValueScript : MonoBehaviour
             if (MouseDown) { MouseUp = false; }
         }
 
+        if (ForceLoadSaved)
+        {
+            LoadProfile(TCS.Profile);
+        }
     }
     public void LoadProfile()
     {
@@ -120,7 +132,7 @@ public class SavableValueScript : MonoBehaviour
         {
             try
             {
-                int tog = int.Parse(TCS.RDfile(2, DataLayer,Default));
+                int tog = int.Parse(TCS.RDfile(ObjectLayer, DataLayer,Default));
                 if (tog == -792)
                 {
                     Togg.isOn = DefaultBool;
