@@ -228,6 +228,7 @@ MonoBehaviour:
   value: 0.81
   horizontal: 0.84
   scale: 1
+  x: 0.3
 --- !u!114 &3466609
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -434,6 +435,7 @@ MonoBehaviour:
   value: 0.63
   horizontal: 1.25
   scale: 0.22
+  x: 0.3
 --- !u!114 &13356456
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -561,6 +563,7 @@ MonoBehaviour:
   value: 0.63
   horizontal: 0.77
   scale: 1
+  x: 0.3
 --- !u!114 &24582993
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1040,6 +1043,7 @@ MonoBehaviour:
   value: 1.0055
   horizontal: 1
   scale: 0.19
+  x: 0.3
 --- !u!114 &40646556
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1970,6 +1974,7 @@ MonoBehaviour:
   value: 1.335
   horizontal: 1
   scale: 1
+  x: 0.3
 --- !u!114 &147670988
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2107,6 +2112,7 @@ MonoBehaviour:
   value: 0.81
   horizontal: 1.23
   scale: 1
+  x: 0.3
 --- !u!114 &147721003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4120,6 +4126,7 @@ MonoBehaviour:
   value: 1.0055
   horizontal: 1
   scale: 0.19
+  x: 0.3
 --- !u!114 &242349386
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4566,6 +4573,7 @@ MonoBehaviour:
   value: 0.75
   horizontal: 1
   scale: 1
+  x: 0.3
 --- !u!114 &268871975
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5818,6 +5826,7 @@ MonoBehaviour:
   value: 1.0055
   horizontal: 1
   scale: 0.19
+  x: 0.3
 --- !u!114 &314375621
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7820,6 +7829,7 @@ MonoBehaviour:
   value: 1.0055
   horizontal: 1
   scale: 0.19
+  x: 0.3
 --- !u!114 &456048333
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10465,6 +10475,7 @@ MonoBehaviour:
   value: 1.435
   horizontal: 0.65
   scale: 0.7
+  x: 0.3
 --- !u!114 &655513249
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12041,6 +12052,7 @@ MonoBehaviour:
   value: 1.45
   horizontal: 1.4
   scale: 1
+  x: 0.3
 --- !u!114 &793811449
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12791,6 +12803,7 @@ MonoBehaviour:
   value: 1.125
   horizontal: 1
   scale: 1
+  x: 0.3
 --- !u!114 &849783050
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13500,6 +13513,7 @@ MonoBehaviour:
   value: 1.0055
   horizontal: 1
   scale: 0.19
+  x: 0.3
 --- !u!114 &904009037
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14061,7 +14075,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &919856983
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14089,7 +14103,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 919856982}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0440071f19104a74cbfff3f3b4582528, type: 3}
   m_Name: 
@@ -15248,6 +15262,7 @@ MonoBehaviour:
   value: 1.23
   horizontal: 1
   scale: 1
+  x: 0.3
 --- !u!114 &1006123256
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18798,6 +18813,7 @@ MonoBehaviour:
   value: 0
   horizontal: 1
   scale: 1
+  x: 0.3
 --- !u!114 &1253178738
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18914,6 +18930,7 @@ MonoBehaviour:
   value: 0.81
   horizontal: 1.39
   scale: 1
+  x: 0.3
 --- !u!114 &1254203177
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19253,6 +19270,7 @@ MonoBehaviour:
   value: 1.0055
   horizontal: 1
   scale: 0.19
+  x: 0.3
 --- !u!114 &1285931881
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23886,6 +23904,7 @@ MonoBehaviour:
   value: 0.92
   horizontal: 1
   scale: 1
+  x: 0.3
 --- !u!114 &1594594833
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24540,8 +24559,6 @@ GameObject:
   - component: {fileID: 1644617789}
   - component: {fileID: 1644617793}
   - component: {fileID: 1644617792}
-  - component: {fileID: 1644617791}
-  - component: {fileID: 1644617790}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -24568,39 +24585,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1644617790
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1644617788}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: beaaec293fcbde242bf08cf4ee51f670, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  InfoDisplay: {fileID: 0}
-  TMP: {fileID: 0}
-  DisplayTicks: 0
-  HideDelay: 0
-  MouseY: 0
-  BSAP: {fileID: 0}
-  MouseDown: 0
---- !u!114 &1644617791
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1644617788}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92b806337eb3b5f4ea48b800b5e9daf1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  TMP: {fileID: 1644617792}
-  TCS: {fileID: 1829068701}
 --- !u!114 &1644617792
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25677,6 +25661,7 @@ MonoBehaviour:
   value: 0.63
   horizontal: 0.77
   scale: 1
+  x: 0.3
 --- !u!114 &1750480326
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25745,6 +25730,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LogInfoScript
   InfoDisplay: {fileID: 919856982}
+  IDRT: {fileID: 919856983}
   TMP: {fileID: 1644617792}
   DisplayTicks: 0
   HideDelay: 0
@@ -27222,6 +27208,7 @@ MonoBehaviour:
   value: 0.745
   horizontal: 1
   scale: 1
+  x: 0.3
 --- !u!114 &1858786502
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27393,6 +27380,7 @@ MonoBehaviour:
   value: 1.0055
   horizontal: 1
   scale: 0.19
+  x: 0.3
 --- !u!114 &1872157910
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28756,6 +28744,7 @@ MonoBehaviour:
   value: 1.445
   horizontal: 0.92
   scale: 0.95
+  x: 0.3
 --- !u!1 &1976796636
 GameObject:
   m_ObjectHideFlags: 0
@@ -30386,6 +30375,7 @@ MonoBehaviour:
   value: 1
   horizontal: 1
   scale: 1
+  x: 0.3
 --- !u!114 &2071521725
 MonoBehaviour:
   m_ObjectHideFlags: 0

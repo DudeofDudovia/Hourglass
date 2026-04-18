@@ -11,11 +11,6 @@ public class LogInfoScript : MonoBehaviour
     public long DisplayTicks;
     public int HideDelay;
     public float MouseY;
-    void Start()
-    {
-        
-    }
-
     public ButtonSizeAndPositioner BSAP;
     public bool MouseDown;
     void Update()
@@ -23,7 +18,6 @@ public class LogInfoScript : MonoBehaviour
         TMP.text = System.DateTime.FromBinary(DisplayTicks).ToString();
         if (HideDelay < 0)
         {
-            
             if (MouseDown != Input.GetMouseButton(0))
             {
                 HideLog();

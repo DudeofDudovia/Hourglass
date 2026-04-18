@@ -351,6 +351,9 @@ public class TimeControllerScript : MonoBehaviour
     {
         FillProfileButtonCollection();
         Application.targetFrameRate = (int)Screen.currentResolution.refreshRateRatio.value;
+        if (!Application.isFocused) { Application.targetFrameRate = 24; }
+        if (RunTimer) { Application.runInBackground = true; }
+        else { Application.runInBackground = false; }
         if (ResetReset)
         {
             pendingreset = false;
@@ -414,6 +417,12 @@ public class TimeControllerScript : MonoBehaviour
         }
         ResetValuesTimer -= 1;
     }
+
+    private void Application_focusChanged(bool obj)
+    {
+        throw new NotImplementedException();
+    }
+
     public void Save(int Prof)
     {
         int Profs = 0;
@@ -446,7 +455,6 @@ public class TimeControllerScript : MonoBehaviour
         {
             MKfile(0, 0, 0.ToString(), 0, Prof);
         }
-        Debug.Log(objs);
         MKfile(0, 0, Prof.ToString(), true);
     }
     public UnityEvent LoadCalled;

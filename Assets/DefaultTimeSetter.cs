@@ -26,13 +26,10 @@ public class DefaultTimeSetter : MonoBehaviour
         float Ratio = (float)Screen.width / (float)Screen.height;
         if (Ratio > 0.5 && Ratio <= 1)
         {
-            //Debug.Log("Looks Wrong");
-            Debug.Log(Ratio);
-            float fr = 0.4f / Ratio;
+            float fr = 0.42f / Ratio;
             float hoz = horizontal - 1;
             float ASPRAT = (float)Screen.width / (float)Screen.height;
             float IASPRAT = 1080f / 2408f;
-            //float TOPOW = ASPRAT / 2f;
             float TOPOW = ASPRAT / 2f;
             TOPOW = Mathf.Pow(TOPOW, 1f);
             TOPOW = -TOPOW;
@@ -42,12 +39,11 @@ public class DefaultTimeSetter : MonoBehaviour
         }
         if (Screen.width > Screen.height)
         {
-            Debug.Log("re");
-            float fr = 0.35f;
+            
             float hoz = horizontal - 1;
             float ASPRAT = (float)Screen.width / (float)Screen.height;
+            float fr = 0.35f * Mathf.Pow((1.777777777777778f / ASPRAT), .45f);
             float IASPRAT = 1080f / 2408f;
-            //float TOPOW = ASPRAT / 2f;
             float TOPOW = ASPRAT / 2f;
             TOPOW = Mathf.Pow(TOPOW, 1f);
             TOPOW = -TOPOW;
