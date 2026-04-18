@@ -12,22 +12,35 @@ public class NewUpdateIndicatorScript : MonoBehaviour
     public float horizontal = 1;
     public float scale = 1;
     public string Version = "0.6A";
+    public TimeControllerScript TCS;
     public void Awake()
     {
         Version = Application.version;
+        string LastVer = TCS.RDfile(0, 5, true);
+        if (LastVer == "-792" || LastVer == "#" || LastVer == "0")
+        {
+            TCS.MKfile(0, 5, Version, true);
+            gameObject.SetActive(false);
+        }
+        if (TCS.RDfile(0,5,true) != "-792")
+        {
+            if (TCS.RDfile(0, 5, true) == Version) { gameObject.SetActive(false); }
+        }
+        /*
          if (PlayerPrefs.HasKey("Version"))
         {
             if (PlayerPrefs.GetString("Version") != Version) { }
             if (PlayerPrefs.GetString("Version") == Version) { gameObject.SetActive(false); }
-        }
+        }*/
         else { gameObject.SetActive(false); }
         
     }
     public void HideIndicator()
     {
+        TCS.MKfile(0, 5, Version, true);
         gameObject.SetActive(false);
-        PlayerPrefs.SetString("Version", Version);
-        PlayerPrefs.Save();
+        /*PlayerPrefs.SetString("Version", Version);
+        PlayerPrefs.Save();*/
     }
     public void Update()
     {

@@ -1,43 +1,21 @@
 using System.Collections.Generic;
+using System.IO;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using UnityEngine.Rendering.Universal;
 
-public class CountUpAnimScript : MonoBehaviour
+public class ChangelogScript : MonoBehaviour
 {
-    public Slider Slider;
+    public TextMeshProUGUI TMP;
+    void Start()
+    {
+        TMP.text = File.ReadAllText(Application.dataPath + @"\ChangeLog.txt");
+    }
     public bool Ishovering = false;
     public bool MouseDown = false;
     public bool MouseD2 = false;
     public bool MouseUp = false;
     public int DoubleClick = 0;
-    public bool Adjusted = false;
-    public void Start()
-    {
-        Adjusted = false;
-    }
-    public void Update()
-    {
-        MouseDown = false;
-        if (Input.GetMouseButton(0)) { MouseDown = true; }
-        if (MouseD2 != MouseDown && DoubleClick <= 29) { MouseUp = true; }
-        MouseD2 = MouseDown;
-        Ishovering = IsPointerOver(GetEventSystemRaycastResults());
-        if (DoubleClick > 0 && MouseDown && Ishovering && MouseUp)
-        {
-            Slider.value = 30;
-        }
-        if (Ishovering && MouseDown)
-        {
-            DoubleClick = 30;
-        }
-        DoubleClick--;
-        if (MouseDown) { MouseUp = false; }
-        if (Adjusted) {  }
-
-    }
     public bool IsPointerOver(List<RaycastResult> eventSystemRaycastResults)
     {
         for (int i = 0; i < eventSystemRaycastResults.Count; i++)
@@ -55,5 +33,17 @@ public class CountUpAnimScript : MonoBehaviour
         List<RaycastResult> raycastResults = new List<RaycastResult>();
         EventSystem.current.RaycastAll(eventData, raycastResults);
         return raycastResults;
+    }
+    public void Update()
+    {
+        MouseDown = false;
+        if (Input.GetMouseButton(0)) { MouseDown = true; }
+        Ishovering = IsPointerOver(GetEventSystemRaycastResults());
+        if (MouseD2 != MouseDown) { MouseUp = true; }
+        MouseD2 = MouseDown;
+        if (Ishovering && MouseDown && MouseUp)
+        {
+            Application.OpenURL("https://github.com/DudeofDudovia/Hourglass");
+        }
     }
 }

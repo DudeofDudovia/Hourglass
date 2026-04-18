@@ -1,0 +1,67 @@
+Made by Dude of Dudovia
+	Made Using Unity
+
+More Readable Changelogs Can Be Found On The Github Page
+Changelog 0.7.0
+	Made Background Change Hue Better
+		Before, The Way It Worked Meant That Blues Would Be Black, Now, It Is A Propper Hue Shift.
+	Logged Times Now Log When They Were Logged.
+		This Fun, But Confusing Sentence Simply Means That When You Click A Time Log It Will Show When That Entry Was Made.
+	Improved Compatability With Landscape Screens.
+	Did Lots of Internal Clean Up.
+		This Includes Using Files Rather than PLayerprefs.
+		Removed Useless Scripts and Commented Lines.
+	Fixed Bugs:
+		
+Changelog V0.6B
+	Fixed a Bug Where the Changelog Was not Contained in It's Scrollbox.
+	Fixed a Bug Where the Number That Displayed Font Size Was Rendering On a Layer It Wasn't Supposed to.
+	Fixed a Bug Where the App Would Be Launched In Fullscreen On Windows.
+Changelog V0.6A
+	Changed Commit Time to Log Time
+		This Was to Be Clearer.
+	Added The Ability to Press Enter to Log Time.
+	Updated The UI
+		Added Several Animations.
+	Added Used Time Display
+		Added a Small Button to Swap its Function with Remaining Time DIsplay.
+	Added Options
+		Added Options for Displaying Milliseconds.
+		Added the Ability to Change The Background Color.
+		Added Options for Changing Animation Times.
+		Added Options for Changing Colors of Logged Times.
+		Moved the Reset App Button Here.
+		Moved the Toggle for "Advanced Formatting" Here.
+	Changed the Frame Rate to Match Refresh Rate.
+	Fixed a Bug Where Time Entries Could Be Deleted While the Menu Was Open.
+	Fixed Capitalization On Old Changelogs.
+	Added an Exit App Button.
+	Reduced General Bugginess.
+Changelog V0.5B
+	Made persistance of Advanced Formatting More Consistant.
+Changelog V0.5A
+	Dragging Boxes of the Added Times Now Un-Adds the Time.
+	Dragging Profiles Now Deletes Them.
+	Updated Textures and Made Other Slight UI Changes
+	Fixed Bugs Regarding Profiles
+Changelog V0.4C
+	FIxed Bug Timer Would Be Set to a Value Insanely High if Reset and the Application was Relaunched
+Changelog V0.4B
+	Improved the Persistence of the Rich Format Toggle.
+Changelog V0.4A
+	Improved Time Adding System
+		Support Adding Based on Hours and Seconds Etc:
+			1:30:2 Would be 1 Hour 30 Minutes and 2 Seconds.
+	Added Profiles
+	Updated UI
+		Changed Logos
+Changelog v0.3B
+	Updated UI
+		It Now Scales Numbers
+	Fixed bugs
+		It Now Saves the Default Time
+Changelog v0.3A
+	Changed the UI
+	Added Update with New Total Button
+	Did Minor Bug Fixing
+	Added This Menu

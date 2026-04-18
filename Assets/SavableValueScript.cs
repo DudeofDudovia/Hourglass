@@ -143,6 +143,7 @@ public class SavableValueScript : MonoBehaviour
             catch { Togg.isOn = DefaultBool; }
             if (VarToToggle != null)
             {
+                //Debug.Log(Togg.isOn + gameObject.name);
                 VarToToggle.Invoke(Togg.isOn);
             }
         }

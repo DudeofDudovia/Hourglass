@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class AddedTimesScript : MonoBehaviour
 {
     public TextMeshProUGUI TMP;
+    public long TimeWhenAdded;
     public float MinutesAdded;
     public float MinutesAddedDisplay;
     public int AddedId = 0;
@@ -53,6 +54,8 @@ public class AddedTimesScript : MonoBehaviour
         transform.parent.GetComponent<TimesAdded>().TimesAppeneded += 1;
         AddedId = transform.parent.GetComponent<TimesAdded>().TimesAppeneded;
         MinutesAdded = transform.position.x;
+        TimeWhenAdded = long.Parse(TCS[0].GetComponent<TimeControllerScript>().RDfile(2, AddedId-1));
+        if (TimeWhenAdded == -792) {  TimeWhenAdded = TCS[0].GetComponent<TimeControllerScript>().viewCurrentTick; }
         transform.localPosition = new Vector3(0, AddedId * -40 + 10, 0);
 
         transform.localPosition = new Vector3(98, AddedId * -40 + 10, 0);
@@ -267,5 +270,10 @@ public class AddedTimesScript : MonoBehaviour
             gameObject.SetActive(false); Destroy(gameObject);
         }
 
+    }
+    public void ShowTime()
+    {
+        LogInfoScript LIS = Object.FindFirstObjectByType<LogInfoScript>();
+        LIS.ShowLog(TimeWhenAdded);
     }
 }

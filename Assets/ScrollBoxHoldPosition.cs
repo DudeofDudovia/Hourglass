@@ -34,11 +34,11 @@ public class ScrollBoxHoldPosition : MonoBehaviour
             ReturnScrollPos = false;
             if (ScrollPos > SizeD - HeightOffset)
             {
-                RT.anchoredPosition = new Vector3(0, SizeD - HeightOffset, 0);
+                RT.anchoredPosition = new Vector3(RT.anchoredPosition.x, SizeD - HeightOffset, 0);
             }
             else
             {
-                RT.anchoredPosition = new Vector3(0, ScrollPos, 0);
+                RT.anchoredPosition = new Vector3(RT.anchoredPosition.x, ScrollPos, 0);
             }
         }
         ReturnScrollPosTimer -= 1;

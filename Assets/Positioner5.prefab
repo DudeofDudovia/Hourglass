@@ -299,6 +299,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   TMP: {fileID: 7506777722100854794}
+  TimeWhenAdded: 0
   MinutesAdded: 0
   MinutesAddedDisplay: 0
   AddedId: 0
@@ -448,7 +449,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7549075179999898064}
         m_TargetAssemblyTypeName: AddedTimesScript, Assembly-CSharp
-        m_MethodName: ClickButton
+        m_MethodName: ShowTime
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -13,8 +13,10 @@ public class RichFormatToggling : MonoBehaviour
     {
         if (togg.isOn)
         {
-            tmp.contentType = TMP_InputField.ContentType.Standard;
-            tmp3.contentType = TMP_InputField.ContentType.Standard;
+            tmp.contentType = TMP_InputField.ContentType.Custom;
+            tmp.characterValidation = TMP_InputField.CharacterValidation.CustomValidator;
+            tmp3.contentType = TMP_InputField.ContentType.Custom;
+            tmp3.characterValidation = TMP_InputField.CharacterValidation.CustomValidator;
             tmp2.text = "Add Time: x:y:z / xHyMzS";
             tmp2.fontSize = 10.5f;
             //togg.targetGraphic.color = new Color(.5f, .5f, .5f);
