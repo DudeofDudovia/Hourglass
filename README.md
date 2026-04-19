@@ -18,3 +18,4 @@ Changelog 0.7.0
 		  Made "Keep Last Added Times" toggle work.
 		  Made "Advanced Formatting" work better.
 	Uncapitalized words that didn't need to be.
+Is what it would be if it functioned, currently 7.0.0 doesn't function, so it needs to be fixed.
