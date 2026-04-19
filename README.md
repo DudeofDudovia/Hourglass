@@ -3,7 +3,6 @@ An App to Help Keep Track of Time
 The way this application functions is that it enables you to log how much time has been used, and displays how much is left.
   The app also has a timer, which will keep track of time for you (granted you remember to stop it).
 
-
 Changelog 0.7.0
 	Added a Github button which directs to the Github page.
 	Made background change hue better:
