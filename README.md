@@ -5,7 +5,7 @@ For this update my goals are at least to:
      COMPLETE
   3. Change to using a custom file rather than player prefs
         50% done, just have to make it transfer Profile Data, not just names when Deleted
-         
+  
   5. Potentially make widscreen support better
      COMPLETE
 
@@ -24,12 +24,12 @@ For this update my goals are at least to:
   	KeepLastAddedToggle[Tcs]
 Will finish list later lol
 
-I was hasty to declare complete, there are still some PlayerPrefs that need to be cleaned
 New BUGs:
-  Rounding on Used Time Display isn't quite right
+  
   
   
 Bug Fixes:
+Rounding on Used Time Display isn't quite right
   Pressing enter at all will add time(or at least attempt to)
   Profiles Aren't Loading Propperly
   UpOrDown Will Flip When Removing The Last Time Log and CountUp in TCS is True
@@ -38,3 +38,5 @@ Bug Fixes:
 Extras:
   Made Background Change Hue Better
   Logged Times Now Log When They Were Log
+
+With that, the update is done.
