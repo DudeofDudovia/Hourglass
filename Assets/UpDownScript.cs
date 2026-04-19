@@ -15,63 +15,89 @@ public class UpDownScript : MonoBehaviour
     public float horizontal = 1;
     public float scale = 1;
 
-    // Update is called once per frame
+    public bool FirstFrame = true;
+
+    void Start()
+    {
+        frame = 0;
+        animscalefactor = (float)(animframes - frame) / (float)animframes;
+        animscalefactor *= 2 * (Screen.height / 481.6f);
+        if (TCS.CountUp)
+        {
+            RT.localScale = new Vector3(Screen.height / 481.6f, (Screen.height / 481.6f) - animscalefactor, Screen.height / 481.6f) * scale;
+        }
+        else
+        {
+            RT.localScale = new Vector3(Screen.height / 481.6f, -(Screen.height / 481.6f) + animscalefactor, Screen.height / 481.6f) * scale;
+        }
+    }
     void FixedUpdate()
     {
+        
         RT.anchoredPosition = new Vector3((-Screen.width) + Screen.width * horizontal, (-Screen.height) + Screen.height * value, 0);
-        //if (animscalefactor == 0) { animscalefactor = 10; }
+        float Ratio = (float)Screen.width / (float)Screen.height;
+        if (Ratio > 0.5 && Ratio <= 1)
+        {
+            float fr = 0.44f / Ratio;
+            float hoz = horizontal - 1;
+            float ASPRAT = (float)Screen.width / (float)Screen.height;
+            float IASPRAT = 1080f / 2408f;
+            float TOPOW = ASPRAT / 2f;
+            TOPOW = Mathf.Pow(TOPOW, 1f);
+            TOPOW = -TOPOW;
+            float IDASPRAT = Mathf.Pow(ASPRAT, IASPRAT);
+            IDASPRAT = Mathf.Pow(IDASPRAT, TOPOW);
+            RT.anchoredPosition = new Vector3((float)(Screen.width * hoz * fr * 1 * IDASPRAT), (-Screen.height) + Screen.height * value, 0);
+        }
+        if (Screen.width > Screen.height)
+        {
+            float hoz = horizontal - 1;
+            float ASPRAT = (float)Screen.width / (float)Screen.height;
+            float fr = 0.35f * Mathf.Pow((1.777777777777778f / ASPRAT), .45f);
+            float IASPRAT = 1080f / 2408f;
+            float TOPOW = ASPRAT / 2f;
+            TOPOW = Mathf.Pow(TOPOW, 1f);
+            TOPOW = -TOPOW;
+            float IDASPRAT = Mathf.Pow(ASPRAT, IASPRAT);
+            IDASPRAT = Mathf.Pow(IDASPRAT, TOPOW);
+            RT.anchoredPosition = new Vector3((float)(Screen.width * hoz * fr * 1 * IDASPRAT), (-Screen.height) + Screen.height * value, 0);
+        }
         if (frame >= 0 && frame != animframes)
         {
             if (TCS.CountUp)
             {
                 RT.localScale = new Vector3(Screen.height / 481.6f, (Screen.height / 481.6f) - animscalefactor, Screen.height / 481.6f) * scale;
-                //RT.localScale = new Vector3(Screen.height / 481.6f, -(Screen.height / 481.6f) + animscalefactor, Screen.height / 481.6f) * scale;
             }
             else
             {
                 RT.localScale = new Vector3(Screen.height / 481.6f, -(Screen.height / 481.6f) + animscalefactor, Screen.height / 481.6f) * scale;
-                //RT.localScale = new Vector3(Screen.height / 481.6f, Screen.height / 481.6f - animscalefactor, Screen.height / 481.6f) * scale;
-
             }
         }
         else if (frame >= 0 ) {
             if (TCS.CountUp)
             {
                 RT.localScale = new Vector3(Screen.height / 481.6f, -(Screen.height / 481.6f) + (2 * (Screen.height / 481.6f)), Screen.height / 481.6f) * scale;
-                //RT.localScale = new Vector3(Screen.height / 481.6f, -(Screen.height / 481.6f) + animscalefactor, Screen.height / 481.6f) * scale;
             }
             else
             {
                 RT.localScale = new Vector3(Screen.height / 481.6f, (Screen.height / 481.6f) - (2 * (Screen.height / 481.6f)), Screen.height / 481.6f) * scale;
-                //RT.localScale = new Vector3(Screen.height / 481.6f, Screen.height / 481.6f - animscalefactor, Screen.height / 481.6f) * scale;
-
             }
         }
-
-
-        /*if (TCS.CountUp && animscalefactor == 0)
-        {
-            RT.localScale = new Vector3(Screen.height / 481.6f, -(Screen.height / 481.6f) + animscalefactor, Screen.height / 481.6f) * scale;
-            Debug.Log("Should've");
-        }
-        else if (!TCS.CountUp && animscalefactor == 0)
-        {
-            RT.localScale = new Vector3(Screen.height / 481.6f, (Screen.height / 481.6f) - animscalefactor, Screen.height / 481.6f) * scale;
-            Debug.Log("Should've3");
-        }*/
         lastanimscalefactor = animscalefactor;
         if (frame >= 0)
         {
             animscalefactor = (float)(animframes - frame) / (float)animframes;
             animscalefactor *= 2 * (Screen.height / 481.6f);
         }
-        frame--;
+        if (frame > 0) { frame--; }
+        if (frame < 0) { frame = 0; }
         if (TCS.CountUp != WasLast)
         {
             frame = animframes;
 
         }
         WasLast = TCS.CountUp;
+        if (FirstFrame) { frame = 0; FirstFrame = false; }
     }
     
     

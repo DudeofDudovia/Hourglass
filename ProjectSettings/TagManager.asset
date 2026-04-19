@@ -8,6 +8,7 @@ TagManager:
   - TimeController
   - ProfileDelete
   - AddedTimes
+  - BeingRemoved
   layers:
   - Default
   - TransparentFX

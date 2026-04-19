@@ -228,6 +228,7 @@ MonoBehaviour:
   value: 0.81
   horizontal: 0.84
   scale: 1
+  x: 0.3
 --- !u!114 &3466609
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -434,6 +435,7 @@ MonoBehaviour:
   value: 0.63
   horizontal: 1.25
   scale: 0.22
+  x: 0.3
 --- !u!114 &13356456
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -561,6 +563,7 @@ MonoBehaviour:
   value: 0.63
   horizontal: 0.77
   scale: 1
+  x: 0.3
 --- !u!114 &24582993
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -833,16 +836,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 39000393}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 889682245}
+  m_Father: {fileID: 185528865}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 85, y: 57.5}
+  m_AnchoredPosition: {x: -90, y: 12.000061}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &39000395
@@ -994,10 +997,8 @@ GameObject:
   - component: {fileID: 40646554}
   - component: {fileID: 40646558}
   - component: {fileID: 40646557}
-  - component: {fileID: 40646556}
-  - component: {fileID: 40646555}
   m_Layer: 5
-  m_Name: ToggleRichFormating(Button)
+  m_Name: ToggleKeepLastAdded
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1024,82 +1025,6 @@ RectTransform:
   m_AnchoredPosition: {x: 9, y: 0}
   m_SizeDelta: {x: 145, y: 23.7}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &40646555
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 40646553}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a93f1e809fe68cd45899357afe5a3e05, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GenericPositioner
-  RT: {fileID: 40646554}
-  value: 1.0055
-  horizontal: 1
-  scale: 0.19
---- !u!114 &40646556
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 40646553}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Toggle
-  m_Navigation:
-    m_Mode: 3
-    m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 40646557}
-  toggleTransition: 1
-  graphic: {fileID: 0}
-  m_Group: {fileID: 0}
-  onValueChanged:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 918437833}
-        m_TargetAssemblyTypeName: RichFormatToggling, Assembly-CSharp
-        m_MethodName: SaveTogg
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  m_IsOn: 0
 --- !u!114 &40646557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1148,7 +1073,7 @@ GameObject:
   m_Component:
   - component: {fileID: 48079914}
   - component: {fileID: 48079916}
-  - component: {fileID: 48079915}
+  - component: {fileID: 48079917}
   m_Layer: 5
   m_Name: Toggle
   m_TagString: Untagged
@@ -1176,20 +1101,6 @@ RectTransform:
   m_AnchoredPosition: {x: 160, y: 0}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &48079915
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 48079913}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73238b2d219de5e45b886baa76677cf1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MillisecondsUsedScript
-  MSToggle: {fileID: 48079916}
-  TCS: {fileID: 1829068701}
 --- !u!114 &48079916
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1237,9 +1148,9 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 48079915}
-        m_TargetAssemblyTypeName: MillisecondsUsedScript, Assembly-CSharp
-        m_MethodName: SaveMSToggle
+      - m_Target: {fileID: 48079917}
+        m_TargetAssemblyTypeName: SavableValueScript, Assembly-CSharp
+        m_MethodName: SaveValue
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1250,6 +1161,64 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   m_IsOn: 1
+--- !u!114 &48079917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 48079913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9722c07e9b54ee409c54b50190696e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SavableValueScript
+  Label: MS Used
+  Default: 0
+  Togg: {fileID: 48079916}
+  Slide: {fileID: 0}
+  SliderMinValue: -792
+  SliderMaxValue: -792
+  TCS: {fileID: 1829068701}
+  OldProf: 0
+  ObjectLayer: 2
+  DataLayer: 3
+  VarToToggle:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1829068701}
+        m_TargetAssemblyTypeName: TimeControllerScript, Assembly-CSharp
+        m_MethodName: MSUsedDisplayFunc
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  VarToFloat:
+    m_PersistentCalls:
+      m_Calls: []
+  VarToInt:
+    m_PersistentCalls:
+      m_Calls: []
+  toggle: 1
+  DefaultBool: 0
+  flot: 0
+  DefaultFloat: -1
+  integr: 0
+  DefaultInt: -1
+  LoadOnProfileChange: 1
+  FirstFrame: 1
+  Resetable: 0
+  ForceLoadSaved: 0
+  Ishovering: 0
+  MouseDown: 0
+  MouseD2: 0
+  MouseUp: 0
+  DoubleClick: 0
 --- !u!1 &60449286
 GameObject:
   m_ObjectHideFlags: 0
@@ -1259,7 +1228,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 60449287}
-  - component: {fileID: 60449288}
   - component: {fileID: 60449290}
   - component: {fileID: 60449289}
   m_Layer: 5
@@ -1281,6 +1249,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 256779950}
+  - {fileID: 1535430299}
   - {fileID: 343461988}
   m_Father: {fileID: 296843666}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1289,21 +1259,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
---- !u!114 &60449288
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 60449286}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afd6898837b2d5a4d9b75f9fafa0a9da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  RT: {fileID: 60449287}
-  SetPos: {x: 0, y: 0, z: 0}
-  SizeD: {x: 0, y: 0}
 --- !u!114 &60449289
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1899,6 +1854,7 @@ MonoBehaviour:
   value: 1.335
   horizontal: 1
   scale: 1
+  x: 0.3
 --- !u!114 &147670988
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2036,6 +1992,7 @@ MonoBehaviour:
   value: 0.81
   horizontal: 1.23
   scale: 1
+  x: 0.3
 --- !u!114 &147721003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2198,97 +2155,6 @@ Transform:
   - {fileID: 1793668987}
   - {fileID: 1589985559}
   - {fileID: 1457342884}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &152137619
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 152137621}
-  - component: {fileID: 152137620}
-  m_Layer: 0
-  m_Name: Square
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!212 &152137620
-SpriteRenderer:
-  serializedVersion: 2
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 152137619}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_MaskInteraction: 0
-  m_Sprite: {fileID: 1786012909420367173, guid: fff2ea6568525e3429151f9a8bde3bf1, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_SpriteSortPoint: 0
---- !u!4 &152137621
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 152137619}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0375, y: -0.1453, z: 960.7}
-  m_LocalScale: {x: 5.2862177, y: 10.983526, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &160109701
@@ -2604,6 +2470,7 @@ GameObject:
   - component: {fileID: 185528865}
   - component: {fileID: 185528866}
   - component: {fileID: 185528867}
+  - component: {fileID: 185528868}
   m_Layer: 8
   m_Name: Value
   m_TagString: Untagged
@@ -2626,6 +2493,7 @@ RectTransform:
   - {fileID: 1382889835}
   - {fileID: 615437953}
   - {fileID: 1432460157}
+  - {fileID: 39000394}
   m_Father: {fileID: 889682245}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -2710,7 +2578,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 185528867}
         m_TargetAssemblyTypeName: ValueSliderScript, Assembly-CSharp
-        m_MethodName: SaveSlider
+        m_MethodName: AdjVal
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2720,9 +2588,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 185528867}
-        m_TargetAssemblyTypeName: ValueSliderScript, Assembly-CSharp
-        m_MethodName: AdjVal
+      - m_Target: {fileID: 185528868}
+        m_TargetAssemblyTypeName: SavableValueScript, Assembly-CSharp
+        m_MethodName: SaveValue
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2756,6 +2624,52 @@ MonoBehaviour:
   TMP: {fileID: 1077904104}
   TCS: {fileID: 1829068701}
   OldProfile: 0
+--- !u!114 &185528868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 185528864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9722c07e9b54ee409c54b50190696e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SavableValueScript
+  Label: Val Background
+  Default: 0
+  Togg: {fileID: 0}
+  Slide: {fileID: 185528866}
+  SliderMinValue: -792
+  SliderMaxValue: -792
+  TCS: {fileID: 0}
+  OldProf: 0
+  ObjectLayer: 3
+  DataLayer: 2
+  VarToToggle:
+    m_PersistentCalls:
+      m_Calls: []
+  VarToFloat:
+    m_PersistentCalls:
+      m_Calls: []
+  VarToInt:
+    m_PersistentCalls:
+      m_Calls: []
+  toggle: 0
+  DefaultBool: 0
+  flot: 1
+  DefaultFloat: 0.5
+  integr: 0
+  DefaultInt: -1
+  LoadOnProfileChange: 1
+  FirstFrame: 1
+  Resetable: 1
+  ForceLoadSaved: 0
+  Ishovering: 0
+  MouseDown: 0
+  MouseD2: 0
+  MouseUp: 0
+  DoubleClick: 0
 --- !u!1 &187909796
 GameObject:
   m_ObjectHideFlags: 0
@@ -3485,7 +3399,7 @@ GameObject:
   - component: {fileID: 228558946}
   - component: {fileID: 228558945}
   m_Layer: 5
-  m_Name: ToggleRichFormating(Button)
+  m_Name: Option DIsplay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3808,14 +3722,14 @@ MonoBehaviour:
   m_VerticalScrollbarEventHandler: {fileID: 0}
   m_LayoutGroup: {fileID: 0}
   m_ScrollSensitivity: 1
-  m_ContentType: 3
+  m_ContentType: 9
   m_InputType: 0
   m_AsteriskChar: 42
   m_KeyboardType: 2
   m_LineType: 0
   m_HideMobileInput: 0
   m_HideSoftKeyboard: 0
-  m_CharacterValidation: 3
+  m_CharacterValidation: 8
   m_RegexValue: 
   m_GlobalPointSize: 20
   m_CharacterLimit: 0
@@ -3871,7 +3785,7 @@ MonoBehaviour:
   m_isRichTextEditingAllowed: 0
   m_LineLimit: 0
   isAlert: 0
-  m_InputValidator: {fileID: 0}
+  m_InputValidator: {fileID: 11400000, guid: 249d6f687662fc14dbd8fd033a3e0356, type: 2}
   m_ShouldActivateOnSelect: 1
 --- !u!114 &237556194
 MonoBehaviour:
@@ -3922,10 +3836,8 @@ GameObject:
   - component: {fileID: 242349384}
   - component: {fileID: 242349388}
   - component: {fileID: 242349387}
-  - component: {fileID: 242349386}
-  - component: {fileID: 242349385}
   m_Layer: 5
-  m_Name: ToggleRichFormating(Button)
+  m_Name: Toggle Remaining Time
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3952,82 +3864,6 @@ RectTransform:
   m_AnchoredPosition: {x: 9, y: 0}
   m_SizeDelta: {x: 145, y: 23.7}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &242349385
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 242349383}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a93f1e809fe68cd45899357afe5a3e05, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GenericPositioner
-  RT: {fileID: 242349384}
-  value: 1.0055
-  horizontal: 1
-  scale: 0.19
---- !u!114 &242349386
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 242349383}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Toggle
-  m_Navigation:
-    m_Mode: 3
-    m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 242349387}
-  toggleTransition: 1
-  graphic: {fileID: 0}
-  m_Group: {fileID: 0}
-  onValueChanged:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: RichFormatToggling, Assembly-CSharp
-        m_MethodName: SaveTogg
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  m_IsOn: 0
 --- !u!114 &242349387
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4078,7 +3914,7 @@ GameObject:
   - component: {fileID: 245043866}
   - component: {fileID: 245043865}
   m_Layer: 5
-  m_Name: ToggleRichFormating(Button)
+  m_Name: Misc Display
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4217,6 +4053,144 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 249059127}
   m_CullTransparentMesh: 1
+--- !u!1 &256779949
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 256779950}
+  - component: {fileID: 256779952}
+  - component: {fileID: 256779951}
+  m_Layer: 5
+  m_Name: Name
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &256779950
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 256779949}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1838449900}
+  m_Father: {fileID: 60449287}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &256779951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 256779949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: HourGlass
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 20
+  m_fontSizeBase: 20
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 7
+  m_fontSizeMax: 72
+  m_fontStyle: 2
+  m_HorizontalAlignment: 8
+  m_VerticalAlignment: 256
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_characterHorizontalScale: 1
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 10, y: 10, z: 12.5, w: 10}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &256779952
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 256779949}
+  m_CullTransparentMesh: 1
 --- !u!1 &268871972
 GameObject:
   m_ObjectHideFlags: 0
@@ -4276,6 +4250,7 @@ MonoBehaviour:
   value: 0.75
   horizontal: 1
   scale: 1
+  x: 0.3
 --- !u!114 &268871975
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4897,6 +4872,7 @@ GameObject:
   - component: {fileID: 295599987}
   - component: {fileID: 295599989}
   - component: {fileID: 295599990}
+  - component: {fileID: 295599991}
   m_Layer: 8
   m_Name: Value (1)
   m_TagString: Untagged
@@ -5008,7 +4984,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 295599986}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f58ff09b734f10942842a553843cf714, type: 3}
   m_Name: 
@@ -5025,6 +5001,64 @@ MonoBehaviour:
   TMP: {fileID: 86447562}
   TCS: {fileID: 1829068701}
   OldProfile: 0
+--- !u!114 &295599991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 295599986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9722c07e9b54ee409c54b50190696e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SavableValueScript
+  Label: 
+  Default: 0
+  Togg: {fileID: 0}
+  Slide: {fileID: 295599989}
+  SliderMinValue: -792
+  SliderMaxValue: -792
+  TCS: {fileID: 0}
+  OldProf: 0
+  ObjectLayer: 4
+  DataLayer: 5
+  VarToToggle:
+    m_PersistentCalls:
+      m_Calls: []
+  VarToFloat:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1829068701}
+        m_TargetAssemblyTypeName: TimeControllerScript, Assembly-CSharp
+        m_MethodName: AddedTimesFadeOutValFunc
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  VarToInt:
+    m_PersistentCalls:
+      m_Calls: []
+  toggle: 0
+  DefaultBool: 0
+  flot: 0
+  DefaultFloat: -1
+  integr: 0
+  DefaultInt: -1
+  LoadOnProfileChange: 1
+  FirstFrame: 1
+  Resetable: 1
+  ForceLoadSaved: 0
+  Ishovering: 0
+  MouseDown: 0
+  MouseD2: 0
+  MouseUp: 0
+  DoubleClick: 0
 --- !u!1 &296843665
 GameObject:
   m_ObjectHideFlags: 0
@@ -5140,12 +5174,12 @@ Transform:
   m_GameObject: {fileID: 301739422}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.0375, y: -0.1453, z: 960.7}
+  m_LocalPosition: {x: -1185.5829, y: -66.443245, z: 960.7}
   m_LocalScale: {x: 5.2862177, y: 10.983526, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 848509314}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 838219046}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &306860254
 GameObject:
@@ -5469,6 +5503,7 @@ MonoBehaviour:
   value: 1.0055
   horizontal: 1
   scale: 0.19
+  x: 0.3
 --- !u!114 &314375621
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5766,6 +5801,7 @@ GameObject:
   - component: {fileID: 343461988}
   - component: {fileID: 343461990}
   - component: {fileID: 343461989}
+  - component: {fileID: 343461991}
   m_Layer: 5
   m_Name: Changelog & Version Words
   m_TagString: Untagged
@@ -5812,7 +5848,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Hourglass v0.6A\nmade by Dude of Dudovia\n\nmade using Unity\nChangelog
+  m_text: "made by Dude of Dudovia\nUPDATE THE FILE, NOT THIS TEXT\nmade using Unity\nChangelog
     V0.6B\n\tFixed a Bug Where the Changelog Was not Contained in It's Scrollbox.\n\tFixed
     a Bug Where the Number That Displayed Font Size Was Rendering On a Layer It Wasn't
     Supposed to.\n\tFixed a Bug Where the App Would Be Launched In Fullscreen On
@@ -5903,7 +5939,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 10, y: 10, z: 12.5, w: 10}
+  m_margin: {x: 10, y: -24.99, z: 12.5, w: 10}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -5917,6 +5953,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 343461987}
   m_CullTransparentMesh: 1
+--- !u!114 &343461991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 343461987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20217abf77416244b9f7699814bfef5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  TMP: {fileID: 343461989}
+  Ishovering: 0
+  MouseDown: 0
+  MouseD2: 0
+  MouseUp: 0
+  DoubleClick: 0
 --- !u!1 &355147684
 GameObject:
   m_ObjectHideFlags: 0
@@ -6439,7 +6493,7 @@ GameObject:
   m_Component:
   - component: {fileID: 382689592}
   - component: {fileID: 382689590}
-  - component: {fileID: 382689593}
+  - component: {fileID: 382689594}
   m_Layer: 8
   m_Name: Saturation
   m_TagString: Untagged
@@ -6498,21 +6552,9 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 382689593}
-        m_TargetAssemblyTypeName: SaturationSliderAddedTimes, Assembly-CSharp
-        m_MethodName: SaveSlider
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 382689593}
-        m_TargetAssemblyTypeName: SaturationSliderAddedTimes, Assembly-CSharp
-        m_MethodName: AdjSat
+      - m_Target: {fileID: 382689594}
+        m_TargetAssemblyTypeName: SavableValueScript, Assembly-CSharp
+        m_MethodName: SaveValue
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6544,7 +6586,7 @@ RectTransform:
   m_AnchoredPosition: {x: 175, y: -200}
   m_SizeDelta: {x: 120, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &382689593
+--- !u!114 &382689594
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -6553,20 +6595,55 @@ MonoBehaviour:
   m_GameObject: {fileID: 382689589}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dccd6508f9f3cba44bfd2036875775d3, type: 3}
+  m_Script: {fileID: 11500000, guid: d9722c07e9b54ee409c54b50190696e3, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: '::'
-  Slider: {fileID: 382689590}
+  m_EditorClassIdentifier: Assembly-CSharp::SavableValueScript
+  Label: 
+  Default: 0
+  Togg: {fileID: 0}
+  Slide: {fileID: 382689590}
+  SliderMinValue: 0
+  SliderMaxValue: 1
+  TCS: {fileID: 0}
+  OldProf: 0
+  ObjectLayer: 4
+  DataLayer: 1
+  VarToToggle:
+    m_PersistentCalls:
+      m_Calls: []
+  VarToFloat:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1829068701}
+        m_TargetAssemblyTypeName: TimeControllerScript, Assembly-CSharp
+        m_MethodName: AddedTimesSatFunc
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  VarToInt:
+    m_PersistentCalls:
+      m_Calls: []
+  toggle: 0
+  DefaultBool: 0
+  flot: 1
+  DefaultFloat: 0
+  integr: 0
+  DefaultInt: -1
+  LoadOnProfileChange: 1
+  FirstFrame: 1
+  Resetable: 1
+  ForceLoadSaved: 0
   Ishovering: 0
   MouseDown: 0
   MouseD2: 0
   MouseUp: 0
   DoubleClick: 0
-  HueSlider: {fileID: 1127454505}
-  Adjusted: 0
-  TMP: {fileID: 1153688961}
-  TCS: {fileID: 1829068701}
-  OldProfile: 0
 --- !u!1 &390400461
 GameObject:
   m_ObjectHideFlags: 0
@@ -7256,6 +7333,38 @@ RectTransform:
   m_AnchoredPosition: {x: -5, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &440751578
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 440751579}
+  m_Layer: 0
+  m_Name: LogInfo
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &440751579
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 440751578}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.0375, y: -0.1453, z: 960.7}
+  m_LocalScale: {x: 5.2862177, y: 10.983526, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1752062965}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &453780410
 GameObject:
   m_ObjectHideFlags: 0
@@ -7303,8 +7412,6 @@ GameObject:
   - component: {fileID: 456048331}
   - component: {fileID: 456048335}
   - component: {fileID: 456048334}
-  - component: {fileID: 456048333}
-  - component: {fileID: 456048332}
   m_Layer: 5
   m_Name: ToggleRichFormating(Button)
   m_TagString: Untagged
@@ -7333,82 +7440,6 @@ RectTransform:
   m_AnchoredPosition: {x: 9, y: 0}
   m_SizeDelta: {x: 145, y: 23.7}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &456048332
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 456048330}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a93f1e809fe68cd45899357afe5a3e05, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GenericPositioner
-  RT: {fileID: 456048331}
-  value: 1.0055
-  horizontal: 1
-  scale: 0.19
---- !u!114 &456048333
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 456048330}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Toggle
-  m_Navigation:
-    m_Mode: 3
-    m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 456048334}
-  toggleTransition: 1
-  graphic: {fileID: 0}
-  m_Group: {fileID: 0}
-  onValueChanged:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 696861758}
-        m_TargetAssemblyTypeName: RichFormatToggling, Assembly-CSharp
-        m_MethodName: SaveTogg
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  m_IsOn: 0
 --- !u!114 &456048334
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7743,7 +7774,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 491239681}
-  - component: {fileID: 491239682}
   m_Layer: 5
   m_Name: Content
   m_TagString: Untagged
@@ -7771,21 +7801,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -300, y: 920}
   m_Pivot: {x: 0, y: 1}
---- !u!114 &491239682
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 491239680}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afd6898837b2d5a4d9b75f9fafa0a9da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ScrollBoxResetter
-  RT: {fileID: 491239681}
-  SetPos: {x: 0, y: 0, z: 0}
-  SizeD: {x: 0, y: 0}
 --- !u!1 &506569815
 GameObject:
   m_ObjectHideFlags: 0
@@ -8444,7 +8459,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
+  m_VertexColorAlwaysGammaSpace: 1
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -8535,7 +8550,7 @@ GameObject:
   m_Component:
   - component: {fileID: 565170335}
   - component: {fileID: 565170333}
-  - component: {fileID: 565170336}
+  - component: {fileID: 565170337}
   m_Layer: 8
   m_Name: Hue (1)
   m_TagString: Untagged
@@ -8594,21 +8609,9 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 565170336}
-        m_TargetAssemblyTypeName: HueAddedTimesFadeOutScript, Assembly-CSharp
-        m_MethodName: SaveSlider
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 565170336}
-        m_TargetAssemblyTypeName: HueAddedTimesFadeOutScript, Assembly-CSharp
-        m_MethodName: AdjHue
+      - m_Target: {fileID: 565170337}
+        m_TargetAssemblyTypeName: SavableValueScript, Assembly-CSharp
+        m_MethodName: SaveValue
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8640,7 +8643,7 @@ RectTransform:
   m_AnchoredPosition: {x: 175, y: -290}
   m_SizeDelta: {x: 120, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &565170336
+--- !u!114 &565170337
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8649,19 +8652,55 @@ MonoBehaviour:
   m_GameObject: {fileID: 565170332}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c57b716caced0a34cb917c97cf0a572e, type: 3}
+  m_Script: {fileID: 11500000, guid: d9722c07e9b54ee409c54b50190696e3, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: '::'
-  Slider: {fileID: 565170333}
+  m_EditorClassIdentifier: Assembly-CSharp::SavableValueScript
+  Label: 
+  Default: 0
+  Togg: {fileID: 0}
+  Slide: {fileID: 565170333}
+  SliderMinValue: 0
+  SliderMaxValue: 1
+  TCS: {fileID: 0}
+  OldProf: 0
+  ObjectLayer: 4
+  DataLayer: 3
+  VarToToggle:
+    m_PersistentCalls:
+      m_Calls: []
+  VarToFloat:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1829068701}
+        m_TargetAssemblyTypeName: TimeControllerScript, Assembly-CSharp
+        m_MethodName: AddedTimesFadeOutHueFunc
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  VarToInt:
+    m_PersistentCalls:
+      m_Calls: []
+  toggle: 0
+  DefaultBool: 0
+  flot: 1
+  DefaultFloat: 0
+  integr: 0
+  DefaultInt: 0
+  LoadOnProfileChange: 1
+  FirstFrame: 1
+  Resetable: 1
+  ForceLoadSaved: 0
   Ishovering: 0
   MouseDown: 0
   MouseD2: 0
   MouseUp: 0
   DoubleClick: 0
-  Adjusted: 0
-  TMP: {fileID: 961813750}
-  TCS: {fileID: 1829068701}
-  OldProfile: 0
 --- !u!1 &573040675
 GameObject:
   m_ObjectHideFlags: 0
@@ -9561,6 +9600,8 @@ MonoBehaviour:
   ViewportContent: {fileID: 650450974}
   KPDown: 0
   RTDown: 0
+  InvaldidReset: 0
+  teststr: 
 --- !u!114 &623863496
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9609,20 +9650,32 @@ MonoBehaviour:
   m_VerticalScrollbarEventHandler: {fileID: 0}
   m_LayoutGroup: {fileID: 0}
   m_ScrollSensitivity: 1
-  m_ContentType: 4
+  m_ContentType: 9
   m_InputType: 0
   m_AsteriskChar: 42
   m_KeyboardType: 1
   m_LineType: 0
   m_HideMobileInput: 0
   m_HideSoftKeyboard: 0
-  m_CharacterValidation: 4
+  m_CharacterValidation: 8
   m_RegexValue: 
   m_GlobalPointSize: 14
   m_CharacterLimit: 0
   m_OnEndEdit:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 623863495}
+        m_TargetAssemblyTypeName: TimeAdder, Assembly-CSharp
+        m_MethodName: StopEditing
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_OnSubmit:
     m_PersistentCalls:
       m_Calls: []
@@ -9660,7 +9713,7 @@ MonoBehaviour:
   m_isRichTextEditingAllowed: 0
   m_LineLimit: 0
   isAlert: 0
-  m_InputValidator: {fileID: 0}
+  m_InputValidator: {fileID: 11400000, guid: 249d6f687662fc14dbd8fd033a3e0356, type: 2}
   m_ShouldActivateOnSelect: 1
 --- !u!114 &623863497
 MonoBehaviour:
@@ -9712,7 +9765,7 @@ GameObject:
   - component: {fileID: 632060385}
   - component: {fileID: 632060384}
   m_Layer: 5
-  m_Name: ToggleRichFormating(Button)
+  m_Name: AnimationDisplay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9786,7 +9839,7 @@ GameObject:
   m_Component:
   - component: {fileID: 650450975}
   - component: {fileID: 650450976}
-  - component: {fileID: 650450977}
+  - component: {fileID: 650450978}
   m_Layer: 0
   m_Name: Content
   m_TagString: Untagged
@@ -9810,8 +9863,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -7.55, y: 0}
-  m_SizeDelta: {x: -4.45, y: 300}
+  m_AnchoredPosition: {x: -5.5, y: 0}
+  m_SizeDelta: {x: -6.5, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &650450976
 MonoBehaviour:
@@ -9827,7 +9880,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   TimesAppeneded: 0
   RT: {fileID: 650450975}
---- !u!114 &650450977
+--- !u!114 &650450978
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9836,12 +9889,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 650450974}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afd6898837b2d5a4d9b75f9fafa0a9da, type: 3}
+  m_Script: {fileID: 11500000, guid: b0cb7fe8ff412bd4b8f0f9aed00e7744, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ScrollBoxResetter
-  RT: {fileID: 650450975}
-  SetPos: {x: 0, y: 0, z: 0}
-  SizeD: {x: 0, y: 0}
+  m_EditorClassIdentifier: Assembly-CSharp::ScrollBoxHoldPosition
+  ScrollPos: 0
+  HeightOffset: 0
+  SizeD: 0
+  RT: {fileID: 0}
+  TCS: {fileID: 0}
+  FixScrollPos: 0
+  ReturnScrollPos: 0
+  ReturnScrollPosTimer: 0
 --- !u!1 &655513246
 GameObject:
   m_ObjectHideFlags: 0
@@ -9898,6 +9956,7 @@ MonoBehaviour:
   value: 1.435
   horizontal: 0.65
   scale: 0.7
+  x: 0.3
 --- !u!114 &655513249
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10206,7 +10265,7 @@ GameObject:
   m_Component:
   - component: {fileID: 674989046}
   - component: {fileID: 674989048}
-  - component: {fileID: 674989047}
+  - component: {fileID: 674989050}
   m_Layer: 5
   m_Name: Toggle
   m_TagString: Untagged
@@ -10234,20 +10293,6 @@ RectTransform:
   m_AnchoredPosition: {x: 160, y: 0}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &674989047
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 674989045}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2183607390c85554a88a77da9f71f8e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MillisecondsToggleScript
-  MSToggle: {fileID: 674989048}
-  TCS: {fileID: 1829068701}
 --- !u!114 &674989048
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10295,9 +10340,9 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 674989047}
-        m_TargetAssemblyTypeName: MillisecondsToggleScript, Assembly-CSharp
-        m_MethodName: SaveMSToggle
+      - m_Target: {fileID: 674989050}
+        m_TargetAssemblyTypeName: SavableValueScript, Assembly-CSharp
+        m_MethodName: SaveValue
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10308,6 +10353,64 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   m_IsOn: 0
+--- !u!114 &674989050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 674989045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9722c07e9b54ee409c54b50190696e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  Label: MS Timer
+  Default: 0
+  Togg: {fileID: 674989048}
+  Slide: {fileID: 0}
+  SliderMinValue: -792
+  SliderMaxValue: -1
+  TCS: {fileID: 1829068701}
+  OldProf: 0
+  ObjectLayer: 2
+  DataLayer: 0
+  VarToToggle:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1829068701}
+        m_TargetAssemblyTypeName: TimeControllerScript, Assembly-CSharp
+        m_MethodName: MSTimerFunc
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  VarToFloat:
+    m_PersistentCalls:
+      m_Calls: []
+  VarToInt:
+    m_PersistentCalls:
+      m_Calls: []
+  toggle: 1
+  DefaultBool: 1
+  flot: 0
+  DefaultFloat: -1
+  integr: 0
+  DefaultInt: -1
+  LoadOnProfileChange: 1
+  FirstFrame: 1
+  Resetable: 0
+  ForceLoadSaved: 0
+  Ishovering: 0
+  MouseDown: 0
+  MouseD2: 0
+  MouseUp: 0
+  DoubleClick: 0
 --- !u!1 &676486794
 GameObject:
   m_ObjectHideFlags: 0
@@ -10353,7 +10456,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 696861757}
-  - component: {fileID: 696861759}
   - component: {fileID: 696861758}
   m_Layer: 5
   m_Name: ToggleRichFormating (1)
@@ -10398,67 +10500,6 @@ MonoBehaviour:
   tmp3: {fileID: 237556193}
   togg: {fileID: 1875130798}
   tmp2: {fileID: 1166437313}
-  wastogg: 0
---- !u!114 &696861759
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 696861756}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Toggle
-  m_Navigation:
-    m_Mode: 3
-    m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
-  toggleTransition: 1
-  graphic: {fileID: 0}
-  m_Group: {fileID: 0}
-  onValueChanged:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 696861758}
-        m_TargetAssemblyTypeName: RichFormatToggling, Assembly-CSharp
-        m_MethodName: SaveTogg
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  m_IsOn: 0
 --- !u!1 &701213178
 GameObject:
   m_ObjectHideFlags: 0
@@ -10778,7 +10819,7 @@ GameObject:
   m_Component:
   - component: {fileID: 760707220}
   - component: {fileID: 760707222}
-  - component: {fileID: 760707223}
+  - component: {fileID: 760707224}
   m_Layer: 8
   m_Name: Value
   m_TagString: Untagged
@@ -10859,9 +10900,9 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 760707223}
-        m_TargetAssemblyTypeName: ValueSliderAddedTimes, Assembly-CSharp
-        m_MethodName: SaveSlider
+      - m_Target: {fileID: 760707224}
+        m_TargetAssemblyTypeName: SavableValueScript, Assembly-CSharp
+        m_MethodName: SaveValue
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10871,19 +10912,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 760707223}
-        m_TargetAssemblyTypeName: ValueSliderAddedTimes, Assembly-CSharp
-        m_MethodName: AdjVal
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &760707223
+--- !u!114 &760707224
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10892,21 +10921,55 @@ MonoBehaviour:
   m_GameObject: {fileID: 760707219}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5787080dcb1087044999b68faff599b6, type: 3}
+  m_Script: {fileID: 11500000, guid: d9722c07e9b54ee409c54b50190696e3, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: '::'
-  Slider: {fileID: 760707222}
+  m_EditorClassIdentifier: Assembly-CSharp::SavableValueScript
+  Label: 
+  Default: 0
+  Togg: {fileID: 0}
+  Slide: {fileID: 760707222}
+  SliderMinValue: 0
+  SliderMaxValue: 1
+  TCS: {fileID: 0}
+  OldProf: 0
+  ObjectLayer: 4
+  DataLayer: 2
+  VarToToggle:
+    m_PersistentCalls:
+      m_Calls: []
+  VarToFloat:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1829068701}
+        m_TargetAssemblyTypeName: TimeControllerScript, Assembly-CSharp
+        m_MethodName: AddedTimesValFunc
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  VarToInt:
+    m_PersistentCalls:
+      m_Calls: []
+  toggle: 0
+  DefaultBool: 0
+  flot: 1
+  DefaultFloat: 1
+  integr: 0
+  DefaultInt: -1
+  LoadOnProfileChange: 1
+  FirstFrame: 1
+  Resetable: 1
+  ForceLoadSaved: 0
   Ishovering: 0
   MouseDown: 0
   MouseD2: 0
   MouseUp: 0
   DoubleClick: 0
-  HueSlider: {fileID: 1127454505}
-  SatSlider: {fileID: 382689590}
-  Adjusted: 0
-  TMP: {fileID: 874454851}
-  TCS: {fileID: 1829068701}
-  OldProfile: 0
 --- !u!1 &763471321
 GameObject:
   m_ObjectHideFlags: 0
@@ -11322,6 +11385,7 @@ MonoBehaviour:
   value: 1.45
   horizontal: 1.4
   scale: 1
+  x: 0.3
 --- !u!114 &793811449
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11653,6 +11717,143 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 825194926}
   m_CullTransparentMesh: 1
+--- !u!1 &825468809
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 825468810}
+  - component: {fileID: 825468812}
+  - component: {fileID: 825468811}
+  m_Layer: 5
+  m_Name: Text (TMP)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &825468810
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 825468809}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1838449900}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &825468811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 825468809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: Github
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 9211fcdd38f50ef4c8fd7ddcb1c03d12, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 9211fcdd38f50ef4c8fd7ddcb1c03d12, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4281479730
+  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 24
+  m_fontSizeBase: 24
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_characterHorizontalScale: 1
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &825468812
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 825468809}
+  m_CullTransparentMesh: 1
 --- !u!1 &835316784
 GameObject:
   m_ObjectHideFlags: 0
@@ -11735,6 +11936,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 589375229}
+  - {fileID: 301739423}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &839247914
@@ -11910,7 +12112,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 527459770}
-  - {fileID: 1747800935}
   - {fileID: 203370508}
   m_Father: {fileID: 306860255}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -11935,6 +12136,7 @@ MonoBehaviour:
   value: 1.125
   horizontal: 1
   scale: 1
+  x: 0.3
 --- !u!114 &849783050
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12023,6 +12225,7 @@ MonoBehaviour:
   Adjusted: 0
   ClearColor: {r: 1, g: 1, b: 1, a: 0}
   Clear: 1
+  HSMat: {fileID: 0}
 --- !u!114 &849783054
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12440,7 +12643,6 @@ RectTransform:
   - {fileID: 1465861245}
   - {fileID: 382403336}
   - {fileID: 2014016119}
-  - {fileID: 39000394}
   - {fileID: 185528865}
   - {fileID: 1077904103}
   m_Father: {fileID: 1640083702}
@@ -12598,10 +12800,8 @@ GameObject:
   - component: {fileID: 904009035}
   - component: {fileID: 904009039}
   - component: {fileID: 904009038}
-  - component: {fileID: 904009037}
-  - component: {fileID: 904009036}
   m_Layer: 5
-  m_Name: ToggleRichFormating(Button)
+  m_Name: Toggle Added
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12628,82 +12828,6 @@ RectTransform:
   m_AnchoredPosition: {x: 9, y: 0}
   m_SizeDelta: {x: 145, y: 23.7}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &904009036
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 904009034}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a93f1e809fe68cd45899357afe5a3e05, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GenericPositioner
-  RT: {fileID: 904009035}
-  value: 1.0055
-  horizontal: 1
-  scale: 0.19
---- !u!114 &904009037
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 904009034}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Toggle
-  m_Navigation:
-    m_Mode: 3
-    m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 904009038}
-  toggleTransition: 1
-  graphic: {fileID: 0}
-  m_Group: {fileID: 0}
-  onValueChanged:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: RichFormatToggling, Assembly-CSharp
-        m_MethodName: SaveTogg
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  m_IsOn: 0
 --- !u!114 &904009038
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12890,7 +13014,7 @@ MonoBehaviour:
   TCS: {fileID: 1829068701}
   RT: {fileID: 905188794}
   animframes: 15
-  frame: 0
+  frame: 1
   animscalefactor: 0
   lastanimscalefactor: 0
   AnimFinished: 0
@@ -12898,6 +13022,7 @@ MonoBehaviour:
   value: 1.435
   horizontal: 1.26
   scale: 0.7
+  FirstFrame: 1
 --- !u!1 &908393304
 GameObject:
   m_ObjectHideFlags: 0
@@ -13080,8 +13205,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 918437832}
-  - component: {fileID: 918437834}
-  - component: {fileID: 918437833}
   m_Layer: 5
   m_Name: ToggleKeepLastAdded
   m_TagString: Untagged
@@ -13109,35 +13232,77 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -30}
   m_SizeDelta: {x: 160, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &918437833
+--- !u!1 &919856982
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 919856983}
+  - component: {fileID: 919856987}
+  - component: {fileID: 919856986}
+  - component: {fileID: 919856985}
+  - component: {fileID: 919856984}
+  m_Layer: 5
+  m_Name: ResetAndTimeCounter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &919856983
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919856982}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 2.3, y: 2.3, z: 2.3}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1644617789}
+  m_Father: {fileID: 1752062965}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 385.6}
+  m_SizeDelta: {x: 180, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &919856984
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 918437831}
-  m_Enabled: 0
+  m_GameObject: {fileID: 919856982}
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af7257a10a061ec48abc0d2eb2c939b2, type: 3}
+  m_Script: {fileID: 11500000, guid: 0440071f19104a74cbfff3f3b4582528, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  tmp: {fileID: 623863496}
-  tmp3: {fileID: 237556193}
-  togg: {fileID: 1924138190}
-  tmp2: {fileID: 1166437313}
-  wastogg: 0
---- !u!114 &918437834
+  RT: {fileID: 919856983}
+  value: 1
+  scale: 1
+  TCS: {fileID: 1829068701}
+  IMG: {fileID: 919856986}
+  fortimer: 0
+  ForTimeUsed: 0
+--- !u!114 &919856985
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 918437831}
-  m_Enabled: 0
+  m_GameObject: {fileID: 919856982}
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Toggle
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
   m_Navigation:
     m_Mode: 3
     m_WrapAround: 0
@@ -13147,11 +13312,11 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_NormalColor: {r: 0.47058824, g: 0.47058824, b: 0.47058824, a: 1}
+    m_HighlightedColor: {r: 0.47058824, g: 0.47058824, b: 0.47058824, a: 1}
+    m_PressedColor: {r: 0.47058824, g: 0.47058824, b: 0.47058824, a: 1}
+    m_SelectedColor: {r: 0.47058824, g: 0.47058824, b: 0.47058824, a: 1}
+    m_DisabledColor: {r: 0.47058824, g: 0.47058824, b: 0.47058824, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -13165,17 +13330,14 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
-  toggleTransition: 1
-  graphic: {fileID: 0}
-  m_Group: {fileID: 0}
-  onValueChanged:
+  m_Interactable: 0
+  m_TargetGraphic: {fileID: 919856986}
+  m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 918437833}
-        m_TargetAssemblyTypeName: RichFormatToggling, Assembly-CSharp
-        m_MethodName: SaveTogg
+      - m_Target: {fileID: 1829068701}
+        m_TargetAssemblyTypeName: TimeControllerScript, Assembly-CSharp
+        m_MethodName: ResetTime
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -13185,7 +13347,44 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  m_IsOn: 0
+--- !u!114 &919856986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919856982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.4716981, g: 0.4716981, b: 0.4716981, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: -4271134099690858128, guid: 8f305f94b0ba0274b98c428c2417ef6e, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &919856987
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919856982}
+  m_CullTransparentMesh: 1
 --- !u!1 &931105339
 GameObject:
   m_ObjectHideFlags: 0
@@ -14239,6 +14438,7 @@ MonoBehaviour:
   value: 1.23
   horizontal: 1
   scale: 1
+  x: 0.3
 --- !u!114 &1006123256
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14395,7 +14595,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1015997704}
   - component: {fileID: 1015997706}
-  - component: {fileID: 1015997707}
+  - component: {fileID: 1015997708}
   m_Layer: 8
   m_Name: TimeDirection
   m_TagString: Untagged
@@ -14500,9 +14700,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1015997707}
-        m_TargetAssemblyTypeName: CountUpAnimScript, Assembly-CSharp
-        m_MethodName: SaveSlider
+      - m_Target: {fileID: 1015997708}
+        m_TargetAssemblyTypeName: SavableValueScript, Assembly-CSharp
+        m_MethodName: SaveValue
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -14512,7 +14712,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1015997707
+--- !u!114 &1015997708
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -14521,16 +14721,43 @@ MonoBehaviour:
   m_GameObject: {fileID: 1015997703}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56d2ea0800be8354f80891b0b5df00ee, type: 3}
+  m_Script: {fileID: 11500000, guid: d9722c07e9b54ee409c54b50190696e3, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: '::'
-  Slider: {fileID: 1015997706}
+  m_EditorClassIdentifier: Assembly-CSharp::SavableValueScript
+  Label: 
+  Default: 1
+  Togg: {fileID: 0}
+  Slide: {fileID: 1015997706}
+  SliderMinValue: 0
+  SliderMaxValue: 150
+  TCS: {fileID: 0}
+  OldProf: 0
+  ObjectLayer: 0
+  DataLayer: 6
+  VarToToggle:
+    m_PersistentCalls:
+      m_Calls: []
+  VarToFloat:
+    m_PersistentCalls:
+      m_Calls: []
+  VarToInt:
+    m_PersistentCalls:
+      m_Calls: []
+  toggle: 0
+  DefaultBool: 0
+  flot: 0
+  DefaultFloat: -1
+  integr: 1
+  DefaultInt: 30
+  LoadOnProfileChange: 0
+  FirstFrame: 1
+  Resetable: 1
+  ForceLoadSaved: 0
   Ishovering: 0
   MouseDown: 0
   MouseD2: 0
   MouseUp: 0
   DoubleClick: 0
-  Adjusted: 0
 --- !u!1 &1030644155
 GameObject:
   m_ObjectHideFlags: 0
@@ -15018,7 +15245,7 @@ GameObject:
   - component: {fileID: 1073875704}
   - component: {fileID: 1073875703}
   m_Layer: 5
-  m_Name: ToggleRichFormating(Button)
+  m_Name: Background Display
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15407,7 +15634,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1092634466}
   - component: {fileID: 1092634464}
-  - component: {fileID: 1092634467}
+  - component: {fileID: 1092634468}
   m_Layer: 8
   m_Name: ChangelogFontSize
   m_TagString: Untagged
@@ -15478,9 +15705,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1092634467}
-        m_TargetAssemblyTypeName: ChangeLogFontSizeSliderScript, Assembly-CSharp
-        m_MethodName: SaveSlider
+      - m_Target: {fileID: 1092634468}
+        m_TargetAssemblyTypeName: SavableValueScript, Assembly-CSharp
+        m_MethodName: SaveValue
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -15512,7 +15739,7 @@ RectTransform:
   m_AnchoredPosition: {x: 2.4, y: 0}
   m_SizeDelta: {x: 80, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1092634467
+--- !u!114 &1092634468
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -15521,16 +15748,43 @@ MonoBehaviour:
   m_GameObject: {fileID: 1092634463}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a05225c574a1074db29ff5d5d58675e, type: 3}
+  m_Script: {fileID: 11500000, guid: d9722c07e9b54ee409c54b50190696e3, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: '::'
-  Slider: {fileID: 1092634464}
+  m_EditorClassIdentifier: Assembly-CSharp::SavableValueScript
+  Label: FontSize
+  Default: 1
+  Togg: {fileID: 0}
+  Slide: {fileID: 1092634464}
+  SliderMinValue: 3
+  SliderMaxValue: 18
+  TCS: {fileID: 1829068701}
+  OldProf: 0
+  ObjectLayer: 0
+  DataLayer: 5
+  VarToToggle:
+    m_PersistentCalls:
+      m_Calls: []
+  VarToFloat:
+    m_PersistentCalls:
+      m_Calls: []
+  VarToInt:
+    m_PersistentCalls:
+      m_Calls: []
+  toggle: 0
+  DefaultBool: 0
+  flot: 1
+  DefaultFloat: 9.3
+  integr: 0
+  DefaultInt: -1
+  LoadOnProfileChange: 0
+  FirstFrame: 1
+  Resetable: 1
+  ForceLoadSaved: 0
   Ishovering: 0
   MouseDown: 0
   MouseD2: 0
   MouseUp: 0
   DoubleClick: 0
-  Adjusted: 0
 --- !u!1 &1096052174
 GameObject:
   m_ObjectHideFlags: 0
@@ -15828,7 +16082,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1127454507}
   - component: {fileID: 1127454505}
-  - component: {fileID: 1127454508}
+  - component: {fileID: 1127454509}
   m_Layer: 8
   m_Name: Hue
   m_TagString: Untagged
@@ -15887,21 +16141,9 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1127454508}
-        m_TargetAssemblyTypeName: HueAddedTimesScript, Assembly-CSharp
-        m_MethodName: SaveSlider
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1127454508}
-        m_TargetAssemblyTypeName: HueAddedTimesScript, Assembly-CSharp
-        m_MethodName: AdjHue
+      - m_Target: {fileID: 1127454509}
+        m_TargetAssemblyTypeName: SavableValueScript, Assembly-CSharp
+        m_MethodName: SaveValue
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -15933,7 +16175,7 @@ RectTransform:
   m_AnchoredPosition: {x: 175, y: -170}
   m_SizeDelta: {x: 120, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1127454508
+--- !u!114 &1127454509
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -15942,19 +16184,55 @@ MonoBehaviour:
   m_GameObject: {fileID: 1127454504}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0216764ad2edd524f99dc4c876daf0e8, type: 3}
+  m_Script: {fileID: 11500000, guid: d9722c07e9b54ee409c54b50190696e3, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: '::'
-  Slider: {fileID: 1127454505}
+  m_EditorClassIdentifier: Assembly-CSharp::SavableValueScript
+  Label: 
+  Default: 0
+  Togg: {fileID: 0}
+  Slide: {fileID: 1127454505}
+  SliderMinValue: 0
+  SliderMaxValue: 1
+  TCS: {fileID: 0}
+  OldProf: 0
+  ObjectLayer: 4
+  DataLayer: 0
+  VarToToggle:
+    m_PersistentCalls:
+      m_Calls: []
+  VarToFloat:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1829068701}
+        m_TargetAssemblyTypeName: TimeControllerScript, Assembly-CSharp
+        m_MethodName: AddedTimesHueFunc
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  VarToInt:
+    m_PersistentCalls:
+      m_Calls: []
+  toggle: 0
+  DefaultBool: 0
+  flot: 1
+  DefaultFloat: 0
+  integr: 0
+  DefaultInt: -1
+  LoadOnProfileChange: 1
+  FirstFrame: 1
+  Resetable: 1
+  ForceLoadSaved: 0
   Ishovering: 0
   MouseDown: 0
   MouseD2: 0
   MouseUp: 0
   DoubleClick: 0
-  Adjusted: 0
-  TMP: {fileID: 983779112}
-  TCS: {fileID: 1829068701}
-  OldProfile: 0
 --- !u!1 &1129330795
 GameObject:
   m_ObjectHideFlags: 0
@@ -16084,7 +16362,6 @@ MonoBehaviour:
   tmp3: {fileID: 237556193}
   togg: {fileID: 2114996956}
   tmp2: {fileID: 1166437313}
-  wastogg: 0
 --- !u!114 &1136847919
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16995,7 +17272,7 @@ GameObject:
   - component: {fileID: 1220287664}
   - component: {fileID: 1220287669}
   m_Layer: 5
-  m_Name: ToggleMenu (1)
+  m_Name: New Update Indicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17185,6 +17462,7 @@ MonoBehaviour:
   horizontal: 1.4
   scale: 1
   Version: 0.6A
+  TCS: {fileID: 1829068701}
 --- !u!1 &1226569270
 GameObject:
   m_ObjectHideFlags: 0
@@ -17387,7 +17665,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: a001230af3299514cbe40383b271fcb9, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -17395,7 +17673,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1786012909420367173, guid: fff2ea6568525e3429151f9a8bde3bf1, type: 3}
+  m_Sprite: {fileID: -6657904534883204269, guid: 3434696520b3bd24cad35804cc0132c6, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -17429,6 +17707,7 @@ MonoBehaviour:
   HueSlider: {fileID: 1465861246}
   SaturationSlider: {fileID: 2014016120}
   ValueSlider: {fileID: 185528866}
+  HSMat: {fileID: 2100000, guid: a001230af3299514cbe40383b271fcb9, type: 2}
 --- !u!1 &1247137117
 GameObject:
   m_ObjectHideFlags: 0
@@ -17574,6 +17853,7 @@ MonoBehaviour:
   value: 0
   horizontal: 1
   scale: 1
+  x: 0.3
 --- !u!114 &1253178738
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17690,6 +17970,7 @@ MonoBehaviour:
   value: 0.81
   horizontal: 1.39
   scale: 1
+  x: 0.3
 --- !u!114 &1254203177
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17983,10 +18264,8 @@ GameObject:
   - component: {fileID: 1285931879}
   - component: {fileID: 1285931883}
   - component: {fileID: 1285931882}
-  - component: {fileID: 1285931881}
-  - component: {fileID: 1285931880}
   m_Layer: 5
-  m_Name: ToggleRichFormating(Button)
+  m_Name: Toggle Timer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18013,82 +18292,6 @@ RectTransform:
   m_AnchoredPosition: {x: 9, y: 0}
   m_SizeDelta: {x: 145, y: 23.7}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1285931880
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1285931878}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a93f1e809fe68cd45899357afe5a3e05, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GenericPositioner
-  RT: {fileID: 1285931879}
-  value: 1.0055
-  horizontal: 1
-  scale: 0.19
---- !u!114 &1285931881
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1285931878}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Toggle
-  m_Navigation:
-    m_Mode: 3
-    m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 1285931882}
-  toggleTransition: 1
-  graphic: {fileID: 0}
-  m_Group: {fileID: 0}
-  onValueChanged:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: RichFormatToggling, Assembly-CSharp
-        m_MethodName: SaveTogg
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  m_IsOn: 0
 --- !u!114 &1285931882
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18327,7 +18530,6 @@ GameObject:
   - component: {fileID: 1313546210}
   - component: {fileID: 1313546214}
   - component: {fileID: 1313546213}
-  - component: {fileID: 1313546212}
   m_Layer: 5
   m_Name: ChangelogFontSize
   m_TagString: Untagged
@@ -18355,62 +18557,6 @@ RectTransform:
   m_AnchoredPosition: {x: -62.5, y: 0}
   m_SizeDelta: {x: 30, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1313546212
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1313546209}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
-  m_Navigation:
-    m_Mode: 3
-    m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 1313546213}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: AddedTimesFadeOutPreviewAnimScript, Assembly-CSharp
-        m_MethodName: PreviewAnimation
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &1313546213
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19819,6 +19965,7 @@ GameObject:
   - component: {fileID: 1465861245}
   - component: {fileID: 1465861246}
   - component: {fileID: 1465861247}
+  - component: {fileID: 1465861248}
   m_Layer: 8
   m_Name: Hue
   m_TagString: Untagged
@@ -19925,7 +20072,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1465861247}
         m_TargetAssemblyTypeName: HueSliderScript, Assembly-CSharp
-        m_MethodName: SaveSlider
+        m_MethodName: AdjHue
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -19935,9 +20082,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1465861247}
-        m_TargetAssemblyTypeName: HueSliderScript, Assembly-CSharp
-        m_MethodName: AdjHue
+      - m_Target: {fileID: 1465861248}
+        m_TargetAssemblyTypeName: SavableValueScript, Assembly-CSharp
+        m_MethodName: SaveValue
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -19969,6 +20116,52 @@ MonoBehaviour:
   TMP: {fileID: 382403337}
   TCS: {fileID: 1829068701}
   OldProfile: 0
+--- !u!114 &1465861248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1465861244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9722c07e9b54ee409c54b50190696e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SavableValueScript
+  Label: Hue Background
+  Default: 0
+  Togg: {fileID: 0}
+  Slide: {fileID: 1465861246}
+  SliderMinValue: 0
+  SliderMaxValue: 1
+  TCS: {fileID: 1829068701}
+  OldProf: 0
+  ObjectLayer: 3
+  DataLayer: 0
+  VarToToggle:
+    m_PersistentCalls:
+      m_Calls: []
+  VarToFloat:
+    m_PersistentCalls:
+      m_Calls: []
+  VarToInt:
+    m_PersistentCalls:
+      m_Calls: []
+  toggle: 0
+  DefaultBool: 0
+  flot: 1
+  DefaultFloat: 0.33333334
+  integr: 0
+  DefaultInt: -1
+  LoadOnProfileChange: 1
+  FirstFrame: 1
+  Resetable: 1
+  ForceLoadSaved: 0
+  Ishovering: 0
+  MouseDown: 0
+  MouseD2: 0
+  MouseUp: 0
+  DoubleClick: 0
 --- !u!1 &1479122028
 GameObject:
   m_ObjectHideFlags: 0
@@ -20602,7 +20795,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1522054666}
   - component: {fileID: 1522054664}
-  - component: {fileID: 1522054667}
+  - component: {fileID: 1522054668}
   m_Layer: 8
   m_Name: TimeDirection
   m_TagString: Untagged
@@ -20685,9 +20878,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1522054667}
-        m_TargetAssemblyTypeName: UpdateTotalTimeAnimScript, Assembly-CSharp
-        m_MethodName: SaveSlider
+      - m_Target: {fileID: 1522054668}
+        m_TargetAssemblyTypeName: SavableValueScript, Assembly-CSharp
+        m_MethodName: SaveValue
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -20719,7 +20912,7 @@ RectTransform:
   m_AnchoredPosition: {x: 2.4, y: 0}
   m_SizeDelta: {x: 80, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1522054667
+--- !u!114 &1522054668
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20728,16 +20921,43 @@ MonoBehaviour:
   m_GameObject: {fileID: 1522054663}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6291e4051d8fe56429d3b4cafaa94987, type: 3}
+  m_Script: {fileID: 11500000, guid: d9722c07e9b54ee409c54b50190696e3, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: '::'
-  Slider: {fileID: 1522054664}
+  m_EditorClassIdentifier: Assembly-CSharp::SavableValueScript
+  Label: 
+  Default: 1
+  Togg: {fileID: 0}
+  Slide: {fileID: 1522054664}
+  SliderMinValue: 0
+  SliderMaxValue: 150
+  TCS: {fileID: 0}
+  OldProf: 0
+  ObjectLayer: 0
+  DataLayer: 7
+  VarToToggle:
+    m_PersistentCalls:
+      m_Calls: []
+  VarToFloat:
+    m_PersistentCalls:
+      m_Calls: []
+  VarToInt:
+    m_PersistentCalls:
+      m_Calls: []
+  toggle: 0
+  DefaultBool: 0
+  flot: 0
+  DefaultFloat: -1
+  integr: 1
+  DefaultInt: 20
+  LoadOnProfileChange: 0
+  FirstFrame: 1
+  Resetable: 1
+  ForceLoadSaved: 0
   Ishovering: 0
   MouseDown: 0
   MouseD2: 0
   MouseUp: 0
   DoubleClick: 0
-  Adjusted: 0
 --- !u!1 &1525810249
 GameObject:
   m_ObjectHideFlags: 0
@@ -20865,6 +21085,157 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.RectMask2D
   m_Padding: {x: -8, y: -5, z: -8, w: -5}
   m_Softness: {x: 0, y: 0}
+--- !u!1 &1535430298
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1535430299}
+  - component: {fileID: 1535430301}
+  - component: {fileID: 1535430300}
+  - component: {fileID: 1535430302}
+  m_Layer: 5
+  m_Name: Version
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1535430299
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1535430298}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 60449287}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1535430300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1535430298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: 0.7.0
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 9211fcdd38f50ef4c8fd7ddcb1c03d12, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 9211fcdd38f50ef4c8fd7ddcb1c03d12, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 18
+  m_fontSizeBase: 18
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 7
+  m_fontSizeMax: 72
+  m_fontStyle: 2
+  m_HorizontalAlignment: 4
+  m_VerticalAlignment: 256
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_characterHorizontalScale: 1
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 108.3, y: -23.3, z: -3, w: 10}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &1535430301
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1535430298}
+  m_CullTransparentMesh: 1
+--- !u!114 &1535430302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1535430298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a70dd878921befd4aa20ce9c61514a53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  TMP: {fileID: 1535430300}
 --- !u!1 &1536153023
 GameObject:
   m_ObjectHideFlags: 0
@@ -20929,7 +21300,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: a001230af3299514cbe40383b271fcb9, type: 2}
   m_Color: {r: 0, g: 0, b: 0, a: 0.9411765}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -20937,7 +21308,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1786012909420367173, guid: fff2ea6568525e3429151f9a8bde3bf1, type: 3}
+  m_Sprite: {fileID: -6657904534883204269, guid: 3434696520b3bd24cad35804cc0132c6, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -20975,6 +21346,7 @@ MonoBehaviour:
   Adjusted: 0
   ClearColor: {r: 0, g: 0, b: 0, a: 0}
   Clear: 0
+  HSMat: {fileID: 2100000, guid: a001230af3299514cbe40383b271fcb9, type: 2}
 --- !u!1 &1540550131
 GameObject:
   m_ObjectHideFlags: 0
@@ -21331,7 +21703,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1561267503}
   - component: {fileID: 1561267501}
-  - component: {fileID: 1561267504}
+  - component: {fileID: 1561267505}
   m_Layer: 8
   m_Name: Saturation (1)
   m_TagString: Untagged
@@ -21390,21 +21762,9 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1561267504}
-        m_TargetAssemblyTypeName: SaturationSliderAddedTimesFadeOut, Assembly-CSharp
-        m_MethodName: SaveSlider
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1561267504}
-        m_TargetAssemblyTypeName: SaturationSliderAddedTimesFadeOut, Assembly-CSharp
-        m_MethodName: AdjSat
+      - m_Target: {fileID: 1561267505}
+        m_TargetAssemblyTypeName: SavableValueScript, Assembly-CSharp
+        m_MethodName: SaveValue
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -21436,7 +21796,7 @@ RectTransform:
   m_AnchoredPosition: {x: 175, y: -320}
   m_SizeDelta: {x: 120, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1561267504
+--- !u!114 &1561267505
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -21445,20 +21805,55 @@ MonoBehaviour:
   m_GameObject: {fileID: 1561267500}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6d148ddd36ae49439e20ff08623e9d3, type: 3}
+  m_Script: {fileID: 11500000, guid: d9722c07e9b54ee409c54b50190696e3, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: '::'
-  Slider: {fileID: 1561267501}
+  m_EditorClassIdentifier: Assembly-CSharp::SavableValueScript
+  Label: 
+  Default: 0
+  Togg: {fileID: 0}
+  Slide: {fileID: 1561267501}
+  SliderMinValue: -792
+  SliderMaxValue: -792
+  TCS: {fileID: 0}
+  OldProf: 0
+  ObjectLayer: 4
+  DataLayer: 4
+  VarToToggle:
+    m_PersistentCalls:
+      m_Calls: []
+  VarToFloat:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1829068701}
+        m_TargetAssemblyTypeName: TimeControllerScript, Assembly-CSharp
+        m_MethodName: AddedTimesFadeOutSatFunc
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  VarToInt:
+    m_PersistentCalls:
+      m_Calls: []
+  toggle: 0
+  DefaultBool: 0
+  flot: 1
+  DefaultFloat: 1
+  integr: 0
+  DefaultInt: -1
+  LoadOnProfileChange: 1
+  FirstFrame: 1
+  Resetable: 1
+  ForceLoadSaved: 0
   Ishovering: 0
   MouseDown: 0
   MouseD2: 0
   MouseUp: 0
   DoubleClick: 0
-  HueSlider: {fileID: 565170333}
-  Adjusted: 0
-  TMP: {fileID: 1431585336}
-  TCS: {fileID: 1829068701}
-  OldProfile: 0
 --- !u!1 &1562936456
 GameObject:
   m_ObjectHideFlags: 0
@@ -21580,7 +21975,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1577320071}
   - component: {fileID: 1577320068}
-  - component: {fileID: 1577320072}
+  - component: {fileID: 1577320073}
   m_Layer: 8
   m_Name: Added Times Fade Out
   m_TagString: Untagged
@@ -21663,9 +22058,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1577320072}
-        m_TargetAssemblyTypeName: AddedTimesFadeOutAnimScript, Assembly-CSharp
-        m_MethodName: SaveSlider
+      - m_Target: {fileID: 1577320073}
+        m_TargetAssemblyTypeName: SavableValueScript, Assembly-CSharp
+        m_MethodName: SaveValue
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -21697,7 +22092,7 @@ RectTransform:
   m_AnchoredPosition: {x: 2.4, y: 0}
   m_SizeDelta: {x: 80, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1577320072
+--- !u!114 &1577320073
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -21706,17 +22101,55 @@ MonoBehaviour:
   m_GameObject: {fileID: 1577320067}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: baa637937c118dd49a6c25a7c85b7435, type: 3}
+  m_Script: {fileID: 11500000, guid: d9722c07e9b54ee409c54b50190696e3, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: '::'
-  Slider: {fileID: 1577320068}
-  TCS: {fileID: 1829068701}
+  m_EditorClassIdentifier: Assembly-CSharp::SavableValueScript
+  Label: 
+  Default: 1
+  Togg: {fileID: 0}
+  Slide: {fileID: 1577320068}
+  SliderMinValue: 0
+  SliderMaxValue: 150
+  TCS: {fileID: 0}
+  OldProf: 0
+  ObjectLayer: 0
+  DataLayer: 8
+  VarToToggle:
+    m_PersistentCalls:
+      m_Calls: []
+  VarToFloat:
+    m_PersistentCalls:
+      m_Calls: []
+  VarToInt:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1829068701}
+        m_TargetAssemblyTypeName: TimeControllerScript, Assembly-CSharp
+        m_MethodName: DeleteProf
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  toggle: 0
+  DefaultBool: 0
+  flot: 0
+  DefaultFloat: -1
+  integr: 1
+  DefaultInt: 30
+  LoadOnProfileChange: 0
+  FirstFrame: 1
+  Resetable: 1
+  ForceLoadSaved: 0
   Ishovering: 0
   MouseDown: 0
   MouseD2: 0
   MouseUp: 0
   DoubleClick: 0
-  Adjusted: 0
 --- !u!1 &1589985558
 GameObject:
   m_ObjectHideFlags: 0
@@ -21830,7 +22263,6 @@ GameObject:
   - component: {fileID: 1590662694}
   - component: {fileID: 1590662697}
   - component: {fileID: 1590662696}
-  - component: {fileID: 1590662695}
   - component: {fileID: 1590662698}
   m_Layer: 5
   m_Name: Display AddedTimeMinutes
@@ -21858,21 +22290,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 90, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1590662695
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1590662693}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e58d1f7c819195949b02d44c49fb5393, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  TCS: {fileID: 1829068701}
-  TMP: {fileID: 1590662696}
-  ATFOS: {fileID: 1577320068}
 --- !u!114 &1590662696
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22202,6 +22619,7 @@ MonoBehaviour:
   value: 0.92
   horizontal: 1
   scale: 1
+  x: 0.3
 --- !u!114 &1594594833
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22738,7 +23156,7 @@ GameObject:
   - component: {fileID: 1637011317}
   - component: {fileID: 1637011316}
   m_Layer: 5
-  m_Name: ToggleRichFormating(Button)
+  m_Name: Milliseconds Display
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22837,6 +23255,7 @@ RectTransform:
   - {fileID: 1309417408}
   - {fileID: 1376031260}
   - {fileID: 1253178735}
+  - {fileID: 1747800935}
   m_Father: {fileID: 491239681}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -22844,6 +23263,143 @@ RectTransform:
   m_AnchoredPosition: {x: 40.625, y: 215}
   m_SizeDelta: {x: 343.75, y: 492.5}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1644617788
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1644617789}
+  - component: {fileID: 1644617793}
+  - component: {fileID: 1644617792}
+  m_Layer: 5
+  m_Name: Text (TMP)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1644617789
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1644617788}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 919856983}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1644617792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1644617788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: Button
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 9211fcdd38f50ef4c8fd7ddcb1c03d12, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 9211fcdd38f50ef4c8fd7ddcb1c03d12, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 26.85
+  m_fontSizeBase: 23
+  m_fontWeight: 400
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 2
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_characterHorizontalScale: 0.9
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 7.35, y: 0, z: 7.35, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &1644617793
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1644617788}
+  m_CullTransparentMesh: 1
 --- !u!1 &1647427588
 GameObject:
   m_ObjectHideFlags: 0
@@ -23368,7 +23924,7 @@ GameObject:
   - component: {fileID: 1714199172}
   - component: {fileID: 1714199171}
   m_Layer: 5
-  m_Name: ToggleRichFormating(Button)
+  m_Name: Logged Times Display
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -23575,12 +24131,12 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1239192805}
-  m_Father: {fileID: 849783048}
+  m_Father: {fileID: 1640083702}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -12, y: 20}
+  m_AnchoredPosition: {x: 187.25, y: 361.25}
+  m_SizeDelta: {x: -155.75, y: 20}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &1747800936
 MonoBehaviour:
@@ -23820,6 +24376,7 @@ MonoBehaviour:
   value: 0.63
   horizontal: 0.77
   scale: 1
+  x: 0.3
 --- !u!114 &1750480326
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23835,6 +24392,128 @@ MonoBehaviour:
   TMP: {fileID: 390400463}
   TCS: {fileID: 1829068701}
   IMG: {fileID: 1750480323}
+--- !u!1 &1752062964
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1752062965}
+  - component: {fileID: 1752062969}
+  - component: {fileID: 1752062968}
+  - component: {fileID: 1752062967}
+  - component: {fileID: 1752062966}
+  m_Layer: 5
+  m_Name: Canvas
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1752062965
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1752062964}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 919856983}
+  m_Father: {fileID: 440751579}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 0}
+--- !u!114 &1752062966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1752062964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: beaaec293fcbde242bf08cf4ee51f670, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LogInfoScript
+  InfoDisplay: {fileID: 919856982}
+  TMP: {fileID: 1644617792}
+  DisplayTicks: 0
+  HideDelay: 0
+  MouseY: 0
+  BSAP: {fileID: 919856984}
+  MouseDown: 0
+--- !u!114 &1752062967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1752062964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.GraphicRaycaster
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+--- !u!114 &1752062968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1752062964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.CanvasScaler
+  m_UiScaleMode: 0
+  m_ReferencePixelsPerUnit: 100
+  m_ScaleFactor: 1
+  m_ReferenceResolution: {x: 800, y: 600}
+  m_ScreenMatchMode: 0
+  m_MatchWidthOrHeight: 0
+  m_PhysicalUnit: 3
+  m_FallbackScreenDPI: 96
+  m_DefaultSpriteDPI: 96
+  m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 0
+--- !u!223 &1752062969
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1752062964}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 0
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
+  m_AdditionalShaderChannelsFlag: 25
+  m_UpdateRectTransformForStandalone: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 12
+  m_TargetDisplay: 0
 --- !u!1 &1770203899
 GameObject:
   m_ObjectHideFlags: 0
@@ -24186,7 +24865,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1811114066}
   - component: {fileID: 1811114067}
-  - component: {fileID: 1811114068}
+  - component: {fileID: 1811114069}
   m_Layer: 5
   m_Name: Content
   m_TagString: Untagged
@@ -24227,7 +24906,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   TimesAppeneded: 0
   RT: {fileID: 1811114066}
---- !u!114 &1811114068
+--- !u!114 &1811114069
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -24236,12 +24915,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1811114065}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afd6898837b2d5a4d9b75f9fafa0a9da, type: 3}
+  m_Script: {fileID: 11500000, guid: b0cb7fe8ff412bd4b8f0f9aed00e7744, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ScrollBoxResetter
+  m_EditorClassIdentifier: '::'
+  ScrollPos: 0
+  HeightOffset: 0
+  SizeD: 0
   RT: {fileID: 1811114066}
-  SetPos: {x: 0, y: 0, z: 0}
-  SizeD: {x: 0, y: 0}
+  TCS: {fileID: 0}
+  FixScrollPos: 0
+  ReturnScrollPos: 0
+  ReturnScrollPosTimer: 0
 --- !u!1 &1816969191
 GameObject:
   m_ObjectHideFlags: 0
@@ -24343,6 +25027,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00b560c5e39ee4e44b88e4c8a9da86fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  DebugOutput: 0
   DefaultTime: 180
   TotalTime: 0
   RemainingTime: 0
@@ -24367,12 +25052,10 @@ MonoBehaviour:
   Profiles: 0
   ProfilesView: {fileID: 1811114065}
   ProfileToAdd: {fileID: 3311102170427947228, guid: 2a9b8ccb78d1a65448be5ea2abef52f0, type: 3}
-  DEBUGLOAD: 0
-  DEDELCURRENTPROFILE: 0
-  DEBUGCLEARPLAYERPREFS: 0
+  ProfileButtonCollection:
+  - {fileID: 0}
   ProfileName: Profile
   ProfileNameSetter: {fileID: 3466609}
-  ADVFRMTTogg: {fileID: 1875130798}
   AddProf: 0
   AddProfDelay: 0
   ResetApp: {fileID: 0}
@@ -24382,6 +25065,8 @@ MonoBehaviour:
   CountUp: 0
   ResetReset: 0
   MSTimer: 0
+  ResetValues: 0
+  ResetValuesTimer: 1
   MSAddeds: 0
   MSLeftDisplay: 0
   MSUsedDisplay: 0
@@ -24394,6 +25079,33 @@ MonoBehaviour:
   AddedTimesFadeOutSat: 0
   AddedTimesFadeOutVal: 0
   AddedTimesRainbow: 0
+  LoadCalled:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1811114069}
+        m_TargetAssemblyTypeName: ScrollBoxHoldPosition, Assembly-CSharp
+        m_MethodName: PrepReturn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 650450978}
+        m_TargetAssemblyTypeName: ScrollBoxHoldPosition, Assembly-CSharp
+        m_MethodName: PrepReturn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!4 &1829068702
 Transform:
   m_ObjectHideFlags: 0
@@ -24698,6 +25410,152 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1838217209}
   m_CullTransparentMesh: 1
+--- !u!1 &1838449899
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1838449900}
+  - component: {fileID: 1838449904}
+  - component: {fileID: 1838449903}
+  - component: {fileID: 1838449902}
+  - component: {fileID: 1838449901}
+  m_Layer: 5
+  m_Name: Github
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1838449900
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1838449899}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 825468810}
+  m_Father: {fileID: 256779950}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -17.55}
+  m_SizeDelta: {x: 88, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1838449901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1838449899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92c57f6ddea23c74aae6e62886f22d5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+--- !u!114 &1838449902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1838449899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 0.6698113, g: 0.6698113, b: 0.6698113, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1838449903}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1838449901}
+        m_TargetAssemblyTypeName: GithubButtonScript, Assembly-CSharp
+        m_MethodName: ClickButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1838449903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1838449899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: -4271134099690858128, guid: 8f305f94b0ba0274b98c428c2417ef6e, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1838449904
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1838449899}
+  m_CullTransparentMesh: 1
 --- !u!1 &1840302933
 GameObject:
   m_ObjectHideFlags: 0
@@ -24988,7 +25846,6 @@ GameObject:
   - component: {fileID: 1858786499}
   - component: {fileID: 1858786504}
   - component: {fileID: 1858786503}
-  - component: {fileID: 1858786502}
   - component: {fileID: 1858786501}
   - component: {fileID: 1858786500}
   m_Layer: 5
@@ -25048,50 +25905,7 @@ MonoBehaviour:
   value: 0.745
   horizontal: 1
   scale: 1
---- !u!114 &1858786502
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1858786498}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
-  m_Navigation:
-    m_Mode: 3
-    m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 0
-  m_TargetGraphic: {fileID: 1858786503}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls: []
+  x: 0.3
 --- !u!114 &1858786503
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25140,7 +25954,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1869384026}
   m_Layer: 0
-  m_Name: TimeLeft
+  m_Name: TimeRemaining
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25173,10 +25987,8 @@ GameObject:
   - component: {fileID: 1872157908}
   - component: {fileID: 1872157912}
   - component: {fileID: 1872157911}
-  - component: {fileID: 1872157910}
-  - component: {fileID: 1872157909}
   m_Layer: 5
-  m_Name: ToggleRichFormating(Button)
+  m_Name: Toggle Used Time
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25203,82 +26015,6 @@ RectTransform:
   m_AnchoredPosition: {x: 9, y: 0}
   m_SizeDelta: {x: 145, y: 23.7}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1872157909
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1872157907}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a93f1e809fe68cd45899357afe5a3e05, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GenericPositioner
-  RT: {fileID: 1872157908}
-  value: 1.0055
-  horizontal: 1
-  scale: 0.19
---- !u!114 &1872157910
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1872157907}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Toggle
-  m_Navigation:
-    m_Mode: 3
-    m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 1872157911}
-  toggleTransition: 1
-  graphic: {fileID: 0}
-  m_Group: {fileID: 0}
-  onValueChanged:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: RichFormatToggling, Assembly-CSharp
-        m_MethodName: SaveTogg
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  m_IsOn: 0
 --- !u!114 &1872157911
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25327,6 +26063,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1875130797}
   - component: {fileID: 1875130798}
+  - component: {fileID: 1875130799}
   m_Layer: 5
   m_Name: Toggle
   m_TagString: Untagged
@@ -25412,8 +26149,66 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 0
+      - m_Target: {fileID: 1875130799}
+        m_TargetAssemblyTypeName: SavableValueScript, Assembly-CSharp
+        m_MethodName: SaveValue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
         m_CallState: 2
   m_IsOn: 1
+--- !u!114 &1875130799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1875130796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9722c07e9b54ee409c54b50190696e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SavableValueScript
+  Label: RIch Formating
+  Default: 1
+  Togg: {fileID: 1875130798}
+  Slide: {fileID: 0}
+  SliderMinValue: -792
+  SliderMaxValue: -1
+  TCS: {fileID: 1829068701}
+  OldProf: 0
+  ObjectLayer: 0
+  DataLayer: 3
+  VarToToggle:
+    m_PersistentCalls:
+      m_Calls: []
+  VarToFloat:
+    m_PersistentCalls:
+      m_Calls: []
+  VarToInt:
+    m_PersistentCalls:
+      m_Calls: []
+  toggle: 1
+  DefaultBool: 0
+  flot: 0
+  DefaultFloat: -1
+  integr: 0
+  DefaultInt: -1
+  LoadOnProfileChange: 0
+  FirstFrame: 1
+  Resetable: 0
+  ForceLoadSaved: 0
+  Ishovering: 0
+  MouseDown: 0
+  MouseD2: 0
+  MouseUp: 0
+  DoubleClick: 0
 --- !u!1 &1891326449
 GameObject:
   m_ObjectHideFlags: 0
@@ -25615,7 +26410,6 @@ GameObject:
   - component: {fileID: 1904553262}
   - component: {fileID: 1904553265}
   - component: {fileID: 1904553264}
-  - component: {fileID: 1904553263}
   - component: {fileID: 1904553266}
   m_Layer: 5
   m_Name: Text (TMP)
@@ -25643,20 +26437,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1904553263
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1904553261}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92b806337eb3b5f4ea48b800b5e9daf1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  TMP: {fileID: 1904553264}
-  TCS: {fileID: 1829068701}
 --- !u!114 &1904553264
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25785,7 +26565,7 @@ GameObject:
   - component: {fileID: 1907737286}
   - component: {fileID: 1907737285}
   m_Layer: 5
-  m_Name: ToggleRichFormating(Button)
+  m_Name: Reset App
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25931,9 +26711,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1924138189}
   - component: {fileID: 1924138190}
-  - component: {fileID: 1924138191}
+  - component: {fileID: 1924138192}
   m_Layer: 5
-  m_Name: Toggle
+  m_Name: ToggleK
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26006,9 +26786,9 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1924138191}
-        m_TargetAssemblyTypeName: KeepLastAddedToggle, Assembly-CSharp
-        m_MethodName: KeepLastAddedTime
+      - m_Target: {fileID: 1924138192}
+        m_TargetAssemblyTypeName: SavableValueScript, Assembly-CSharp
+        m_MethodName: SaveValue
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -26019,7 +26799,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   m_IsOn: 0
---- !u!114 &1924138191
+--- !u!114 &1924138192
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -26028,10 +26808,55 @@ MonoBehaviour:
   m_GameObject: {fileID: 1924138188}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6cfb9e4f46ef52a44ad62d34b6f5cc4b, type: 3}
+  m_Script: {fileID: 11500000, guid: d9722c07e9b54ee409c54b50190696e3, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: '::'
+  m_EditorClassIdentifier: Assembly-CSharp::SavableValueScript
+  Label: Keep Last Added Time
+  Default: 1
+  Togg: {fileID: 1924138190}
+  Slide: {fileID: 0}
+  SliderMinValue: -792
+  SliderMaxValue: -1
   TCS: {fileID: 1829068701}
+  OldProf: 0
+  ObjectLayer: 0
+  DataLayer: 4
+  VarToToggle:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1829068701}
+        m_TargetAssemblyTypeName: TimeControllerScript, Assembly-CSharp
+        m_MethodName: KeepTimeInAddBoxFunc
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  VarToFloat:
+    m_PersistentCalls:
+      m_Calls: []
+  VarToInt:
+    m_PersistentCalls:
+      m_Calls: []
+  toggle: 1
+  DefaultBool: 0
+  flot: 0
+  DefaultFloat: -1
+  integr: 0
+  DefaultInt: -1
+  LoadOnProfileChange: 0
+  FirstFrame: 1
+  Resetable: 0
+  ForceLoadSaved: 0
+  Ishovering: 0
+  MouseDown: 0
+  MouseD2: 0
+  MouseUp: 0
+  DoubleClick: 0
 --- !u!1 &1935564656
 GameObject:
   m_ObjectHideFlags: 0
@@ -26153,7 +26978,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1962987330}
   - component: {fileID: 1962987332}
-  - component: {fileID: 1962987331}
+  - component: {fileID: 1962987333}
   m_Layer: 5
   m_Name: Toggle
   m_TagString: Untagged
@@ -26181,20 +27006,6 @@ RectTransform:
   m_AnchoredPosition: {x: 160, y: 0}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1962987331
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1962987329}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0febb716de1973445a5b3c27e4609d07, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MillisecondsRemainingScript
-  MSToggle: {fileID: 1962987332}
-  TCS: {fileID: 1829068701}
 --- !u!114 &1962987332
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26242,9 +27053,9 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1962987331}
-        m_TargetAssemblyTypeName: MillisecondsRemainingScript, Assembly-CSharp
-        m_MethodName: SaveMSToggle
+      - m_Target: {fileID: 1962987333}
+        m_TargetAssemblyTypeName: SavableValueScript, Assembly-CSharp
+        m_MethodName: SaveValue
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -26255,6 +27066,64 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   m_IsOn: 1
+--- !u!114 &1962987333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1962987329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9722c07e9b54ee409c54b50190696e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SavableValueScript
+  Label: Ms Remaining
+  Default: 0
+  Togg: {fileID: 1962987332}
+  Slide: {fileID: 0}
+  SliderMinValue: -792
+  SliderMaxValue: -792
+  TCS: {fileID: 1829068701}
+  OldProf: 0
+  ObjectLayer: 2
+  DataLayer: 2
+  VarToToggle:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1829068701}
+        m_TargetAssemblyTypeName: TimeControllerScript, Assembly-CSharp
+        m_MethodName: MSLeftDisplayFunc
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  VarToFloat:
+    m_PersistentCalls:
+      m_Calls: []
+  VarToInt:
+    m_PersistentCalls:
+      m_Calls: []
+  toggle: 1
+  DefaultBool: 0
+  flot: 0
+  DefaultFloat: -1
+  integr: 0
+  DefaultInt: -1
+  LoadOnProfileChange: 1
+  FirstFrame: 1
+  Resetable: 0
+  ForceLoadSaved: 0
+  Ishovering: 0
+  MouseDown: 0
+  MouseD2: 0
+  MouseUp: 0
+  DoubleClick: 0
 --- !u!1 &1972238141
 GameObject:
   m_ObjectHideFlags: 0
@@ -26409,6 +27278,7 @@ MonoBehaviour:
   value: 1.445
   horizontal: 0.92
   scale: 0.95
+  x: 0.3
 --- !u!1 &1976796636
 GameObject:
   m_ObjectHideFlags: 0
@@ -26871,6 +27741,7 @@ GameObject:
   - component: {fileID: 2014016119}
   - component: {fileID: 2014016120}
   - component: {fileID: 2014016121}
+  - component: {fileID: 2014016122}
   m_Layer: 8
   m_Name: Saturation
   m_TagString: Untagged
@@ -26977,7 +27848,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 2014016121}
         m_TargetAssemblyTypeName: SaturationSliderScript, Assembly-CSharp
-        m_MethodName: SaveSlider
+        m_MethodName: AdjSat
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -26987,9 +27858,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2014016121}
-        m_TargetAssemblyTypeName: SaturationSliderScript, Assembly-CSharp
-        m_MethodName: AdjSat
+      - m_Target: {fileID: 2014016122}
+        m_TargetAssemblyTypeName: SavableValueScript, Assembly-CSharp
+        m_MethodName: SaveValue
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -27022,6 +27893,52 @@ MonoBehaviour:
   TMP: {fileID: 39000395}
   TCS: {fileID: 1829068701}
   OldProfile: 0
+--- !u!114 &2014016122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2014016118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9722c07e9b54ee409c54b50190696e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SavableValueScript
+  Label: Sat Background
+  Default: 0
+  Togg: {fileID: 0}
+  Slide: {fileID: 2014016120}
+  SliderMinValue: 0
+  SliderMaxValue: 1
+  TCS: {fileID: 0}
+  OldProf: 0
+  ObjectLayer: 3
+  DataLayer: 1
+  VarToToggle:
+    m_PersistentCalls:
+      m_Calls: []
+  VarToFloat:
+    m_PersistentCalls:
+      m_Calls: []
+  VarToInt:
+    m_PersistentCalls:
+      m_Calls: []
+  toggle: 0
+  DefaultBool: 0
+  flot: 1
+  DefaultFloat: 1
+  integr: 0
+  DefaultInt: -1
+  LoadOnProfileChange: 1
+  FirstFrame: 1
+  Resetable: 1
+  ForceLoadSaved: 0
+  Ishovering: 0
+  MouseDown: 0
+  MouseD2: 0
+  MouseUp: 0
+  DoubleClick: 0
 --- !u!1 &2034600208
 GameObject:
   m_ObjectHideFlags: 0
@@ -27032,7 +27949,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2034600209}
   - component: {fileID: 2034600211}
-  - component: {fileID: 2034600210}
+  - component: {fileID: 2034600212}
   m_Layer: 5
   m_Name: Toggle
   m_TagString: Untagged
@@ -27060,20 +27977,6 @@ RectTransform:
   m_AnchoredPosition: {x: 160, y: 0}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2034600210
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2034600208}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d054ec865302974a850dfa8027dcdd0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MillisecondsAddedToggleScript
-  MSToggle: {fileID: 2034600211}
-  TCS: {fileID: 1829068701}
 --- !u!114 &2034600211
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27121,9 +28024,9 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2034600210}
-        m_TargetAssemblyTypeName: MillisecondsAddedToggleScript, Assembly-CSharp
-        m_MethodName: SaveMSToggle
+      - m_Target: {fileID: 2034600212}
+        m_TargetAssemblyTypeName: SavableValueScript, Assembly-CSharp
+        m_MethodName: SaveValue
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -27134,6 +28037,64 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   m_IsOn: 0
+--- !u!114 &2034600212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2034600208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9722c07e9b54ee409c54b50190696e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SavableValueScript
+  Label: MS Added
+  Default: 0
+  Togg: {fileID: 2034600211}
+  Slide: {fileID: 0}
+  SliderMinValue: -792
+  SliderMaxValue: -1
+  TCS: {fileID: 1829068701}
+  OldProf: 0
+  ObjectLayer: 2
+  DataLayer: 1
+  VarToToggle:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1829068701}
+        m_TargetAssemblyTypeName: TimeControllerScript, Assembly-CSharp
+        m_MethodName: MSAddedsFunc
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  VarToFloat:
+    m_PersistentCalls:
+      m_Calls: []
+  VarToInt:
+    m_PersistentCalls:
+      m_Calls: []
+  toggle: 1
+  DefaultBool: 0
+  flot: 0
+  DefaultFloat: -1
+  integr: 0
+  DefaultInt: -1
+  LoadOnProfileChange: 1
+  FirstFrame: 1
+  Resetable: 0
+  ForceLoadSaved: 0
+  Ishovering: 0
+  MouseDown: 0
+  MouseD2: 0
+  MouseUp: 0
+  DoubleClick: 0
 --- !u!1 &2038094140
 GameObject:
   m_ObjectHideFlags: 0
@@ -27770,7 +28731,7 @@ GameObject:
   - component: {fileID: 2064479041}
   - component: {fileID: 2064479040}
   m_Layer: 5
-  m_Name: ToggleRichFormating(Button)
+  m_Name: e Out Color Animation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27890,6 +28851,7 @@ MonoBehaviour:
   value: 1
   horizontal: 1
   scale: 1
+  x: 0.3
 --- !u!114 &2071521725
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28309,8 +29271,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2114996953}
   - component: {fileID: 2114996956}
-  - component: {fileID: 2114996955}
-  - component: {fileID: 2114996954}
+  - component: {fileID: 2114996957}
   m_Layer: 5
   m_Name: Toggle
   m_TagString: Untagged
@@ -28338,34 +29299,6 @@ RectTransform:
   m_AnchoredPosition: {x: 160, y: 0}
   m_SizeDelta: {x: 160, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2114996954
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2114996952}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23f532015d0d3f543befd365d496e8f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::RainbowAddedTimesToggleScript
-  TCS: {fileID: 1829068701}
-  RainbowAddedTimesToggle: {fileID: 2114996956}
-  OldProfile: 0
---- !u!114 &2114996955
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2114996952}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6cfb9e4f46ef52a44ad62d34b6f5cc4b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  TCS: {fileID: 1829068701}
 --- !u!114 &2114996956
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28413,7 +29346,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2114996954}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: RainbowAddedTimesToggleScript, Assembly-CSharp
         m_MethodName: LastAddedTimesRainbow
         m_Mode: 1
@@ -28426,6 +29359,64 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   m_IsOn: 1
+--- !u!114 &2114996957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2114996952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9722c07e9b54ee409c54b50190696e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SavableValueScript
+  Label: 
+  Default: 0
+  Togg: {fileID: 2114996956}
+  Slide: {fileID: 0}
+  SliderMinValue: -792
+  SliderMaxValue: -792
+  TCS: {fileID: 1829068701}
+  OldProf: 0
+  ObjectLayer: 4
+  DataLayer: 6
+  VarToToggle:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1829068701}
+        m_TargetAssemblyTypeName: TimeControllerScript, Assembly-CSharp
+        m_MethodName: AddedTimesRainbowFunc
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  VarToFloat:
+    m_PersistentCalls:
+      m_Calls: []
+  VarToInt:
+    m_PersistentCalls:
+      m_Calls: []
+  toggle: 1
+  DefaultBool: 0
+  flot: 0
+  DefaultFloat: -1
+  integr: 0
+  DefaultInt: -1
+  LoadOnProfileChange: 1
+  FirstFrame: 1
+  Resetable: 0
+  ForceLoadSaved: 0
+  Ishovering: 0
+  MouseDown: 0
+  MouseD2: 0
+  MouseUp: 0
+  DoubleClick: 0
 --- !u!1 &2115008561
 GameObject:
   m_ObjectHideFlags: 0
@@ -28756,8 +29747,8 @@ SceneRoots:
   m_Roots:
   - {fileID: 519420032}
   - {fileID: 619394802}
-  - {fileID: 152137621}
   - {fileID: 1869384026}
+  - {fileID: 440751579}
   - {fileID: 1770203900}
   - {fileID: 1070148576}
   - {fileID: 150002400}
@@ -28766,6 +29757,5 @@ SceneRoots:
   - {fileID: 17028223}
   - {fileID: 667572244}
   - {fileID: 838219046}
-  - {fileID: 301739423}
   - {fileID: 966479439}
   - {fileID: 1340966942}

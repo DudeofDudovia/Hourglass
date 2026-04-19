@@ -12,22 +12,27 @@ public class NewUpdateIndicatorScript : MonoBehaviour
     public float horizontal = 1;
     public float scale = 1;
     public string Version = "0.6A";
+    public TimeControllerScript TCS;
     public void Awake()
     {
         Version = Application.version;
-         if (PlayerPrefs.HasKey("Version"))
+        string LastVer = TCS.RDfile(0, 5, true);
+        if (LastVer == "-792" || LastVer == "#" || LastVer == "0")
         {
-            if (PlayerPrefs.GetString("Version") != Version) { }
-            if (PlayerPrefs.GetString("Version") == Version) { gameObject.SetActive(false); }
+            TCS.MKfile(0, 5, Version, true);
+            gameObject.SetActive(false);
+        }
+        if (TCS.RDfile(0,5,true) != "-792")
+        {
+            if (TCS.RDfile(0, 5, true) == Version) { gameObject.SetActive(false); }
         }
         else { gameObject.SetActive(false); }
         
     }
     public void HideIndicator()
     {
+        TCS.MKfile(0, 5, Version, true);
         gameObject.SetActive(false);
-        PlayerPrefs.SetString("Version", Version);
-        PlayerPrefs.Save();
     }
     public void Update()
     {
@@ -36,13 +41,21 @@ public class NewUpdateIndicatorScript : MonoBehaviour
         float Sine = Mathf.Sin(SineGenerator/DivideSineSpeed);
 
         AppScale += Sine /DivideSine;
-        //RT.transform.localScale = new Vector3(AppScale*TotalScale, AppScale * TotalScale, AppScale * TotalScale);
         RT.localScale = new Vector3(Screen.height / 481.6f, Screen.height / 481.6f, Screen.height / 481.6f) * AppScale * TotalScale;
-        /*if (Screen.width > Screen.height)
-        {
-
-        }*/
         RT.anchoredPosition = new Vector3((-Screen.width) + Screen.width * horizontal, (-Screen.height) + Screen.height * value, 0);
-    
-}
+        if (Screen.width > Screen.height)
+        {
+            float fr = 0.35f;
+            float hoz = horizontal - 1;
+            float ASPRAT = (float)Screen.width / (float)Screen.height;
+            float IASPRAT = 1080f / 2408f;
+            float TOPOW = ASPRAT / 2f;
+            TOPOW = Mathf.Pow(TOPOW, 1f);
+            TOPOW = -TOPOW;
+            float IDASPRAT = Mathf.Pow(ASPRAT, IASPRAT);
+            IDASPRAT = Mathf.Pow(IDASPRAT, TOPOW);
+            RT.anchoredPosition = new Vector3((float)(Screen.width * hoz * fr * 1 * IDASPRAT), (-Screen.height) + Screen.height * value, 0);
+        }
+
+    }
 }

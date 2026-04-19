@@ -6,9 +6,20 @@ public class AppBackgroundScript : MonoBehaviour
     public Slider HueSlider;
     public Slider SaturationSlider;
     public Slider ValueSlider;
-
+    public Material HSMat;
     void Update()
     {
-            BackgroundImage.color = Color.HSVToRGB(HueSlider.value, SaturationSlider.value, ValueSlider.value);
+            HSMat.SetFloat("_Hue", WrapOne((float)HueSlider.value - 1f/3f));
+            HSMat.SetFloat("_Val", SaturationSlider.value);
+            HSMat.SetFloat("_Sat", ValueSlider.value);
+    }
+    private float WrapOne(float input)
+    {
+        float output = input;
+        if (output < 0)
+        {
+            output = 1 - - input;
+        }
+        return output;
     }
 }

@@ -30,7 +30,6 @@ public class ChangeLogFontSizePreviewNumberScript : MonoBehaviour
     {
         number *= Mathf.Pow(10, digits);
         number = (long)number;
-        //number = (float)number;
         number /= Mathf.Pow(10, digits);
         return number;
     }

@@ -1,32 +1,11 @@
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using UnityEngine.Rendering.Universal;
 
 public class CountUpAnimScript : MonoBehaviour
 {
     public Slider Slider;
-    public void SaveSlider()
-    {
-
-        PlayerPrefs.SetFloat("UpDownAnimTime", Slider.value);
-        PlayerPrefs.Save();
-    }
-    public void Awake()
-    {
-        if (PlayerPrefs.HasKey("UpDownAnimTime"))
-        {
-            if (PlayerPrefs.GetFloat("UpDownAnimTime") > 150)
-            {
-                Slider.maxValue = PlayerPrefs.GetFloat("UpDownAnimTime");
-            }
-            Slider.value = PlayerPrefs.GetFloat("UpDownAnimTime");
-        }
-        else { Slider.value = 30; }
-    }
-
     public bool Ishovering = false;
     public bool MouseDown = false;
     public bool MouseD2 = false;

@@ -14,7 +14,6 @@ public class UpdateTotalTimePreviewAnimScript : MonoBehaviour
     public float horizontal = 1;
     public float scale = 1;
     public bool FirstTick = false;
-    // Update is called once per frame
     void FixedUpdate()
     {
         if (!FirstTick)

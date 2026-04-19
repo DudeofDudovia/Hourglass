@@ -1,20 +1,10 @@
-using System.Security.Cryptography;
-using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 public class TimerRunningScript : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     public TextMeshProUGUI TMP;
     public TimeControllerScript TCS;
     public bool Milliseconds = true;
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
         Milliseconds = TCS.MSTimer;
@@ -26,7 +16,6 @@ public class TimerRunningScript : MonoBehaviour
             }
             else if (TCS.RunningTime >= 60)
             {
-                //TMP.text = (((int)(TCS.RunningTime/60f))).ToString() + " H";
                 float seconds = TCS.RunningTime - TCS.Truncate((TCS.RunningTime - (TCS.Truncate(((TCS.RunningTime / 60f) % 60), 0)) * 60), 0);
                 seconds *= 60;
                 seconds -= 3600 * TCS.Truncate(((TCS.RunningTime / 60f) % 60), 0);

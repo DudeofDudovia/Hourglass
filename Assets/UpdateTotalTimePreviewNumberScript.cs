@@ -14,7 +14,6 @@ public class UpdateTotalTimePreviewNumberScript : MonoBehaviour
         else { UTTS.maxValue = 150; }
         UTTS.value = int.Parse(TMP.text);
         CTTS.animframes = (int)UTTS.value;
-        //RT.sizeDelta = new Vector2(6, RT.sizeDelta.y);
     }
     public void UpdateSlider()
     {
