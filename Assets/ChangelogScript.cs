@@ -9,7 +9,7 @@ public class ChangelogScript : MonoBehaviour
     public TextMeshProUGUI TMP;
     void Start()
     {
-        TMP.text = File.ReadAllText(Application.dataPath + @"\ChangeLog.txt");
+        TMP.text = File.ReadAllText(Application.persistentDataPath + @"\ChangeLog.txt");
     }
     public bool Ishovering = false;
     public bool MouseDown = false;

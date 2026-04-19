@@ -2,8 +2,17 @@ Made by Dude of Dudovia
 	Made using Unity
 
 More Readable Changelogs Can Be Found On The Github Page
-Changelog 0.7.0
+Changelog 0.7.1
 	
+	Bugs:
+		Also, the low res background looks really bad on a 1080p screen
+		The app doesn't work whne no prior save data is given
+		The app doesn't export propperly
+			The background isn't even there
+				further reasearch says this is due to lack of saturation and value
+			Nothing involving saving is working
+Changelog 0.7.0
+	Added a Github button which directs to the Github page.
 	Made background change hue better:
 		Before, the way it worked meant that blues would be black, now, it is a proper hue shift.
 	Logged times now log when they were logged.

@@ -5848,32 +5848,43 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "made by Dude of Dudovia\nUPDATE THE FILE, NOT THIS TEXT\nmade using Unity\nChangelog
-    V0.6B\n\tFixed a Bug Where the Changelog Was not Contained in It's Scrollbox.\n\tFixed
-    a Bug Where the Number That Displayed Font Size Was Rendering On a Layer It Wasn't
-    Supposed to.\n\tFixed a Bug Where the App Would Be Launched In Fullscreen On
-    Windows.\nChangelog V0.6A\n\tChanged Commit Time to Log Time\n\t\tThis Was to
-    Be Clearer.\n\tAdded The Ability to Press Enter to Log Time.\n\tUpdated The UI\n\t\tAdded
-    Several Animations.\n\tAdded Used Time Display\n\t\tAdded a Small Button to Swap
-    its Function with Remaining Time DIsplay.\n\tAdded Options\n\t\tAdded Options
-    for Displaying Milliseconds.\n\t\tAdded the Ability to Change The Background
-    Color.\n\t\tAdded Options for Changing Animation Times.\n\t\tAdded Options for
-    Changing Colors of Logged Times.\n\t\tMoved the Reset App Button Here.\n\t\tMoved
-    the Toggle for \"Advanced Formatting\" Here.\n\tChanged the Frame Rate to Match
-    Refresh Rate.\n\tFixed a Bug Where Time Entries Could Be Deleted While the Menu
-    Was Open.\n\tFixed Capitalization On Old Changelogs.\n\tAdded an Exit App Button.\n\tReduced
-    General Bugginess.\nChangelog V0.5B\n\tMade persistance of Advanced Formatting
-    More Consistant.\nChangelog V0.5A\n\tDragging Boxes of the Added Times Now Un-Adds
-    the Time.\n\tDragging Profiles Now Deletes Them.\n\tUpdated Textures and Made
-    Other Slight UI Changes\n\tFixed Bugs Regarding Profiles\nChangelog V0.4C\n\tFIxed
-    Bug Timer Would Be Set to a Value Insanely High if Reset and the Application
-    was Relaunched\nChangelog V0.4B\n\tImproved the Persistence of the Rich Format
-    Toggle.\nChangelog V0.4A\n\tImproved Time Adding System\n\t\tSupport Adding Based
-    on Hours and Seconds Etc:\n\t\t\t1:30:2 Would be 1 Hour 30 Minutes and 2 Seconds.\n\tAdded
-    Profiles\n\tUpdated UI\n\t\tChanged Logos\nChangelog v0.3B\n\tUpdated UI\n\t\tIt
-    Now Scales Numbers\n\tFixed bugs\n\t\tIt Now Saves the Default Time\nChangelog
-    v0.3A\n\tChanged the UI\n\tAdded Update with New Total Button\n\tDid Minor Bug
-    Fixing\n\tAdded This Menu\n"
+  m_text: "Made by Dude of Dudovia\n\tMade using Unity\n\nMore Readable Changelogs
+    Can Be Found On The Github Page\nChangelog 0.7.0\n\tAdded a Github button which
+    directs to the Github page.\n\tMade background change hue better:\n\t\tBefore,
+    the way it worked meant that blues would be black, now, it is a proper hue shift.\n\tLogged
+    times now log when they were logged.\n\t\tThis fun, but confusing sentence simply
+    means that when you click a time log it will show when that entry was made.\n\tImproved
+    compatibility with landscape screens.\n\tDid lots of internal cleanup:\n\t\tThis
+    includes using files rather than PlayerPrefs.\n\t\tRemoved useless scripts and
+    commented lines.\n\tFixed bugs:\n\t\t  Pressing enter will add time (or at least
+    attempt to), even when the add box isn't focused.\n\t\t  Made \"Keep Last Added
+    Times\" toggle work.\n\t\t  Made \"Advanced Formatting\" work better.\n\tUncapitalized
+    words that didn't need to be.\nChangelog V0.6B\n\tFixed a bug where the changelog
+    was not contained in its scrollbox.\n\tFixed a bug where the number that displayed
+    font size was rendering on a layer it wasn't supposed to.\n\tFixed a bug where
+    the app would be launched in fullscreen on Windows.\nChangelog V0.6A\n\tChanged
+    commit time to log time:\n\t\tThis was to be clearer.\n\tAdded the ability to
+    press enter to log time.\n\tUpdated the UI:\n\t\tAdded several animations.\n\tAdded
+    used time display:\n\t\tAdded a small button to swap its function with remaining
+    time display.\n\tAdded options:\n\t\tAdded options for displaying milliseconds.\n\t\tAdded
+    the ability to change the background color.\n\t\tAdded options for changing animation
+    times.\n\t\tAdded options for changing colors of logged times.\n\t\tMoved the
+    \"Reset App\" button here.\n\t\tMoved the toggle for \"Advanced Formatting\"
+    here.\n\tChanged the frame rate to match refresh rate.\n\tAdded an exit app button.\n\tFixed
+    bugs:\n\t\tFixed a bug where time entries could be deleted while the menu was
+    open.\n\t\tFixed capitalization on old changelogs.\n\t\tReduced general bugginess.\nChangelog
+    V0.5B\n\tMade persistence of \"Advanced Formatting\" more consistent.\nChangelog
+    V0.5A\n\tDragging boxes of the added times now un-adds the time.\n\tDragging
+    profiles now deletes them.\n\tUpdated textures and made other slight UI changes.\n\tFixed
+    bugs regarding profiles.\nChangelog V0.4C\n\tFixed bug timer would be set to
+    a value insanely high if reset and the application was relaunched.\nChangelog
+    V0.4B\n\tImproved the persistence of the \"Rich Format\" (Advanced Formatting)
+    toggle.\nChangelog V0.4A\n\tImproved time adding system:\n\t\tSupport adding
+    based on hours and seconds etc:\n\t\t\t1:30:2 would be 1 hour 30 minutes and
+    2 seconds.\n\tAdded profiles.\n\tUpdated UI:\n\t\tChanged logos.\nChangelog v0.3B\n\tUpdated
+    UI:\n\t\tIt now scales numbers.\n\tFixed bugs:\n\t\tIt now saves the default
+    time.\nChangelog v0.3A\n\tChanged the UI.\n\tAdded update with new total button.\n\tDid
+    minor bug fixing.\n\tAdded this menu."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9211fcdd38f50ef4c8fd7ddcb1c03d12, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 9211fcdd38f50ef4c8fd7ddcb1c03d12, type: 2}
