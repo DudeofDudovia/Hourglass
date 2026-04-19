@@ -4,7 +4,6 @@ using UnityEngine.UI;
 
 public class RichFormatToggling : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     public TMP_InputField tmp;
     public TMP_InputField tmp3;
     public Toggle togg;
@@ -19,7 +18,6 @@ public class RichFormatToggling : MonoBehaviour
             tmp3.characterValidation = TMP_InputField.CharacterValidation.CustomValidator;
             tmp2.text = "Add Time: x:y:z / xHyMzS";
             tmp2.fontSize = 10.5f;
-            //togg.targetGraphic.color = new Color(.5f, .5f, .5f);
         }
         else
           {

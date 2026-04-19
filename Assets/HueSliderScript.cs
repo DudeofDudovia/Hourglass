@@ -1,8 +1,5 @@
-using System.Collections.Generic;
-using System.IO.Pipes;
 using TMPro;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class HueSliderScript : MonoBehaviour
@@ -22,7 +19,6 @@ public class HueSliderScript : MonoBehaviour
 
     public void Start()
     {
-        //LoadProfile();
         Adjusted = false;
     }
     public void Update()

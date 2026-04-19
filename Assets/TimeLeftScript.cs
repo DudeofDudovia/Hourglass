@@ -127,7 +127,6 @@ public class TimeLeftScript : MonoBehaviour
                 }
                 else if (TCS.RemainingTime > 0 && TCS.RemainingTime < 1)
                 {
-                    //float seconds = TCS.RemainingTime - TCS.Truncate((TCS.RemainingTime - (TCS.Truncate(((TCS.RemainingTime / 60f) % 60), 0)) * 60), 0);
                     float seconds = TCS.RemainingTime;
                     seconds *= 60;
                     TMP.text = (TCS.TruncateForSeconds(seconds, 0) + "S");
@@ -172,7 +171,6 @@ public class TimeLeftScript : MonoBehaviour
                 }
                 else if (TCS.RemainingTime > 0 && TCS.RemainingTime < 1)
                 {
-                    //float seconds = TCS.RemainingTime - TCS.Truncate((TCS.RemainingTime - (TCS.Truncate(((TCS.RemainingTime / 60f) % 60), 0)) * 60), 0);
                     float seconds = TCS.RemainingTime;
                     seconds *= 60;
                     TMP.text = (TCS.TruncateFS(seconds, 0) + "S");

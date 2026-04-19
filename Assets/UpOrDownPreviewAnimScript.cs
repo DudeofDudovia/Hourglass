@@ -15,7 +15,6 @@ public class UpOrDownPreviewAnimScript : MonoBehaviour
     public Slider UpDownSlider;
     public bool Direction;
     public bool FirstTick = false;
-    // Update is called once per frame
     void FixedUpdate()
     {
         if (!FirstTick)
@@ -24,15 +23,6 @@ public class UpOrDownPreviewAnimScript : MonoBehaviour
             FirstTick = true;
         }
         animframes = (int)UpDownSlider.value;
-       /* if (Direction)
-        {
-            RT.localScale = new Vector3(1, -1 + animscalefactor , 1) * scale;
-        }
-        else
-        {
-            RT.localScale = new Vector3(1, 1 - animscalefactor, 1) * scale;
-        }
-        */
         if (frame >= 0 && frame != animframes)
         {
             if (Direction)

@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Security.Cryptography;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -61,13 +60,11 @@ public class AddedTimesScript : MonoBehaviour
         transform.localPosition = new Vector3(98, AddedId * -40 + 10, 0);
         float OGMinutesAdded = MinutesAdded;
         MinutesAddedDisplay = RoundFloat(MinutesAdded,5);
-        //if (OGMinutesAdded > MinutesAdded)
     }
     public float Truncate(float number, int digits)
     {
         number *= Mathf.Pow(10, digits);
         number = (long)number;
-        //number = (float)number;
         number /= Mathf.Pow(10, digits);
         return number;
     }
@@ -105,7 +102,6 @@ public class AddedTimesScript : MonoBehaviour
         string Numstring = number.ToString();
         number *= Mathf.Pow(10, digits);
         number = (long)number;
-        //number = (float)number;
         number /= Mathf.Pow(10, digits);
         Numstring = number.ToString();
         if (number < 10 && number >= 0) { Numstring = "0" + Numstring; }
@@ -166,17 +162,14 @@ public class AddedTimesScript : MonoBehaviour
             {
                 if (Mathf.Abs(MinutesAdded) >= 60)
                 {
-                    //TMP.text = (((TCS.Truncate(((TCS.RemainingTime / 60f)), 0))).ToString() + "H : " + ((float)TCS.Truncate((TCS.RemainingTime - (int)(TCS.Truncate(((TCS.RemainingTime / 60f)), 0)) * 60), 0)).ToString() + "M : " + (TCS.Truncate(seconds, 0) + "S"));
                     TMP.text = (((long)(Truncate((MinutesAddedDisplay / 60f), 0))).ToString() + "H : " + Truncate(((float)MinutesAddedDisplay - ((long)(Truncate((MinutesAddedDisplay / 60f), 0))) * 60), 0).ToString() + "M : " + TruncateFS(seconds, 0) + "S");
                 }
                 else if (Mathf.Abs(MinutesAdded) >= 1)
                 {
-                    //TMP.text = (Truncate((MinutesAdded - (Truncate(((MinutesAdded / 60f) % 60), 0)) * 60), 0).ToString() + "M : " + TCS[0].gameObject.GetComponent<TimeControllerScript>().TruncateForSeconds(seconds, 2) + "S");
                     TMP.text = (Truncate(((float)MinutesAddedDisplay - ((long)(Truncate((MinutesAddedDisplay / 60f), 0))) * 60), 0).ToString() + "M : " + (TruncateFS(seconds, 0) + "S"));
                 }
                 else if (Mathf.Abs(MinutesAdded) < 1)
                 {
-                    //TMP.text = (TCS[0].gameObject.GetComponent<TimeControllerScript>().TruncateForSeconds(seconds, 2) + "S");
                     TMP.text = (TruncateFS(seconds, 0) + "S");
                 }
             }
@@ -185,12 +178,7 @@ public class AddedTimesScript : MonoBehaviour
         {
             TMP.text = (Truncate(((MinutesAddedDisplay / 60f) % 60), 0).ToString() + "H : " + Truncate((MinutesAddedDisplay - (Truncate(((MinutesAddedDisplay / 60f) % 60), 0)) * 60), 0).ToString() + "M : " + (TruncateFS(seconds, 0) + "S"));
         }
-
-        //TMP.text = MinutesAdded.ToString();
-
         MouseDown = false;
-        //InputAction click = new InputAction(type: InputActionType.PassThrough, binding: "<Mouse>/leftButton");
-        //InputSystem.
         if (Input.GetMouseButton(0)) { MouseDown = true; }
         if (MouseUp) { WasMouseUp = true; }
         if (BClicked1 && !BClicked2 && MouseUp)
@@ -200,7 +188,6 @@ public class AddedTimesScript : MonoBehaviour
             OriginalPosY = transform.position.y;
             initpos = Input.mousePosition.x;
             initposY = Input.mousePosition.y;
-            //initpos = Mouse.current.position.x.ReadValue();
             BClicked2 = true;
         }
         if (BClicked1 && BClicked2 && WasMouseUp)
@@ -227,7 +214,6 @@ public class AddedTimesScript : MonoBehaviour
         {
             WasMouseUp = false;
         }
-        //if (BtoClick.) { }
         if (!MouseDown) { BClicked1 = false; }
         Ishovering = IsPointerOver(GetEventSystemRaycastResults());
         if (MouseDown && Ishovering) { BClicked1 = true; }

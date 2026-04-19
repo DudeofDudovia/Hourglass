@@ -26,12 +26,6 @@ public class NewUpdateIndicatorScript : MonoBehaviour
         {
             if (TCS.RDfile(0, 5, true) == Version) { gameObject.SetActive(false); }
         }
-        /*
-         if (PlayerPrefs.HasKey("Version"))
-        {
-            if (PlayerPrefs.GetString("Version") != Version) { }
-            if (PlayerPrefs.GetString("Version") == Version) { gameObject.SetActive(false); }
-        }*/
         else { gameObject.SetActive(false); }
         
     }
@@ -39,8 +33,6 @@ public class NewUpdateIndicatorScript : MonoBehaviour
     {
         TCS.MKfile(0, 5, Version, true);
         gameObject.SetActive(false);
-        /*PlayerPrefs.SetString("Version", Version);
-        PlayerPrefs.Save();*/
     }
     public void Update()
     {
@@ -49,12 +41,7 @@ public class NewUpdateIndicatorScript : MonoBehaviour
         float Sine = Mathf.Sin(SineGenerator/DivideSineSpeed);
 
         AppScale += Sine /DivideSine;
-        //RT.transform.localScale = new Vector3(AppScale*TotalScale, AppScale * TotalScale, AppScale * TotalScale);
         RT.localScale = new Vector3(Screen.height / 481.6f, Screen.height / 481.6f, Screen.height / 481.6f) * AppScale * TotalScale;
-        /*if (Screen.width > Screen.height)
-        {
-
-        }*/
         RT.anchoredPosition = new Vector3((-Screen.width) + Screen.width * horizontal, (-Screen.height) + Screen.height * value, 0);
         if (Screen.width > Screen.height)
         {

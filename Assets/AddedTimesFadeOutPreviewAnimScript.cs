@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
 
 public class AddedTimesFadeOutPreviewAnimScript : MonoBehaviour
@@ -19,7 +18,6 @@ public class AddedTimesFadeOutPreviewAnimScript : MonoBehaviour
     public int Life;
     public int LifeTime;
     public Image IMG;
-    // Update is called once per frame
     void FixedUpdate()
     {
         if (!FirstTick)

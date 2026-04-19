@@ -19,11 +19,9 @@ public class MenuBackgroundScript : MonoBehaviour
     void Update()
     {
         if (Adjusted && !Clear) { 
-            //BackgroundImage.color = Color.HSVToRGB(0, SaturationSlider.value, ValueSlider.value);
             HSMat.SetFloat("_Hue", WrapOne((float)HueSlider.value - 1f / 3f));
             HSMat.SetFloat("_Val", SaturationSlider.value);
             HSMat.SetFloat("_Sat", ValueSlider.value);
-            //HSMat.SetFloat("_Hue", WrapOne((float)HueSlider.value - 1f / 3f)); 
         }
         else if (Adjusted && Clear)
         {

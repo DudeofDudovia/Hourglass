@@ -1,16 +1,8 @@
 using System;
 using System.IO;
-using System.Linq.Expressions;
-using System.Security.Cryptography;
 using TMPro;
-using TreeEditor;
-using UnityEditor;
-using UnityEditor.Rendering;
-using UnityEditor.U2D.Aseprite;
 using UnityEngine;
-using UnityEngine.Diagnostics;
 using UnityEngine.Events;
-using UnityEngine.UI;
 public class TimeControllerScript : MonoBehaviour
 {
     public bool DebugOutput;

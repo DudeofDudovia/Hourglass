@@ -29,12 +29,9 @@ public class ProfileButton : MonoBehaviour
     public TimeControllerScript TCS;
     private void Start()
     {
-        //Debug.Log(gameObject.tag);
         if (TCS == null) { TCS = Object.FindFirstObjectByType<TimeControllerScript>().gameObject.GetComponent<TimeControllerScript>(); }
         AddedId = transform.parent.GetComponent<TimesAdded>().TimesAppeneded;
         transform.parent.GetComponent<TimesAdded>().TimesAppeneded += 1;
-
-        // MinutesAdded = transform.position.x;
         transform.localPosition = new Vector3(0, AddedId * -30 + 10, 0);
 
         transform.localPosition = new Vector3(98, AddedId * -30 + 10, 0);
@@ -73,12 +70,6 @@ public class ProfileButton : MonoBehaviour
     void Update()
     {
         transform.localPosition = new Vector3(94.25f, (AddedId + 1) * -33 + 10, 0);
-
-        //float seconds = MinutesAdded - Truncate((MinutesAdded - (Truncate(((MinutesAdded / 60f) % 60), 0)) * 60), 0);
-        //seconds *= 60;
-        //seconds -= 3600 * Truncate(((MinutesAdded / 60f) % 60), 0);
-        //TMP.text = (Truncate(((MinutesAdded / 60f) % 60), 0).ToString() + "H : " + Truncate((MinutesAdded - (Truncate(((MinutesAdded / 60f) % 60), 0)) * 60), 0).ToString() + "M : " + (Truncate(seconds, 0) + "S"));
-        //TMP.text = MinutesAdded.ToString();
         TMP.text = ProfileName;
 
 
@@ -93,7 +84,6 @@ public class ProfileButton : MonoBehaviour
             OriginalPosY = transform.position.y;
             initpos = Input.mousePosition.x;
             initposY = Input.mousePosition.y;
-            //initpos = Mouse.current.position.x.ReadValue();
             BClicked2 = true;
         }
         if (BClicked1 && BClicked2 && WasMouseUp)
@@ -120,57 +110,12 @@ public class ProfileButton : MonoBehaviour
         {
             WasMouseUp = false;
         }
-        //if (BtoClick.) { }
         if (!MouseDown) { BClicked1 = false; }
         Ishovering = IsPointerOver(GetEventSystemRaycastResults());
         if (MouseDown && Ishovering) { BClicked1 = true; }
         if (MouseDown) { MouseUp = false; }
         if (MouseD2 != MouseDown && Ishovering) { MouseUp = true; }
         MouseD2 = MouseDown;
-        /* if (Input.GetMouseButton(0)) { MouseDown = true; }
-         if (MouseD2 != MouseDown && Ishovering) { MouseUp = true; }
-         ButtonToColorChange.color = Color.white;
-         if (BClicked1 && !BClicked2 && MouseUp)
-         {
-             WasMouseUp = true;
-             OriginalPosX = transform.position.x;
-             OriginalPosY = transform.position.y;
-             initpos = Input.mousePosition.x;
-             initposY = Input.mousePosition.y;
-             //initpos = Mouse.current.position.x.ReadValue();
-             BClicked2 = true;
-         }
-        if (BClicked1 && BClicked2 && WasMouseUp)
-        {
-
-            diff = Input.mousePosition.x - initpos;
-            diffY = Input.mousePosition.y - initposY;
-            transform.position += new Vector3(diff, 0, 0);
-            diff = Mathf.Abs(diff);
-
-            if (diff > exitdiff) { ButtonToColorChange.color = Color.red; }
-            if (Mathf.Abs(diffY) > exitdiffY)
-            {
-                BClicked1 = false;
-                BClicked2 = false;
-            }
-        }
-        if (!BClicked1 && BClicked2)
-        {
-            if (diff > exitdiff) { RemoveProf(); }
-            BClicked2 = false;
-        }
-        //if (BtoClick.) { }
-        if (!MouseDown) { BClicked1 = false; WasMouseUp = false; }
-        Ishovering = IsPointerOver(GetEventSystemRaycastResults());
-        if (MouseDown && Ishovering) { BClicked1 = true; }
-        if (!Ishovering)
-        {
-            //BClicked1 = false;
-            //BClicked2 = false;
-        }
-        MouseD2 = MouseDown;
-        if (MouseDown) { MouseUp = false; }*/
     }
     public void ChangeProfile()
     {

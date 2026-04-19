@@ -1,4 +1,3 @@
-using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.UI;
 public class AppBackgroundScript : MonoBehaviour
@@ -10,7 +9,6 @@ public class AppBackgroundScript : MonoBehaviour
     public Material HSMat;
     void Update()
     {
-            //HSMat.SetFloat("_Hue", WrapOne((float)HueSlider.value - 0.3122357f));
             HSMat.SetFloat("_Hue", WrapOne((float)HueSlider.value - 1f/3f));
             HSMat.SetFloat("_Val", SaturationSlider.value);
             HSMat.SetFloat("_Sat", ValueSlider.value);

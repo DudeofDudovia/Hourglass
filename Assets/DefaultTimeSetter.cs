@@ -1,9 +1,7 @@
 using System.Globalization;
-using System.Security.Cryptography;
 using System.Text.RegularExpressions;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UIElements.Experimental;
 
 public class DefaultTimeSetter : MonoBehaviour
 {
@@ -17,8 +15,6 @@ public class DefaultTimeSetter : MonoBehaviour
     {
         TMP.text = TCS.DefaultTime.ToString();
     }
-
-    // Update is called once per frame
     void Update()
     {
         RT.anchoredPosition = new Vector3((-Screen.width) + Screen.width * horizontal, (-Screen.height) + Screen.height * value, 0);

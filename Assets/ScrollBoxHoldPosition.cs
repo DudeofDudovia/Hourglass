@@ -17,7 +17,6 @@ public class ScrollBoxHoldPosition : MonoBehaviour
         if (RT == null) { RT = gameObject.GetComponent<RectTransform>(); }
         int Prof = int.Parse(TCS.RDfile(0, 0, true));
     }
-    // Update is called once per frame
     public void PrepReturn()
     {
         ScrollPos = RT.anchoredPosition.y;

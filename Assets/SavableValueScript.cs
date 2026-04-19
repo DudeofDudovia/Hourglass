@@ -143,7 +143,6 @@ public class SavableValueScript : MonoBehaviour
             catch { Togg.isOn = DefaultBool; }
             if (VarToToggle != null)
             {
-                //Debug.Log(Togg.isOn + gameObject.name);
                 VarToToggle.Invoke(Togg.isOn);
             }
         }
@@ -225,16 +224,6 @@ public class SavableValueScript : MonoBehaviour
         EventSystem.current.RaycastAll(eventData, raycastResults);
         return raycastResults;
     }
-
-
-    /*public void SetSlider(float val)
-    {
-        if (val > SliderMaxValue) { SliderMaxValue = val; }
-        Slide.value = val;
-        VarToFloat.Invoke(Slide.value);
-        TCS.MKfile(ObjectLayer, DataLayer, Slide.value.ToString());
-
-    }*/
 }
 
 

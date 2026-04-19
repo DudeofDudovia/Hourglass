@@ -17,7 +17,6 @@ public class UpDownScript : MonoBehaviour
 
     public bool FirstFrame = true;
 
-    // Update is called once per frame
     void Start()
     {
         frame = 0;
@@ -26,33 +25,16 @@ public class UpDownScript : MonoBehaviour
         if (TCS.CountUp)
         {
             RT.localScale = new Vector3(Screen.height / 481.6f, (Screen.height / 481.6f) - animscalefactor, Screen.height / 481.6f) * scale;
-            //RT.localScale = new Vector3(Screen.height / 481.6f, -(Screen.height / 481.6f) + animscalefactor, Screen.height / 481.6f) * scale;
         }
         else
         {
             RT.localScale = new Vector3(Screen.height / 481.6f, -(Screen.height / 481.6f) + animscalefactor, Screen.height / 481.6f) * scale;
-            //RT.localScale = new Vector3(Screen.height / 481.6f, Screen.height / 481.6f - animscalefactor, Screen.height / 481.6f) * scale;
-
         }
     }
     void FixedUpdate()
     {
         
         RT.anchoredPosition = new Vector3((-Screen.width) + Screen.width * horizontal, (-Screen.height) + Screen.height * value, 0);
-        /*
-        if (Screen.width > Screen.height)
-        {
-            float fr = 0.35f;
-            float hoz = horizontal - 1;
-            float ASPRAT = (float)Screen.width / (float)Screen.height;
-            float IASPRAT = 1080f / 2408f;
-            float TOPOW = ASPRAT / 2f;
-            TOPOW = Mathf.Pow(TOPOW, 1f);
-            TOPOW = -TOPOW;
-            float IDASPRAT = Mathf.Pow(ASPRAT, IASPRAT);
-            IDASPRAT = Mathf.Pow(IDASPRAT, TOPOW);
-            RT.anchoredPosition = new Vector3((float)(Screen.width * hoz * fr * 1 * IDASPRAT), (-Screen.height) + Screen.height * value, 0);
-        }*/
         float Ratio = (float)Screen.width / (float)Screen.height;
         if (Ratio > 0.5 && Ratio <= 1)
         {
@@ -80,33 +62,25 @@ public class UpDownScript : MonoBehaviour
             IDASPRAT = Mathf.Pow(IDASPRAT, TOPOW);
             RT.anchoredPosition = new Vector3((float)(Screen.width * hoz * fr * 1 * IDASPRAT), (-Screen.height) + Screen.height * value, 0);
         }
-
-        //if (animscalefactor == 0) { animscalefactor = 10; }
         if (frame >= 0 && frame != animframes)
         {
             if (TCS.CountUp)
             {
                 RT.localScale = new Vector3(Screen.height / 481.6f, (Screen.height / 481.6f) - animscalefactor, Screen.height / 481.6f) * scale;
-                //RT.localScale = new Vector3(Screen.height / 481.6f, -(Screen.height / 481.6f) + animscalefactor, Screen.height / 481.6f) * scale;
             }
             else
             {
                 RT.localScale = new Vector3(Screen.height / 481.6f, -(Screen.height / 481.6f) + animscalefactor, Screen.height / 481.6f) * scale;
-                //RT.localScale = new Vector3(Screen.height / 481.6f, Screen.height / 481.6f - animscalefactor, Screen.height / 481.6f) * scale;
-
             }
         }
         else if (frame >= 0 ) {
             if (TCS.CountUp)
             {
                 RT.localScale = new Vector3(Screen.height / 481.6f, -(Screen.height / 481.6f) + (2 * (Screen.height / 481.6f)), Screen.height / 481.6f) * scale;
-                //RT.localScale = new Vector3(Screen.height / 481.6f, -(Screen.height / 481.6f) + animscalefactor, Screen.height / 481.6f) * scale;
             }
             else
             {
                 RT.localScale = new Vector3(Screen.height / 481.6f, (Screen.height / 481.6f) - (2 * (Screen.height / 481.6f)), Screen.height / 481.6f) * scale;
-                //RT.localScale = new Vector3(Screen.height / 481.6f, Screen.height / 481.6f - animscalefactor, Screen.height / 481.6f) * scale;
-
             }
         }
         lastanimscalefactor = animscalefactor;

@@ -13,7 +13,6 @@ public class ChangeTotalTimeScript : MonoBehaviour
     public float scale = 1;
     public bool Wrong = false;
     public bool Stay = false;
-    // Update is called once per frame
     void FixedUpdate()
     {
         RT.localRotation = Quaternion.Euler(0,0, 360 * animscalefactor);

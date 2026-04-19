@@ -15,7 +15,6 @@ namespace TMPro
                 pos++;
                 return ch;
             }
-            //return '\0';
             return (char)0;
         }
     }
