@@ -232,7 +232,7 @@ public class TimeControllerScript : MonoBehaviour
                     }
 
                     SaveObjIndex = saveobj.datas.Length;
-                    if (Default && Objindex == 0) { Debug.Log(Dataindex); }
+                    if (Default && Objindex == 0) {  }
                     for (int j = 0; j < SaveObjIndex; j++)
                     {
                         try
@@ -621,9 +621,6 @@ public class TimeControllerScript : MonoBehaviour
                 else if (Prof == TopProf - 1)
                 {
                     MKfile(1, Prof, RDfile(1, TopProf, true), Profs - 1, true);
-                    Debug.Log("AOK");
-                    Debug.Log(TopProf);
-                    Debug.Log(TopProf - 1);
                 }
                 else if (Prof == TopProf)
                 {

@@ -15,6 +15,7 @@ Changelog 0.7.0
 	Fixed bugs:
 		  Pressing enter will add time (or at least attempt to), even when the add box isn't focused.
 		  Made "Keep Last Added Times" toggle work.
+		  Made "Advanced Formatting" work better.
 	Uncapitalized words that didn't need to be.
 Changelog V0.6B
 	Fixed a bug where the changelog was not contained in its scrollbox.

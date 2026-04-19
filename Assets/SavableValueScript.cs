@@ -93,7 +93,6 @@ public class SavableValueScript : MonoBehaviour
         if (TCS.ResetValues)
         {
             LoadProfile(TCS.Profile);
-            Debug.Log("Saving");
         }
 
         if (Resetable)
