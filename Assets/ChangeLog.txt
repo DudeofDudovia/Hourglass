@@ -1,67 +1,71 @@
 Made by Dude of Dudovia
-	Made Using Unity
+	Made using Unity
 
 More Readable Changelogs Can Be Found On The Github Page
 Changelog 0.7.0
-	Made Background Change Hue Better
-		Before, The Way It Worked Meant That Blues Would Be Black, Now, It Is A Propper Hue Shift.
-	Logged Times Now Log When They Were Logged.
-		This Fun, But Confusing Sentence Simply Means That When You Click A Time Log It Will Show When That Entry Was Made.
-	Improved Compatability With Landscape Screens.
-	Did Lots of Internal Clean Up.
-		This Includes Using Files Rather than PLayerprefs.
-		Removed Useless Scripts and Commented Lines.
-	Fixed Bugs:
-		
+	
+	Made background change hue better:
+		Before, the way it worked meant that blues would be black, now, it is a proper hue shift.
+	Logged times now log when they were logged.
+		This fun, but confusing sentence simply means that when you click a time log it will show when that entry was made.
+	Improved compatibility with landscape screens.
+	Did lots of internal cleanup:
+		This includes using files rather than PlayerPrefs.
+		Removed useless scripts and commented lines.
+	Fixed bugs:
+		  Pressing enter will add time (or at least attempt to), even when the add box isn't focused.
+		  Made "Keep Last Added Times" toggle work.
+	Uncapitalized words that didn't need to be.
 Changelog V0.6B
-	Fixed a Bug Where the Changelog Was not Contained in It's Scrollbox.
-	Fixed a Bug Where the Number That Displayed Font Size Was Rendering On a Layer It Wasn't Supposed to.
-	Fixed a Bug Where the App Would Be Launched In Fullscreen On Windows.
+	Fixed a bug where the changelog was not contained in its scrollbox.
+	Fixed a bug where the number that displayed font size was rendering on a layer it wasn't supposed to.
+	Fixed a bug where the app would be launched in fullscreen on Windows.
 Changelog V0.6A
-	Changed Commit Time to Log Time
-		This Was to Be Clearer.
-	Added The Ability to Press Enter to Log Time.
-	Updated The UI
-		Added Several Animations.
-	Added Used Time Display
-		Added a Small Button to Swap its Function with Remaining Time DIsplay.
-	Added Options
-		Added Options for Displaying Milliseconds.
-		Added the Ability to Change The Background Color.
-		Added Options for Changing Animation Times.
-		Added Options for Changing Colors of Logged Times.
-		Moved the Reset App Button Here.
-		Moved the Toggle for "Advanced Formatting" Here.
-	Changed the Frame Rate to Match Refresh Rate.
-	Fixed a Bug Where Time Entries Could Be Deleted While the Menu Was Open.
-	Fixed Capitalization On Old Changelogs.
-	Added an Exit App Button.
-	Reduced General Bugginess.
+	Changed commit time to log time:
+		This was to be clearer.
+	Added the ability to press enter to log time.
+	Updated the UI:
+		Added several animations.
+	Added used time display:
+		Added a small button to swap its function with remaining time display.
+	Added options:
+		Added options for displaying milliseconds.
+		Added the ability to change the background color.
+		Added options for changing animation times.
+		Added options for changing colors of logged times.
+		Moved the "Reset App" button here.
+		Moved the toggle for "Advanced Formatting" here.
+	Changed the frame rate to match refresh rate.
+	Added an exit app button.
+	Fixed bugs:
+		Fixed a bug where time entries could be deleted while the menu was open.
+		Fixed capitalization on old changelogs.
+		Reduced general bugginess.
 Changelog V0.5B
-	Made persistance of Advanced Formatting More Consistant.
+	Made persistence of "Advanced Formatting" more consistent.
 Changelog V0.5A
-	Dragging Boxes of the Added Times Now Un-Adds the Time.
-	Dragging Profiles Now Deletes Them.
-	Updated Textures and Made Other Slight UI Changes
-	Fixed Bugs Regarding Profiles
+	Dragging boxes of the added times now un-adds the time.
+	Dragging profiles now deletes them.
+	Updated textures and made other slight UI changes.
+	Fixed bugs regarding profiles.
 Changelog V0.4C
-	FIxed Bug Timer Would Be Set to a Value Insanely High if Reset and the Application was Relaunched
+	Fixed bug timer would be set to a value insanely high if reset and the application was relaunched.
 Changelog V0.4B
-	Improved the Persistence of the Rich Format Toggle.
+	Improved the persistence of the "Rich Format" (Advanced Formatting) toggle.
 Changelog V0.4A
-	Improved Time Adding System
-		Support Adding Based on Hours and Seconds Etc:
-			1:30:2 Would be 1 Hour 30 Minutes and 2 Seconds.
-	Added Profiles
-	Updated UI
-		Changed Logos
+	Improved time adding system:
+		Support adding based on hours and seconds etc:
+			1:30:2 would be 1 hour 30 minutes and 2 seconds.
+	Added profiles.
+	Updated UI:
+		Changed logos.
 Changelog v0.3B
-	Updated UI
-		It Now Scales Numbers
-	Fixed bugs
-		It Now Saves the Default Time
+	Updated UI:
+		It now scales numbers.
+	Fixed bugs:
+		It now saves the default time.
 Changelog v0.3A
-	Changed the UI
-	Added Update with New Total Button
-	Did Minor Bug Fixing
-	Added This Menu
+	Changed the UI.
+	Added update with new total button.
+	Did minor bug fixing.
+	Added this menu.
