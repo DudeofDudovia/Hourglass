@@ -4871,7 +4871,6 @@ GameObject:
   m_Component:
   - component: {fileID: 295599987}
   - component: {fileID: 295599989}
-  - component: {fileID: 295599990}
   - component: {fileID: 295599991}
   m_Layer: 8
   m_Name: Value (1)
@@ -4953,9 +4952,9 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 295599990}
-        m_TargetAssemblyTypeName: ValueSliderAddedTimesFadeOut, Assembly-CSharp
-        m_MethodName: SaveSlider
+      - m_Target: {fileID: 295599991}
+        m_TargetAssemblyTypeName: SavableValueScript, Assembly-CSharp
+        m_MethodName: SaveValue
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4965,42 +4964,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 295599990}
-        m_TargetAssemblyTypeName: ValueSliderAddedTimesFadeOut, Assembly-CSharp
-        m_MethodName: AdjVal
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &295599990
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 295599986}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f58ff09b734f10942842a553843cf714, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  Slider: {fileID: 295599989}
-  Ishovering: 0
-  MouseDown: 0
-  MouseD2: 0
-  MouseUp: 0
-  DoubleClick: 0
-  HueSlider: {fileID: 565170333}
-  SatSlider: {fileID: 1561267501}
-  Adjusted: 0
-  TMP: {fileID: 86447562}
-  TCS: {fileID: 1829068701}
-  OldProfile: 0
 --- !u!114 &295599991
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5046,8 +5009,8 @@ MonoBehaviour:
       m_Calls: []
   toggle: 0
   DefaultBool: 0
-  flot: 0
-  DefaultFloat: -1
+  flot: 1
+  DefaultFloat: 1
   integr: 0
   DefaultInt: -1
   LoadOnProfileChange: 1
@@ -5849,42 +5812,47 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "Made by Dude of Dudovia\n\tMade using Unity\n\nMore Readable Changelogs
-    Can Be Found On The Github Page\nChangelog 0.7.0\n\tAdded a Github button which
-    directs to the Github page.\n\tMade background change hue better:\n\t\tBefore,
-    the way it worked meant that blues would be black, now, it is a proper hue shift.\n\tLogged
-    times now log when they were logged.\n\t\tThis fun, but confusing sentence simply
-    means that when you click a time log it will show when that entry was made.\n\tImproved
-    compatibility with landscape screens.\n\tDid lots of internal cleanup:\n\t\tThis
-    includes using files rather than PlayerPrefs.\n\t\tRemoved useless scripts and
-    commented lines.\n\tFixed bugs:\n\t\t  Pressing enter will add time (or at least
-    attempt to), even when the add box isn't focused.\n\t\t  Made \"Keep Last Added
-    Times\" toggle work.\n\t\t  Made \"Advanced Formatting\" work better.\n\tUncapitalized
-    words that didn't need to be.\nChangelog V0.6B\n\tFixed a bug where the changelog
-    was not contained in its scrollbox.\n\tFixed a bug where the number that displayed
-    font size was rendering on a layer it wasn't supposed to.\n\tFixed a bug where
-    the app would be launched in fullscreen on Windows.\nChangelog V0.6A\n\tChanged
-    commit time to log time:\n\t\tThis was to be clearer.\n\tAdded the ability to
-    press enter to log time.\n\tUpdated the UI:\n\t\tAdded several animations.\n\tAdded
-    used time display:\n\t\tAdded a small button to swap its function with remaining
-    time display.\n\tAdded options:\n\t\tAdded options for displaying milliseconds.\n\t\tAdded
-    the ability to change the background color.\n\t\tAdded options for changing animation
-    times.\n\t\tAdded options for changing colors of logged times.\n\t\tMoved the
-    \"Reset App\" button here.\n\t\tMoved the toggle for \"Advanced Formatting\"
-    here.\n\tChanged the frame rate to match refresh rate.\n\tAdded an exit app button.\n\tFixed
-    bugs:\n\t\tFixed a bug where time entries could be deleted while the menu was
-    open.\n\t\tFixed capitalization on old changelogs.\n\t\tReduced general bugginess.\nChangelog
-    V0.5B\n\tMade persistence of \"Advanced Formatting\" more consistent.\nChangelog
-    V0.5A\n\tDragging boxes of the added times now un-adds the time.\n\tDragging
-    profiles now deletes them.\n\tUpdated textures and made other slight UI changes.\n\tFixed
-    bugs regarding profiles.\nChangelog V0.4C\n\tFixed bug timer would be set to
-    a value insanely high if reset and the application was relaunched.\nChangelog
-    V0.4B\n\tImproved the persistence of the \"Rich Format\" (Advanced Formatting)
-    toggle.\nChangelog V0.4A\n\tImproved time adding system:\n\t\tSupport adding
-    based on hours and seconds etc:\n\t\t\t1:30:2 would be 1 hour 30 minutes and
-    2 seconds.\n\tAdded profiles.\n\tUpdated UI:\n\t\tChanged logos.\nChangelog v0.3B\n\tUpdated
-    UI:\n\t\tIt now scales numbers.\n\tFixed bugs:\n\t\tIt now saves the default
-    time.\nChangelog v0.3A\n\tChanged the UI.\n\tAdded update with new total button.\n\tDid
-    minor bug fixing.\n\tAdded this menu."
+    Can Be Found On The Github Page\nChangelog 0.7.1\n\tFixed bugs:\n\t\tThe low
+    res background looks really bad on a 1080p screen.\n\t\tFixed a bug where the
+    update indicator was not centered on the hamburger menu.\n\t\tThe app doesn't
+    export propperly:\n\t\t\tThe app doesn't work whne no prior save data is given.\n\t\t\tThe
+    background isn't even there:\n\t\t\t\tfurther reasearch says this is due to lack
+    of saturation and value.\n\t\t\tNothing involving saving is working.\n\nChangelog
+    0.7.0\n\tAdded a Github button which directs to the Github page.\n\tMade background
+    change hue better:\n\t\tBefore, the way it worked meant that blues would be black,
+    now, it is a proper hue shift.\n\tLogged times now log when they were logged.\n\t\tThis
+    fun, but confusing sentence simply means that when you click a time log it will
+    show when that entry was made.\n\tImproved compatibility with landscape screens.\n\tDid
+    lots of internal cleanup:\n\t\tThis includes using files rather than PlayerPrefs.\n\t\tRemoved
+    useless scripts and commented lines.\n\tFixed bugs:\n\t\t  Pressing enter will
+    add time (or at least attempt to), even when the add box isn't focused.\n\t\t 
+    Made \"Keep Last Added Times\" toggle work.\n\t\t  Made \"Advanced Formatting\"
+    work better.\n\tUncapitalized words that didn't need to be.\nChangelog V0.6B\n\tFixed
+    a bug where the changelog was not contained in its scrollbox.\n\tFixed a bug
+    where the number that displayed font size was rendering on a layer it wasn't
+    supposed to.\n\tFixed a bug where the app would be launched in fullscreen on
+    Windows.\nChangelog V0.6A\n\tChanged commit time to log time:\n\t\tThis was to
+    be clearer.\n\tAdded the ability to press enter to log time.\n\tUpdated the UI:\n\t\tAdded
+    several animations.\n\tAdded used time display:\n\t\tAdded a small button to
+    swap its function with remaining time display.\n\tAdded options:\n\t\tAdded options
+    for displaying milliseconds.\n\t\tAdded the ability to change the background
+    color.\n\t\tAdded options for changing animation times.\n\t\tAdded options for
+    changing colors of logged times.\n\t\tMoved the \"Reset App\" button here.\n\t\tMoved
+    the toggle for \"Advanced Formatting\" here.\n\tChanged the frame rate to match
+    refresh rate.\n\tAdded an exit app button.\n\tFixed bugs:\n\t\tFixed a bug where
+    time entries could be deleted while the menu was open.\n\t\tFixed capitalization
+    on old changelogs.\n\t\tReduced general bugginess.\nChangelog V0.5B\n\tMade persistence
+    of \"Advanced Formatting\" more consistent.\nChangelog V0.5A\n\tDragging boxes
+    of the added times now un-adds the time.\n\tDragging profiles now deletes them.\n\tUpdated
+    textures and made other slight UI changes.\n\tFixed bugs regarding profiles.\nChangelog
+    V0.4C\n\tFixed bug timer would be set to a value insanely high if reset and the
+    application was relaunched.\nChangelog V0.4B\n\tImproved the persistence of the
+    \"Rich Format\" (Advanced Formatting) toggle.\nChangelog V0.4A\n\tImproved time
+    adding system:\n\t\tSupport adding based on hours and seconds etc:\n\t\t\t1:30:2
+    would be 1 hour 30 minutes and 2 seconds.\n\tAdded profiles.\n\tUpdated UI:\n\t\tChanged
+    logos.\nChangelog v0.3B\n\tUpdated UI:\n\t\tIt now scales numbers.\n\tFixed bugs:\n\t\tIt
+    now saves the default time.\nChangelog v0.3A\n\tChanged the UI.\n\tAdded update
+    with new total button.\n\tDid minor bug fixing.\n\tAdded this menu."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9211fcdd38f50ef4c8fd7ddcb1c03d12, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 9211fcdd38f50ef4c8fd7ddcb1c03d12, type: 2}
@@ -17684,7 +17652,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -6657904534883204269, guid: 3434696520b3bd24cad35804cc0132c6, type: 3}
+  m_Sprite: {fileID: 1786012909420367173, guid: fff2ea6568525e3429151f9a8bde3bf1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -24462,6 +24430,7 @@ MonoBehaviour:
   MouseY: 0
   BSAP: {fileID: 919856984}
   MouseDown: 0
+  Menu: {fileID: 306860254}
 --- !u!114 &1752062967
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25078,6 +25047,7 @@ MonoBehaviour:
   MSTimer: 0
   ResetValues: 0
   ResetValuesTimer: 1
+  BigReset: 0
   MSAddeds: 0
   MSLeftDisplay: 0
   MSUsedDisplay: 0
@@ -25090,6 +25060,7 @@ MonoBehaviour:
   AddedTimesFadeOutSat: 0
   AddedTimesFadeOutVal: 0
   AddedTimesRainbow: 0
+  Reset: -1
   LoadCalled:
     m_PersistentCalls:
       m_Calls:

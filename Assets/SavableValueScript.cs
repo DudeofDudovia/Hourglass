@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Net;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
@@ -74,7 +75,9 @@ public class SavableValueScript : MonoBehaviour
     {
        
         if (TCS == null) { TCS = Object.FindFirstObjectByType<TimeControllerScript>().gameObject.GetComponent<TimeControllerScript>(); }
-        int Prof = int.Parse(TCS.RDfile(0, 0, true));
+        int Prof = 0;
+        try { Prof = int.Parse(TCS.RDfile(0, 0, true)); }
+        catch { Prof = 0; }
         LoadProfile(Prof);
     }
     public void Update()
@@ -94,7 +97,10 @@ public class SavableValueScript : MonoBehaviour
         {
             LoadProfile(TCS.Profile);
         }
-
+        if (TCS.BigReset)
+        {
+            LoadProfile(-2);
+        }
         if (Resetable)
         {
             MouseDown = false;
@@ -127,19 +133,24 @@ public class SavableValueScript : MonoBehaviour
     public void LoadProfile(int Prof)
     {
         if (Prof == -1) { Prof = TCS.Profile; }
+       
         if (toggle)
         {
-            try
-            {
-                int tog = int.Parse(TCS.RDfile(ObjectLayer, DataLayer,Default));
-                if (tog == -792)
+            if (Prof != -2) {
+                try
                 {
-                    Togg.isOn = DefaultBool;
+                    int tog = int.Parse(TCS.RDfile(ObjectLayer, DataLayer, Default));
+                    if (tog == -792)
+                    {
+                        Togg.isOn = DefaultBool;
+                    }
+                    if (tog == 1) { Togg.isOn = true; }
+                    if (tog == 0) { Togg.isOn = false; }
+
                 }
-                if (tog == 1) { Togg.isOn = true; }
-                if (tog == 0) { Togg.isOn = false; }
+                catch { Togg.isOn = DefaultBool; }
             }
-            catch { Togg.isOn = DefaultBool; }
+            else { Togg.isOn = DefaultBool; }
             if (VarToToggle != null)
             {
                 VarToToggle.Invoke(Togg.isOn);
@@ -151,20 +162,38 @@ public class SavableValueScript : MonoBehaviour
             else { SliderMaxValue = Slide.maxValue; }
             if (SliderMinValue == -792) { SliderMinValue = Slide.minValue; }
             else { SliderMinValue = Slide.minValue; }
-            try
+            if (Prof != -2)
             {
-                Slide.maxValue = SliderMaxValue;
-                Slide.minValue = SliderMinValue;
-                float val = float.Parse(TCS.RDfile(ObjectLayer, DataLayer, Default));
-                if ( val == -792)
+                try
                 {
-                    val = DefaultFloat;
+                    Slide.maxValue = SliderMaxValue;
+                    Slide.minValue = SliderMinValue;
+                    float val = float.Parse(TCS.RDfile(ObjectLayer, DataLayer, Default));
+                    if (val == -792)
+                    {
+                        val = DefaultFloat;
+                    }
+                    if (val > Slide.maxValue) { Slide.maxValue = val; }
+                    if (val < Slide.minValue) { Slide.minValue = val; }
+                    Slide.value = val;
                 }
-                if (val > Slide.maxValue) { Slide.maxValue = val; }
-                if (val < Slide.minValue) { Slide.minValue = val; }
-                Slide.value = val;
+                catch { Slide.value = DefaultFloat; }
             }
-            catch { Slide.value = DefaultFloat; }
+            else
+            {
+                try
+                {
+                    Slide.maxValue = SliderMaxValue;
+                    Slide.minValue = SliderMinValue;
+                }
+                catch
+                {
+                    Slide.maxValue = 1;
+                    Slide.minValue = 0;
+                }
+                Slide.value = DefaultFloat;
+            }
+
             if (VarToFloat != null)
             {
                 VarToFloat.Invoke(Slide.value);
@@ -179,20 +208,37 @@ public class SavableValueScript : MonoBehaviour
             else { SliderMaxValue = Slide.maxValue; }
             if (SliderMinValue == -792) { SliderMinValue = Slide.minValue; }
             else { SliderMinValue = Slide.minValue; }
-            try
+            if (Prof != -2)
             {
-                Slide.maxValue = SliderMaxValue;
-                Slide.minValue = SliderMinValue;
-                float vali = int.Parse(TCS.RDfile(ObjectLayer, DataLayer, Default));
-                if (vali == -792)
+                try
                 {
-                    vali = DefaultInt;
+                    Slide.maxValue = SliderMaxValue;
+                    Slide.minValue = SliderMinValue;
+                    float vali = int.Parse(TCS.RDfile(ObjectLayer, DataLayer, Default));
+                    if (vali == -792)
+                    {
+                        vali = DefaultInt;
+                    }
+                    if (vali > Slide.maxValue) { Slide.maxValue = vali; }
+                    if (vali < Slide.minValue) { Slide.minValue = vali; }
+                    Slide.value = vali;
                 }
-                if (vali > Slide.maxValue) { Slide.maxValue = vali; }
-                if (vali < Slide.minValue) { Slide.minValue = vali; }
-                Slide.value = vali;
+                catch { Slide.value = DefaultInt; }
             }
-            catch { Slide.value = DefaultInt; }
+            else
+            {
+                try
+                {
+                    Slide.maxValue = SliderMaxValue;
+                    Slide.minValue = SliderMinValue;
+                }
+                catch
+                {
+                    Slide.maxValue = 1;
+                    Slide.minValue = 0;
+                }
+                Slide.value = DefaultInt;
+            }
             if (VarToInt != null)
             {
                 VarToInt.Invoke((int)Slide.value);

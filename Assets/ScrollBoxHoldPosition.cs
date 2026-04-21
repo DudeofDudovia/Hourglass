@@ -15,7 +15,10 @@ public class ScrollBoxHoldPosition : MonoBehaviour
 
         if (TCS == null) { TCS = Object.FindFirstObjectByType<TimeControllerScript>().gameObject.GetComponent<TimeControllerScript>(); }
         if (RT == null) { RT = gameObject.GetComponent<RectTransform>(); }
-        int Prof = int.Parse(TCS.RDfile(0, 0, true));
+
+        int Prof = 0;
+        try { Prof = int.Parse(TCS.RDfile(0, 0, true)); }
+        catch { Prof = 0; }
     }
     public void PrepReturn()
     {

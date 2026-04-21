@@ -76,20 +76,20 @@ public class TimeAdder: MonoBehaviour
                         TCS.UsedTime += float.Parse(Times[i]) / 60f;
                     }
                 }
-                Instantiate(StoreValues, new Vector3((float.Parse(Times[0]) * 60f) + float.Parse(Times[1]) + float.Parse(Times[2]) / 60f + 0.0001f, transform.position.y, TCS.viewCurrentTick), transform.rotation, ViewportContent.transform);
+                Instantiate(StoreValues, new Vector3((float.Parse(Times[0]) * 60f) + float.Parse(Times[1]) + float.Parse(Times[2]) / 60f + 0.0001f, transform.position.y, DateTime.Now.Ticks), transform.rotation, ViewportContent.transform);
             }
             else if (match.Length > 0)
             {
                 TCS.UsedTime += HRegEx * 60f;
                 TCS.UsedTime += MRegEx;
                 TCS.UsedTime += SRegEx / 60f;
-                Instantiate(StoreValues, new Vector3(HRegEx * 60f + MRegEx + SRegEx / 60f + 0.0001f, transform.position.y, TCS.viewCurrentTick), transform.rotation, ViewportContent.transform);
+                Instantiate(StoreValues, new Vector3(HRegEx * 60f + MRegEx + SRegEx / 60f + 0.0001f, transform.position.y, DateTime.Now.Ticks), transform.rotation, ViewportContent.transform);
 
             }
             else if (!Multiple)
             {
                 TCS.UsedTime += float.Parse(TMP.text, CultureInfo.InvariantCulture.NumberFormat);
-                Instantiate(StoreValues, new Vector3(float.Parse(TMP.text, CultureInfo.InvariantCulture.NumberFormat), transform.position.y, TCS.viewCurrentTick), transform.rotation, ViewportContent.transform);
+                Instantiate(StoreValues, new Vector3(float.Parse(TMP.text, CultureInfo.InvariantCulture.NumberFormat), transform.position.y, DateTime.Now.Ticks), transform.rotation, ViewportContent.transform);
                 
             }
             if (!TCS.KeepTimeInAddBox)

@@ -3,14 +3,18 @@ Made by Dude of Dudovia
 
 More Readable Changelogs Can Be Found On The Github Page
 Changelog 0.7.1
-	
-	Bugs:
-		Also, the low res background looks really bad on a 1080p screen
-		The app doesn't work whne no prior save data is given
-		The app doesn't export propperly
-			The background isn't even there
-				further reasearch says this is due to lack of saturation and value
-			Nothing involving saving is working
+	Changed some logic so that it is independant of framerate.
+Bugs:
+	On Android, it will sometimes display the logged time as 0(seems fixed) or a number that isn't quite right(6:20 ish as opposed to 8 20ish, 8 19 instead of 8 22, but now it works)
+	Fixed bugs:
+		The low res background looks really bad on a 1080p screen.
+		Fixed a bug where the update indicator was not centered on the hamburger menu.
+		The app doesn't export propperly:
+			The app doesn't work whne no prior save data is given.
+			The background isn't even there:
+				further reasearch says this is due to lack of saturation and value.
+			Nothing involving saving is working.
+
 Changelog 0.7.0
 	Added a Github button which directs to the Github page.
 	Made background change hue better:

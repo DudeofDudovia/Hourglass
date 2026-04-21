@@ -48,6 +48,7 @@ public class TimeControllerScript : MonoBehaviour
     public bool MSTimer = true;
     public bool ResetValues = false;
     public int ResetValuesTimer = 1;
+    public bool BigReset = false;
     public void MSTimerFunc(bool tog)
     {
         MSTimer = tog;
@@ -115,11 +116,18 @@ public class TimeControllerScript : MonoBehaviour
         AddedTimesRainbow = tog;
     }
 
+    public int Reset = -1;
 
     void Awake()
     {
-        Profile = int.Parse(RDfile(0, 0, true));
+        Profile = 0;
+        try { Profile = int.Parse(RDfile(0, 0, true)); }
+        catch { Profile = 0; }
         if (Profile == -792) { Profile = 0; }
+        if (!CheckFile(Profile)) {
+            Load(Profile,true);
+            return;
+        }
         Load(Profile);
     }
     [System.Serializable]
@@ -313,7 +321,8 @@ public class TimeControllerScript : MonoBehaviour
         string read = "-792";
         string FilePath = (@"\Savedata\Profile" + Prof.ToString() + ".json");
         if (Default) { FilePath = (@"\Savedata\Settings.json"); }
-        try
+        if (!File.Exists(Application.persistentDataPath + FilePath)) {return read; }
+            try
         {
             read = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(Application.persistentDataPath + FilePath)).Objects[Objindex].datas[Dataindex];
             if (Default) { read = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(Application.persistentDataPath + FilePath)).Objects[Objindex].datas[Dataindex]; }
@@ -322,10 +331,10 @@ public class TimeControllerScript : MonoBehaviour
         {
             if (DebugOutput && Default)
             {
-                Debug.LogError(e);
+                Debug.Log(e);
                 Debug.Log(Objindex);
                 Debug.Log(Dataindex);
-                Debug.Log(JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(Application.persistentDataPath + FilePath)).Objects[Objindex].datas.Length);
+                // Debug.Log(JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(Application.persistentDataPath + FilePath)).Objects[Objindex].datas.Length);
             }
         }
         return read;
@@ -338,6 +347,56 @@ public class TimeControllerScript : MonoBehaviour
     {
         if (File.Exists(Application.persistentDataPath + @"\Savedata\Profile" + Prof.ToString() + ".json")) { return true; }
         return false;
+    }
+    private void FixedUpdate()
+    {
+        /*if (pendingreset)
+        {
+            resettime -= Time.deltaTime / TimeScale;
+            if (resettime <= 0) { pendingreset = false; }
+        }
+        if (pendingtimerreset)
+        {
+            timerresettime -= Time.deltaTime / TimeScale;
+            if (timerresettime <= 0) { pendingtimerreset = false; }
+        }
+        if (pendingappreset)
+        {
+            appresettime -= Time.deltaTime / TimeScale;
+            if (appresettime <= 0) { pendingappreset = false; }
+        }*/
+        if (!RunTimer) { timerresettime = 0; }
+        if (pendingreset)
+        {
+            resettime -= 1;
+            if (resettime <= 0) { pendingreset = false; }
+        }
+        if (pendingtimerreset)
+        {
+            timerresettime -= 1;
+            if (timerresettime <= 0) { pendingtimerreset = false; }
+        }
+        if (pendingappreset)
+        {
+            appresettime -= 1;
+            if (appresettime <= 0) { pendingappreset = false; }
+        }
+
+        if (ResetValuesTimer == 0)
+        {
+            ResetValues = false;
+            BigReset = false;
+        }
+        AddProfDelay -= 1;
+        if (AddProfDelay == 0)
+        {
+            AddProfPtwo(AddProf);
+            AddProf = -1;
+            AddProfDelay = -1;
+
+        }
+        ResetValuesTimer -= 1;
+
     }
     void Update()
     {
@@ -356,21 +415,7 @@ public class TimeControllerScript : MonoBehaviour
         ResetReset = false;
         viewCurrentTick = CurrentTick;
         RemainingTime = TotalTime - UsedTime;
-        if (pendingreset)
-        {
-            resettime -= Time.deltaTime / TimeScale;
-            if (resettime <= 0) { pendingreset = false; }
-        }
-        if (pendingtimerreset)
-        {
-            timerresettime -= Time.deltaTime / TimeScale;
-            if (timerresettime <= 0) { pendingtimerreset = false; }
-        }
-        if (pendingappreset)
-        {
-            appresettime -= Time.deltaTime / TimeScale;
-            if (appresettime <= 0) { pendingappreset = false; }
-        }
+
         if (primesave)
         {
             Save(Profile);
@@ -395,26 +440,9 @@ public class TimeControllerScript : MonoBehaviour
             Instantiate(TimetoAdd, new Vector3((float)(CurrentTick - TicksWhenTimerStarted) / 600000000, transform.position.y, 0), transform.rotation, ContentView.transform);
             WasRunTimer = false;
         }
-        AddProfDelay -= 1;
-        if (AddProfDelay == 0)
-        {
-            AddProfPtwo(AddProf);
-            AddProf = -1;
-            AddProfDelay = -1;
 
-        }
-        if (ResetValuesTimer == 0)
-        {
-            ResetValues = false;
-        }
-        ResetValuesTimer -= 1;
+
     }
-
-    private void Application_focusChanged(bool obj)
-    {
-        throw new NotImplementedException();
-    }
-
     public void Save(int Prof)
     {
         int Profs = 0;
@@ -458,27 +486,29 @@ public class TimeControllerScript : MonoBehaviour
     {
         Load(Prof, false);
     }
-    public void Load(int Prof, bool Internal)
+    public void Load(int Prof, bool Nofile)
     {
         LoadCalled.Invoke();
         int Profs = 0;
-        try
+        if (!Nofile)
         {
-            Profs = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(Application.persistentDataPath + @"\Savedata\Settings.json")).Objects[1].datas.Length;
-        }
-        catch
-        {
-            Profs = 1;
+            try
+            {
+                Profs = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(Application.persistentDataPath + @"\Savedata\Settings.json")).Objects[1].datas.Length;
+            }
+            catch
+            {
+                Profs = 1;
+            }
         }
         Profiles = Profs;
         ProfilesView.GetComponent<TimesAdded>().TimesAppeneded = 0;
-        if (CheckFile(Prof))
+        if (CheckFile(Prof) && !Nofile)
         {
-            if (!Internal)
-            {
                 foreach (GameObject Obj in ProfileButtonCollection)
                 {
                     Destroy(Obj);
+                    
                 }
 
                 int objsProf = Profiles;
@@ -494,7 +524,6 @@ public class TimeControllerScript : MonoBehaviour
                     Destroy(Obj);
                 }
                 int objs = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(Application.persistentDataPath + @"\Savedata\Profile" + Profile.ToString() + ".json")).Objects[0].datas.Length;
-
                 for (int i = 0; i < objs; i++)
                 {
                     try
@@ -511,12 +540,11 @@ public class TimeControllerScript : MonoBehaviour
 
                     }
                 }
-            }
 
             DefaultTime = float.Parse(RDfile(1, 1));
             if (DefaultTime == -792) { DefaultTime = 180; }
             UsedTime = float.Parse(RDfile(1, 2));
-            if (UsedTime == -792) { UsedTime = 1; }
+            if (UsedTime == -792) { UsedTime = 0; }
             TotalTime = float.Parse(RDfile(1, 3));
             if (TotalTime == -792) { TotalTime = 180; }
             ContentView.GetComponent<TimesAdded>().TimesAppeneded = 0;
@@ -544,7 +572,7 @@ public class TimeControllerScript : MonoBehaviour
             ProfileName = RDfile(1, Prof, true);
             string ProfName = ("Profile" + Prof.ToString()).ToString();
             try { if (int.Parse(RDfile(1, Prof, true)) == -792) { ProfileName = ProfName; } }
-            catch { }
+            catch { ProfileName = ProfName; }
 
             Profile = Prof;
             MKfile(0, 0, Prof.ToString(), true);
@@ -554,7 +582,32 @@ public class TimeControllerScript : MonoBehaviour
         {
             ResetTime(DefaultTime, true);
             string ProfName = ("Profile" + (Prof + 1).ToString()).ToString();
-            if (int.Parse(RDfile(1, Prof, true)) == -792) { ProfileName = ProfName; }
+            try { if (int.Parse(RDfile(1, Prof, true)) == -792) { ProfileName = ProfName; } }
+            catch { ProfileName = ProfName; }
+            if (Nofile) {
+                foreach (GameObject Obj in ProfileButtonCollection)
+                {
+                    Destroy(Obj);
+
+                }
+                Profiles = 1;
+                int objsProf = Profiles;
+                ProfileButtonCollection = new GameObject[objsProf];
+                ProfileButtonCollection[0] = Instantiate(ProfileToAdd, new Vector3(0, transform.position.y, 0), transform.rotation, ProfilesView.transform);
+                GameObject[] Delete = GameObject.FindGameObjectsWithTag("DelonReset");
+                foreach (GameObject Obj in Delete)
+                {
+                    Destroy(Obj);
+                }
+                DefaultTime = 180;
+                UsedTime = 0;
+                TotalTime = 180;
+                ContentView.GetComponent<TimesAdded>().TimesAppeneded = 0;
+                CountUp = false; 
+                RunTimer = false; WasRunTimer = false;
+                ProfileName = "Profile0";
+
+            }
             Profile = Prof;
             MKfile(0, 0, Prof.ToString(), true);
             MKfile(1, Prof, ProfileName, true);
@@ -667,7 +720,7 @@ public class TimeControllerScript : MonoBehaviour
         pendingreset = true;
         ResetTime();
         AddProf = NewProfile;
-        AddProfDelay = 50;
+        AddProfDelay = 100;
         Save(Profile);
         Load(Profile);
     }
@@ -683,9 +736,18 @@ public class TimeControllerScript : MonoBehaviour
     {
         ResetTime(ResetToTime, false);
     }
+    public void ResetTime()
+    {
+        ResetTime(DefaultTime);
+    }
+    public void ResetTime(bool Immeaiate)
+    {
+        ResetTime(DefaultTime, Immeaiate);
+    }
     public void ResetTime(float ResetToTime, bool Immeadiate)
     {
-        resettime = 0.4167f;
+        //resettime = 0.4167f;
+        resettime = 100f;
         if (pendingreset || Immeadiate)
         {
             UsedTime = 0;
@@ -707,13 +769,10 @@ public class TimeControllerScript : MonoBehaviour
 
         pendingreset = true;
     }
-    public void ResetTime()
-    {
-        ResetTime(DefaultTime);
-    }
     public void ResetTimer()
     {
-        timerresettime = 0.4167f;
+        //timerresettime = 0.4167f;
+        timerresettime = 100f;
         if (pendingtimerreset)
         {
             TicksWhenTimerStarted = CurrentTick;
@@ -728,18 +787,23 @@ public class TimeControllerScript : MonoBehaviour
 
     public void AppReset()
     {
-        appresettime = 0.2167f;
+        //appresettime = 0.2167f;
+        appresettime = 100f;
         if (pendingappreset)
         {
             pendingappreset = false;
             pendingreset = true;
-            Directory.Delete(Application.persistentDataPath + @"\Savedata\", true);
+            if (Directory.Exists(Application.persistentDataPath + @"\Savedata\"))
+            {
+                Directory.Delete(Application.persistentDataPath + @"\Savedata\", true);
+            }
             Directory.CreateDirectory(Application.persistentDataPath + @"\Savedata\");
-            ResetTime();
-            Save(0);
-            Load(0);
+            pendingtimerappreset = true;
+            ResetTime(true);
+            Load(0,true);
             ResetValuesTimer = 1;
             ResetValues = true;
+            BigReset = true;
             return;
         }
 

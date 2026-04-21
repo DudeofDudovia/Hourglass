@@ -9,28 +9,23 @@ public class AppQuitter : MonoBehaviour
     public Image IMG;
     public bool pendingquit = false;
     public float quitresettime = 0.4167f;
-    void Update()
+    private void FixedUpdate()
     {
         if (pendingquit)
         {
-            quitresettime -= Time.deltaTime / 5;
+            //quitresettime -= Time.deltaTime / 5;
+            quitresettime -= 1;
             if (quitresettime <= 0) { pendingquit = false; }
-        }
-        if (pendingquit)
-        {
-            IMG.color = Color.red;
+            else
+            {
+                IMG.color = Color.red;
+                TMP.text = "Are you sure?";
+                TMP.color = Color.white;
+            }
         }
         else
         {
             IMG.color = Color.white;
-        }
-        if (pendingquit)
-        {
-            TMP.text = "Are you sure?";
-            TMP.color = Color.white;
-        }
-        else
-        {
             TMP.text = "Exit App";
             TMP.color = Color.red;
         }
@@ -44,7 +39,7 @@ public class AppQuitter : MonoBehaviour
         else
         {
             pendingquit = true;
-            quitresettime = 0.4167f;
+            quitresettime = 100;
         }
     }
 }
