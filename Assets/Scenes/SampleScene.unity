@@ -24430,7 +24430,7 @@ MonoBehaviour:
   MouseY: 0
   BSAP: {fileID: 919856984}
   MouseDown: 0
-  Menu: {fileID: 306860254}
+  Menu: {fileID: 0}
 --- !u!114 &1752062967
 MonoBehaviour:
   m_ObjectHideFlags: 0
