@@ -1,22 +1,24 @@
 Made by Dude of Dudovia
 	Made using Unity
 
-More Readable Changelogs Can Be Found On The Github Page
+More Readable Changelogs Can Be Found On The GitHub Page
 Changelog 0.7.1
-	Changed some logic so that it is independant of framerate.
-Bugs:
-	On Android, it will sometimes display the logged time as 0(seems fixed) or a number that isn't quite right(6:20 ish as opposed to 8 20ish, 8 19 instead of 8 22, but now it works)
+	Changed some logic so that it is independent of framerate.
 	Fixed bugs:
+		The first log added always goes to the time when it was created rather than the time it was logged.
+		Reset app doesn't properly reset.
+		Rainbow logs don't work.
+		On Android, it will sometimes display the logged time as 0(seems fixed) or a number that isn't quite right(6:20 ish as opposed to 8 20ish, 8 19 instead of 8 22).
+			This was because it wouldn't read a new number, but the old number.
 		The low res background looks really bad on a 1080p screen.
 		Fixed a bug where the update indicator was not centered on the hamburger menu.
-		The app doesn't export propperly:
-			The app doesn't work whne no prior save data is given.
+		The app doesn't export properly:
+			The app doesn't work when no prior save data is given.
 			The background isn't even there:
-				further reasearch says this is due to lack of saturation and value.
+				further research says this is due to lack of saturation and value.
 			Nothing involving saving is working.
-
 Changelog 0.7.0
-	Added a Github button which directs to the Github page.
+	Added a GitHub button which directs to the GitHub page.
 	Made background change hue better:
 		Before, the way it worked meant that blues would be black, now, it is a proper hue shift.
 	Logged times now log when they were logged.
@@ -31,9 +33,9 @@ Changelog 0.7.0
 		  Made "Advanced Formatting" work better.
 	Uncapitalized words that didn't need to be.
 Changelog V0.6B
-	Fixed a bug where the changelog was not contained in its scrollbox.
+	Fixed a bug where the changelog was not contained in its scroll box.
 	Fixed a bug where the number that displayed font size was rendering on a layer it wasn't supposed to.
-	Fixed a bug where the app would be launched in fullscreen on Windows.
+	Fixed a bug where the app would be launched in Fullscreen on Windows.
 Changelog V0.6A
 	Changed commit time to log time:
 		This was to be clearer.

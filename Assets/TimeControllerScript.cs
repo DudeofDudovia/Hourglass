@@ -224,7 +224,7 @@ public class TimeControllerScript : MonoBehaviour
                     }
                     saveobj = new SaveObject();
                     SaveObjIndex = 1;
-                    if (i == Objindex && MaxData > 0)
+                    if (i == Objindex && MaxData >= 0)
                     {
                         saveobj.datas = new string[MaxData + 1];
                     }
@@ -261,7 +261,7 @@ public class TimeControllerScript : MonoBehaviour
                     if (i == Objindex) { saveobj.datas[Dataindex] = Data; }
                 }
 
-                if (i == Objindex && MaxData > 0)
+                if (i == Objindex && MaxData >= 0)
                 {
                     SaveObject saveobjtwo = new SaveObject();
                     saveobjtwo.datas = new string[MaxData];
@@ -280,7 +280,7 @@ public class TimeControllerScript : MonoBehaviour
                         }
 
                     }
-                    if (i == Objindex && MaxData > 0)
+                    if (i == Objindex && MaxData >= 0)
                     {
                         saveobj.datas = new string[MaxData];
                         if (Dataindex + 1 > MaxData && i == Objindex) { saveobj.datas = new string[Dataindex + 1]; }
@@ -303,7 +303,6 @@ public class TimeControllerScript : MonoBehaviour
         }
         File.WriteAllText(Application.persistentDataPath + FilePath, JsonUtility.ToJson(sol));
     }
-
     public string RDfile(int Objindex, int Dataindex)
     {
         return RDfile(Objindex, Dataindex, Profile);
@@ -474,6 +473,7 @@ public class TimeControllerScript : MonoBehaviour
         if (objs == 0)
         {
             MKfile(0, 0, 0.ToString(), 0, Prof);
+            MKfile(2, 0, (-792).ToString(), 0, objs);
         }
         MKfile(0, 0, Prof.ToString(), true);
     }

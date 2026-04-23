@@ -51,10 +51,11 @@ public class AddedTimesScript : MonoBehaviour
             NormalColor = Color.HSVToRGB(TCS[0].GetComponent<TimeControllerScript>().AddedTimesHue, TCS[0].GetComponent<TimeControllerScript>().AddedTimesSat, TCS[0].GetComponent<TimeControllerScript>().AddedTimesVal);
             FadeoutColor = Color.HSVToRGB(TCS[0].GetComponent<TimeControllerScript>().AddedTimesFadeOutHue, TCS[0].GetComponent<TimeControllerScript>().AddedTimesFadeOutSat, TCS[0].GetComponent<TimeControllerScript>().AddedTimesFadeOutVal);
         }
+
         if (transform.parent.GetComponent<TimesAdded>().TimesAppeneded == 0) {
+
             TimeWhenAdded = DateTime.Now.Ticks;
         }
-        
         AddedId = transform.parent.GetComponent<TimesAdded>().TimesAppeneded;
         MinutesAdded = transform.position.x;
         if (TimeWhenAdded != DateTime.Now.Ticks && transform.parent.GetComponent<TimesAdded>().TimesAppeneded != 0)
@@ -62,7 +63,6 @@ public class AddedTimesScript : MonoBehaviour
             TimeWhenAdded = (long)(float)long.Parse(TCS[0].GetComponent<TimeControllerScript>().RDfile(2, AddedId));
             if (TimeWhenAdded == -792) { TimeWhenAdded = DateTime.Now.Ticks; }
         }
-        Debug.Log(TimeWhenAdded);
         transform.parent.GetComponent<TimesAdded>().TimesAppeneded += 1;
         AddedId = transform.parent.GetComponent<TimesAdded>().TimesAppeneded;
         transform.localPosition = new Vector3(0, AddedId * -40 + 10, 0);

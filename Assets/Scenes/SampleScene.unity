@@ -5423,7 +5423,7 @@ GameObject:
   - component: {fileID: 314375621}
   - component: {fileID: 314375620}
   m_Layer: 5
-  m_Name: ToggleRichFormating(Button)
+  m_Name: ToggleRainbowLogs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24430,7 +24430,7 @@ MonoBehaviour:
   MouseY: 0
   BSAP: {fileID: 919856984}
   MouseDown: 0
-  Menu: {fileID: 0}
+  Menu: {fileID: 306860254}
 --- !u!114 &1752062967
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29328,9 +29328,9 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: RainbowAddedTimesToggleScript, Assembly-CSharp
-        m_MethodName: LastAddedTimesRainbow
+      - m_Target: {fileID: 2114996957}
+        m_TargetAssemblyTypeName: SavableValueScript, Assembly-CSharp
+        m_MethodName: SaveValue
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
