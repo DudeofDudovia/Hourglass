@@ -3,6 +3,8 @@ Made by Dude of Dudovia
 
 More Readable Changelogs Can Be Found On The GitHub Page
 Changelog 0.7.1
+	-rc 7
+		The timer wouldn't change the time but it would create a log.
 	Made improvement to the file system
 		Made the new file system create directories more properly.
 		It should now be more effecient and less prone to bugs (though it caused a TONNE in the process).
