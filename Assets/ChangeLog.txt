@@ -3,8 +3,17 @@ Made by Dude of Dudovia
 
 More Readable Changelogs Can Be Found On The GitHub Page
 Changelog 0.7.1
+	Made improvement to the file system
+		Made the new file system create directories more properly.
+		It should now be more effecient and less prone to bugs (though it caused a TONNE in the process).
+			This should work better on Unix based operating systems(Including Android), the improvements on Windows are negligible.
+		This, however, means that old versions are not compatible.
 	Changed some logic so that it is independent of framerate.
 	Fixed bugs:
+			Timer = 9h 11m for some reason (, well, the log says 9h but it doesn't add that much).
+		4m is "INVALID" and = 9h; (, well, the log says 9h but it adds the right amount):
+			It seems anything having to do with advance formating is broken like this.
+		1 = 59s (UGH).
 		The first log added always goes to the time when it was created rather than the time it was logged.
 		Reset app doesn't properly reset.
 		Rainbow logs don't work.
@@ -17,6 +26,7 @@ Changelog 0.7.1
 			The background isn't even there:
 				further research says this is due to lack of saturation and value.
 			Nothing involving saving is working.
+			Fixed numerous bugs on Android involving it looking for files with slashes in the name instead of directories.
 Changelog 0.7.0
 	Added a GitHub button which directs to the GitHub page.
 	Made background change hue better:

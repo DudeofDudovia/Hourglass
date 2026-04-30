@@ -36,6 +36,10 @@ public class AddedTimesScript : MonoBehaviour
     public bool WasRainbow;
     public Color NormalColor;
     public Color FadeoutColor;
+
+    public bool BeingMade = false;
+    public bool BeingLoaded = false;
+    public float MinutesToAdd = 0;
     public void RainbowColors()
     {
         WasRainbow = true;
@@ -51,24 +55,32 @@ public class AddedTimesScript : MonoBehaviour
             NormalColor = Color.HSVToRGB(TCS[0].GetComponent<TimeControllerScript>().AddedTimesHue, TCS[0].GetComponent<TimeControllerScript>().AddedTimesSat, TCS[0].GetComponent<TimeControllerScript>().AddedTimesVal);
             FadeoutColor = Color.HSVToRGB(TCS[0].GetComponent<TimeControllerScript>().AddedTimesFadeOutHue, TCS[0].GetComponent<TimeControllerScript>().AddedTimesFadeOutSat, TCS[0].GetComponent<TimeControllerScript>().AddedTimesFadeOutVal);
         }
-
-        if (transform.parent.GetComponent<TimesAdded>().TimesAppeneded == 0) {
-
-            TimeWhenAdded = DateTime.Now.Ticks;
-        }
         AddedId = transform.parent.GetComponent<TimesAdded>().TimesAppeneded;
-        MinutesAdded = transform.position.x;
-        if (TimeWhenAdded != DateTime.Now.Ticks && transform.parent.GetComponent<TimesAdded>().TimesAppeneded != 0)
+
+        try
         {
-            TimeWhenAdded = (long)(float)long.Parse(TCS[0].GetComponent<TimeControllerScript>().RDfile(2, AddedId));
-            if (TimeWhenAdded == -792) { TimeWhenAdded = DateTime.Now.Ticks; }
+            TimeWhenAdded = long.Parse(TCS[0].GetComponent<TimeControllerScript>().RDfile(2, AddedId));
+            if (TimeWhenAdded == -792) { TimeWhenAdded = DateTime.Now.Ticks;  }
+        } 
+        catch
+        {
+        TimeWhenAdded = DateTime.Now.Ticks;
         }
+
         transform.parent.GetComponent<TimesAdded>().TimesAppeneded += 1;
         AddedId = transform.parent.GetComponent<TimesAdded>().TimesAppeneded;
-        transform.localPosition = new Vector3(0, AddedId * -40 + 10, 0);
-
+        
         transform.localPosition = new Vector3(98, AddedId * -40 + 10, 0);
-        float OGMinutesAdded = MinutesAdded;
+
+        if (!BeingMade)
+        {
+            MinutesAdded = transform.position.x;
+        }
+        else
+        {
+            MinutesAdded = MinutesToAdd;
+            BeingMade = false;
+        }
         MinutesAddedDisplay = RoundFloat(MinutesAdded,5);
     }
     public float Truncate(float number, int digits)

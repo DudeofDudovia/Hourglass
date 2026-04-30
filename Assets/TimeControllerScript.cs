@@ -3,6 +3,7 @@ using System.IO;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UIElements.Experimental;
 public class TimeControllerScript : MonoBehaviour
 {
     public bool DebugOutput;
@@ -174,27 +175,65 @@ public class TimeControllerScript : MonoBehaviour
     }
     public void MKfile(int Objindex, int Dataindex, string Data, int MaxData, int Prof, bool Default)
     {
-        if (!Directory.Exists(Application.persistentDataPath + @"\Savedata\")) { Directory.CreateDirectory(Application.persistentDataPath + @"\Savedata\"); }
-
+        if (!Directory.Exists(Path.Combine(Application.persistentDataPath, "Savedata"))) { Directory.CreateDirectory(Path.Combine(Application.persistentDataPath, "Savedata")); }
         SaveObjectList sol = new SaveObjectList();
-        string FilePath = (@"\Savedata\Profile" + Prof.ToString() + ".json");
-        if (Default) { FilePath = (@"\Savedata\Settings.json"); }
+        string TotalFilePath = Path.Combine(Application.persistentDataPath, "Savedata", "Profile" + Prof.ToString() + ".json");
+        if (Default) {  TotalFilePath = Path.Combine(Application.persistentDataPath, "Savedata", "Settings.json");}
+        if (File.Exists(TotalFilePath))
+            {
+            string FileContents = File.ReadAllText(TotalFilePath);
+            sol = JsonUtility.FromJson<SaveObjectList>(FileContents);
 
-        if (File.Exists(Application.persistentDataPath + FilePath))
-        {
-            int ObjLength = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(Application.persistentDataPath + FilePath)).Objects.Length;
-            sol.Objects = new SaveObject[ObjLength];
-            if (Objindex + 1 >= ObjLength)
+            if (sol.Objects == null)
             {
                 sol.Objects = new SaveObject[Objindex + 1];
             }
+            if (Objindex >= sol.Objects.Length)
+            {
+                Array.Resize(ref sol.Objects, Objindex + 1);
+            }
+            if (sol.Objects[Objindex] == null)
+            {
+                sol.Objects[Objindex] = new SaveObject();
+            }
+
+            if (sol.Objects[Objindex].datas == null)
+                {
+                sol.Objects[Objindex].datas = new string[0];
+            }
+            if (MaxData >= 0)
+            {
+                if (sol.Objects[Objindex].datas.Length != MaxData + 1)
+                {
+                    Array.Resize(ref sol.Objects[Objindex].datas, MaxData + 1);
+                }
+                if (Dataindex <= MaxData)
+                {
+                    sol.Objects[Objindex].datas[Dataindex] = Data;
+                }
+
+            }
+            else
+            {
+                if (sol.Objects[Objindex].datas.Length <= Dataindex)
+                        {
+                    Array.Resize(ref sol.Objects[Objindex].datas, Dataindex + 1);
+                }
+                sol.Objects[Objindex].datas[Dataindex] = Data;
+            }
+
+            
+            
+
+
+            /*
             for (int i = 0; i < sol.Objects.Length; i++)
             {
                 SaveObject saveobj = new SaveObject();
                 int SaveObjIndex = 1;
                 try
                 {
-                    SaveObjIndex = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(Application.persistentDataPath + FilePath)).Objects[i].datas.Length;
+                    SaveObjIndex = JsonUtility.FromJson<SaveObjectList>(FileContents).Objects[i].datas.Length;
                 }
                 catch { }
                 saveobj.datas = new string[SaveObjIndex];
@@ -204,7 +243,7 @@ public class TimeControllerScript : MonoBehaviour
                 {
                     try
                     {
-                        saveobj.datas[j] = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(Application.persistentDataPath + FilePath)).Objects[i].datas[j];
+                        saveobj.datas[j] = JsonUtility.FromJson<SaveObjectList>(FileContents).Objects[i].datas[j];
                     }
                     catch (Exception e4) { saveobj.datas[j] = "#"; if (DebugOutput) { Debug.Log(e4); } }
 
@@ -232,7 +271,7 @@ public class TimeControllerScript : MonoBehaviour
                     {
                         try
                         {
-                            SaveObjIndex = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(Application.persistentDataPath + FilePath)).Objects[i].datas.Length;
+                            SaveObjIndex = JsonUtility.FromJson<SaveObjectList>(FileContents).Objects[i].datas.Length;
                         }
                         catch { }
                         if (Dataindex + 1 > SaveObjIndex && i == Objindex) { SaveObjIndex = Dataindex + 1; }
@@ -245,7 +284,150 @@ public class TimeControllerScript : MonoBehaviour
                     {
                         try
                         {
-                            saveobj.datas[j] = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(Application.persistentDataPath + FilePath)).Objects[i].datas[j];
+                            saveobj.datas[j] = JsonUtility.FromJson<SaveObjectList>(FileContents).Objects[i].datas[j];
+                        }
+                        catch (Exception e2)
+                        {
+
+                            saveobj.datas[j] = "#";
+                            if (DebugOutput)
+                            {
+                                Debug.Log(e2);
+                            }
+                        }
+
+                    }
+                    if (i == Objindex) { saveobj.datas[Dataindex] = Data; }
+                }
+
+                if (i == Objindex && MaxData >= 0)
+                {
+                    SaveObject saveobjtwo = new SaveObject();
+                    saveobjtwo.datas = new string[MaxData];
+                    for (int j = 0; j < saveobjtwo.datas.Length; j++)
+                    {
+                        try
+                        {
+                            saveobjtwo.datas[j] = saveobj.datas[j];
+                        }
+                        catch (Exception e3)
+                        {
+                            if (DebugOutput)
+                            {
+                                Debug.Log(e3);
+                            }
+                        }
+
+                    }
+                    if (i == Objindex && MaxData >= 0)
+                    {
+                        saveobj.datas = new string[MaxData];
+                        if (Dataindex + 1 > MaxData && i == Objindex) { saveobj.datas = new string[Dataindex + 1]; }
+                    }
+                    sol.Objects[i] = saveobjtwo;
+                }
+                else
+                {
+                    sol.Objects[i] = saveobj;
+                }
+            }
+        */
+        }
+        else
+        {
+            SaveObject saveobj = new SaveObject();
+            saveobj.datas = new string[Dataindex + 1];
+            saveobj.datas[Dataindex] = Data;
+            sol.Objects = new SaveObject[Objindex + 1];
+            sol.Objects[Objindex] = saveobj;
+        }
+        File.WriteAllText(TotalFilePath, JsonUtility.ToJson(sol));
+    }
+    public void MKfileOldSystemNoPersistentFileContents(int Objindex, int Dataindex, string Data, int MaxData, int Prof, bool Default)
+    {
+        if (!Directory.Exists(Path.Combine(Application.persistentDataPath, "Savedata"))) { Directory.CreateDirectory(Path.Combine(Application.persistentDataPath, "Savedata")); }
+        SaveObjectList sol = new SaveObjectList();
+        string FilePath = (@"\Savedata\Profile" + Prof.ToString() + ".json");
+        string TotalFilePath = Path.Combine(Application.persistentDataPath, "Savedata", "Profile" + Prof.ToString() + ".json");
+        if (Default)
+        {
+            FilePath = (@"\Savedata\Settings.json");
+            TotalFilePath = Path.Combine(Application.persistentDataPath, "Savedata", "Settings.json");
+        }
+        Debug.Log(TotalFilePath);
+
+        //if (File.Exists(Path.Join(Application.persistentDataPath, FilePath)))
+        if (File.Exists(Path.Join(Application.persistentDataPath, TotalFilePath)))
+        {
+            //int ObjLength = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(Path.Join(Application.persistentDataPath, FilePath))).Objects.Length;
+            int ObjLength = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(TotalFilePath)).Objects.Length;
+            sol.Objects = new SaveObject[ObjLength];
+            if (Objindex + 1 >= ObjLength)
+            {
+                sol.Objects = new SaveObject[Objindex + 1];
+            }
+            for (int i = 0; i < sol.Objects.Length; i++)
+            {
+                SaveObject saveobj = new SaveObject();
+                int SaveObjIndex = 1;
+                try
+                {
+                    //SaveObjIndex = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(Application.persistentDataPath + FilePath)).Objects[i].datas.Length;
+                    SaveObjIndex = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(TotalFilePath)).Objects[i].datas.Length;
+                }
+                catch { }
+                saveobj.datas = new string[SaveObjIndex];
+
+                SaveObjIndex = saveobj.datas.Length;
+                for (int j = 0; j < SaveObjIndex; j++)
+                {
+                    try
+                    {
+                        //saveobj.datas[j] = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(Application.persistentDataPath + FilePath)).Objects[i].datas[j];
+                        saveobj.datas[j] = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(TotalFilePath)).Objects[i].datas[j];
+                    }
+                    catch (Exception e4) { saveobj.datas[j] = "#"; if (DebugOutput) { Debug.Log(e4); } }
+
+                }
+                try
+                {
+                    if (i == Objindex)
+                    {
+                        saveobj.datas[Dataindex] = Data;
+                    }
+                }
+                catch (Exception e)
+                {
+                    if (DebugOutput)
+                    {
+                        Debug.Log(e);
+                    }
+                    saveobj = new SaveObject();
+                    SaveObjIndex = 1;
+                    if (i == Objindex && MaxData >= 0)
+                    {
+                        saveobj.datas = new string[MaxData + 1];
+                    }
+                    else
+                    {
+                        try
+                        {
+                            //SaveObjIndex = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(Application.persistentDataPath + FilePath)).Objects[i].datas.Length;
+                            SaveObjIndex = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(TotalFilePath)).Objects[i].datas.Length;
+                        }
+                        catch { }
+                        if (Dataindex + 1 > SaveObjIndex && i == Objindex) { SaveObjIndex = Dataindex + 1; }
+                        saveobj.datas = new string[SaveObjIndex + 1];
+                    }
+
+                    SaveObjIndex = saveobj.datas.Length;
+                    if (Default && Objindex == 0) { }
+                    for (int j = 0; j < SaveObjIndex; j++)
+                    {
+                        try
+                        {
+                            //saveobj.datas[j] = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(Application.persistentDataPath + FilePath)).Objects[i].datas[j];
+                            saveobj.datas[j] = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(TotalFilePath)).Objects[i].datas[j];
                         }
                         catch (Exception e2)
                         {
@@ -301,8 +483,10 @@ public class TimeControllerScript : MonoBehaviour
             sol.Objects = new SaveObject[Objindex + 1];
             sol.Objects[Objindex] = saveobj;
         }
-        File.WriteAllText(Application.persistentDataPath + FilePath, JsonUtility.ToJson(sol));
+        //File.WriteAllText(Application.persistentDataPath + FilePath, JsonUtility.ToJson(sol));
+        File.WriteAllText(TotalFilePath, JsonUtility.ToJson(sol));
     }
+
     public string RDfile(int Objindex, int Dataindex)
     {
         return RDfile(Objindex, Dataindex, Profile);
@@ -319,12 +503,19 @@ public class TimeControllerScript : MonoBehaviour
     {
         string read = "-792";
         string FilePath = (@"\Savedata\Profile" + Prof.ToString() + ".json");
-        if (Default) { FilePath = (@"\Savedata\Settings.json"); }
-        if (!File.Exists(Application.persistentDataPath + FilePath)) {return read; }
-            try
+        string TotalFilePath = Path.Combine(Application.persistentDataPath, "Savedata", "Profile" + Prof.ToString() + ".json");
+        if (Default) { 
+            FilePath = (@"\Savedata\Settings.json");
+            TotalFilePath = Path.Combine(Application.persistentDataPath, "Savedata", "Settings.json");
+        }
+
+        //if (!File.Exists(Application.persistentDataPath + FilePath)) {return read; }
+        if (!File.Exists(TotalFilePath)) {return read; }
+        try
         {
-            read = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(Application.persistentDataPath + FilePath)).Objects[Objindex].datas[Dataindex];
-            if (Default) { read = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(Application.persistentDataPath + FilePath)).Objects[Objindex].datas[Dataindex]; }
+            //read = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(Application.persistentDataPath + FilePath)).Objects[Objindex].datas[Dataindex];
+            //if (Default) { read = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(Application.persistentDataPath + FilePath)).Objects[Objindex].datas[Dataindex]; }
+            read = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(TotalFilePath)).Objects[Objindex].datas[Dataindex];
         }
         catch (Exception e)
         {
@@ -344,7 +535,9 @@ public class TimeControllerScript : MonoBehaviour
     }
     public bool CheckFile(int Prof)
     {
-        if (File.Exists(Application.persistentDataPath + @"\Savedata\Profile" + Prof.ToString() + ".json")) { return true; }
+        string TotalFilePath = Path.Combine(Application.persistentDataPath, "Savedata", "Profile" + Prof.ToString() + ".json");
+        //if (File.Exists(Application.persistentDataPath + @"\Savedata\Profile" + Prof.ToString() + ".json")) { return true; }
+        if (File.Exists(TotalFilePath)) { return true; }
         return false;
     }
     private void FixedUpdate()
@@ -435,8 +628,13 @@ public class TimeControllerScript : MonoBehaviour
         }
         if (!RunTimer && WasRunTimer)
         {
-            UsedTime += (float)(CurrentTick - TicksWhenTimerStarted) / 600000000;
-            Instantiate(TimetoAdd, new Vector3((float)(CurrentTick - TicksWhenTimerStarted) / 600000000, transform.position.y, 0), transform.rotation, ContentView.transform);
+            long tickdifference = (CurrentTick - TicksWhenTimerStarted);
+            float tickD = (float)tickdifference / 600000000;
+            //Instantiate(TimetoAdd, new Vector3((float)(CurrentTick - TicksWhenTimerStarted) / 600000000, transform.position.y, 0), transform.rotation, ContentView.transform);
+            var logs = Instantiate(TimetoAdd, new Vector3(0, transform.position.y, 0), transform.rotation, ContentView.transform);
+            UsedTime += tickD;
+            logs.GetComponent<AddedTimesScript>().MinutesToAdd = tickD;
+            logs.GetComponent<AddedTimesScript>().BeingMade = true;
             WasRunTimer = false;
         }
 
@@ -447,7 +645,10 @@ public class TimeControllerScript : MonoBehaviour
         int Profs = 0;
         try
         {
-            Profs = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(Application.persistentDataPath + @"\Savedata\Settings.json")).Objects[1].datas.Length;
+            //Profs = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(    Path.Combine(Application.persistentDataPath, "Savedata", "Settings.json"))).Objects[1].datas.Length;
+            Profs = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(    Path.Combine(Application.persistentDataPath, "Savedata", "Settings.json"))).Objects[1].datas.Length;
+           // Path.Combine(Application.persistentDataPath, "Savedata", "Profile" + Prof.ToString() + ".json")
+            //Path.Combine(Application.persistentDataPath, "Savedata", "Settings.json")
         }
         catch
         {
@@ -466,8 +667,8 @@ public class TimeControllerScript : MonoBehaviour
         {
             if (TimeMarkers[i].GetComponent<AddedTimesScript>().MinutesAdded != 0)
             {
-                MKfile(0, i, TimeMarkers[i].GetComponent<AddedTimesScript>().MinutesAdded.ToString(), objs);
-                MKfile(2, i, TimeMarkers[i].GetComponent<AddedTimesScript>().TimeWhenAdded.ToString(), objs);
+                MKfile(0, i, TimeMarkers[i].GetComponent<AddedTimesScript>().MinutesAdded.ToString(), objs-1, Prof);
+                MKfile(2, i, TimeMarkers[i].GetComponent<AddedTimesScript>().TimeWhenAdded.ToString(), objs-1, Prof);
             }
         }
         if (objs == 0)
@@ -494,7 +695,8 @@ public class TimeControllerScript : MonoBehaviour
         {
             try
             {
-                Profs = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(Application.persistentDataPath + @"\Savedata\Settings.json")).Objects[1].datas.Length;
+                //Profs = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(Application.persistentDataPath + @"\Savedata\Settings.json")).Objects[1].datas.Length;
+                Profs = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(    Path.Combine(Application.persistentDataPath, "Savedata", "Settings.json"))).Objects[1].datas.Length;
             }
             catch
             {
@@ -523,15 +725,18 @@ public class TimeControllerScript : MonoBehaviour
                 {
                     Destroy(Obj);
                 }
-                int objs = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(Application.persistentDataPath + @"\Savedata\Profile" + Profile.ToString() + ".json")).Objects[0].datas.Length;
+                //int objs = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(Application.persistentDataPath + @"\Savedata\Profile" + Profile.ToString() + ".json")).Objects[0].datas.Length;
+                int objs = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(Path.Combine(Application.persistentDataPath, "Savedata", "Profile" + Prof.ToString() + ".json"))).Objects[0].datas.Length;
                 for (int i = 0; i < objs; i++)
                 {
                     try
                     {
                         if (float.Parse(RDfile(0, i)) != 0)
                         {
-                            Instantiate(TimetoAdd, new Vector3(float.Parse(RDfile(0, i)), transform.position.y, long.Parse(RDfile(2, i))), transform.rotation, ContentView.transform);
-                        }
+                           var logs = Instantiate(TimetoAdd, new Vector3(float.Parse(RDfile(0, i)), transform.position.y, 0), transform.rotation, ContentView.transform);
+                           logs.GetComponent<AddedTimesScript>().BeingMade = true;
+                           logs.GetComponent<AddedTimesScript>().MinutesToAdd = float.Parse(RDfile(0, i));
+                    }
 
                     }
 
@@ -649,8 +854,7 @@ public class TimeControllerScript : MonoBehaviour
         int Profs;
         try
         {
-            Profs = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(Application.persistentDataPath + @"\Savedata\Settings.json")).Objects[1].datas.Length;
-
+            Profs = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(    Path.Combine(Application.persistentDataPath, "Savedata", "Settings.json"))).Objects[1].datas.Length;
         }
         catch
         {
@@ -683,12 +887,18 @@ public class TimeControllerScript : MonoBehaviour
             catch { }
             try
             {
-                if (!Directory.Exists(Application.persistentDataPath + @"\Savedata\")) { Directory.CreateDirectory(Application.persistentDataPath + @"\Savedata\"); }
+                if (!Directory.Exists(Path.Combine(Application.persistentDataPath, "Savedata"))) { Directory.CreateDirectory(Path.Combine(Application.persistentDataPath, "Savedata")); }
 
                 SaveObjectList sol = new SaveObjectList();
                 string FilePath = (@"\Savedata\Profile" + Prof.ToString() + ".json");
-                File.Copy(Application.persistentDataPath + @"\Savedata\Profile" + (Prof + 1).ToString() + ".json", Application.persistentDataPath + FilePath, true);
-                File.Delete(Application.persistentDataPath + @"\Savedata\Profile" + TopProf.ToString() + ".json");
+                string TotalFilePath = Path.Combine(Application.persistentDataPath, "Savedata", "Profile" + Prof.ToString() + ".json");
+                string TotalNextFilePath = Path.Combine(Application.persistentDataPath, "Savedata", "Profile" + (Prof+1).ToString() + ".json");
+                string TotalTopFilePath = Path.Combine(Application.persistentDataPath, "Savedata", "Profile" + TopProf.ToString() + ".json");
+                //File.Copy(Application.persistentDataPath + @"\Savedata\Profile" + (Prof + 1).ToString() + ".json", Application.persistentDataPath + FilePath, true);
+                //File.Delete(Application.persistentDataPath + @"\Savedata\Profile" + TopProf.ToString() + ".json");
+
+                File.Copy(TotalNextFilePath, TotalFilePath, true);
+                File.Delete(TotalTopFilePath);
             }
             catch (Exception e) { Debug.Log(e); }
 

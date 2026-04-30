@@ -5811,66 +5811,48 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Made by Dude of Dudovia\r\n\tMade using Unity\r\n\r\nMore Readable Changelogs
-    Can Be Found On The GitHub Page\r\nChangelog 0.7.1\r\n\tMade improvement to the
-    file system\r\n\t\tMade the new file system create directories more properly.\r\n\t\tIt
-    should now be more effecient and less prone to bugs (though it caused a TONNE
-    in the process).\r\n\t\t\tThis should work better on Unix based operating systems(Including
-    Android), the improvements on Windows are negligible.\r\n\t\tThis, however, means
-    that old versions are not compatible.\r\n\tChanged some logic so that it is independent
-    of framerate.\r\n\tFixed bugs:\r\n\t\t\tTimer = 9h 11m for some reason (, well,
-    the log says 9h but it doesn't add that much).\r\n\t\t4m is \"INVALID\" and =
-    9h; (, well, the log says 9h but it adds the right amount):\r\n\t\t\tIt seems
-    anything having to do with advance formating is broken like this.\r\n\t\t1 =
-    59s (UGH).\r\n\t\tThe first log added always goes to the time when it was created
-    rather than the time it was logged.\r\n\t\tReset app doesn't properly reset.\r\n\t\tRainbow
-    logs don't work.\r\n\t\tOn Android, it will sometimes display the logged time
-    as 0(seems fixed) or a number that isn't quite right(6:20 ish as opposed to 8
-    20ish, 8 19 instead of 8 22).\r\n\t\t\tThis was because it wouldn't read a new
-    number, but the old number.\r\n\t\tThe low res background looks really bad on
-    a 1080p screen.\r\n\t\tFixed a bug where the update indicator was not centered
-    on the hamburger menu.\r\n\t\tThe app doesn't export properly:\r\n\t\t\tThe app
-    doesn't work when no prior save data is given.\r\n\t\t\tThe background isn't
-    even there:\r\n\t\t\t\tfurther research says this is due to lack of saturation
-    and value.\r\n\t\t\tNothing involving saving is working.\r\n\t\t\tFixed numerous
-    bugs on Android involving it looking for files with slashes in the name instead
-    of directories.\r\nChangelog 0.7.0\r\n\tAdded a GitHub button which directs to
-    the GitHub page.\r\n\tMade background change hue better:\r\n\t\tBefore, the way
-    it worked meant that blues would be black, now, it is a proper hue shift.\r\n\tLogged
-    times now log when they were logged.\r\n\t\tThis fun, but confusing sentence
-    simply means that when you click a time log it will show when that entry was
-    made.\r\n\tImproved compatibility with landscape screens.\r\n\tDid lots of internal
-    cleanup:\r\n\t\tThis includes using files rather than PlayerPrefs.\r\n\t\tRemoved
-    useless scripts and commented lines.\r\n\tFixed bugs:\r\n\t\t  Pressing enter
-    will add time (or at least attempt to), even when the add box isn't focused.\r\n\t\t 
-    Made \"Keep Last Added Times\" toggle work.\r\n\t\t  Made \"Advanced Formatting\"
-    work better.\r\n\tUncapitalized words that didn't need to be.\r\nChangelog V0.6B\r\n\tFixed
-    a bug where the changelog was not contained in its scroll box.\r\n\tFixed a bug
+  m_text: "Made by Dude of Dudovia\n\tMade using Unity\n\nMore Readable Changelogs
+    Can Be Found On The Github Page\nChangelog 0.7.1\n\tFixed bugs:\n\t\tThe low
+    res background looks really bad on a 1080p screen.\n\t\tFixed a bug where the
+    update indicator was not centered on the hamburger menu.\n\t\tThe app doesn't
+    export propperly:\n\t\t\tThe app doesn't work whne no prior save data is given.\n\t\t\tThe
+    background isn't even there:\n\t\t\t\tfurther reasearch says this is due to lack
+    of saturation and value.\n\t\t\tNothing involving saving is working.\n\nChangelog
+    0.7.0\n\tAdded a Github button which directs to the Github page.\n\tMade background
+    change hue better:\n\t\tBefore, the way it worked meant that blues would be black,
+    now, it is a proper hue shift.\n\tLogged times now log when they were logged.\n\t\tThis
+    fun, but confusing sentence simply means that when you click a time log it will
+    show when that entry was made.\n\tImproved compatibility with landscape screens.\n\tDid
+    lots of internal cleanup:\n\t\tThis includes using files rather than PlayerPrefs.\n\t\tRemoved
+    useless scripts and commented lines.\n\tFixed bugs:\n\t\t  Pressing enter will
+    add time (or at least attempt to), even when the add box isn't focused.\n\t\t 
+    Made \"Keep Last Added Times\" toggle work.\n\t\t  Made \"Advanced Formatting\"
+    work better.\n\tUncapitalized words that didn't need to be.\nChangelog V0.6B\n\tFixed
+    a bug where the changelog was not contained in its scrollbox.\n\tFixed a bug
     where the number that displayed font size was rendering on a layer it wasn't
-    supposed to.\r\n\tFixed a bug where the app would be launched in Fullscreen on
-    Windows.\r\nChangelog V0.6A\r\n\tChanged commit time to log time:\r\n\t\tThis
-    was to be clearer.\r\n\tAdded the ability to press enter to log time.\r\n\tUpdated
-    the UI:\r\n\t\tAdded several animations.\r\n\tAdded used time display:\r\n\t\tAdded
-    a small button to swap its function with remaining time display.\r\n\tAdded options:\r\n\t\tAdded
-    options for displaying milliseconds.\r\n\t\tAdded the ability to change the background
-    color.\r\n\t\tAdded options for changing animation times.\r\n\t\tAdded options
-    for changing colors of logged times.\r\n\t\tMoved the \"Reset App\" button here.\r\n\t\tMoved
-    the toggle for \"Advanced Formatting\" here.\r\n\tChanged the frame rate to match
-    refresh rate.\r\n\tAdded an exit app button.\r\n\tFixed bugs:\r\n\t\tFixed a
-    bug where time entries could be deleted while the menu was open.\r\n\t\tFixed
-    capitalization on old changelogs.\r\n\t\tReduced general bugginess.\r\nChangelog
-    V0.5B\r\n\tMade persistence of \"Advanced Formatting\" more consistent.\r\nChangelog
-    V0.5A\r\n\tDragging boxes of the added times now un-adds the time.\r\n\tDragging
-    profiles now deletes them.\r\n\tUpdated textures and made other slight UI changes.\r\n\tFixed
-    bugs regarding profiles.\r\nChangelog V0.4C\r\n\tFixed bug timer would be set
-    to a value insanely high if reset and the application was relaunched.\r\nChangelog
-    V0.4B\r\n\tImproved the persistence of the \"Rich Format\" (Advanced Formatting)
-    toggle.\r\nChangelog V0.4A\r\n\tImproved time adding system:\r\n\t\tSupport adding
-    based on hours and seconds etc:\r\n\t\t\t1:30:2 would be 1 hour 30 minutes and
-    2 seconds.\r\n\tAdded profiles.\r\n\tUpdated UI:\r\n\t\tChanged logos.\r\nChangelog
-    v0.3B\r\n\tUpdated UI:\r\n\t\tIt now scales numbers.\r\n\tFixed bugs:\r\n\t\tIt
-    now saves the default time.\r\nChangelog v0.3A\r\n\tChanged the UI.\r\n\tAdded
-    update with new total button.\r\n\tDid minor bug fixing.\r\n\tAdded this menu."
+    supposed to.\n\tFixed a bug where the app would be launched in fullscreen on
+    Windows.\nChangelog V0.6A\n\tChanged commit time to log time:\n\t\tThis was to
+    be clearer.\n\tAdded the ability to press enter to log time.\n\tUpdated the UI:\n\t\tAdded
+    several animations.\n\tAdded used time display:\n\t\tAdded a small button to
+    swap its function with remaining time display.\n\tAdded options:\n\t\tAdded options
+    for displaying milliseconds.\n\t\tAdded the ability to change the background
+    color.\n\t\tAdded options for changing animation times.\n\t\tAdded options for
+    changing colors of logged times.\n\t\tMoved the \"Reset App\" button here.\n\t\tMoved
+    the toggle for \"Advanced Formatting\" here.\n\tChanged the frame rate to match
+    refresh rate.\n\tAdded an exit app button.\n\tFixed bugs:\n\t\tFixed a bug where
+    time entries could be deleted while the menu was open.\n\t\tFixed capitalization
+    on old changelogs.\n\t\tReduced general bugginess.\nChangelog V0.5B\n\tMade persistence
+    of \"Advanced Formatting\" more consistent.\nChangelog V0.5A\n\tDragging boxes
+    of the added times now un-adds the time.\n\tDragging profiles now deletes them.\n\tUpdated
+    textures and made other slight UI changes.\n\tFixed bugs regarding profiles.\nChangelog
+    V0.4C\n\tFixed bug timer would be set to a value insanely high if reset and the
+    application was relaunched.\nChangelog V0.4B\n\tImproved the persistence of the
+    \"Rich Format\" (Advanced Formatting) toggle.\nChangelog V0.4A\n\tImproved time
+    adding system:\n\t\tSupport adding based on hours and seconds etc:\n\t\t\t1:30:2
+    would be 1 hour 30 minutes and 2 seconds.\n\tAdded profiles.\n\tUpdated UI:\n\t\tChanged
+    logos.\nChangelog v0.3B\n\tUpdated UI:\n\t\tIt now scales numbers.\n\tFixed bugs:\n\t\tIt
+    now saves the default time.\nChangelog v0.3A\n\tChanged the UI.\n\tAdded update
+    with new total button.\n\tDid minor bug fixing.\n\tAdded this menu."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9211fcdd38f50ef4c8fd7ddcb1c03d12, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 9211fcdd38f50ef4c8fd7ddcb1c03d12, type: 2}
