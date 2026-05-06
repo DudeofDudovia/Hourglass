@@ -6,6 +6,7 @@ public class TimeRemainingScript : MonoBehaviour
     public TimeControllerScript TCS;
     void Update()
     {
+        
         if (!TCS.CountUp)
         {
             if (TCS.MSUsedDisplay)
@@ -15,19 +16,19 @@ public class TimeRemainingScript : MonoBehaviour
                     float seconds = TCS.RemainingTime - TCS.Truncate((TCS.RemainingTime - (TCS.Truncate(((TCS.RemainingTime / 60f) % 60), 0)) * 60), 0);
                     seconds *= 60;
                     seconds -= 3600 * TCS.Truncate(((TCS.RemainingTime / 60f) % 60), 0);
-                    TMP.text = (((TCS.Truncate(((TCS.RemainingTime / 60f)), 0))).ToString() + "H : " + ((float)TCS.Truncate((TCS.RemainingTime - (long)(TCS.Truncate(((TCS.RemainingTime / 60f)), 0)) * 60), 0)).ToString() + "M : " + (TCS.TruncateForSeconds(seconds, 0) + "S"));
+                    TMP.text = (((TCS.Truncate(((TCS.RemainingTime / 60f)), 0))).ToString() + "H : " + ((float)TCS.Truncate((TCS.RemainingTime - (long)(TCS.Truncate(((TCS.RemainingTime / 60f)), 0)) * 60), 0)).ToString() + "M : " + (TCS.TruncateForSeconds(seconds, 2) + "S"));
                 }
                 else if (TCS.RemainingTime >= 1)
                 {
                     float seconds = TCS.RemainingTime - TCS.Truncate((TCS.RemainingTime - (TCS.Truncate(((TCS.RemainingTime / 60f) % 60), 0)) * 60), 0);
                     seconds *= 60;
-                    TMP.text = (((float)TCS.Truncate((TCS.RemainingTime - (long)(TCS.Truncate(((TCS.RemainingTime / 60f)), 0)) * 60), 0)).ToString() + "M : " + TCS.TruncateForSeconds(seconds, 0) + "S");
+                    TMP.text = (((float)TCS.Truncate((TCS.RemainingTime - (long)(TCS.Truncate(((TCS.RemainingTime / 60f)), 0)) * 60), 0)).ToString() + "M : " + TCS.TruncateForSeconds(seconds, 2) + "S");
                 }
                 else if (TCS.RemainingTime >= 0 && TCS.RemainingTime < 1)
                 {
                     float seconds = TCS.RemainingTime;
                     seconds *= 60;
-                    TMP.text = (TCS.TruncateForSeconds(seconds, 0) + "S");
+                    TMP.text = (TCS.TruncateForSeconds(seconds, 2) + "S");
                 }
                 else
                 {
@@ -36,19 +37,19 @@ public class TimeRemainingScript : MonoBehaviour
                         float seconds = TCS.RemainingTime - TCS.Truncate((TCS.RemainingTime - (TCS.Truncate(((TCS.RemainingTime / 60f) % 60), 0)) * 60), 0);
                         seconds *= 60;
                         seconds -= 3600 * TCS.Truncate(((TCS.RemainingTime / 60f) % 60), 0);
-                        TMP.text = (((TCS.Truncate(((TCS.RemainingTime / 60f)), 0))).ToString() + "H : " + ((float)TCS.Truncate((TCS.RemainingTime - (long)(TCS.Truncate(((TCS.RemainingTime / 60f)), 0)) * 60), 0)).ToString() + "M : " + (TCS.TruncateForSeconds(seconds, 0) + "S"));
+                        TMP.text = (((TCS.Truncate(((TCS.RemainingTime / 60f)), 0))).ToString() + "H : " + ((float)TCS.Truncate((TCS.RemainingTime - (long)(TCS.Truncate(((TCS.RemainingTime / 60f)), 0)) * 60), 0)).ToString() + "M : " + (TCS.TruncateForSeconds(seconds, 2) + "S"));
                     }
                     else if (TCS.RemainingTime <= -1)
                     {
                         float seconds = TCS.RemainingTime - TCS.Truncate((TCS.RemainingTime - (TCS.Truncate(((TCS.RemainingTime / 60f) % 60), 0)) * 60), 0);
                         seconds *= 60;
-                        TMP.text = (((float)TCS.Truncate((TCS.RemainingTime - (long)(TCS.Truncate(((TCS.RemainingTime / 60f)), 0)) * 60), 0)).ToString() + "M : " + TCS.TruncateForSeconds(seconds, 0) + "S");
+                        TMP.text = (((float)TCS.Truncate((TCS.RemainingTime - (long)(TCS.Truncate(((TCS.RemainingTime / 60f)), 0)) * 60), 0)).ToString() + "M : " + TCS.TruncateForSeconds(seconds, 2) + "S");
                     }
                     else if (TCS.RemainingTime <= 0 && TCS.RemainingTime > -1)
                     {
                         float seconds = TCS.RemainingTime - TCS.Truncate((TCS.RemainingTime - (TCS.Truncate(((TCS.RemainingTime / 60f) % 60), 0)) * 60), 0);
                         seconds *= 60;
-                        TMP.text = (TCS.TruncateForSeconds(seconds, 0) + "S");
+                        TMP.text = (TCS.TruncateForSeconds(seconds, 2) + "S");
                         
                     }
                 }
@@ -114,19 +115,19 @@ public class TimeRemainingScript : MonoBehaviour
                     float seconds = TCS.UsedTime - TCS.Truncate((TCS.UsedTime - (TCS.Truncate(((TCS.UsedTime / 60f) % 60), 0)) * 60), 0);
                     seconds *= 60;
                     seconds -= 3600 * TCS.Truncate(((TCS.UsedTime / 60f) % 60), 0);
-                    TMP.text = (((TCS.Truncate(((TCS.UsedTime / 60f)), 0))).ToString() + "H : " + ((float)TCS.Truncate((TCS.UsedTime - (long)(TCS.Truncate(((TCS.UsedTime / 60f)), 0)) * 60), 0)).ToString() + "M : " + (TCS.TruncateForSeconds(seconds, 0) + "S"));
+                    TMP.text = (((TCS.Truncate(((TCS.UsedTime / 60f)), 0))).ToString() + "H : " + ((float)TCS.Truncate((TCS.UsedTime - (long)(TCS.Truncate(((TCS.UsedTime / 60f)), 0)) * 60), 0)).ToString() + "M : " + (TCS.TruncateForSeconds(seconds, 2) + "S"));
                 }
                 else if (TCS.UsedTime >= 1)
                 {
                     float seconds = TCS.UsedTime - TCS.Truncate((TCS.UsedTime - (TCS.Truncate(((TCS.UsedTime / 60f) % 60), 0)) * 60), 0);
                     seconds *= 60;
-                    TMP.text = (((float)TCS.Truncate((TCS.UsedTime - (long)(TCS.Truncate(((TCS.UsedTime / 60f)), 0)) * 60), 0)).ToString() + "M : " + TCS.TruncateForSeconds(seconds, 0) + "S");
+                    TMP.text = (((float)TCS.Truncate((TCS.UsedTime - (long)(TCS.Truncate(((TCS.UsedTime / 60f)), 0)) * 60), 0)).ToString() + "M : " + TCS.TruncateForSeconds(seconds, 2) + "S");
                 }
                 else if (TCS.UsedTime >= 0 && TCS.UsedTime < 1)
                 {
                     float seconds = TCS.UsedTime;
                     seconds *= 60;
-                    TMP.text = (TCS.TruncateForSeconds(seconds, 0) + "S");
+                    TMP.text = (TCS.TruncateForSeconds(seconds, 2) + "S");
                 }
                 else if (TCS.UsedTime == 0)
                 {
@@ -139,19 +140,19 @@ public class TimeRemainingScript : MonoBehaviour
                         float seconds = TCS.UsedTime - TCS.Truncate((TCS.UsedTime - (TCS.Truncate(((TCS.UsedTime / 60f) % 60), 0)) * 60), 0);
                         seconds *= 60;
                         seconds -= 3600 * TCS.Truncate(((TCS.UsedTime / 60f) % 60), 0);
-                        TMP.text = (((TCS.Truncate(((TCS.UsedTime / 60f)), 0))).ToString() + "H : " + ((float)TCS.Truncate((TCS.UsedTime - (long)(TCS.Truncate(((TCS.UsedTime / 60f)), 0)) * 60), 0)).ToString() + "M : " + (TCS.TruncateForSeconds(seconds, 0) + "S"));
+                        TMP.text = (((TCS.Truncate(((TCS.UsedTime / 60f)), 0))).ToString() + "H : " + ((float)TCS.Truncate((TCS.UsedTime - (long)(TCS.Truncate(((TCS.UsedTime / 60f)), 0)) * 60), 0)).ToString() + "M : " + (TCS.TruncateForSeconds(seconds, 2) + "S"));
                     }
                     else if (TCS.UsedTime <= -1)
                     {
                         float seconds = TCS.UsedTime - TCS.Truncate((TCS.UsedTime - (TCS.Truncate(((TCS.UsedTime / 60f) % 60), 0)) * 60), 0);
                         seconds *= 60;
-                        TMP.text = (((float)TCS.Truncate((TCS.UsedTime - (long)(TCS.Truncate(((TCS.UsedTime / 60f)), 0)) * 60), 0)).ToString() + "M : " + TCS.TruncateForSeconds(seconds, 0) + "S");
+                        TMP.text = (((float)TCS.Truncate((TCS.UsedTime - (long)(TCS.Truncate(((TCS.UsedTime / 60f)), 0)) * 60), 0)).ToString() + "M : " + TCS.TruncateForSeconds(seconds, 2) + "S");
                     }
                     else if (TCS.UsedTime <= 0 && TCS.UsedTime > -1)
                     {
                         float seconds = TCS.UsedTime;
                         seconds *= 60;
-                        TMP.text = (TCS.TruncateForSeconds(seconds, 0) + "S");
+                        TMP.text = (TCS.TruncateForSeconds(seconds, 2) + "S");
                     }
                 }
             }

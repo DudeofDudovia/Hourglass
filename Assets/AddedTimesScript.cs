@@ -59,7 +59,7 @@ public class AddedTimesScript : MonoBehaviour
 
         try
         {
-            TimeWhenAdded = long.Parse(TCS[0].GetComponent<TimeControllerScript>().RDfile(2, AddedId));
+            TimeWhenAdded = long.Parse(TCS[0].GetComponent<TimeControllerScript>().RDfile(5, AddedId));
             if (TimeWhenAdded == -792) { TimeWhenAdded = DateTime.Now.Ticks;  }
         } 
         catch
@@ -82,6 +82,7 @@ public class AddedTimesScript : MonoBehaviour
             BeingMade = false;
         }
         MinutesAddedDisplay = RoundFloat(MinutesAdded,5);
+        Debug.Log(MinutesAddedDisplay);
     }
     public float Truncate(float number, int digits)
     {

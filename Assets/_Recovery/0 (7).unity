@@ -25804,6 +25804,7 @@ MonoBehaviour:
   BigReset: 0
   NotificationPerms: 0
   TestFloat: 312
+  IsOnAndroid: 0
   MSAddeds: 0
   MSLeftDisplay: 0
   MSUsedDisplay: 0

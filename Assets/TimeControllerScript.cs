@@ -1,9 +1,19 @@
 using System;
+using System.Collections;
 using System.IO;
 using TMPro;
+
+
+//using Unity.Notifications.iOS;
 using UnityEngine;
+
 using UnityEngine.Events;
-using UnityEngine.UIElements.Experimental;
+using UnityEngine.Rendering;
+
+#if UNITY_ANDROID || UNITY_IOS
+using Unity.Notifications.Android;
+using UnityEngine.Android;
+# endif
 public class TimeControllerScript : MonoBehaviour
 {
     public bool DebugOutput;
@@ -50,6 +60,8 @@ public class TimeControllerScript : MonoBehaviour
     public bool ResetValues = false;
     public int ResetValuesTimer = 1;
     public bool BigReset = false;
+    public bool NotificationPerms = false;
+    public bool IsOnAndroid = false;
     public void MSTimerFunc(bool tog)
     {
         MSTimer = tog;
@@ -121,15 +133,115 @@ public class TimeControllerScript : MonoBehaviour
 
     void Awake()
     {
+
+        string AppVer = Application.version;
+        if (AppVer.Contains("x") || AppVer.Contains("X") || AppVer.Contains("rc"))
+        {
+            Application.SetStackTraceLogType(LogType.Log, StackTraceLogType.Full);
+            Application.SetStackTraceLogType(LogType.Warning, StackTraceLogType.Full);
+            Application.SetStackTraceLogType(LogType.Error, StackTraceLogType.Full);
+        }
+        Derboss.Init();
         Profile = 0;
         try { Profile = int.Parse(RDfile(0, 0, true)); }
         catch { Profile = 0; }
         if (Profile == -792) { Profile = 0; }
-        if (!CheckFile(Profile)) {
-            Load(Profile,true);
+        if (!CheckFile(Profile))
+        {
+            Load(Profile, true);
             return;
         }
         Load(Profile);
+
+    }
+    private void Start()
+    {
+        
+        Debug.Log(Application.platform);
+
+        StartCoroutine(RequestPerms());
+        NotificationSetup();
+        AndroidNotificationCenter.CancelAllScheduledNotifications();
+    }
+    IEnumerator RequestPerms()
+    {
+#if UNITY_ANDROID || UNITY_IOS
+        Debug.Log("Is Android");
+        string perm = "android.permission.POST_NOTIFICATIONS";
+        if (Permission.ShouldShowRequestPermissionRationale(perm))
+        {
+            Debug.Log("Should Show Rationale");
+        }
+        if (!Permission.HasUserAuthorizedPermission(perm))
+        {
+            Debug.Log("Not Authorized On Android");
+        }
+
+        if (!Permission.HasUserAuthorizedPermission(perm))
+        {
+            Permission.RequestUserPermission(perm);
+        }
+        float timeout = 5f;
+        while (!Permission.HasUserAuthorizedPermission(perm) && timeout >0f)
+        {
+            timeout -= Time.deltaTime;
+            yield return null;
+        }
+        NotificationPerms = Permission.HasUserAuthorizedPermission(perm);
+#else
+        Debug.Log("Not Android or iOS");
+        yield break;
+#endif
+    }
+    private string NotificationChannel = "V2";
+    public void NotificationSetup()
+    {
+#if UNITY_ANDROID
+            var channel = new AndroidNotificationChannel()
+            {
+                Id = "Hourglass_Channel" + NotificationChannel,
+                Name = "Timer Channel",
+                Importance = Importance.High,
+                Description = "Hourglass Notifications",
+                EnableVibration = true,
+                CanShowBadge = true,
+                LockScreenVisibility = LockScreenVisibility.Public,
+                VibrationPattern = new long[] { 0, 500, 200, 500 },// wait, vibrate, pause, vibrate
+            };
+            AndroidNotificationCenter.RegisterNotificationChannel(channel);
+        IsOnAndroid = true;
+#endif
+        if (Application.platform == RuntimePlatform.IPhonePlayer)
+        {
+            Debug.Log(":(");
+        }
+        if (Application.platform == RuntimePlatform.WindowsPlayer)
+        {
+            Debug.Log("MS Windows");
+        }
+        if (Application.platform == RuntimePlatform.WindowsEditor)
+        {
+            Debug.Log("MS Windows Editor");
+        }
+    }
+    public void Notify()
+    {
+#if UNITY_ANDROID || UNITY_IOS
+        Notify(1 / 60f);
+#endif
+    }
+    public void Notify(float FireMinutes)
+    {
+#if UNITY_ANDROID || UNITY_IOS
+        Debug.Log("Starting Notification");
+        AndroidNotification notification = new AndroidNotification();
+        notification.Title = "Time has run out";
+        notification.Text = "The timer has exceeded the total time.";
+        notification.FireTime = DateTime.Now.AddMinutes(FireMinutes);
+        AndroidNotificationCenter.SendNotification(notification, "Hourglass_Channel" + Application.version.ToString());
+        Debug.Log("Notification Sent(I Hope)");
+        Debug.Log(FireMinutes);
+#endif
     }
     [System.Serializable]
     public class SaveObjectList
@@ -542,21 +654,10 @@ public class TimeControllerScript : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        /*if (pendingreset)
+        if (DebugOutput)
         {
-            resettime -= Time.deltaTime / TimeScale;
-            if (resettime <= 0) { pendingreset = false; }
+            Debug.Log(UsedTime);
         }
-        if (pendingtimerreset)
-        {
-            timerresettime -= Time.deltaTime / TimeScale;
-            if (timerresettime <= 0) { pendingtimerreset = false; }
-        }
-        if (pendingappreset)
-        {
-            appresettime -= Time.deltaTime / TimeScale;
-            if (appresettime <= 0) { pendingappreset = false; }
-        }*/
         if (!RunTimer) { timerresettime = 0; }
         if (pendingreset)
         {
@@ -624,6 +725,10 @@ public class TimeControllerScript : MonoBehaviour
         {
             WasRunTimer = true;
             TicksWhenTimerStarted = CurrentTick;
+            if (RemainingTime >= 0)
+            {
+                Notify(RemainingTime);
+            }
             Save(Profile);
         }
         if (!RunTimer && WasRunTimer)
@@ -637,8 +742,6 @@ public class TimeControllerScript : MonoBehaviour
             logs.GetComponent<AddedTimesScript>().BeingMade = true;
             WasRunTimer = false;
         }
-
-
     }
     public void Save(int Prof)
     {
@@ -668,13 +771,13 @@ public class TimeControllerScript : MonoBehaviour
             if (TimeMarkers[i].GetComponent<AddedTimesScript>().MinutesAdded != 0)
             {
                 MKfile(0, i, TimeMarkers[i].GetComponent<AddedTimesScript>().MinutesAdded.ToString(), objs-1, Prof);
-                MKfile(2, i, TimeMarkers[i].GetComponent<AddedTimesScript>().TimeWhenAdded.ToString(), objs-1, Prof);
+                MKfile(5, i, TimeMarkers[i].GetComponent<AddedTimesScript>().TimeWhenAdded.ToString(), objs-1, Prof);
             }
         }
         if (objs == 0)
         {
             MKfile(0, 0, 0.ToString(), 0, Prof);
-            MKfile(2, 0, (-792).ToString(), 0, objs);
+            MKfile(5, 0, (-792).ToString(), 0, objs);
         }
         MKfile(0, 0, Prof.ToString(), true);
     }

@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-
 public class SavableValueScript : MonoBehaviour
 {
     public string Label;
@@ -34,8 +33,11 @@ public class SavableValueScript : MonoBehaviour
     
     public bool ForceLoadSaved = false;
 
+    public bool HardLimit = false;
+    public bool DontSave = false;
     public void SaveValue()
     {
+
         if (FirstFrame) { return; }
         if (toggle)
         {
@@ -45,30 +47,37 @@ public class SavableValueScript : MonoBehaviour
             {
                 VarToToggle.Invoke(Togg.isOn);
             }
+            if (DontSave)
+            { return; }
             TCS.MKfile(ObjectLayer, DataLayer, tog.ToString(), Default);
             
         }
         if (flot)
         {
+
             VarToFloat.Invoke(Slide.value);
-            TCS.MKfile(ObjectLayer, DataLayer, Slide.value.ToString(), Default);
             if (VarToFloat != null)
             {
                 VarToFloat.Invoke(Slide.value);
             }
             if (Slide.value > SliderMinValue) { Slide.minValue = SliderMinValue; }
             if (Slide.value < SliderMaxValue) { Slide.maxValue = SliderMaxValue; }
+            if (DontSave)
+            { return; }
+            TCS.MKfile(ObjectLayer, DataLayer, Slide.value.ToString(), Default);
         }
         if (integr)
         {
             VarToInt.Invoke((int)Slide.value);
-            TCS.MKfile(ObjectLayer, DataLayer, Slide.value.ToString(), Default);
             if (VarToInt != null)
             {
                 VarToInt.Invoke((int)Slide.value);
             }
             if (Slide.value > SliderMinValue) { Slide.minValue = SliderMinValue; }
             if (Slide.value < SliderMaxValue) { Slide.maxValue = SliderMaxValue; }
+            if (DontSave)
+            { return; }
+            TCS.MKfile(ObjectLayer, DataLayer, Slide.value.ToString(), Default);
         }
     }
     public void Awake()
@@ -158,10 +167,13 @@ public class SavableValueScript : MonoBehaviour
         }
         if (flot)
         {
-            if (SliderMaxValue == -792) { SliderMaxValue = Slide.maxValue; }
-            else { SliderMaxValue = Slide.maxValue; }
-            if (SliderMinValue == -792) { SliderMinValue = Slide.minValue; }
-            else { SliderMinValue = Slide.minValue; }
+            if (!HardLimit)
+            {
+                if (SliderMaxValue == -792) { SliderMaxValue = Slide.maxValue; }
+                else { SliderMaxValue = Slide.maxValue; }
+                if (SliderMinValue == -792) { SliderMinValue = Slide.minValue; }
+                else { SliderMinValue = Slide.minValue; }
+            }
             if (Prof != -2)
             {
                 try
@@ -202,12 +214,13 @@ public class SavableValueScript : MonoBehaviour
         if (integr)
         {
             if (DefaultInt == -1) { DefaultInt = (int)DefaultFloat; }
-
-
-            if (SliderMaxValue == -792) { SliderMaxValue = Slide.maxValue; }
-            else { SliderMaxValue = Slide.maxValue; }
-            if (SliderMinValue == -792) { SliderMinValue = Slide.minValue; }
-            else { SliderMinValue = Slide.minValue; }
+            if (!HardLimit)
+            {
+                if (SliderMaxValue == -792) { SliderMaxValue = Slide.maxValue; }
+                else { SliderMaxValue = Slide.maxValue; }
+                if (SliderMinValue == -792) { SliderMinValue = Slide.minValue; }
+                else { SliderMinValue = Slide.minValue; }
+            }
             if (Prof != -2)
             {
                 try

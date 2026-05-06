@@ -9,6 +9,7 @@ TagManager:
   - ProfileDelete
   - AddedTimes
   - BeingRemoved
+  - LoggingConsole
   layers:
   - Default
   - TransparentFX

@@ -61,19 +61,16 @@ public class TimeAdder : MonoBehaviour
                     
                     if (i == 0)
                     {
-                        Debug.Log(Times[i] + ";" + i);
                         timeadded += float.Parse(Times[i]) * 60f;
                         TCS.UsedTime += timeadded;
                     }
                     if (i == 1)
                     {
-                        Debug.Log(Times[i] + ";" + i);
                         timeadded += float.Parse(Times[i]);
                         TCS.UsedTime += timeadded;
                     }
                     if (i == 2)
                     {
-                        Debug.Log(Times[i] + ";" + i);
                         timeadded += float.Parse(Times[i]) / 60f;
                         TCS.UsedTime += timeadded;
                     }
