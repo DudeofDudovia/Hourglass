@@ -1,16 +1,36 @@
 //Dude_of_dudovia vERBOS logging System = Derboss.
 using UnityEngine;
-
+using System.IO;
+#if UNITY_ANDROID
+using UnityEngine.Android;
+# endif
 public static class Derboss
 {
     private static LoggingConsoleControllerScript cachedConsole;
     private static int cachedFrame;
     private static int cachedTimeIndex;
     private static bool initialized;
+    private static string GetDLPath()
+    {
+#if UNITY_ANDROID && !UNITY_EDITOR
+        using (var environment = new AndroidJavaClass("android.os.Environment"))
+        {
+            using (var downloadsDir = environment.CallStatic<AndroidJavaObject>(
+                "getExternalStoragePublicDirectory",
+                environment.GetStatic<string>("DIRECTORY_DOWNLOADS")
+                ))
+            {
+                return downloadsDir.Call<string>("getAbsolutePath");
+            }
+        }
+#else
+        return Application.persistentDataPath;
+#endif
+    }
     private static void Handlelog(string logString, string stackTrace, LogType type)
     {
         string AppVer = Application.version;
-        if (AppVer.Contains("x") || AppVer.Contains("X") || AppVer.Contains("rc"))
+        if (AppVer.Contains("x") || AppVer.Contains("X") || AppVer.Contains("rc") || Debug.isDebugBuild)
         {
             Application.SetStackTraceLogType(LogType.Log, StackTraceLogType.Full);
             Application.SetStackTraceLogType(LogType.Warning, StackTraceLogType.Full);
@@ -35,6 +55,12 @@ public static class Derboss
             if (cachedConsole != null)
             {
                 cachedConsole.ConsoleLogs += "\n[" + (cachedTimeIndex + 1) + "] " + logString + "\n" + filteredStackTrace;
+                string Dir = Path.Combine(GetDLPath(), "HourglassLogs");
+                if (!Directory.Exists(Dir))
+                {
+                    Directory.CreateDirectory(Dir);
+                }
+                File.WriteAllText(Path.Combine(Dir,"DerbossLog.txt"), cachedConsole.ConsoleLogs);
             }
         }
         else
@@ -45,9 +71,17 @@ public static class Derboss
             if (cachedConsole != null)
             {
                 cachedConsole.ConsoleLogs += "\n[" + System.DateTime.Now.ToString() + "] " + logString + "\n" + filteredStackTrace;
+                string Dir = Path.Combine(GetDLPath(), "HourglassLogs");
+                if (!Directory.Exists(Dir))
+                {
+                    Directory.CreateDirectory(Dir);
+                }
+                File.WriteAllText(Path.Combine(Dir,"DerbossLog.txt"), cachedConsole.ConsoleLogs);
+
             }
      
         }
+       
     }
     private static string GetFileLine(string stackTrace)
     {

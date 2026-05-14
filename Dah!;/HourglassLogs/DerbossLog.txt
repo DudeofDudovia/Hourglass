@@ -1,0 +1,9 @@
+
+[5/12/2026 11:17:38 PM] WindowsEditor
+000001811611b5cb (Mono JIT Code) TimeControllerScript:Start () (at C:/Users/dudeo/Unity/Hourglass/Assets/TimeControllerScript.cs:161)
+[2] Is Android
+0000018116129bf3 (Mono JIT Code) TimeControllerScript/<RequestPerms>d__78:MoveNext () (at C:/Users/dudeo/Unity/Hourglass/Assets/TimeControllerScript.cs:183)
+[3] Should Show Rationale
+0000018116129c53 (Mono JIT Code) TimeControllerScript/<RequestPerms>d__78:MoveNext () (at C:/Users/dudeo/Unity/Hourglass/Assets/TimeControllerScript.cs:188)
+[4] MS Windows Editor
+000001811612a1cb (Mono JIT Code) TimeControllerScript:NotificationSetup () (at C:/Users/dudeo/Unity/Hourglass/Assets/TimeControllerScript.cs:239)

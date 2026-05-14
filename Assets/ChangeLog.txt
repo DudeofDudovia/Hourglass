@@ -6,6 +6,11 @@ Changelog 0.8.0
 	Added A Debug Console:
 		This is used for debugging and the toggle for it is at the bottom of the options menu, though in normal use it should be empty (unless something goes wrong or I forgot to remove a logger).
 	Skipped 0.7.1 lol.
+	Bugs:
+		(Not really) Developer/Debug mode
+		Notification settings don't gray out when notifications aren't enabled (technically not a bug since I haven't coded it).
+	Fixed Bugs:
+		DeleteProf doesn't work.
 Changelog 0.7.1
 	Made improvement to the file system:
 		Made the new file system create directories more properly.

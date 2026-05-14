@@ -8,9 +8,12 @@ using TMPro;
 using UnityEngine;
 
 using UnityEngine.Events;
-using UnityEngine.Rendering;
+using System.Reflection;
+using UnityEditor.ShaderKeywordFilter;
 
-#if UNITY_ANDROID || UNITY_IOS
+
+
+#if UNITY_ANDROID
 using Unity.Notifications.Android;
 using UnityEngine.Android;
 # endif
@@ -161,8 +164,24 @@ public class TimeControllerScript : MonoBehaviour
 
         StartCoroutine(RequestPerms());
         NotificationSetup();
-        AndroidNotificationCenter.CancelAllScheduledNotifications();
+        #if UNITY_ANDROID
+                AndroidNotificationCenter.CancelAllScheduledNotifications();
+        #endif
     }
+    public void NotificationsEnabledfFunc(bool tog)
+    {
+        NotificationsEnabled = tog;
+    }
+    public void NotificationWarningsEnabledfFunc(bool tog)
+    {
+        NotificationsEnabled = tog;
+    }
+    public bool NotificationsEnabledOld = true;
+    public bool NotificationsEnabled = true;
+    public bool NotificationWarningsEnabled = true;
+    public bool NotificationWarningsEnabledOld = true;
+    public bool NotificationWarningHalfTimeEnabled = true;
+    public bool NotificationWarningHalfTimeEnabledOld = true;
     IEnumerator RequestPerms()
     {
 #if UNITY_ANDROID || UNITY_IOS
@@ -224,23 +243,72 @@ public class TimeControllerScript : MonoBehaviour
             Debug.Log("MS Windows Editor");
         }
     }
-    public void Notify()
+    int[] ChannelIDs = new int[0];
+    int SavedNotifIDIndex(SaveObjectList data)
     {
-#if UNITY_ANDROID || UNITY_IOS
-        Notify(1 / 60f);
+        if (data?.Objects == null || data.Objects.Length <= 6)
+        {             return 0;
+        }
+        if (data.Objects[6] == null) { return 0; }
+        if (data.Objects[6].datas == null) { return 0; }
+        if (data.Objects[6].datas.Length == 0) { return 0; }
+        if (data.Objects[6].datas[0] == "-792") { return 0; }
+        return data.Objects[6].datas.Length;
+    }
+    int[] SavedNotifIDs(SaveObjectList data)
+    {
+        int[] IDIndex = new int[1];
+        if (data?.Objects == null || data.Objects.Length <= 6)
+        {
+            IDIndex[0] = 0;
+            return IDIndex;
+        }
+
+        return IDIndex;
+    }
+    public float WarningTime = 5f;
+    public void WarningTimeFunc(float flot)
+    {
+        WarningTime = flot;
+    }
+
+    public void Notify(float FireMinutes,string NotifTitle,string Notiftext)
+    {
+#if UNITY_ANDROID
+        Debug.Log("Notification Deployed for:" + DateTime.Now.AddMinutes(FireMinutes));
+        AndroidJavaClass unityPlayerAndr = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
+        AndroidJavaObject activityAndr = unityPlayerAndr.GetStatic<AndroidJavaObject>("currentActivity");
+        AndroidJavaObject contextAndr = activityAndr.Call<AndroidJavaObject>("getApplicationContext");
+        AndroidJavaObject alarmManager = contextAndr.Call<AndroidJavaObject>("getSystemService", "alarm");
+        AndroidNotification notification = new AndroidNotification();
+        notification.Title = NotifTitle;
+        notification.Text = Notiftext;
+        notification.FireTime = DateTime.Now.AddMinutes(FireMinutes);
+        notification.ShowTimestamp = true;
+        notification.Color = new Color(0.027f, 0.267f, 0.016f);
+        notification.ShouldAutoCancel = true;
+        notification.UsesStopwatch = true;
+        int id = AndroidNotificationCenter.SendNotification(notification, "Hourglass_Channel" + NotificationChannel);
+        
+        int DatInd = 0;
+        var data = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(Path.Combine(Application.persistentDataPath, "Savedata", "Profile" + Profile.ToString() + ".json")));
+        DatInd = SavedNotifIDIndex(data);
+        DatInd = int.Parse(RDfile(6, 0, true));
+        if (DatInd == -792) DatInd = 0;
+        MKfile(6, DatInd, id.ToString(), false);
 #endif
     }
-    public void Notify(float FireMinutes)
+    public void CancelNotifications()
     {
-#if UNITY_ANDROID || UNITY_IOS
-        Debug.Log("Starting Notification");
-        AndroidNotification notification = new AndroidNotification();
-        notification.Title = "Time has run out";
-        notification.Text = "The timer has exceeded the total time.";
-        notification.FireTime = DateTime.Now.AddMinutes(FireMinutes);
-        AndroidNotificationCenter.SendNotification(notification, "Hourglass_Channel" + Application.version.ToString());
-        Debug.Log("Notification Sent(I Hope)");
-        Debug.Log(FireMinutes);
+        Debug.Log("Notifs Canceled");
+#if UNITY_ANDROID
+        var data = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(Path.Combine(Application.persistentDataPath, "Savedata", "Profile" + Profile.ToString() + ".json")));
+        int[] NotifIndex = SavedNotifIDs(data);
+        foreach (int ID in NotifIndex)
+        {
+            AndroidNotificationCenter.CancelNotification(ID);
+        }
+        MKfile(6, 0, "", 0, false);
 #endif
     }
     [System.Serializable]
@@ -260,23 +328,23 @@ public class TimeControllerScript : MonoBehaviour
         *2:Milli
         *3:Background
         *4:LoggedTimes
+        *5:LoggedTimesTime
+        *6:NotificationIds
+     *Settings[Default]
+        *9:EnableNotification [NotificationSettings Starts]
+        *11:EnableNotificationWarning
+        *13:EnableNotificationWarningAtHalfTime
+        *12:WarningTime [NotificationSettings Ends]
      *added times will be in Object[0]
      *Things saved with the current save() func will be in Object[1]
      *Settings[0]:CurrentProfile[0-1] Countup[2] & Misc[3-5] & Animation[6-8] & all Other SuperProfile Settings[8+]
      */
 
-    public void MKfile(int Objindex, int Dataindex, string Data)
-    {
-        MKfile(Objindex, Dataindex, Data, -1);
-    }
     public void MKfile(int Objindex, int Dataindex, string Data, bool Default)
     {
         MKfile(Objindex, Dataindex, Data, -1, Default);
     }
-    public void MKfile(int Objindex, int Dataindex, string Data, int MaxData)
-    {
-        MKfile(Objindex, Dataindex, Data, MaxData, Profile);
-    }
+
     public void MKfile(int Objindex, int Dataindex, string Data, int MaxData, bool Default)
     {
         MKfile(Objindex, Dataindex, Data, MaxData, Profile, Default);
@@ -287,6 +355,11 @@ public class TimeControllerScript : MonoBehaviour
     }
     public void MKfile(int Objindex, int Dataindex, string Data, int MaxData, int Prof, bool Default)
     {
+        if (Objindex < 0 || Dataindex < 0)
+        {
+            Debug.Log("Small Obj or Data" + Objindex + ":" + Dataindex);
+            return;
+        }
         if (!Directory.Exists(Path.Combine(Application.persistentDataPath, "Savedata"))) { Directory.CreateDirectory(Path.Combine(Application.persistentDataPath, "Savedata")); }
         SaveObjectList sol = new SaveObjectList();
         string TotalFilePath = Path.Combine(Application.persistentDataPath, "Savedata", "Profile" + Prof.ToString() + ".json");
@@ -311,19 +384,22 @@ public class TimeControllerScript : MonoBehaviour
 
             if (sol.Objects[Objindex].datas == null)
                 {
-                sol.Objects[Objindex].datas = new string[0];
+                sol.Objects[Objindex].datas = new string[Mathf.Max(Dataindex+1,1)];
             }
             if (MaxData >= 0)
             {
-                if (sol.Objects[Objindex].datas.Length != MaxData + 1)
-                {
-                    Array.Resize(ref sol.Objects[Objindex].datas, MaxData + 1);
-                }
                 if (Dataindex <= MaxData)
                 {
+                    if (sol.Objects[Objindex].datas.Length < Dataindex + 1)
+                    {
+                        Array.Resize(ref sol.Objects[Objindex].datas, Dataindex + 1);
+                    }
                     sol.Objects[Objindex].datas[Dataindex] = Data;
                 }
-
+                if (sol.Objects[Objindex].datas.Length != MaxData)
+                {
+                    Array.Resize(ref sol.Objects[Objindex].datas, MaxData);
+                }
             }
             else
             {
@@ -333,117 +409,6 @@ public class TimeControllerScript : MonoBehaviour
                 }
                 sol.Objects[Objindex].datas[Dataindex] = Data;
             }
-
-            
-            
-
-
-            /*
-            for (int i = 0; i < sol.Objects.Length; i++)
-            {
-                SaveObject saveobj = new SaveObject();
-                int SaveObjIndex = 1;
-                try
-                {
-                    SaveObjIndex = JsonUtility.FromJson<SaveObjectList>(FileContents).Objects[i].datas.Length;
-                }
-                catch { }
-                saveobj.datas = new string[SaveObjIndex];
-
-                SaveObjIndex = saveobj.datas.Length;
-                for (int j = 0; j < SaveObjIndex; j++)
-                {
-                    try
-                    {
-                        saveobj.datas[j] = JsonUtility.FromJson<SaveObjectList>(FileContents).Objects[i].datas[j];
-                    }
-                    catch (Exception e4) { saveobj.datas[j] = "#"; if (DebugOutput) { Debug.Log(e4); } }
-
-                }
-                try
-                {
-                    if (i == Objindex)
-                    {
-                        saveobj.datas[Dataindex] = Data;
-                    }
-                }
-                catch (Exception e)
-                {
-                    if (DebugOutput)
-                    {
-                        Debug.Log(e);
-                    }
-                    saveobj = new SaveObject();
-                    SaveObjIndex = 1;
-                    if (i == Objindex && MaxData >= 0)
-                    {
-                        saveobj.datas = new string[MaxData + 1];
-                    }
-                    else
-                    {
-                        try
-                        {
-                            SaveObjIndex = JsonUtility.FromJson<SaveObjectList>(FileContents).Objects[i].datas.Length;
-                        }
-                        catch { }
-                        if (Dataindex + 1 > SaveObjIndex && i == Objindex) { SaveObjIndex = Dataindex + 1; }
-                        saveobj.datas = new string[SaveObjIndex + 1];
-                    }
-
-                    SaveObjIndex = saveobj.datas.Length;
-                    if (Default && Objindex == 0) {  }
-                    for (int j = 0; j < SaveObjIndex; j++)
-                    {
-                        try
-                        {
-                            saveobj.datas[j] = JsonUtility.FromJson<SaveObjectList>(FileContents).Objects[i].datas[j];
-                        }
-                        catch (Exception e2)
-                        {
-
-                            saveobj.datas[j] = "#";
-                            if (DebugOutput)
-                            {
-                                Debug.Log(e2);
-                            }
-                        }
-
-                    }
-                    if (i == Objindex) { saveobj.datas[Dataindex] = Data; }
-                }
-
-                if (i == Objindex && MaxData >= 0)
-                {
-                    SaveObject saveobjtwo = new SaveObject();
-                    saveobjtwo.datas = new string[MaxData];
-                    for (int j = 0; j < saveobjtwo.datas.Length; j++)
-                    {
-                        try
-                        {
-                            saveobjtwo.datas[j] = saveobj.datas[j];
-                        }
-                        catch (Exception e3)
-                        {
-                            if (DebugOutput)
-                            {
-                                Debug.Log(e3);
-                            }
-                        }
-
-                    }
-                    if (i == Objindex && MaxData >= 0)
-                    {
-                        saveobj.datas = new string[MaxData];
-                        if (Dataindex + 1 > MaxData && i == Objindex) { saveobj.datas = new string[Dataindex + 1]; }
-                    }
-                    sol.Objects[i] = saveobjtwo;
-                }
-                else
-                {
-                    sol.Objects[i] = saveobj;
-                }
-            }
-        */
         }
         else
         {
@@ -453,149 +418,6 @@ public class TimeControllerScript : MonoBehaviour
             sol.Objects = new SaveObject[Objindex + 1];
             sol.Objects[Objindex] = saveobj;
         }
-        File.WriteAllText(TotalFilePath, JsonUtility.ToJson(sol));
-    }
-    public void MKfileOldSystemNoPersistentFileContents(int Objindex, int Dataindex, string Data, int MaxData, int Prof, bool Default)
-    {
-        if (!Directory.Exists(Path.Combine(Application.persistentDataPath, "Savedata"))) { Directory.CreateDirectory(Path.Combine(Application.persistentDataPath, "Savedata")); }
-        SaveObjectList sol = new SaveObjectList();
-        string FilePath = (@"\Savedata\Profile" + Prof.ToString() + ".json");
-        string TotalFilePath = Path.Combine(Application.persistentDataPath, "Savedata", "Profile" + Prof.ToString() + ".json");
-        if (Default)
-        {
-            FilePath = (@"\Savedata\Settings.json");
-            TotalFilePath = Path.Combine(Application.persistentDataPath, "Savedata", "Settings.json");
-        }
-        Debug.Log(TotalFilePath);
-
-        //if (File.Exists(Path.Join(Application.persistentDataPath, FilePath)))
-        if (File.Exists(Path.Join(Application.persistentDataPath, TotalFilePath)))
-        {
-            //int ObjLength = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(Path.Join(Application.persistentDataPath, FilePath))).Objects.Length;
-            int ObjLength = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(TotalFilePath)).Objects.Length;
-            sol.Objects = new SaveObject[ObjLength];
-            if (Objindex + 1 >= ObjLength)
-            {
-                sol.Objects = new SaveObject[Objindex + 1];
-            }
-            for (int i = 0; i < sol.Objects.Length; i++)
-            {
-                SaveObject saveobj = new SaveObject();
-                int SaveObjIndex = 1;
-                try
-                {
-                    //SaveObjIndex = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(Application.persistentDataPath + FilePath)).Objects[i].datas.Length;
-                    SaveObjIndex = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(TotalFilePath)).Objects[i].datas.Length;
-                }
-                catch { }
-                saveobj.datas = new string[SaveObjIndex];
-
-                SaveObjIndex = saveobj.datas.Length;
-                for (int j = 0; j < SaveObjIndex; j++)
-                {
-                    try
-                    {
-                        //saveobj.datas[j] = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(Application.persistentDataPath + FilePath)).Objects[i].datas[j];
-                        saveobj.datas[j] = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(TotalFilePath)).Objects[i].datas[j];
-                    }
-                    catch (Exception e4) { saveobj.datas[j] = "#"; if (DebugOutput) { Debug.Log(e4); } }
-
-                }
-                try
-                {
-                    if (i == Objindex)
-                    {
-                        saveobj.datas[Dataindex] = Data;
-                    }
-                }
-                catch (Exception e)
-                {
-                    if (DebugOutput)
-                    {
-                        Debug.Log(e);
-                    }
-                    saveobj = new SaveObject();
-                    SaveObjIndex = 1;
-                    if (i == Objindex && MaxData >= 0)
-                    {
-                        saveobj.datas = new string[MaxData + 1];
-                    }
-                    else
-                    {
-                        try
-                        {
-                            //SaveObjIndex = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(Application.persistentDataPath + FilePath)).Objects[i].datas.Length;
-                            SaveObjIndex = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(TotalFilePath)).Objects[i].datas.Length;
-                        }
-                        catch { }
-                        if (Dataindex + 1 > SaveObjIndex && i == Objindex) { SaveObjIndex = Dataindex + 1; }
-                        saveobj.datas = new string[SaveObjIndex + 1];
-                    }
-
-                    SaveObjIndex = saveobj.datas.Length;
-                    if (Default && Objindex == 0) { }
-                    for (int j = 0; j < SaveObjIndex; j++)
-                    {
-                        try
-                        {
-                            //saveobj.datas[j] = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(Application.persistentDataPath + FilePath)).Objects[i].datas[j];
-                            saveobj.datas[j] = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(TotalFilePath)).Objects[i].datas[j];
-                        }
-                        catch (Exception e2)
-                        {
-
-                            saveobj.datas[j] = "#";
-                            if (DebugOutput)
-                            {
-                                Debug.Log(e2);
-                            }
-                        }
-
-                    }
-                    if (i == Objindex) { saveobj.datas[Dataindex] = Data; }
-                }
-
-                if (i == Objindex && MaxData >= 0)
-                {
-                    SaveObject saveobjtwo = new SaveObject();
-                    saveobjtwo.datas = new string[MaxData];
-                    for (int j = 0; j < saveobjtwo.datas.Length; j++)
-                    {
-                        try
-                        {
-                            saveobjtwo.datas[j] = saveobj.datas[j];
-                        }
-                        catch (Exception e3)
-                        {
-                            if (DebugOutput)
-                            {
-                                Debug.Log(e3);
-                            }
-                        }
-
-                    }
-                    if (i == Objindex && MaxData >= 0)
-                    {
-                        saveobj.datas = new string[MaxData];
-                        if (Dataindex + 1 > MaxData && i == Objindex) { saveobj.datas = new string[Dataindex + 1]; }
-                    }
-                    sol.Objects[i] = saveobjtwo;
-                }
-                else
-                {
-                    sol.Objects[i] = saveobj;
-                }
-            }
-        }
-        else
-        {
-            SaveObject saveobj = new SaveObject();
-            saveobj.datas = new string[Dataindex + 1];
-            saveobj.datas[Dataindex] = Data;
-            sol.Objects = new SaveObject[Objindex + 1];
-            sol.Objects[Objindex] = saveobj;
-        }
-        //File.WriteAllText(Application.persistentDataPath + FilePath, JsonUtility.ToJson(sol));
         File.WriteAllText(TotalFilePath, JsonUtility.ToJson(sol));
     }
 
@@ -727,7 +549,30 @@ public class TimeControllerScript : MonoBehaviour
             TicksWhenTimerStarted = CurrentTick;
             if (RemainingTime >= 0)
             {
-                Notify(RemainingTime);
+                if (NotificationsEnabled)
+                {
+                    if (RemainingTime > 0.2f)
+                    {
+                        Notify(RemainingTime-0.2f, "Time has run out", "The timer has exceeded the total time.");
+                    }
+                    else
+                    {
+                        Notify(RemainingTime, "Time has run out", "The timer has exceeded the total time.");
+                    }
+                    if (WarningTime - 0.2f > RemainingTime)
+                    {
+                        Notify(RemainingTime - ((WarningTime-0.2f) / 60), WarningTime.ToString() + " minutes left!", "The timer has " + ((WarningTime - 0.2f) / 60).ToString() + " minutes remaining.");
+                    }
+                    else if (NotificationWarningsEnabled && RemainingTime > (WarningTime / 60))
+                    {
+                        Notify(RemainingTime - (WarningTime/60), WarningTime.ToString() + " minutes left!", "The timer has " + (WarningTime / 60).ToString() + " minutes remaining.");
+                    }
+                    if (NotificationWarningHalfTimeEnabled)
+                    {
+                        Notify(RemainingTime/2, (RemainingTime/2).ToString() + " minutes left!", "The timer has " + (RemainingTime / 2).ToString() + " minutes remaining.");
+
+                    }
+                }
             }
             Save(Profile);
         }
@@ -741,7 +586,14 @@ public class TimeControllerScript : MonoBehaviour
             logs.GetComponent<AddedTimesScript>().MinutesToAdd = tickD;
             logs.GetComponent<AddedTimesScript>().BeingMade = true;
             WasRunTimer = false;
+            Debug.Log("shouldCancel");
+            CancelNotifications();
         }
+        if (!NotificationsEnabled && NotificationsEnabledOld)
+        {
+            CancelNotifications();
+        }
+        NotificationsEnabledOld = NotificationsEnabled;
     }
     public void Save(int Prof)
     {
@@ -770,8 +622,8 @@ public class TimeControllerScript : MonoBehaviour
         {
             if (TimeMarkers[i].GetComponent<AddedTimesScript>().MinutesAdded != 0)
             {
-                MKfile(0, i, TimeMarkers[i].GetComponent<AddedTimesScript>().MinutesAdded.ToString(), objs-1, Prof);
-                MKfile(5, i, TimeMarkers[i].GetComponent<AddedTimesScript>().TimeWhenAdded.ToString(), objs-1, Prof);
+                MKfile(0, i, TimeMarkers[i].GetComponent<AddedTimesScript>().MinutesAdded.ToString(), objs, Prof);
+                MKfile(5, i, TimeMarkers[i].GetComponent<AddedTimesScript>().TimeWhenAdded.ToString(), objs, Prof);
             }
         }
         if (objs == 0)
@@ -782,10 +634,6 @@ public class TimeControllerScript : MonoBehaviour
         MKfile(0, 0, Prof.ToString(), true);
     }
     public UnityEvent LoadCalled;
-    public void Load()
-    {
-        Load(Profile, false);
-    }
     public void Load(int Prof)
     {
         Load(Prof, false);
@@ -1039,7 +887,6 @@ public class TimeControllerScript : MonoBehaviour
     }
     public void AddProfPtwo(int NewProfile)
     {
-        Debug.Log(NewProfile);
         Save(NewProfile);
         Load(NewProfile);
         pendingreset = true;
@@ -1059,6 +906,9 @@ public class TimeControllerScript : MonoBehaviour
     }
     public void ResetTime(float ResetToTime, bool Immeadiate)
     {
+#if UNITY_ANDROID
+        AndroidNotificationCenter.CancelAllScheduledNotifications();
+#endif
         //resettime = 0.4167f;
         resettime = 100f;
         if (pendingreset || Immeadiate)
@@ -1125,33 +975,46 @@ public class TimeControllerScript : MonoBehaviour
 
     public float Truncate(float number, int digits)
     {
-        number *= Mathf.Pow(10, digits);
-        number = (long)number;
-        number /= Mathf.Pow(10, digits);
-        return number;
+        long PowTen = (long)Math.Pow(10, digits);
+        double Dnum = number * PowTen;
+        Dnum = (long)Dnum;
+        Dnum /= PowTen;
+        return (float)Dnum;
     }
     public string TruncateFS(float number, int digits)
     {
+        /*
+        int PowTen = (int)Math.Pow(10, digits);
         string Numstring = number.ToString();
-        number *= Mathf.Pow(10, digits);
-        number = (long)number;
-        number /= Mathf.Pow(10, digits);
-        Numstring = number.ToString();
-        if (number < 10 && number >= 0) { Numstring = "0" + Numstring; }
-        return Numstring;
+        double Dnum = number * PowTen;
+        Dnum = (long)Dnum;
+        Dnum /= PowTen;
+        Numstring = Dnum.ToString();
+        if (Dnum < 10 && Dnum >= 0) { Numstring = "0" + Numstring; }
+        return Numstring;*/
+        float truncatednum = Truncate(number, digits);
+
+        string formatstring = "F" + digits;
+        return truncatednum.ToString(formatstring);
     }
     public string TruncateForSeconds(float number, int digits)
     {
-        ;
+        /* This kinda hurts ngl
         string NumString = number.ToString();
-        float TheFloat = Truncate(number, digits);
+        //float TheFloat = Truncate(number, digits);
+        float TheFloat = Mathf.Round(number*Mathf.Pow(10,digits))/Mathf.Pow(10,digits);
+
 
         NumString = TheFloat.ToString();
-        if (((TheFloat * 10) % 1) < 0.03f && (TheFloat != (long)TheFloat)) { NumString += "0"; }
+        if (((TheFloat * 10) % 1) < 0.03f && (TheFloat != (long)TheFloat)) { NumString += "0"; Debug.Log("Ah"); }
         if (((TheFloat * 10) % 1) < 0.03f && (TheFloat == (long)TheFloat)) { NumString += ".00"; }
         if (((TheFloat * 10) % 1) > 0.98f) { NumString += "0"; }
         if (TheFloat < 10 && TheFloat >= 0) { NumString = "0" + NumString; }
+
         return NumString;
+        */
+        string formatstring = "F" + digits;
+        return number.ToString(formatstring);
     }
     public string TruncateForSecondsNM(float number, int digits)
     {

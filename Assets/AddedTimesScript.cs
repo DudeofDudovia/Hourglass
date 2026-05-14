@@ -81,8 +81,8 @@ public class AddedTimesScript : MonoBehaviour
             MinutesAdded = MinutesToAdd;
             BeingMade = false;
         }
-        MinutesAddedDisplay = RoundFloat(MinutesAdded,5);
-        Debug.Log(MinutesAddedDisplay);
+        //MinutesAddedDisplay = RoundFloat(MinutesAdded,5);
+        MinutesAddedDisplay = MinutesAdded;
     }
     public float Truncate(float number, int digits)
     {
