@@ -28,5 +28,9 @@ public class NotificationWarningTimePreviewScript : MonoBehaviour
         }
         catch { }
     }
+    public void Start()
+    {
+        UpdateSlider();
+    }
 }
  
