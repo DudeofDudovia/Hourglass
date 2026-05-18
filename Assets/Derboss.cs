@@ -23,6 +23,8 @@ public static class Derboss
                 return downloadsDir.Call<string>("getAbsolutePath");
             }
         }
+#elif UNITY_STANDALONE_WIN
+        return Application.persistentDataPath;
 #else
         return Application.persistentDataPath;
 #endif

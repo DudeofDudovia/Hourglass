@@ -7,10 +7,11 @@ using TMPro;
 //using Unity.Notifications.iOS;
 using UnityEngine;
 
+
 using UnityEngine.Events;
 using UnityEngine.Rendering.Universal;
 using System.ComponentModel;
-using Unity.Android.Gradle;
+
 using UnityEditor;
 
 
@@ -20,6 +21,7 @@ using UnityEditor;
 
 
 #if UNITY_ANDROID
+using Unity.Android.Gradle;
 using Unity.Notifications.Android;
 using UnityEngine.Android;
 # endif
@@ -362,8 +364,6 @@ public class TimeControllerScript : MonoBehaviour
 
 #else
         Debug.Log("Though nothing will be sent");
-        var toast = UnityEngine.WSA.Toast.Create("Bruh!", "Bones!");
-        toast.Show();
 #endif
     }
     /*public int CancelNotifications(bool ReturnVals)

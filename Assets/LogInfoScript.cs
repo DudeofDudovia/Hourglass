@@ -1,6 +1,12 @@
+using System;
+using System.Globalization;
+using System.Runtime.InteropServices;
+using System.Text;
 using TMPro;
 using UnityEngine;
-
+#if UNITY_ANDROID
+using UnityEngine.Android;
+#endif
 public class LogInfoScript : MonoBehaviour
 {
     public GameObject InfoDisplay;
@@ -11,9 +17,46 @@ public class LogInfoScript : MonoBehaviour
     public ButtonSizeAndPositioner BSAP;
     public bool MouseDown;
     public GameObject Menu;
+#if PLATFORM_STANDALONE_WIN
+    [DllImport("kernel32.dll")]
+    static extern int GetLocaleInfoEx(
+    String lpLocaleName,
+    uint LCType,
+    StringBuilder lpLCData,
+    int cchData);
+    const uint LOCALE_STIMEFORMAT = 0x00001003;
+#endif
     void Update()
     {
-        TMP.text = System.DateTime.FromBinary(DisplayTicks).ToString();
+        string pattern = "h";
+#if UNITY_ANDROID && !UNITY_EDITOR
+        //var activity = UnityPlayer.GetStatic<AndroidJavaObject>("com.unity3d.player.UnityPlayer")
+        AndroidJavaClass unityPlayerAndr = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
+        AndroidJavaObject activityAndr = unityPlayerAndr.GetStatic<AndroidJavaObject>("currentActivity");
+        AndroidJavaObject contextAndr = activityAndr.Call<AndroidJavaObject>("getApplicationContext");
+        var dateFormat = contextAndr.GetStatic<AndroidJavaObject>("android.text.format.DateFormat");
+        dateFormat.
+#endif
+#if PLATFORM_STANDALONE_WIN
+        StringBuilder sb = new StringBuilder(80);
+
+        GetLocaleInfoEx(
+            null,
+            LOCALE_STIMEFORMAT,
+            sb,
+            sb.Capacity
+            );
+        pattern = sb.ToString();
+#endif
+        TMP.text = System.DateTime.FromBinary(DisplayTicks).ToString("t",CultureInfo.CurrentCulture);
+        if (pattern.Contains("H"))
+        {
+            TMP.text = System.DateTime.FromBinary(DisplayTicks).ToString("MM/dd/yyyy HH:mm:ss", CultureInfo.CurrentCulture);
+        }
+        else {
+            TMP.text = System.DateTime.FromBinary(DisplayTicks).ToString();
+        }
+        //TMP.text = System.DateTime.FromBinary(DisplayTicks).ToLocalTime().ToString();
         if (HideDelay < 0)
         {
             if (MouseDown != Input.GetMouseButton(0))
@@ -43,6 +86,8 @@ public class LogInfoScript : MonoBehaviour
     {
         InfoDisplay.SetActive(true);
         TMP.text = System.DateTime.FromBinary(DisplayTicks).ToString();
+        TMP.text = System.DateTime.FromBinary(DisplayTicks).ToShortDateString();
+
         MouseY = Input.mousePosition.y;
         HideDelay = 20;
     }
