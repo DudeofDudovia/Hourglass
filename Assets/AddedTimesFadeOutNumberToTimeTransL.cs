@@ -1,3 +1,4 @@
+using Mono.Cecil.Cil;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -104,5 +105,7 @@ public class AddedTimesFadeOutNumberToTimeTransL : MonoBehaviour
                 }
             }
         }
+        if (ATFOS.value == 0) { TMP.text = "00S"; }
+        if (ATFOS.value == 0 && TCS.MSAddeds) { TMP.text = "00.00S"; }
     }
 }

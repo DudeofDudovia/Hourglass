@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Net;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
@@ -173,6 +174,7 @@ public class SavableValueScript : MonoBehaviour
                 else { SliderMaxValue = Slide.maxValue; }
                 if (SliderMinValue == -792) { SliderMinValue = Slide.minValue; }
                 else { SliderMinValue = Slide.minValue; }
+                Debug.Log(SliderMaxValue);
             }
             if (Prof != -2)
             {
@@ -255,6 +257,7 @@ public class SavableValueScript : MonoBehaviour
             if (VarToInt != null)
             {
                 VarToInt.Invoke((int)Slide.value);
+
             }
         }
     }

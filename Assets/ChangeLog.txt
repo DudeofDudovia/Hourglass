@@ -3,6 +3,7 @@ Made by Dude of Dudovia
 
 More Readable Changelogs Can Be Found On The GitHub Page
 Changelog 0.8.0
+	Added margins to the changelog font size so it displays propperly at small fonts.
 	Added A Debug Console:
 		This is used for debugging and the toggle for it is at the bottom of the options menu, though in normal use it should be empty (unless something goes wrong or I forgot to remove a logger).
 	Skipped 0.7.1 lol.
