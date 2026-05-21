@@ -1,19 +1,17 @@
 using System;
 using System.Collections;
+using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
+using System.IO.Enumeration;
 using TMPro;
 
-
+using UnityEditor;
 //using Unity.Notifications.iOS;
 using UnityEngine;
-
-
 using UnityEngine.Events;
 using UnityEngine.Rendering.Universal;
-using System.ComponentModel;
-
-using UnityEditor;
-
+using System.Globalization;
 
 
 
@@ -21,7 +19,6 @@ using UnityEditor;
 
 
 #if UNITY_ANDROID
-using Unity.Android.Gradle;
 using Unity.Notifications.Android;
 using UnityEngine.Android;
 # endif
@@ -186,8 +183,8 @@ public class TimeControllerScript : MonoBehaviour
     }
     private void Start()
     {
-        
-        Debug.Log(Application.platform);
+
+        UnityEngine.Debug.Log(Application.platform);
 
         StartCoroutine(RequestPerms());
         NotificationSetup();
@@ -219,15 +216,15 @@ public class TimeControllerScript : MonoBehaviour
     IEnumerator RequestPerms()
     {
 #if UNITY_ANDROID || UNITY_IOS
-        Debug.Log("Is Android");
+        UnityEngine.Debug.Log("Is Android");
         string perm = "android.permission.POST_NOTIFICATIONS";
         if (Permission.ShouldShowRequestPermissionRationale(perm))
         {
-            Debug.Log("Should Show Rationale");
+            UnityEngine.Debug.Log("Should Show Rationale");
         }
         if (!Permission.HasUserAuthorizedPermission(perm))
         {
-            Debug.Log("Not Authorized On Android");
+            UnityEngine.Debug.Log("Not Authorized On Android");
         }
 
         if (!Permission.HasUserAuthorizedPermission(perm))
@@ -242,7 +239,7 @@ public class TimeControllerScript : MonoBehaviour
         }
         NotificationPerms = Permission.HasUserAuthorizedPermission(perm);
 #else
-        Debug.Log("Not Android or iOS");
+        UnityEngine.Debug.Log("Not Android or iOS");
         yield break;
 #endif
     }
@@ -266,22 +263,22 @@ public class TimeControllerScript : MonoBehaviour
 #endif
         if (Application.platform == RuntimePlatform.IPhonePlayer)
         {
-            Debug.Log(":(");
+            UnityEngine.Debug.Log(":(");
         }
         if (Application.platform == RuntimePlatform.WindowsPlayer)
         {
-            Debug.Log("MS Windows");
+            UnityEngine.Debug.Log("MS Windows");
         }
         if (Application.platform == RuntimePlatform.WindowsEditor)
         {
-            Debug.Log("MS Windows Editor");
+            UnityEngine.Debug.Log("MS Windows Editor");
         }
     }
     int[] ChannelIDs = new int[0];
-    int SavedNotifIDIndex(SaveObjectList data,int channel)
+    int SavedNotifIDIndex(SaveObjectList data, int channel)
     {
         if (data?.Objects == null || data.Objects.Length <= channel)
-        {             return 0;
+        { return 0;
         }
         if (data.Objects[channel] == null) { return 0; }
         if (data.Objects[channel].datas == null) { return 0; }
@@ -289,9 +286,9 @@ public class TimeControllerScript : MonoBehaviour
         if (data.Objects[channel].datas[0] == "-792") { return 0; }
         return data.Objects[channel].datas.Length;
     }
-    int[] SavedNotifIDs(SaveObjectList data,int channel)
+    int[] SavedNotifIDs(SaveObjectList data, int channel)
     {
-       
+
         if (data?.Objects == null || data.Objects.Length <= channel)
         {
             int[] IDIndex = new int[1];
@@ -303,7 +300,7 @@ public class TimeControllerScript : MonoBehaviour
         for (int i = 0; i < length; i++)
         {
             IDIndexS[i] = data.Objects[channel].datas[i] != null ? int.TryParse(data.Objects[channel].datas[i], out int result) ? result : 0 : 0;
-            Debug.Log("IDIndexS[" + i + "]:" + IDIndexS[i]);
+            UnityEngine.Debug.Log("IDIndexS[" + i + "]:" + IDIndexS[i]);
         }
         return IDIndexS;
     }
@@ -317,19 +314,19 @@ public class TimeControllerScript : MonoBehaviour
     {
         CustomWarningTime = flot;
     }
-    public void Notify(float FireMinutes, string NotifTitle,int channel, string Notiftext)
+    public void Notify(float FireMinutes, string NotifTitle, int channel, string Notiftext)
     {
         Notify(FireMinutes, NotifTitle, Notiftext, channel, false);
     }
-    public void Notify(float FireMinutes, string NotifTitle, string Notiftext,int channel, bool UseStopWatch)
+    public void Notify(float FireMinutes, string NotifTitle, string Notiftext, int channel, bool UseStopWatch)
     {
         Notify(FireMinutes, NotifTitle, Notiftext, channel, UseStopWatch, false);
     }
-    public void Notify(float FireMinutes,string NotifTitle,string Notiftext,int channel, bool UseStopWatch,bool ForTimer)
+    public void Notify(float FireMinutes, string NotifTitle, string Notiftext, int channel, bool UseStopWatch, bool ForTimer)
     {
         if (Profiles > 1) { Notiftext += "\n(Profile:" + (ProfileName + 1).ToString() + ")"; }
         if (channel < 6 || channel > 11) { channel = 8; }
-        Debug.Log("Notification Deployed for:" + DateTime.Now.AddMinutes(FireMinutes) + "Channel:" + channel);
+        UnityEngine.Debug.Log("Notification Deployed for:" + DateTime.Now.AddMinutes(FireMinutes) + "Channel:" + channel);
 #if UNITY_ANDROID && !UNITY_EDITOR
         AndroidJavaClass unityPlayerAndr = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
         AndroidJavaObject activityAndr = unityPlayerAndr.GetStatic<AndroidJavaObject>("currentActivity");
@@ -346,13 +343,13 @@ public class TimeControllerScript : MonoBehaviour
         
         notification.Style = NotificationStyle.BigPictureStyle;
         int id = AndroidNotificationCenter.SendNotification(notification, "Hourglass_Channel" + NotificationChannel);
-        Debug.Log("Notif ID:" + id);
+        UnityEngine.Debug.Log("Notif ID:" + id);
         int DatInd = 0;
         var data = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(Path.Combine(Application.persistentDataPath, "Savedata", "Profile" + Profile.ToString() + ".json")));
         DatInd = SavedNotifIDIndex(data,channel);
         //DatInd = int.Parse(RDfile(6, 0, true));
         //if (DatInd == -792) DatInd = 0;
-        Debug.Log("DatInd:" + DatInd);
+        UnityEngine.Debug.Log("DatInd:" + DatInd);
         /*if (ForTimer)
         {
             MKfile(7, DatInd, id.ToString(), false);
@@ -361,9 +358,63 @@ public class TimeControllerScript : MonoBehaviour
         if (channel != 6) { MKfile(6, DatInd, id.ToString(), false); }
         
         MKfile(channel, DatInd, id.ToString(), false);
+#elif PLATFORM_STANDALONE_WIN || UNITY_EDITOR_WIN
+        //Notif Id = Profile + Channel + ChannelIndex
+        int DatInd = 0;
+        var data = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(Path.Combine(Application.persistentDataPath, "Savedata", "Profile" + Profile.ToString() + ".json")));
+        DatInd = SavedNotifIDIndex(data, channel);
+        string NotifId = Profile + channel + DatInd.ToString();
+        NotifId = "Sad";
+        UnityEngine.Debug.Log(NotifId);
+        if (FireMinutes == 0)
+        {
+            UnityEngine.Debug.Log("This Instant!");
+            Process.Start(new ProcessStartInfo()//
+            {
+                FileName = "powershell",
+                Arguments = "-Command \"[Windows.UI.Notifications.ToastNotificationManager, Windows.UI.Notifications, ContentType = WindowsRuntime] > $null;" +
+                "$template = [Windows.UI.Notifications.ToastTemplateType]::ToastText02;" +
+                "$xml = [Windows.UI.Notifications.ToastNotificationManager]::GetTemplateContent($template);" +
+                "$texts = $xml.GetElementsByTagName('text');" +
+                "$texts[0].AppendChild($xml.CreateTextNode('" + Notiftext + "')) > $null;" +
+                "$texts[1].AppendChild($xml.CreateTextNode('Notification Test')) > $null;" +
+                "$toast = [Windows.UI.Notifications.ToastNotification]::new($xml);" +
+                "$toast.Id = '" + NotifId + "';" +
+                "$notifier = [Windows.UI.Notifications.ToastNotificationManager]::CreateToastNotifier('HourGlass');" +
+                "$notifier.Show($toast);\""
+                ,
+                CreateNoWindow = true,
+                UseShellExecute = false,
+
+            });
+        }
+        else
+        {
+            float FireTime = (FireMinutes + .2f);
+            Process.Start(new ProcessStartInfo()
+            {
+                FileName = "powershell",
+                Arguments = "-Command \"[Windows.UI.Notifications.ToastNotificationManager, Windows.UI.Notifications, ContentType = WindowsRuntime] > $null;" +
+                "$template = [Windows.UI.Notifications.ToastTemplateType]::ToastText02;" +
+                "$xml = [Windows.UI.Notifications.ToastNotificationManager]::GetTemplateContent($template);" +
+                "$texts = $xml.GetElementsByTagName('text');" +
+                "$texts[0].AppendChild($xml.CreateTextNode('" + Notiftext + "')) > $null;" +
+                "$texts[1].AppendChild($xml.CreateTextNode('HourGlass')) > $null;" +
+                "$date = [DateTimeOffset]::Now.AddMinutes(" + (FireTime).ToString(CultureInfo.InvariantCulture) + ");" +
+                "$xml.DocumentElement.SetAttribute('launch', 'openapp');" +
+                "$scheduledToast = [Windows.UI.Notifications.ScheduledToastNotification]::new($xml,$date);" +
+                "$scheduledToast.Id = '" + NotifId + "';" +
+                "$notifier = [Windows.UI.Notifications.ToastNotificationManager]::CreateToastNotifier('HourGlass');" +
+                "$notifier.AddToSchedule($scheduledToast);\""
+                ,
+                CreateNoWindow = true,
+                UseShellExecute = false,
+            });
+        }
 
 #else
-        Debug.Log("Though nothing will be sent");
+       
+        UnityEngine.Debug.Log("Though nothing will be sent");
 #endif
     }
     /*public int CancelNotifications(bool ReturnVals)
@@ -390,7 +441,7 @@ public class TimeControllerScript : MonoBehaviour
     public void CancelNotifications(int Prof, int channel ,bool CancelAll)
     {
         if (channel < 6 || channel > 11) { channel = 6; }
-        Debug.Log("Notifs Canceled" + channel);
+        UnityEngine.Debug.Log("Notifs Canceled" + channel);
         //if (channel == 7) { CancelTimerNotif(Prof); return; }
 #if UNITY_ANDROID
         if (CancelAll)
@@ -400,30 +451,58 @@ public class TimeControllerScript : MonoBehaviour
         }
         var data = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(Path.Combine(Application.persistentDataPath, "Savedata", "Profile" + Profile.ToString() + ".json")));
         int[] NotifIndex = SavedNotifIDs(data, channel);
-        Debug.Log(NotifIndex);
+        UnityEngine.Debug.Log(NotifIndex);
         foreach (int ID in NotifIndex)
         {
             AndroidNotificationCenter.CancelNotification(ID);
         }
         MKfile(channel, 0, "", 0, false);
-#endif
-    }
-    public void CancelTimerNotif(int Prof)
-    {
-        Debug.Log("Timer Notif Canceled");
-#if UNITY_ANDROID
-        var data = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(Path.Combine(Application.persistentDataPath, "Savedata", "Profile" + Profile.ToString() + ".json")));
-        int[] IDIndex = new int[1];
-        int NotifID = 0;
-        if (data?.Objects == null || data.Objects.Length <= 7)
+#elif PLATFORM_STANDALONE_WIN
+        //                                    "$notifier.GetScheduledToastNotifications() | Select Id, DeliveryTime;" +
+        CancelAll = true;
+        if (CancelAll)
         {
+            Process.Start(new ProcessStartInfo()
+            {
+                FileName = "powershell",
+                Arguments =
+                 "-Command \"[Windows.UI.Notifications.ToastNotificationManager, Windows.UI.Notifications, ContentType = WindowsRuntime] > $null;" +
+                    "$notifier = [Windows.UI.Notifications.ToastNotificationManager]::CreateToastNotifier('HourGlass');" +
+                    "$scheduled = $notifier.GetScheduledToastNotifications();" +
+                    "foreach ($toast in $scheduled) {" +
+                    "$notifier.RemoveFromSchedule($toast);" +
+                    "}\""
+                    ,
+                CreateNoWindow = true,
+                UseShellExecute = false,
+
+            });
             return;
         }
-        NotifID = data.Objects[7].datas[0] != null ? int.TryParse(data.Objects[7].datas[0], out int result) ? result : 0 : 0;
+        int DatInd = 0;
+        var data = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(Path.Combine(Application.persistentDataPath, "Savedata", "Profile" + Profile.ToString() + ".json")));
+        DatInd = SavedNotifIDIndex(data, channel);
+        string NotifId = Prof + channel + DatInd.ToString();
+        NotifId = "Sad";
+        UnityEngine.Debug.Log(NotifId);
+        Process.Start(new ProcessStartInfo()
+        {
+            FileName = "powershell",
+            Arguments = 
+                "-Command \"[Windows.UI.Notifications.ToastNotificationManager, Windows.UI.Notifications, ContentType = WindowsRuntime] > $null;" +
+                "$notifier = [Windows.UI.Notifications.ToastNotificationManager]::CreateToastNotifier('HourGlass');" +
+                "$scheduled = $notifier.GetScheduledToastNotifications();" +
+                "foreach ($toast in $scheduled) {" +
+                "if ($toast.Id -eq '" + NotifId +  "') {" +
+                "$notifier.RemoveFromSchedule($toast);" +
+                "}" +
+                "}\""
+                ,
+            CreateNoWindow = false,
+            UseShellExecute = false,
 
-        Debug.Log(NotifID);
-        AndroidNotificationCenter.CancelNotification(NotifID);
-        MKfile(7, 0, "", 0, false);
+        });
+#else
 #endif
     }
     [System.Serializable]
@@ -478,7 +557,7 @@ public class TimeControllerScript : MonoBehaviour
     {
         if (Objindex < 0 || Dataindex < 0)
         {
-            Debug.Log("Small Obj or Data" + Objindex + ":" + Dataindex);
+            UnityEngine.Debug.Log("Small Obj or Data" + Objindex + ":" + Dataindex);
             return;
         }
         if (!Directory.Exists(Path.Combine(Application.persistentDataPath, "Savedata"))) { Directory.CreateDirectory(Path.Combine(Application.persistentDataPath, "Savedata")); }
@@ -576,10 +655,10 @@ public class TimeControllerScript : MonoBehaviour
         {
             if (DebugOutput && Default)
             {
-                Debug.Log(e);
-                Debug.Log(Objindex);
-                Debug.Log(Dataindex);
-                // Debug.Log(JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(Application.persistentDataPath + FilePath)).Objects[Objindex].datas.Length);
+                UnityEngine.Debug.Log(e);
+                UnityEngine.Debug.Log(Objindex);
+                UnityEngine.Debug.Log(Dataindex);
+                // UnityEngine.Debug.Log(JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(Application.persistentDataPath + FilePath)).Objects[Objindex].datas.Length);
             }
         }
         return read;
@@ -599,7 +678,7 @@ public class TimeControllerScript : MonoBehaviour
     {
         if (DebugOutput)
         {
-            Debug.Log(UsedTime);
+            UnityEngine.Debug.Log(UsedTime);
         }
         if (!RunTimer) { timerresettime = 0; }
         if (pendingreset)
@@ -805,7 +884,7 @@ public class TimeControllerScript : MonoBehaviour
             logs.GetComponent<AddedTimesScript>().MinutesToAdd = tickD;
             logs.GetComponent<AddedTimesScript>().BeingMade = true;
             WasRunTimer = false;
-            Debug.Log("shouldCancel");
+            UnityEngine.Debug.Log("shouldCancel");
             CancelNotifications(7);
             CancelMostNotifications();
         }
@@ -1017,7 +1096,7 @@ public class TimeControllerScript : MonoBehaviour
     }
     public void DelProf(int Prof)
     {
-        Debug.Log("Was Deleted?" + Prof);
+        UnityEngine.Debug.Log("Was Deleted?" + Prof);
         DeleteProf(Prof);
         Profile = 0;
         Load(Profile);
@@ -1025,7 +1104,7 @@ public class TimeControllerScript : MonoBehaviour
 
     public void DeleteProf(int Prof)
     {
-        Debug.Log("Deleted?:" + Prof);
+        UnityEngine.Debug.Log("Deleted?:" + Prof);
         CancelNotifications(Prof,6);
         CancelNotifications(Prof,7);
         int Profs;
@@ -1077,7 +1156,7 @@ public class TimeControllerScript : MonoBehaviour
                 File.Copy(TotalNextFilePath, TotalFilePath, true);
                 File.Delete(TotalTopFilePath);
             }
-            catch (Exception e) { Debug.Log(e); }
+            catch (Exception e) { UnityEngine.Debug.Log(e); }
 
         }
     }
@@ -1167,7 +1246,7 @@ public class TimeControllerScript : MonoBehaviour
         if (pendingtimerreset)
         {
             CancelMostNotifications();
-            Debug.Log("CANCelTIMEr");
+            UnityEngine.Debug.Log("CANCelTIMEr");
             TicksWhenTimerStarted = CurrentTick;
             MKfile(1, 0, (-1).ToString(), -1, false);
             RunTimer = false;
@@ -1237,7 +1316,7 @@ public class TimeControllerScript : MonoBehaviour
 
 
         NumString = TheFloat.ToString();
-        if (((TheFloat * 10) % 1) < 0.03f && (TheFloat != (long)TheFloat)) { NumString += "0"; Debug.Log("Ah"); }
+        if (((TheFloat * 10) % 1) < 0.03f && (TheFloat != (long)TheFloat)) { NumString += "0"; UnityEngine.Debug.Log("Ah"); }
         if (((TheFloat * 10) % 1) < 0.03f && (TheFloat == (long)TheFloat)) { NumString += ".00"; }
         if (((TheFloat * 10) % 1) > 0.98f) { NumString += "0"; }
         if (TheFloat < 10 && TheFloat >= 0) { NumString = "0" + NumString; }
@@ -1283,7 +1362,7 @@ public class TimeControllerScript : MonoBehaviour
     public void CancelTimer()
     {
         CancelMostNotifications();
-        Debug.Log("CANCelTIMEr");
+        UnityEngine.Debug.Log("CANCelTIMEr");
         TicksWhenTimerStarted = CurrentTick;
         RunTimer = false;
         WasRunTimer = false;
