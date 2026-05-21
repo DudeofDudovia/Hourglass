@@ -31,11 +31,14 @@ public class LogInfoScript : MonoBehaviour
         string pattern = "h";
 #if UNITY_ANDROID && !UNITY_EDITOR
         //var activity = UnityPlayer.GetStatic<AndroidJavaObject>("com.unity3d.player.UnityPlayer")
-        AndroidJavaClass unityPlayerAndr = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
-        AndroidJavaObject activityAndr = unityPlayerAndr.GetStatic<AndroidJavaObject>("currentActivity");
-        AndroidJavaObject contextAndr = activityAndr.Call<AndroidJavaObject>("getApplicationContext");
-        var dateFormat = contextAndr.GetStatic<AndroidJavaObject>("android.text.format.DateFormat");
-        dateFormat.
+        using (var unityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer"))
+        using (var activity = unityPlayer.GetStatic<AndroidJavaObject>("currentActivity"))
+        using (var context = activity.Call<AndroidJavaObject>("getApplicationContext"))
+        using (var dateFormat = new AndroidJavaClass("android.text.format.DateFormat"))
+        {
+            if (dateFormat.CallStatic<bool>("is24HourFormat", context)) { pattern = "H"; Debug.Log("yay!"); }
+            if (dateFormat.CallStatic<bool>("is24HourFormat", activity)) { pattern = "H";Debug.Log("yay2!"); }
+        }
 #endif
 #if PLATFORM_STANDALONE_WIN
         StringBuilder sb = new StringBuilder(80);
@@ -48,7 +51,7 @@ public class LogInfoScript : MonoBehaviour
             );
         pattern = sb.ToString();
 #endif
-        TMP.text = System.DateTime.FromBinary(DisplayTicks).ToString("t",CultureInfo.CurrentCulture);
+            TMP.text = DateTime.FromBinary(DisplayTicks).ToString("t", CultureInfo.CurrentCulture);
         if (pattern.Contains("H"))
         {
             TMP.text = System.DateTime.FromBinary(DisplayTicks).ToString("MM/dd/yyyy HH:mm:ss", CultureInfo.CurrentCulture);

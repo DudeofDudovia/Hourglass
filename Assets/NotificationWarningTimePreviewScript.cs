@@ -16,34 +16,24 @@ public class NotificationWarningTimePreviewScript : MonoBehaviour
     {
         try
         {
-            Debug.Log("1");
-            //if (ParseText(TMP.text) > NWTPS.maxValue) { NWTPS.maxValue = ParseText(TMP.text); Debug.Log("ew13"); }
-            //else { NWTPS.maxValue = TCS.DefaultTime; Debug.Log("ew12"); }
-            Debug.Log("2");
-            NWTPS.value = ParseText(TMP.text);
-            //NWTPS.value = float.Parse(TMP.text);
+            Debug.Log(ParseText(TMP.text));
+            Debug.Log(NWTPS.maxValue);
+            if (ParseText(TMP.text) > NWTPS.maxValue) { NWTPS.maxValue = ParseText(TMP.text); Debug.Log("ew13"); }
+            //else if (NWTPS.maxValue !>= ParseText(TMP.text)) { Debug.Log(NWTPS.maxValue);  NWTPS.maxValue = TCS.DefaultTime; Debug.Log("ew12"); Debug.Log(TCS.DefaultTime); }
+            NWTPS.value = float.Parse(TMP.text);
         }
-        catch (Exception e) { Debug.Log(e); }//
+        catch (Exception e) { Debug.Log(e); }
     }
     public void UpdateSlider()
     {
         try
         {
-            if (NWTPS.maxValue < TCS.DefaultTime) { NWTPS.maxValue = TCS.DefaultTime; Debug.Log("a1"); }
-            TMP.text = (NWTPS.value.ToString());
-            if (NWTPS.value > NWTPS.maxValue) { NWTPS.maxValue = NWTPS.value; Debug.Log("a2"); }
-            else
-            {
-                Debug.Log(NWTPS.value);
-                Debug.Log(NWTPS.maxValue);
-                NWTPS.maxValue = TCS.DefaultTime;
-                Debug.Log("a3");
-            }
-            TMP.text = ((int)NWTPS.value).ToString();
+            TMP.text = (Mathf.Round(NWTPS.value).ToString());
+
             if ((int)NWTPS.value == 0) { TMP.text = "0"; }
             if (TMP.text == "") { TMP.text = "0"; }
         }
-        catch (Exception e) { Debug.Log(e); }//
+        catch (Exception e) { Debug.Log(e); }
     }
     public void Start()
     {
@@ -91,7 +81,6 @@ public class NotificationWarningTimePreviewScript : MonoBehaviour
             }
             else if (match.Length > 0)
             {
-                Debug.Log("2");
                 float timeadded = 0;
                 timeadded += HRegEx * 60f;
                 timeadded += MRegEx;
@@ -100,10 +89,8 @@ public class NotificationWarningTimePreviewScript : MonoBehaviour
             }
             else if (!Multiple)
             {
-                Debug.Log("3");
                 float timeadded = 0;
                 timeadded += float.Parse(TMP.text, CultureInfo.InvariantCulture.NumberFormat);
-                Debug.Log(timeadded);
                 return timeadded;
             }
             

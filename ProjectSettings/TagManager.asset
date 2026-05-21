@@ -10,6 +10,7 @@ TagManager:
   - AddedTimes
   - BeingRemoved
   - LoggingConsole
+  - NotificationSlider
   layers:
   - Default
   - TransparentFX

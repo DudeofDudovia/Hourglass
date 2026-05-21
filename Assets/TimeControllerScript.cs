@@ -184,10 +184,10 @@ public class TimeControllerScript : MonoBehaviour
     private void Start()
     {
 
-        UnityEngine.Debug.Log(Application.platform);
-
+#if UNITY_ANDROID
         StartCoroutine(RequestPerms());
         NotificationSetup();
+#endif
     }
     public void NotificationsEnabledfFunc(bool tog)
     {
@@ -261,18 +261,6 @@ public class TimeControllerScript : MonoBehaviour
             AndroidNotificationCenter.RegisterNotificationChannel(channel);
         IsOnAndroid = true;
 #endif
-        if (Application.platform == RuntimePlatform.IPhonePlayer)
-        {
-            UnityEngine.Debug.Log(":(");
-        }
-        if (Application.platform == RuntimePlatform.WindowsPlayer)
-        {
-            UnityEngine.Debug.Log("MS Windows");
-        }
-        if (Application.platform == RuntimePlatform.WindowsEditor)
-        {
-            UnityEngine.Debug.Log("MS Windows Editor");
-        }
     }
     int[] ChannelIDs = new int[0];
     int SavedNotifIDIndex(SaveObjectList data, int channel)

@@ -4,7 +4,7 @@ using UnityEngine;
 public class VersionText : MonoBehaviour
 {
     public TextMeshProUGUI TMP;
-    void Update()
+    void Awake()
     {
         TMP.text = Application.version;
     }

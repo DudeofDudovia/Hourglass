@@ -1359,6 +1359,7 @@ MonoBehaviour:
   DefaultBool: 0
   flot: 0
   DefaultFloat: -1
+  DontEnforceMax: 0
   integr: 0
   DefaultInt: -1
   LoadOnProfileChange: 1
@@ -3254,6 +3255,7 @@ MonoBehaviour:
   DefaultBool: 0
   flot: 1
   DefaultFloat: 0.5
+  DontEnforceMax: 0
   integr: 0
   DefaultInt: -1
   LoadOnProfileChange: 1
@@ -5323,7 +5325,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 63088027}
-  m_Father: {fileID: 1297262852}
+  m_Father: {fileID: 1984669633}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -6010,6 +6012,7 @@ MonoBehaviour:
   DefaultBool: 0
   flot: 1
   DefaultFloat: 1
+  DontEnforceMax: 0
   integr: 0
   DefaultInt: -1
   LoadOnProfileChange: 1
@@ -7189,13 +7192,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 347018490}
+  - component: {fileID: 347018491}
   m_Layer: 5
   m_Name: Low Time Warning Time
-  m_TagString: Untagged
+  m_TagString: NotificationSlider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &347018490
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7211,13 +7215,35 @@ RectTransform:
   - {fileID: 1920042891}
   - {fileID: 821997140}
   - {fileID: 299513235}
-  m_Father: {fileID: 1297262852}
+  m_Father: {fileID: 1984669633}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 147.5, y: -110}
   m_SizeDelta: {x: 175, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &347018491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 347018489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da08d27b1a794094ca7fb1809fa85265, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NotifOptionGrayOutScript
+  togg: {fileID: 473317911}
+  forslider: 1
+  Mastertogg: {fileID: 591472252}
+  Mastertoggold: 0
+  toggold: 0
+  SuperDisabledColor: {r: 0.25, g: 0.25, b: 0.25, a: 1}
+  DisabledColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  EnabledColor: {r: 1, g: 1, b: 1, a: 1}
+  tintstatus: 0
+  wait: 0
 --- !u!1 &355147684
 GameObject:
   m_ObjectHideFlags: 0
@@ -8008,6 +8034,7 @@ MonoBehaviour:
   DefaultBool: 0
   flot: 1
   DefaultFloat: 0
+  DontEnforceMax: 0
   integr: 0
   DefaultInt: -1
   LoadOnProfileChange: 1
@@ -9229,6 +9256,7 @@ MonoBehaviour:
   DefaultBool: 1
   flot: 0
   DefaultFloat: -1
+  DontEnforceMax: 0
   integr: 0
   DefaultInt: -1
   LoadOnProfileChange: 1
@@ -10802,6 +10830,7 @@ MonoBehaviour:
   DefaultBool: 0
   flot: 1
   DefaultFloat: 0
+  DontEnforceMax: 0
   integr: 0
   DefaultInt: 0
   LoadOnProfileChange: 1
@@ -11038,6 +11067,7 @@ MonoBehaviour:
   DefaultBool: 1
   flot: 0
   DefaultFloat: -1
+  DontEnforceMax: 0
   integr: 0
   DefaultInt: -1
   LoadOnProfileChange: 1
@@ -12748,6 +12778,7 @@ MonoBehaviour:
   DefaultBool: 1
   flot: 0
   DefaultFloat: -1
+  DontEnforceMax: 0
   integr: 0
   DefaultInt: -1
   LoadOnProfileChange: 1
@@ -13615,6 +13646,7 @@ MonoBehaviour:
   DefaultBool: 0
   flot: 1
   DefaultFloat: 1
+  DontEnforceMax: 0
   integr: 0
   DefaultInt: -1
   LoadOnProfileChange: 1
@@ -14501,8 +14533,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1247714068}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -16576,7 +16608,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1995328918}
-  m_Father: {fileID: 1297262852}
+  m_Father: {fileID: 1984669633}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -17287,7 +17319,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Warm after
+  m_text: Warn after
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9211fcdd38f50ef4c8fd7ddcb1c03d12, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 9211fcdd38f50ef4c8fd7ddcb1c03d12, type: 2}
@@ -18142,6 +18174,7 @@ MonoBehaviour:
   DefaultBool: 0
   flot: 0
   DefaultFloat: -1
+  DontEnforceMax: 0
   integr: 1
   DefaultInt: 30
   LoadOnProfileChange: 0
@@ -19150,6 +19183,7 @@ MonoBehaviour:
   DefaultBool: 0
   flot: 0
   DefaultFloat: -1
+  DontEnforceMax: 0
   integr: 0
   DefaultInt: -1
   LoadOnProfileChange: 1
@@ -19511,6 +19545,7 @@ MonoBehaviour:
   DefaultBool: 0
   flot: 1
   DefaultFloat: 9.3
+  DontEnforceMax: 0
   integr: 0
   DefaultInt: -1
   LoadOnProfileChange: 0
@@ -20036,6 +20071,7 @@ MonoBehaviour:
   DefaultBool: 0
   flot: 1
   DefaultFloat: 0
+  DontEnforceMax: 0
   integr: 0
   DefaultInt: -1
   LoadOnProfileChange: 1
@@ -22477,7 +22513,7 @@ RectTransform:
   m_Father: {fileID: 151011497}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -22626,11 +22662,7 @@ RectTransform:
   m_Children:
   - {fileID: 834948009}
   - {fileID: 500626951}
-  - {fileID: 1622112008}
-  - {fileID: 347018490}
-  - {fileID: 931912801}
-  - {fileID: 1299329283}
-  - {fileID: 275738084}
+  - {fileID: 1984669633}
   m_Father: {fileID: 1640083702}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -22647,9 +22679,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1299329283}
+  - component: {fileID: 1299329284}
   m_Layer: 5
   m_Name: Custom Warning Time
-  m_TagString: Untagged
+  m_TagString: NotificationSlider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22669,13 +22702,35 @@ RectTransform:
   - {fileID: 1925850664}
   - {fileID: 2039426498}
   - {fileID: 143670634}
-  m_Father: {fileID: 1297262852}
+  m_Father: {fileID: 1984669633}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 147.5, y: -190}
   m_SizeDelta: {x: 175, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1299329284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1299329282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da08d27b1a794094ca7fb1809fa85265, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NotifOptionGrayOutScript
+  togg: {fileID: 1707428960}
+  forslider: 1
+  Mastertogg: {fileID: 591472252}
+  Mastertoggold: 1
+  toggold: 0
+  SuperDisabledColor: {r: 0.25, g: 0.25, b: 0.25, a: 1}
+  DisabledColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  EnabledColor: {r: 1, g: 1, b: 1, a: 1}
+  tintstatus: 0
+  wait: 0
 --- !u!1 &1309417407
 GameObject:
   m_ObjectHideFlags: 0
@@ -24721,6 +24776,7 @@ MonoBehaviour:
   DefaultBool: 0
   flot: 1
   DefaultFloat: 0.33333334
+  DontEnforceMax: 0
   integr: 0
   DefaultInt: -1
   LoadOnProfileChange: 1
@@ -25679,6 +25735,7 @@ MonoBehaviour:
   DefaultBool: 0
   flot: 0
   DefaultFloat: -1
+  DontEnforceMax: 0
   integr: 1
   DefaultInt: 20
   LoadOnProfileChange: 0
@@ -25943,7 +26000,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 108.3, y: -23.3, z: -25, w: 10}
+  m_margin: {x: 72, y: -14, z: -25, w: 10}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -26577,6 +26634,7 @@ MonoBehaviour:
   DefaultBool: 0
   flot: 1
   DefaultFloat: 1
+  DontEnforceMax: 0
   integr: 0
   DefaultInt: -1
   LoadOnProfileChange: 1
@@ -26939,6 +26997,7 @@ MonoBehaviour:
   DefaultBool: 0
   flot: 0
   DefaultFloat: -1
+  DontEnforceMax: 0
   integr: 1
   DefaultInt: 30
   LoadOnProfileChange: 0
@@ -27977,7 +28036,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1842057352}
-  m_Father: {fileID: 1297262852}
+  m_Father: {fileID: 1984669633}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -28917,6 +28976,7 @@ MonoBehaviour:
   DefaultBool: 1
   flot: 0
   DefaultFloat: -1
+  DontEnforceMax: 0
   integr: 0
   DefaultInt: -1
   LoadOnProfileChange: 1
@@ -29287,6 +29347,7 @@ MonoBehaviour:
   DefaultBool: 1
   flot: 0
   DefaultFloat: -1
+  DontEnforceMax: 0
   integr: 0
   DefaultInt: -1
   LoadOnProfileChange: 1
@@ -31820,6 +31881,7 @@ MonoBehaviour:
   DefaultBool: 0
   flot: 0
   DefaultFloat: -1
+  DontEnforceMax: 0
   integr: 0
   DefaultInt: -1
   LoadOnProfileChange: 0
@@ -32558,9 +32620,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 824950506}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1800
+  m_MaxValue: 180
   m_WholeNumbers: 0
-  m_Value: 900
+  m_Value: 30
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -32635,6 +32697,7 @@ MonoBehaviour:
   DefaultBool: 0
   flot: 1
   DefaultFloat: 30
+  DontEnforceMax: 0
   integr: 0
   DefaultInt: 20
   LoadOnProfileChange: 0
@@ -32830,6 +32893,7 @@ MonoBehaviour:
   DefaultBool: 0
   flot: 0
   DefaultFloat: -1
+  DontEnforceMax: 0
   integr: 0
   DefaultInt: -1
   LoadOnProfileChange: 0
@@ -32907,9 +32971,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1424988064}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1800
+  m_MaxValue: 180
   m_WholeNumbers: 0
-  m_Value: 900
+  m_Value: 30
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -32958,7 +33022,7 @@ MonoBehaviour:
   TCS: {fileID: 0}
   OldProf: 0
   ObjectLayer: 0
-  DataLayer: 12
+  DataLayer: 13
   VarToToggle:
     m_PersistentCalls:
       m_Calls: []
@@ -32984,6 +33048,7 @@ MonoBehaviour:
   DefaultBool: 0
   flot: 1
   DefaultFloat: 30
+  DontEnforceMax: 0
   integr: 0
   DefaultInt: 20
   LoadOnProfileChange: 0
@@ -33290,6 +33355,7 @@ MonoBehaviour:
   DefaultBool: 0
   flot: 0
   DefaultFloat: -1
+  DontEnforceMax: 0
   integr: 0
   DefaultInt: -1
   LoadOnProfileChange: 1
@@ -33670,6 +33736,69 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1978477360}
   m_CullTransparentMesh: 1
+--- !u!1 &1984669632
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1984669633}
+  - component: {fileID: 1984669634}
+  m_Layer: 5
+  m_Name: Notif Disabler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1984669633
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1984669632}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1622112008}
+  - {fileID: 347018490}
+  - {fileID: 931912801}
+  - {fileID: 1299329283}
+  - {fileID: 275738084}
+  m_Father: {fileID: 1297262852}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1984669634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1984669632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da08d27b1a794094ca7fb1809fa85265, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NotifOptionGrayOutScript
+  togg: {fileID: 591472252}
+  forslider: 0
+  Mastertogg: {fileID: 0}
+  Mastertoggold: 0
+  toggold: 0
+  SuperDisabledColor: {r: 0.6627451, g: 0.6627451, b: 0.6627451, a: 1}
+  DisabledColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  EnabledColor: {r: 1, g: 1, b: 1, a: 1}
+  tintstatus: 0
+  wait: 0
 --- !u!1 &1989372970
 GameObject:
   m_ObjectHideFlags: 0
@@ -34412,6 +34541,7 @@ MonoBehaviour:
   DefaultBool: 0
   flot: 1
   DefaultFloat: 1
+  DontEnforceMax: 0
   integr: 0
   DefaultInt: -1
   LoadOnProfileChange: 1
@@ -34570,6 +34700,7 @@ MonoBehaviour:
   DefaultBool: 0
   flot: 0
   DefaultFloat: -1
+  DontEnforceMax: 0
   integr: 0
   DefaultInt: -1
   LoadOnProfileChange: 1
@@ -36272,6 +36403,7 @@ MonoBehaviour:
   DefaultBool: 0
   flot: 0
   DefaultFloat: -1
+  DontEnforceMax: 0
   integr: 0
   DefaultInt: -1
   LoadOnProfileChange: 1

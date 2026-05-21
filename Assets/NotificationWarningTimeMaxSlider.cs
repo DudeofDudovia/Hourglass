@@ -7,7 +7,6 @@ public class NotificationWarningTimeMaxSlider : MonoBehaviour
     public TimeControllerScript TCS;
     void Update()
     {
-        Slide.maxValue = TCS.DefaultTime;
-        SVS.SliderMaxValue = TCS.DefaultTime;
+        if (SVS.Slide.value < TCS.DefaultTime) { SVS.SliderMaxValue = TCS.DefaultTime;}
     }
 }
