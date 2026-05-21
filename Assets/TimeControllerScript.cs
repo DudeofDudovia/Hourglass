@@ -167,14 +167,10 @@ public class TimeControllerScript : MonoBehaviour
             Application.SetStackTraceLogType(LogType.Log, StackTraceLogType.Full);
             Application.SetStackTraceLogType(LogType.Warning, StackTraceLogType.Full);
             Application.SetStackTraceLogType(LogType.Error, StackTraceLogType.Full);
-        }
 #if !(PLATFORM_STANDALONE_WIN || UNITY_EDITOR_WIN)
-        string AppVer = Application.version;
-        if (AppVer.Contains("x") || AppVer.Contains("X") || AppVer.Contains("rc") || Debug.isDebugBuild)
-        {
             Derboss.Init();
-        }
 #endif
+        }
         Profile = 0;
         try { Profile = int.Parse(RDfile(0, 0, true)); }
         catch { Profile = 0; }
