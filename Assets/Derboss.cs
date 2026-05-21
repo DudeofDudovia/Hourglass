@@ -57,12 +57,12 @@ public static class Derboss
             if (cachedConsole != null)
             {
                 cachedConsole.ConsoleLogs += "\n[" + (cachedTimeIndex + 1) + "] " + logString + "\n" + filteredStackTrace;
-                string Dir = Path.Combine(GetDLPath(), "HourglassLogs");
+                /*string Dir = Path.Combine(GetDLPath(), "HourglassLogs");
                 if (!Directory.Exists(Dir))
                 {
                     Directory.CreateDirectory(Dir);
                 }
-                File.WriteAllText(Path.Combine(Dir,"DerbossLog.txt"), cachedConsole.ConsoleLogs);
+                File.WriteAllText(Path.Combine(Dir,"DerbossLog.txt"), cachedConsole.ConsoleLogs);*/
             }
         }
         else
@@ -73,12 +73,12 @@ public static class Derboss
             if (cachedConsole != null)
             {
                 cachedConsole.ConsoleLogs += "\n[" + System.DateTime.Now.ToString() + "] " + logString + "\n" + filteredStackTrace;
-                string Dir = Path.Combine(GetDLPath(), "HourglassLogs");
+                /*string Dir = Path.Combine(GetDLPath(), "HourglassLogs");
                 if (!Directory.Exists(Dir))
                 {
                     Directory.CreateDirectory(Dir);
                 }
-                File.WriteAllText(Path.Combine(Dir,"DerbossLog.txt"), cachedConsole.ConsoleLogs);
+                File.WriteAllText(Path.Combine(Dir,"DerbossLog.txt"), cachedConsole.ConsoleLogs);*/
 
             }
      
@@ -104,12 +104,14 @@ public static class Derboss
     }
     public static void Init()
     {
+#if !PLATFORM_STANDALONE_WIN
         if ( initialized)
         {
             return;
         }
         Application.logMessageReceived += Handlelog;
         initialized = true;
+#endif
     }
     /*
     public static void Log(string message)

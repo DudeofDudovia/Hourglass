@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SocialPlatforms;
@@ -9,6 +10,7 @@ public class AppQuitter : MonoBehaviour
     public Image IMG;
     public bool pendingquit = false;
     public float quitresettime = 0.4167f;
+    public LoggingConsoleControllerScript LCCS;
     private void FixedUpdate()
     {
         if (pendingquit)
@@ -34,6 +36,7 @@ public class AppQuitter : MonoBehaviour
     {
         if (pendingquit)
         {
+            StartCoroutine(ExitApp());
             Application.Quit();
         }
         else
@@ -41,5 +44,11 @@ public class AppQuitter : MonoBehaviour
             pendingquit = true;
             quitresettime = 100;
         }
+    }
+    IEnumerator ExitApp()
+    {
+        LCCS.WriteConsole();
+        yield return new WaitForSeconds(0.5f);
+        Application.Quit();
     }
 }

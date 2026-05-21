@@ -750,6 +750,7 @@ MonoBehaviour:
   IMG: {fileID: 24582994}
   pendingquit: 0
   quitresettime: 0.4167
+  LCCS: {fileID: 0}
 --- !u!1 &26396110
 GameObject:
   m_ObjectHideFlags: 0
@@ -7018,7 +7019,25 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "Made by Dude of Dudovia\r\n\tMade using Unity\r\n\r\nMore Readable Changelogs
-    Can Be Found On The GitHub Page\r\nChangelog 0.8.0\r\n\tSkipped 0.7.1 lol.\r\nChangelog
+    Can Be Found On The GitHub Page\r\nChangelog 0.8.0 - The Notification Update\r\n\tAdded
+    margins to the changelog font size so it displays propperly at small fonts.\r\n\tAdded
+    A Debug Console:\r\n\t\tThis is used for debugging and the toggle for it is at
+    the bottom of the options menu, though in normal use it should be empty (unless
+    something goes wrong or I forgot to remove a logger).\r\n\tSkipped 0.7.1 lol.\r\n\t-0.8.0-rc2\r\n\t\tRemoved
+    the console on windows\r\n\t\t\tIt caused the app not to function and wasn't
+    neccesary\r\n\t\t\t\tIt is ironic that PC doesn't get the console however.\r\n\t\tFixed
+    Bugs:\r\n\t\t\tWindows siezes up when the timer starts.\r\n\t\t\tTimer would
+    (in theory send a notification even if they were disabled).\r\n\t-0.8.0-rc1\r\n\t\tAdded
+    Warnings\r\n\t\t\tThey work on both Android and Windows.\r\n\t\t\tThey work with
+    the timer to remind how much longer it has and when it runs out\r\n\t\t\t\tThere
+    are warning options for low time, warning time, and half time:\r\n\t\t\t\t\tLow
+    time will do that amount of minutes from the end.\r\n\t\t\t\t\tWarning time will
+    do that amount of minutes from the beginning.\r\n\t\t\t\t\tHalf time will warn
+    when the timer reaches half of the remaining time.\r\n\t\tChanged Margins(Moved)
+    for Version Indicator\r\n\t\t\tOld coords were 72 Left, -14 Top, -25, 10\r\n\t\t\t\t0.8.0-rc1
+    doesn't fit on the screen with these coords.\r\n\tBugs:\r\n\t\tWindows siezes
+    up when the timer starts.\r\n\t\tTimer would (in theory send a notification even
+    if they were disabled)\r\n\tFixed Bugs:\r\n\t\tDeleteProf doesn't work.\r\nChangelog
     0.7.1\r\n\tMade improvement to the file system:\r\n\t\tMade the new file system
     create directories more properly.\r\n\t\tIt should now be more effecient and
     less prone to bugs (though it caused a TONNE in the process).\r\n\t\t\tThis should
@@ -9514,7 +9533,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -300, y: 1500}
+  m_SizeDelta: {x: -300, y: 1250}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &500626950
 GameObject:
@@ -14215,6 +14234,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 801710362}
+  - component: {fileID: 801710363}
+  - component: {fileID: 801710364}
   m_Layer: 5
   m_Name: LoggingConsole
   m_TagString: Untagged
@@ -14242,6 +14263,35 @@ RectTransform:
   m_AnchoredPosition: {x: 84.375, y: -940}
   m_SizeDelta: {x: 160, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &801710363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 801710361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea45307ccae0f4c4780e54816d35c20a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  DisableWindows: 1
+--- !u!114 &801710364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 801710361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8b94d21dec5fc34fb1b64442ef1280e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlatformImageXOutScript
+  DisableWindows: 1
+  ImageToReplace: {fileID: 26396112}
+  XImage: {fileID: -2020533675795130886, guid: a75920d7c8fa2864a84736b26b5ff9dc, type: 3}
+  SVS: {fileID: 0}
 --- !u!1 &803817543
 GameObject:
   m_ObjectHideFlags: 0
@@ -20806,9 +20856,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   TMP: {fileID: 343461989}
   ConsoleLogs: 
+  LastConsoleLogs: 
   Changelog: {fileID: 1163517360}
   ShowConsole: 0
   LogMessages: 0
+  LastSavedFrame: 0
 --- !u!224 &1163517359
 RectTransform:
   m_ObjectHideFlags: 0
@@ -26000,7 +26052,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 72, y: -14, z: -25, w: 10}
+  m_margin: {x: 72, y: -14, z: -13.1, w: 10}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -28237,7 +28289,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 40.625, y: 450}
+  m_AnchoredPosition: {x: 40.625, y: 376}
   m_SizeDelta: {x: 343.75, y: 492.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1644617788

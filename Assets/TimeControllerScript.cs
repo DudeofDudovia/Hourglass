@@ -168,7 +168,13 @@ public class TimeControllerScript : MonoBehaviour
             Application.SetStackTraceLogType(LogType.Warning, StackTraceLogType.Full);
             Application.SetStackTraceLogType(LogType.Error, StackTraceLogType.Full);
         }
-        Derboss.Init();
+#if !(PLATFORM_STANDALONE_WIN || UNITY_EDITOR_WIN)
+        string AppVer = Application.version;
+        if (AppVer.Contains("x") || AppVer.Contains("X") || AppVer.Contains("rc") || Debug.isDebugBuild)
+        {
+            Derboss.Init();
+        }
+#endif
         Profile = 0;
         try { Profile = int.Parse(RDfile(0, 0, true)); }
         catch { Profile = 0; }
@@ -216,17 +222,7 @@ public class TimeControllerScript : MonoBehaviour
     IEnumerator RequestPerms()
     {
 #if UNITY_ANDROID || UNITY_IOS
-        UnityEngine.Debug.Log("Is Android");
         string perm = "android.permission.POST_NOTIFICATIONS";
-        if (Permission.ShouldShowRequestPermissionRationale(perm))
-        {
-            UnityEngine.Debug.Log("Should Show Rationale");
-        }
-        if (!Permission.HasUserAuthorizedPermission(perm))
-        {
-            UnityEngine.Debug.Log("Not Authorized On Android");
-        }
-
         if (!Permission.HasUserAuthorizedPermission(perm))
         {
             Permission.RequestUserPermission(perm);
@@ -239,7 +235,6 @@ public class TimeControllerScript : MonoBehaviour
         }
         NotificationPerms = Permission.HasUserAuthorizedPermission(perm);
 #else
-        UnityEngine.Debug.Log("Not Android or iOS");
         yield break;
 #endif
     }
@@ -288,7 +283,6 @@ public class TimeControllerScript : MonoBehaviour
         for (int i = 0; i < length; i++)
         {
             IDIndexS[i] = data.Objects[channel].datas[i] != null ? int.TryParse(data.Objects[channel].datas[i], out int result) ? result : 0 : 0;
-            UnityEngine.Debug.Log("IDIndexS[" + i + "]:" + IDIndexS[i]);
         }
         return IDIndexS;
     }
@@ -314,7 +308,6 @@ public class TimeControllerScript : MonoBehaviour
     {
         if (Profiles > 1) { Notiftext += "\n(Profile:" + (ProfileName + 1).ToString() + ")"; }
         if (channel < 6 || channel > 11) { channel = 8; }
-        UnityEngine.Debug.Log("Notification Deployed for:" + DateTime.Now.AddMinutes(FireMinutes) + "Channel:" + channel);
 #if UNITY_ANDROID && !UNITY_EDITOR
         AndroidJavaClass unityPlayerAndr = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
         AndroidJavaObject activityAndr = unityPlayerAndr.GetStatic<AndroidJavaObject>("currentActivity");
@@ -331,13 +324,11 @@ public class TimeControllerScript : MonoBehaviour
         
         notification.Style = NotificationStyle.BigPictureStyle;
         int id = AndroidNotificationCenter.SendNotification(notification, "Hourglass_Channel" + NotificationChannel);
-        UnityEngine.Debug.Log("Notif ID:" + id);
         int DatInd = 0;
         var data = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(Path.Combine(Application.persistentDataPath, "Savedata", "Profile" + Profile.ToString() + ".json")));
         DatInd = SavedNotifIDIndex(data,channel);
         //DatInd = int.Parse(RDfile(6, 0, true));
         //if (DatInd == -792) DatInd = 0;
-        UnityEngine.Debug.Log("DatInd:" + DatInd);
         /*if (ForTimer)
         {
             MKfile(7, DatInd, id.ToString(), false);
@@ -352,11 +343,9 @@ public class TimeControllerScript : MonoBehaviour
         var data = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(Path.Combine(Application.persistentDataPath, "Savedata", "Profile" + Profile.ToString() + ".json")));
         DatInd = SavedNotifIDIndex(data, channel);
         string NotifId = Profile + channel + DatInd.ToString();
-        NotifId = "Sad";
         UnityEngine.Debug.Log(NotifId);
         if (FireMinutes == 0)
         {
-            UnityEngine.Debug.Log("This Instant!");
             Process.Start(new ProcessStartInfo()//
             {
                 FileName = "powershell",
@@ -401,8 +390,7 @@ public class TimeControllerScript : MonoBehaviour
         }
 
 #else
-       
-        UnityEngine.Debug.Log("Though nothing will be sent");
+
 #endif
     }
     /*public int CancelNotifications(bool ReturnVals)
@@ -429,7 +417,7 @@ public class TimeControllerScript : MonoBehaviour
     public void CancelNotifications(int Prof, int channel ,bool CancelAll)
     {
         if (channel < 6 || channel > 11) { channel = 6; }
-        UnityEngine.Debug.Log("Notifs Canceled" + channel);
+        //UnityEngine.Debug.Log("Notifs Canceled" + channel);
         //if (channel == 7) { CancelTimerNotif(Prof); return; }
 #if UNITY_ANDROID
         if (CancelAll)
@@ -439,7 +427,6 @@ public class TimeControllerScript : MonoBehaviour
         }
         var data = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(Path.Combine(Application.persistentDataPath, "Savedata", "Profile" + Profile.ToString() + ".json")));
         int[] NotifIndex = SavedNotifIDs(data, channel);
-        UnityEngine.Debug.Log(NotifIndex);
         foreach (int ID in NotifIndex)
         {
             AndroidNotificationCenter.CancelNotification(ID);
@@ -714,31 +701,6 @@ public class TimeControllerScript : MonoBehaviour
             {
                 if (NotificationsEnabled)
                 {
-                    /*
-                    if (WorkingRemTime > 0.2f)
-                    {
-                        Notify(WorkingRemTime - 0.2f, "Time has run out", "The timer has exceeded the total time.",8, false);
-                        if (NotificationWarningsEnabled && Working)
-                        {
-                            
-                        }
-                        if (WarningTime - 0.2f > WorkingRemTime)
-                        {
-                            Notify(WorkingRemTime - ((WarningTime - 0.2f) / 60 ), Mathf.Round(WarningTime / 60).ToString() + " minutes left!", "The timer has " + ((WarningTime - 0.2f) / 60).ToString() + " minutes remaining.",9,false);
-                        }
-                        else if (NotificationWarningsEnabled && WorkingRemTime > (WarningTime / 60))
-                        {
-                            Notify(WorkingRemTime - (WarningTime / 60), Mathf.Round(WarningTime).ToString() + " minutes left!", "The timer has " + Mathf.Round(WarningTime / 60).ToString() + " minutes remaining.",9,false);
-                        }
-                        if (NotificationWarningHalfTimeEnabled)
-                        {
-                            Notify(WorkingRemTime / 2, Mathf.Round(WorkingRemTime / 2).ToString() + " minutes left!", "The timer has " + Mathf.Round(WorkingRemTime / 2).ToString() + " minutes remaining.",10,false);
-                        }
-                    }
-                    else
-                    {
-                        Notify(WorkingRemTime, "Time has run out", "The timer has exceeded the total time.",8, false);
-                    }*/
                     if (WorkingRemTime > 0.2f)
                     {
                         Notify(WorkingRemTime - 0.2f, "Time has run out", "The timer has exceeded the total time.", 8, false);
@@ -814,12 +776,12 @@ public class TimeControllerScript : MonoBehaviour
         UsedTimeLastTick = UsedTime;
         if (RunTimer && !WasRunTimer)
         {
-            Notify(0,"Timer Running","The timer is running.", 7,true,true);
             WasRunTimer = true;
             TicksWhenTimerStarted = CurrentTick;
-            if (RemainingTime >= 0)
+            if (NotificationsEnabled)
             {
-                if (NotificationsEnabled)
+                Notify(0, "Timer Running", "The timer is running.", 7, true, true);
+                if (RemainingTime >= 0)
                 {
                     if (RemainingTime > 0.2f)
                     {
@@ -872,7 +834,6 @@ public class TimeControllerScript : MonoBehaviour
             logs.GetComponent<AddedTimesScript>().MinutesToAdd = tickD;
             logs.GetComponent<AddedTimesScript>().BeingMade = true;
             WasRunTimer = false;
-            UnityEngine.Debug.Log("shouldCancel");
             CancelNotifications(7);
             CancelMostNotifications();
         }
@@ -1084,7 +1045,6 @@ public class TimeControllerScript : MonoBehaviour
     }
     public void DelProf(int Prof)
     {
-        UnityEngine.Debug.Log("Was Deleted?" + Prof);
         DeleteProf(Prof);
         Profile = 0;
         Load(Profile);
@@ -1092,7 +1052,6 @@ public class TimeControllerScript : MonoBehaviour
 
     public void DeleteProf(int Prof)
     {
-        UnityEngine.Debug.Log("Deleted?:" + Prof);
         CancelNotifications(Prof,6);
         CancelNotifications(Prof,7);
         int Profs;
@@ -1234,7 +1193,6 @@ public class TimeControllerScript : MonoBehaviour
         if (pendingtimerreset)
         {
             CancelMostNotifications();
-            UnityEngine.Debug.Log("CANCelTIMEr");
             TicksWhenTimerStarted = CurrentTick;
             MKfile(1, 0, (-1).ToString(), -1, false);
             RunTimer = false;
@@ -1281,15 +1239,6 @@ public class TimeControllerScript : MonoBehaviour
     }
     public string TruncateFS(float number, int digits)
     {
-        /*
-        int PowTen = (int)Math.Pow(10, digits);
-        string Numstring = number.ToString();
-        double Dnum = number * PowTen;
-        Dnum = (long)Dnum;
-        Dnum /= PowTen;
-        Numstring = Dnum.ToString();
-        if (Dnum < 10 && Dnum >= 0) { Numstring = "0" + Numstring; }
-        return Numstring;*/
         float truncatednum = Truncate(number, digits);
 
         string formatstring = "F" + digits;
@@ -1297,20 +1246,6 @@ public class TimeControllerScript : MonoBehaviour
     }
     public string TruncateForSeconds(float number, int digits)
     {
-        /* This kinda hurts ngl
-        string NumString = number.ToString();
-        //float TheFloat = Truncate(number, digits);
-        float TheFloat = Mathf.Round(number*Mathf.Pow(10,digits))/Mathf.Pow(10,digits);
-
-
-        NumString = TheFloat.ToString();
-        if (((TheFloat * 10) % 1) < 0.03f && (TheFloat != (long)TheFloat)) { NumString += "0"; UnityEngine.Debug.Log("Ah"); }
-        if (((TheFloat * 10) % 1) < 0.03f && (TheFloat == (long)TheFloat)) { NumString += ".00"; }
-        if (((TheFloat * 10) % 1) > 0.98f) { NumString += "0"; }
-        if (TheFloat < 10 && TheFloat >= 0) { NumString = "0" + NumString; }
-
-        return NumString;
-        */
         string formatstring = "F" + digits;
         return number.ToString(formatstring);
     }
@@ -1350,7 +1285,6 @@ public class TimeControllerScript : MonoBehaviour
     public void CancelTimer()
     {
         CancelMostNotifications();
-        UnityEngine.Debug.Log("CANCelTIMEr");
         TicksWhenTimerStarted = CurrentTick;
         RunTimer = false;
         WasRunTimer = false;
