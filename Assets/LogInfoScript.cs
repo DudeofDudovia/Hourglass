@@ -36,8 +36,8 @@ public class LogInfoScript : MonoBehaviour
         using (var context = activity.Call<AndroidJavaObject>("getApplicationContext"))
         using (var dateFormat = new AndroidJavaClass("android.text.format.DateFormat"))
         {
-            if (dateFormat.CallStatic<bool>("is24HourFormat", context)) { pattern = "H"; Debug.Log("yay!"); }
-            if (dateFormat.CallStatic<bool>("is24HourFormat", activity)) { pattern = "H";Debug.Log("yay2!"); }
+            if (dateFormat.CallStatic<bool>("is24HourFormat", context)) { pattern = "H"; }
+            if (dateFormat.CallStatic<bool>("is24HourFormat", activity)) { pattern = "H"; }
         }
 #endif
 #if PLATFORM_STANDALONE_WIN
