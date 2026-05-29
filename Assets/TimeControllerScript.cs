@@ -186,7 +186,7 @@ public class TimeControllerScript : MonoBehaviour
     private void Start()
     {
 
-#if UNITY_ANDROID
+#if UNITY_ANDROID && !UNITY_EDITOR
         StartCoroutine(RequestPerms());
         NotificationSetup();
 #endif
@@ -217,7 +217,7 @@ public class TimeControllerScript : MonoBehaviour
     public bool NotificationCustomTimeWarningOld = true;
     IEnumerator RequestPerms()
     {
-#if UNITY_ANDROID || UNITY_IOS
+#if UNITY_ANDROID && !UNITY_EDITOR
         string perm = "android.permission.POST_NOTIFICATIONS";
         if (!Permission.HasUserAuthorizedPermission(perm))
         {
@@ -237,7 +237,7 @@ public class TimeControllerScript : MonoBehaviour
     private string NotificationChannel = "V2";
     public void NotificationSetup()
     {
-#if UNITY_ANDROID
+#if UNITY_ANDROID && !UNITY_EDITOR
             var channel = new AndroidNotificationChannel()
             {
                 Id = "Hourglass_Channel" + NotificationChannel,
@@ -302,7 +302,16 @@ public class TimeControllerScript : MonoBehaviour
     }
     public void Notify(float FireMinutes, string NotifTitle, string Notiftext, int channel, bool UseStopWatch, bool ForTimer)
     {
-        if (Profiles > 1) { Notiftext += "\n(Profile:" + (ProfileName + 1).ToString() + ")"; }
+#if DEBUG
+        //Notiftext += "\nProfile: " + (ProfileName).ToString() + "\nChannel:" + channel.ToString();
+        if (FireMinutes > 1.5 && DebugOutput)
+        {
+            Notify(0, NotifTitle, Notiftext + "\n***\nFireMinutes: " + FireMinutes +"\nFireTime: "+DateTime.Now.AddMinutes(FireMinutes) +"\n***", channel, UseStopWatch, ForTimer);
+        }
+        Notiftext += "\nChannel:" + channel.ToString();
+#endif
+        if (Profiles > 1) { Notiftext += "\nProfile: " + (ProfileName).ToString(); }
+
         if (channel < 6 || channel > 11) { channel = 8; }
 #if UNITY_ANDROID && !UNITY_EDITOR
         AndroidJavaClass unityPlayerAndr = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
@@ -331,15 +340,14 @@ public class TimeControllerScript : MonoBehaviour
         }
         else */
         if (channel != 6) { MKfile(6, DatInd, id.ToString(), false); }
-        
         MKfile(channel, DatInd, id.ToString(), false);
 #elif PLATFORM_STANDALONE_WIN || UNITY_EDITOR_WIN
-        //Notif Id = Profile + Channel + ChannelIndex
+        //Notif Id = Profile + Channel + ChannelIndex//
+        Notiftext = NotifTitle + "\n" + Notiftext;
         int DatInd = 0;
         var data = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(Path.Combine(Application.persistentDataPath, "Savedata", "Profile" + Profile.ToString() + ".json")));
         DatInd = SavedNotifIDIndex(data, channel);
         string NotifId = Profile + channel + DatInd.ToString();
-        UnityEngine.Debug.Log(NotifId);
         if (FireMinutes == 0)
         {
             Process.Start(new ProcessStartInfo()//
@@ -397,6 +405,7 @@ public class TimeControllerScript : MonoBehaviour
     }*/
     public void CancelMostNotifications()
     {
+      
          CancelNotifications(Profile, 8);
          CancelNotifications(Profile, 9);
          CancelNotifications(Profile, 10);
@@ -415,7 +424,7 @@ public class TimeControllerScript : MonoBehaviour
         if (channel < 6 || channel > 11) { channel = 6; }
         //UnityEngine.Debug.Log("Notifs Canceled" + channel);
         //if (channel == 7) { CancelTimerNotif(Prof); return; }
-#if UNITY_ANDROID
+#if UNITY_ANDROID 
         if (CancelAll)
         {
             AndroidNotificationCenter.CancelAllNotifications();
@@ -427,8 +436,10 @@ public class TimeControllerScript : MonoBehaviour
         {
             AndroidNotificationCenter.CancelNotification(ID);
         }
+        
+       
         MKfile(channel, 0, "", 0, false);
-#elif PLATFORM_STANDALONE_WIN
+#elif PLATFORM_STANDALONE_WIN || UNITY_EDITOR
         //                                    "$notifier.GetScheduledToastNotifications() | Select Id, DeliveryTime;" +
         CancelAll = true;
         if (CancelAll)
@@ -455,7 +466,6 @@ public class TimeControllerScript : MonoBehaviour
         DatInd = SavedNotifIDIndex(data, channel);
         string NotifId = Prof + channel + DatInd.ToString();
         NotifId = "Sad";
-        UnityEngine.Debug.Log(NotifId);
         Process.Start(new ProcessStartInfo()
         {
             FileName = "powershell",
@@ -500,8 +510,16 @@ public class TimeControllerScript : MonoBehaviour
         *9:WarningIDs;
         *10:HalfTimeIDs;
         *11:CustomWarningIDs;
+        *12:Notification Settings
+        * -Execpt the Big Toggle.
+        * 0:Enable Low Time Warning
+        * 1:Low Time Warning Time
+        * 2:Enable Notification Warning Time 
+        * 3:Custom Warning Time
+        * 4:Enable Notification Warning Half Time (1)
      *Settings[Default]
         *9:EnableNotification [NotificationSettings Starts]
+        *10 - 13 are old values, no longer necessary
         *10:EnableNotificationWarning
         *11:EnableNotificationWarningAtHalfTime
         *12:LowWarningTime 
@@ -647,10 +665,6 @@ public class TimeControllerScript : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (DebugOutput)
-        {
-            UnityEngine.Debug.Log(UsedTime);
-        }
         if (!RunTimer) { timerresettime = 0; }
         if (pendingreset)
         {
@@ -684,6 +698,125 @@ public class TimeControllerScript : MonoBehaviour
         ResetValuesTimer -= 1;
 
     }
+    public void NotificationSender(float WorkingRemTime)
+    {
+        if (WorkingRemTime > 0.2f)
+        {
+            Notify(WorkingRemTime - 0.2f, "Time has run out!", "The timer has exceeded the total time.", 8, false);
+            if (NotificationLowWarningsEnabled && WorkingRemTime > (LowWarningTime) && WorkingRemTime > 0.2f)
+            {
+                //Why do I need to do this if persision isn't within 13 seconds.
+                if (LowWarningTime > 1) // Working Remaining Time Factored In
+                {
+                    float workingWarnTime = WorkingRemTime - LowWarningTime;
+                    if (workingWarnTime > 0)
+                    {
+                        if (LowWarningTime > 1)
+                        {
+                            if (workingWarnTime > 1)
+                            {
+                                Notify(workingWarnTime, Mathf.Floor(LowWarningTime).ToString() + " minutes left!", Mathf.Round(workingWarnTime).ToString() + " minutes have been used.", 9, false);
+                            }
+                            else
+                            {
+                                Notify(workingWarnTime, Mathf.Floor(LowWarningTime).ToString() + " minutes left!", Mathf.Round(workingWarnTime * 60).ToString("00") + " seconds have been used.", 9, false);
+                            }
+                        }
+                        else
+                        {
+                            if (workingWarnTime > 1)
+                            {
+                                Notify(workingWarnTime, Mathf.Floor(LowWarningTime * 60).ToString("00") + " seconds left!", Mathf.Round(workingWarnTime).ToString() + " minutes have been used.", 9, false);
+                            }
+                            else
+                            {
+                                Notify(workingWarnTime, Mathf.Floor(LowWarningTime * 60).ToString("00") + " seconds left!", Mathf.Round(workingWarnTime * 60).ToString("00") + " seconds have been used.", 9, false);
+                            }
+                        }
+                    }
+
+
+                }
+            }
+            if (NotificationWarningHalfTimeEnabled && WorkingRemTime > 5) // Working Remaining Time Factored In
+            {
+                float workingRemTime = UsedTime + (WorkingRemTime / 2);
+                Notify(WorkingRemTime / 2, Mathf.Floor(WorkingRemTime / 2).ToString() + " minutes left!", Mathf.Round(workingRemTime).ToString() + " minutes have been used.", 10, false);
+            }
+            if (NotificationCustomTimeWarning && CustomWarningTime < WorkingRemTime) // Needs help for Working Remaining Time
+            {
+                float workingUsedTime = UsedTime + (CustomWarningTime);
+                float workingRemainingTime = WorkingRemTime - CustomWarningTime;
+
+                if (workingUsedTime > 1)
+                {
+                    if (CustomWarningTime > 1)
+                    {
+                        if (workingRemainingTime > 1)
+                        {
+                            Notify(CustomWarningTime, Mathf.Round(CustomWarningTime).ToString() + " minutes have elapsed!", Mathf.Round(workingUsedTime).ToString() + " minutes have been used." +
+                                "\n" + Mathf.Floor(workingRemainingTime).ToString() + " minutes remain.", 11, false);
+                        }
+                        else
+                        {
+                            Notify(CustomWarningTime, Mathf.Round(CustomWarningTime).ToString() + " minutes have elapsed!", Mathf.Round(workingUsedTime).ToString() + " minutes have been used." +
+                                "\n" + Mathf.Floor(workingRemainingTime * 60).ToString("00") + " seconds remain.", 11, false);
+                        }
+                    }
+                    else
+                    {
+                        if (workingRemainingTime > 1)
+                        {
+                            Notify(CustomWarningTime, Mathf.Round(CustomWarningTime * 60).ToString("00") + " seconds have elapsed!", Mathf.Round(workingUsedTime).ToString() + " minutes have been used." +
+                                "\n" + Mathf.Floor(workingRemainingTime).ToString() + " minutes remain.", 11, false);
+                        }
+                        else
+                        {
+                            Notify(CustomWarningTime, Mathf.Round(CustomWarningTime * 60).ToString("00") + " seconds have elapsed!", Mathf.Round(workingUsedTime).ToString() + " minutes have been used." +
+                                "\n" + Mathf.Floor(workingRemainingTime * 60).ToString("00") + " seconds remain.", 11, false);
+                        }
+                    }
+                }
+                if (workingUsedTime <= 1)
+                {
+                    if (CustomWarningTime > 1)
+                    {
+                        //Notify(CustomWarningTime, Mathf.Round(CustomWarningTime).ToString() + " minutes have elapsed!", Mathf.Round(workingUsedTime*60).ToString("00") + " seconds have been used.", 11, false);
+                        if (workingRemainingTime > 1)
+                        {
+                            Notify(CustomWarningTime, Mathf.Round(CustomWarningTime).ToString() + " minutes have elapsed!", Mathf.Round(workingUsedTime * 60).ToString("00") + " seconds have been used." +
+                                "\n" + Mathf.Floor(workingRemainingTime).ToString() + " minutes remain.", 11, false);
+                        }
+                        else
+                        {
+                            Notify(CustomWarningTime, Mathf.Round(CustomWarningTime).ToString() + " minutes have elapsed!", Mathf.Round(workingUsedTime * 60).ToString("00") + " seconds have been used." +
+                                "\n" + Mathf.Floor(workingRemainingTime * 60).ToString("00") + " seconds remain.", 11, false);
+                        }
+                    }
+                    else
+                    {
+                        //Notify(CustomWarningTime, Mathf.Round(CustomWarningTime*60).ToString("00") + " seconds have elapsed!", Mathf.Round(workingUsedTime*60).ToString("00") + " seconds have been used.", 11, false);
+                        if (workingRemainingTime > 1)
+                        {
+                            Notify(CustomWarningTime, Mathf.Round(CustomWarningTime * 60).ToString("00") + " seconds have elapsed!", Mathf.Round(workingUsedTime * 60).ToString("00") + " seconds have been used." +
+                                "\n" + Mathf.Floor(workingRemainingTime).ToString() + " minutes remain.", 11, false);
+                        }
+                        else
+                        {
+                            Notify(CustomWarningTime, Mathf.Round(CustomWarningTime * 60).ToString("00") + " seconds have elapsed!", Mathf.Round(workingUsedTime * 60).ToString("00") + " seconds have been used." +
+                                "\n" + Mathf.Floor(workingRemainingTime * 60).ToString("00") + " seconds remain.", 11, false);
+                        }
+                    }
+                }
+
+
+            }
+        }
+        else
+        {
+            Notify(WorkingRemTime, "Time has run out!", "The timer has exceeded the total time.", 8, false);
+        }
+    }
     public void ResendNotifs()
     {
         if (RunTimer)
@@ -693,6 +826,8 @@ public class TimeControllerScript : MonoBehaviour
             long tickdifference = (CurrentTick - TicksWhenTimerStarted);
             float tickD = (float)tickdifference / 600000000;
             float WorkingRemTime = RemainingTime - tickD;
+            if (WorkingRemTime > 0) { NotificationSender(WorkingRemTime); }
+            /*
             if (WorkingRemTime >= 0)
             {
                 if (NotificationsEnabled)
@@ -703,31 +838,42 @@ public class TimeControllerScript : MonoBehaviour
                         if (NotificationLowWarningsEnabled && WorkingRemTime > (LowWarningTime) && WorkingRemTime > 0.2f)
                         {
                             if (WorkingRemTime - ((LowWarningTime - 0.2f)) > 1) { Notify(WorkingRemTime - ((LowWarningTime - 0.2f)), Mathf.Round(LowWarningTime).ToString() + " minutes left!", "The timer has " + Mathf.Round((LowWarningTime - 0.2f)).ToString() + " minutes remaining.", 9, false); }
-                            else { Notify(WorkingRemTime - ((LowWarningTime - 0.2f)), Mathf.Round(LowWarningTime).ToString() + " Seconds left!", "The timer has " + Mathf.Round(LowWarningTime).ToString() + " Seconds remaining.", 9, false); }
+                            else { Notify(WorkingRemTime - ((LowWarningTime - 0.2f)), Mathf.Round(LowWarningTime*60).ToString("00") + " Seconds left!", "The timer has " + Mathf.Round(LowWarningTime).ToString() + " Seconds remaining.", 9, false); }
                         }
 
                         else if (NotificationLowWarningsEnabled && WorkingRemTime > (LowWarningTime))
                         {
-                            if (WorkingRemTime - (LowWarningTime) > 1)
+                            if (LowWarningTime > 1)
                             {
-                                Notify(WorkingRemTime - (LowWarningTime), Mathf.Round(LowWarningTime).ToString() + " minutes left!", "The timer has " + Mathf.Round(LowWarningTime).ToString() + " minutes remaining.", 9, false);
+                                float workingUsedTime = WorkingRemTime - (LowWarningTime);
+                                if (WorkingRemTime - (LowWarningTime) > 1)
+                                {
+                                    Notify(WorkingRemTime - (LowWarningTime), Mathf.Round(LowWarningTime).ToString() + " minutes left!", Mathf.Round(workingUsedTime).ToString() + " minutes have been used.", 9, false);
 
-                            }
-                            else
-                            {
-                                Notify(WorkingRemTime - (LowWarningTime), Mathf.Round(LowWarningTime).ToString() + " Seconds left!", "The timer has " + Mathf.Round(LowWarningTime).ToString() + " Seconds remaining.", 9, false);
+                                }
+                                else
+                                {
+                                    Notify(WorkingRemTime - (LowWarningTime), Mathf.Round(LowWarningTime*60).ToString("00") + " Seconds left!", Mathf.Round(workingUsedTime).ToString() + " seconds have been used.", 9, false);
 
+                                }
+                                
                             }
                         }
                         if (NotificationWarningHalfTimeEnabled && WorkingRemTime > 5)
                         {
-                            Notify(WorkingRemTime / 2, Mathf.Round(WorkingRemTime / 2).ToString() + " minutes left!", "The timer has " + Mathf.Round(WorkingRemTime / 2).ToString() + " minutes remaining.", 10, false);
+                            Notify(WorkingRemTime / 2, Mathf.Round(WorkingRemTime / 2).ToString() + " minutes used!", "The timer has " + Mathf.Round(WorkingRemTime / 2).ToString() + " minutes remaining.", 10, false);
                         }
-                        if (NotificationCustomTimeWarning && CustomWarningTime > WorkingRemTime)
+                        if (NotificationCustomTimeWarning && CustomWarningTime < WorkingRemTime)
                         {
-
                             float WRemTime = WorkingRemTime - (CustomWarningTime / 60);
-                            Notify(CustomWarningTime, Mathf.Round(WRemTime).ToString() + " minutes left!", "The timer has " + Mathf.Round(WRemTime).ToString() + " minutes remaining.", 11, false);
+                            if (CustomWarningTime > 1)
+                            {
+                                Notify(CustomWarningTime, Mathf.Round(CustomWarningTime).ToString() + " minutes used!", Mathf.Round(WRemTime).ToString() + " minutes have been used.", 11, false);
+                            }
+                            else {
+                                Notify(CustomWarningTime, Mathf.Round(CustomWarningTime).ToString("00") + " seconds used!", Mathf.Round(WRemTime).ToString() + " minutes have been used.", 11, false);
+                            }
+                            
                         }
                     }
                     else
@@ -736,6 +882,7 @@ public class TimeControllerScript : MonoBehaviour
                     }
                 }
             }
+      */
         }
 
     }
@@ -776,39 +923,141 @@ public class TimeControllerScript : MonoBehaviour
             TicksWhenTimerStarted = CurrentTick;
             if (NotificationsEnabled)
             {
-                Notify(0, "Timer Running", "The timer is running.", 7, true, true);
+                if (RemainingTime > 1)
+                {
+                    Notify(0, "Timer Running", "The timer is running.\n" + Mathf.Floor(RemainingTime).ToString() + " minutes remained when the timer was started", 7, true, true);
+                }
+                else if (RemainingTime >= 0)
+                {
+                    Notify(0, "Timer Running", "The timer is running.\n" + Mathf.Floor(RemainingTime*60).ToString() + " seconds remained when the timer was started", 7, true, true);
+                }
+                else if (RemainingTime < 0 && RemainingTime >= -1)
+                {
+                    Notify(0, "Timer Running", "The timer is running.\n" + Mathf.Floor(RemainingTime * 60).ToString() + " seconds over when the timer was started", 7, true, true);
+                }
+                else if (RemainingTime < -1)
+                {
+                    Notify(0, "Timer Running", "The timer is running.\n" + Mathf.Floor(RemainingTime).ToString() + " minutes over when the timer was started", 7, true, true);
+                }
+                /*
                 if (RemainingTime >= 0)
                 {
                     if (RemainingTime > 0.2f)
                     {
-                        Notify(RemainingTime-0.2f, "Time has run out", "The timer has exceeded the total time.",8,false);
-                        if (NotificationLowWarningsEnabled && RemainingTime > (LowWarningTime / 60) && RemainingTime > 0.2f)
+                        Notify(RemainingTime - 0.2f, "Time has run out", "The timer has exceeded the total time.", 8, false);
+                        if (NotificationLowWarningsEnabled && RemainingTime > (LowWarningTime) && RemainingTime > 0.2f)
                         {
-                            if (RemainingTime - ((LowWarningTime - 0.2f)) > 1) { Notify(RemainingTime - ((LowWarningTime - 0.2f)), Mathf.Round(LowWarningTime).ToString() + " minutes left!", "The timer has " + Mathf.Round((LowWarningTime - 0.2f) / 60).ToString() + " minutes remaining.",9,false); }
-                            else { Notify(RemainingTime - ((LowWarningTime - 0.2f)), Mathf.Round(LowWarningTime).ToString() + " Seconds left!", "The timer has " + Mathf.Round(LowWarningTime).ToString() + " Seconds remaining.",9,false); }
-                        }
-
-                        else if (NotificationLowWarningsEnabled && RemainingTime > (LowWarningTime))
-                        {
-                            if (RemainingTime - (LowWarningTime) > 1)
+                            //Why do I need to do this if persision isn't within 13 seconds.
+                            if (LowWarningTime > 1) // Working Remaining Time Factored In
                             {
-                                Notify(RemainingTime - (LowWarningTime), Mathf.Round(LowWarningTime).ToString() + " minutes left!", "The timer has " + Mathf.Round(LowWarningTime).ToString() + " minutes remaining.",9,false);
+                                float workingWarnTime = RemainingTime - LowWarningTime;
+                                if (workingWarnTime > 0)
+                                {
+                                    if (LowWarningTime > 1)
+                                    {
+                                        Derboss.Log("case1");
+                                        if (workingWarnTime > 1)
+                                        {
+                                            Derboss.Log("case1A");
+                                            Notify(workingWarnTime, Mathf.Floor(LowWarningTime).ToString() + " minutes left!", Mathf.Round(workingWarnTime).ToString() + " minutes have been used.", 9, false);
+                                        }
+                                        else
+                                        {
+                                            Derboss.Log("case1B");
+                                            Notify(workingWarnTime, Mathf.Floor(LowWarningTime).ToString() + " minutes left!", Mathf.Round(workingWarnTime * 60).ToString("00") + " seconds have been used.", 9, false);
+                                        }
+                                    }
+                                    else
+                                    {
+                                        Derboss.Log("case2");
+                                        if (workingWarnTime > 1)
+                                        {
+                                            Derboss.Log("case2A");
+                                            Notify(workingWarnTime, Mathf.Floor(LowWarningTime * 60).ToString("00") + " seconds left!", Mathf.Round(workingWarnTime).ToString() + " minutes have been used.", 9, false);
+                                        }
+                                        else
+                                        {
+                                            Derboss.Log("case2B");
+                                            Notify(workingWarnTime, Mathf.Floor(LowWarningTime * 60).ToString("00") + " seconds left!", Mathf.Round(workingWarnTime * 60).ToString("00") + " seconds have been used.", 9, false);
+                                        }
+                                    }
+                                }
+     
 
                             }
-                            else
-                            {
-                                Notify(RemainingTime - (LowWarningTime), Mathf.Round(LowWarningTime).ToString() + " Seconds left!", "The timer has " + Mathf.Round(LowWarningTime).ToString() + " Seconds remaining.",9,false);
+                        }
+                        if (NotificationWarningHalfTimeEnabled && RemainingTime > 5) // Working Remaining Time Factored In
+                        {
+                            float workingRemTime = UsedTime + (RemainingTime/2);
+                            Notify(RemainingTime / 2, Mathf.Floor(RemainingTime / 2).ToString() + " minutes left!",Mathf.Round(workingRemTime).ToString() + " minutes have been used.", 10, false);
+                        }
+                        if (NotificationCustomTimeWarning && CustomWarningTime < RemainingTime) // Needs help for Working Remaining Time
+                        {
+                            float workingUsedTime = UsedTime + (CustomWarningTime);
+                            float workingRemainingTime = RemainingTime - CustomWarningTime;
 
+                            if (workingUsedTime > 1)
+                            {
+                                if (CustomWarningTime > 1)
+                                {
+                                    if (workingRemainingTime > 1)
+                                    {
+                                        Notify(CustomWarningTime, Mathf.Round(CustomWarningTime).ToString() + " minutes have elapsed!", Mathf.Round(workingUsedTime).ToString() + " minutes have been used." +
+                                            "\n" + Mathf.Floor(workingRemainingTime).ToString() + " minutes remain.", 11, false);
+                                    }
+                                    else
+                                    {
+                                        Notify(CustomWarningTime, Mathf.Round(CustomWarningTime).ToString() + " minutes have elapsed!", Mathf.Round(workingUsedTime).ToString() + " minutes have been used." +
+                                            "\n" + Mathf.Floor(workingRemainingTime*60).ToString("00") + " seconds remain.", 11, false);
+                                    }
+                                }
+                                else
+                                {
+                                    if (workingRemainingTime > 1)
+                                    {
+                                        Notify(CustomWarningTime, Mathf.Round(CustomWarningTime * 60).ToString("00") + " seconds have elapsed!", Mathf.Round(workingUsedTime).ToString() + " minutes have been used." +
+                                            "\n" + Mathf.Floor(workingRemainingTime).ToString() + " minutes remain.", 11, false);
+                                    }
+                                    else
+                                    {
+                                        Notify(CustomWarningTime, Mathf.Round(CustomWarningTime * 60).ToString("00") + " seconds have elapsed!", Mathf.Round(workingUsedTime).ToString() + " minutes have been used." +
+                                            "\n" + Mathf.Floor(workingRemainingTime * 60).ToString("00") + " seconds remain.", 11, false);
+                                    }
+                                }
                             }
-                        }
-                        if (NotificationWarningHalfTimeEnabled && RemainingTime > 5)
-                        {
-                            Notify(RemainingTime / 2, Mathf.Round(RemainingTime / 2).ToString() + " minutes left!", "The timer has " + Mathf.Round(RemainingTime / 2).ToString() + " minutes remaining.",10,false);
-                        }
-                        if (NotificationCustomTimeWarning && CustomWarningTime < RemainingTime)
-                        {
-                            float WRemTime = RemainingTime - (CustomWarningTime / 60);
-                            Notify(CustomWarningTime, Mathf.Round(WRemTime).ToString() + " minutes left!", "The timer has " + Mathf.Round(WRemTime).ToString() + " minutes remaining.", 11, false);
+                            if (workingUsedTime <= 1)
+                            {
+                                if (CustomWarningTime > 1)
+                                {
+                                    //Notify(CustomWarningTime, Mathf.Round(CustomWarningTime).ToString() + " minutes have elapsed!", Mathf.Round(workingUsedTime*60).ToString("00") + " seconds have been used.", 11, false);
+                                    if (workingRemainingTime > 1)
+                                    {
+                                        Notify(CustomWarningTime, Mathf.Round(CustomWarningTime).ToString() + " minutes have elapsed!", Mathf.Round(workingUsedTime * 60).ToString("00") + " seconds have been used." +
+                                            "\n" + Mathf.Floor(workingRemainingTime).ToString() + " minutes remain.", 11, false);
+                                    }
+                                    else
+                                    {
+                                        Notify(CustomWarningTime, Mathf.Round(CustomWarningTime).ToString() + " minutes have elapsed!", Mathf.Round(workingUsedTime * 60).ToString("00") + " seconds have been used." +
+                                            "\n" + Mathf.Floor(workingRemainingTime * 60).ToString("00") + " seconds remain.", 11, false);
+                                    }
+                                }
+                                else
+                                {
+                                    //Notify(CustomWarningTime, Mathf.Round(CustomWarningTime*60).ToString("00") + " seconds have elapsed!", Mathf.Round(workingUsedTime*60).ToString("00") + " seconds have been used.", 11, false);
+                                    if (workingRemainingTime > 1)
+                                    {
+                                        Notify(CustomWarningTime, Mathf.Round(CustomWarningTime * 60).ToString("00") + " seconds have elapsed!", Mathf.Round(workingUsedTime * 60).ToString("00") + " seconds have been used." +
+                                            "\n" + Mathf.Floor(workingRemainingTime).ToString() + " minutes remain.", 11, false);
+                                    }
+                                    else
+                                    {
+                                        Notify(CustomWarningTime, Mathf.Round(CustomWarningTime * 60).ToString("00") + " seconds have elapsed!", Mathf.Round(workingUsedTime * 60).ToString("00") + " seconds have been used." +
+                                            "\n" + Mathf.Floor(workingRemainingTime * 60).ToString("00") + " seconds remain.", 11, false);
+                                    }
+                                }
+                            }
+
+
                         }
                     }
                     else
@@ -816,6 +1065,11 @@ public class TimeControllerScript : MonoBehaviour
                         Notify(RemainingTime, "Time has run out", "The timer has exceeded the total time.",8,false);
                     }
 
+                }
+            */
+                if (RemainingTime >= 0)
+                {
+                    NotificationSender(RemainingTime);
                 }
             }
             Save(Profile);
@@ -830,7 +1084,7 @@ public class TimeControllerScript : MonoBehaviour
             logs.GetComponent<AddedTimesScript>().MinutesToAdd = tickD;
             logs.GetComponent<AddedTimesScript>().BeingMade = true;
             WasRunTimer = false;
-            CancelNotifications(7);
+            CancelNotifications(Profile,7);
             CancelMostNotifications();
         }
         if (!NotificationsEnabled && NotificationsEnabledOld)
@@ -866,11 +1120,9 @@ public class TimeControllerScript : MonoBehaviour
         int objs = TimeMarkers.Length;
         for (int i = 0; i < objs; i++)
         {
-            if (TimeMarkers[i].GetComponent<AddedTimesScript>().MinutesAdded != 0)
-            {
+            //
                 MKfile(0, i, TimeMarkers[i].GetComponent<AddedTimesScript>().MinutesAdded.ToString(), objs, Prof);
                 MKfile(5, i, TimeMarkers[i].GetComponent<AddedTimesScript>().TimeWhenAdded.ToString(), objs, Prof);
-            }
         }
         if (objs == 0)
         {
@@ -928,7 +1180,7 @@ public class TimeControllerScript : MonoBehaviour
                 {
                     try
                     {
-                        if (float.Parse(RDfile(0, i)) != 0)
+                        //if (float.Parse(RDfile(0, i)) != 0)
                         {
                            var logs = Instantiate(TimetoAdd, new Vector3(float.Parse(RDfile(0, i)), transform.position.y, 0), transform.rotation, ContentView.transform);
                            logs.GetComponent<AddedTimesScript>().BeingMade = true;
@@ -1154,13 +1406,11 @@ public class TimeControllerScript : MonoBehaviour
     }
     public void ResetTime(float ResetToTime, bool Immeadiate)
     {
-#if UNITY_ANDROID
-        AndroidNotificationCenter.CancelAllScheduledNotifications();
-#endif
         //resettime = 0.4167f;
         resettime = 100f;
         if (pendingreset || Immeadiate)
         {
+            CancelNotifications(Profile, 7);
             CancelMostNotifications();
             UsedTime = 0;
             TotalTime = ResetToTime;
@@ -1188,6 +1438,7 @@ public class TimeControllerScript : MonoBehaviour
         timerresettime = 100f;
         if (pendingtimerreset)
         {
+            CancelNotifications(Profile,7);
             CancelMostNotifications();
             TicksWhenTimerStarted = CurrentTick;
             MKfile(1, 0, (-1).ToString(), -1, false);
@@ -1280,6 +1531,7 @@ public class TimeControllerScript : MonoBehaviour
     }
     public void CancelTimer()
     {
+        CancelNotifications(Profile, 7);
         CancelMostNotifications();
         TicksWhenTimerStarted = CurrentTick;
         RunTimer = false;

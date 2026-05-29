@@ -113,6 +113,10 @@ public static class Derboss
         initialized = true;
 #endif
     }
+    public static void Log(string text)
+    {
+        Debug.Log(text);
+    }
     /*
     public static void Log(string message)
     {

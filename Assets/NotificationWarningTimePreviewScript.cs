@@ -16,8 +16,6 @@ public class NotificationWarningTimePreviewScript : MonoBehaviour
     {
         try
         {
-            Debug.Log(ParseText(TMP.text));
-            Debug.Log(NWTPS.maxValue);
             if (ParseText(TMP.text) > NWTPS.maxValue) { NWTPS.maxValue = ParseText(TMP.text); Debug.Log("ew13"); }
             //else if (NWTPS.maxValue !>= ParseText(TMP.text)) { Debug.Log(NWTPS.maxValue);  NWTPS.maxValue = TCS.DefaultTime; Debug.Log("ew12"); Debug.Log(TCS.DefaultTime); }
             NWTPS.value = float.Parse(TMP.text);
@@ -43,7 +41,6 @@ public class NotificationWarningTimePreviewScript : MonoBehaviour
     {
         try
         {
-            Debug.Log(text);
             float HRegEx = 0;
             float MRegEx = 0;
             float SRegEx = 0;

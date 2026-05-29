@@ -77,7 +77,7 @@ public class TimeAdder : MonoBehaviour
                 }
                 var logs = Instantiate(StoreValues, new Vector3(0, transform.position.y, 0), transform.rotation, ViewportContent.transform);
                 logs.GetComponent<AddedTimesScript>().MinutesToAdd = timeadded;
-                logs.GetComponent<AddedTimesScript>().BeingMade = true;;
+                logs.GetComponent<AddedTimesScript>().BeingMade = true;
             }
             else if (match.Length > 0)
             {
@@ -88,7 +88,6 @@ public class TimeAdder : MonoBehaviour
                 TCS.UsedTime += timeadded;
                 var logs = Instantiate(StoreValues, new Vector3(0, transform.position.y, 0), transform.rotation, ViewportContent.transform);
                 logs.GetComponent<AddedTimesScript>().MinutesToAdd = timeadded;
-                logs.GetComponent<AddedTimesScript>().BeingMade = true;
             }
             else if (!Multiple)
             {
@@ -98,6 +97,10 @@ public class TimeAdder : MonoBehaviour
                 var logs = Instantiate(StoreValues, new Vector3(0, transform.position.y, 0), transform.rotation, ViewportContent.transform);
                 logs.GetComponent<AddedTimesScript>().MinutesToAdd = timeadded;
                 logs.GetComponent<AddedTimesScript>().BeingMade = true;
+                if (timeadded == 0)
+                {
+                    TCS.Save(TCS.Profile);
+                }
             }
             if (!TCS.KeepTimeInAddBox)
             {
@@ -107,7 +110,7 @@ public class TimeAdder : MonoBehaviour
         catch (Exception e)
         {
             { if (TMP.text != "") { TMP.text = "INVALID"; InvaldidReset = 360; Debug.Log(e); } }
-
+            Debug.Log(e);
 
         }
     }

@@ -11,7 +11,8 @@ public class LoggingConsoleControllerScript : MonoBehaviour
     public TextMeshPro Changelog;
     public bool ShowConsole = false;
     public bool LogMessages = false;
-    public int LastSavedFrame = 0; 
+    public int LastSavedFrame = 0;
+    public TimeControllerScript TCS;
     public void ShowConsoleFunc(bool tog)
     {
         ShowConsole = tog;
@@ -41,6 +42,7 @@ public class LoggingConsoleControllerScript : MonoBehaviour
             if (ShowConsole)
             {
                 TMP.text = ConsoleLogs;
+                TCS.DebugOutput = true;
             }
             else { TMP.text = Changelog.text; }
         }
