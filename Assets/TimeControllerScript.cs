@@ -313,7 +313,7 @@ public class TimeControllerScript : MonoBehaviour
         if (Profiles > 1) { Notiftext += "\nProfile: " + (ProfileName).ToString(); }
 
         if (channel < 6 || channel > 11) { channel = 8; }
-#if UNITY_ANDROID && !UNITY_EDITOR
+#if UNITY_ANDROID
         AndroidJavaClass unityPlayerAndr = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
         AndroidJavaObject activityAndr = unityPlayerAndr.GetStatic<AndroidJavaObject>("currentActivity");
         AndroidJavaObject contextAndr = activityAndr.Call<AndroidJavaObject>("getApplicationContext");
@@ -424,18 +424,24 @@ public class TimeControllerScript : MonoBehaviour
         if (channel < 6 || channel > 11) { channel = 6; }
         //UnityEngine.Debug.Log("Notifs Canceled" + channel);
         //if (channel == 7) { CancelTimerNotif(Prof); return; }
-#if UNITY_ANDROID 
+#if UNITY_ANDROID && !UNITY_EDITOR
         if (CancelAll)
         {
             AndroidNotificationCenter.CancelAllNotifications();
             return;
         }
-        var data = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(Path.Combine(Application.persistentDataPath, "Savedata", "Profile" + Profile.ToString() + ".json")));
-        int[] NotifIndex = SavedNotifIDs(data, channel);
-        foreach (int ID in NotifIndex)
-        {
-            AndroidNotificationCenter.CancelNotification(ID);
+        if (File.Exists(File.ReadAllText(Path.Combine(Application.persistentDataPath, "Savedata", "Profile" + Profile.ToString() + ".json"))))
+            {
+            var data = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(Path.Combine(Application.persistentDataPath, "Savedata", "Profile" + Profile.ToString() + ".json")));
+            int[] NotifIndex = SavedNotifIDs(data, channel);
+            foreach (int ID in NotifIndex)
+            {
+                AndroidNotificationCenter.CancelNotification(ID);
+            }
         }
+        
+        
+
         
        
         MKfile(channel, 0, "", 0, false);
@@ -462,10 +468,13 @@ public class TimeControllerScript : MonoBehaviour
             return;
         }
         int DatInd = 0;
-        var data = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(Path.Combine(Application.persistentDataPath, "Savedata", "Profile" + Profile.ToString() + ".json")));
-        DatInd = SavedNotifIDIndex(data, channel);
-        string NotifId = Prof + channel + DatInd.ToString();
-        NotifId = "Sad";
+        string NotifId = "sad";
+        if (File.Exists(File.ReadAllText(Path.Combine(Application.persistentDataPath, "Savedata", "Profile" + Profile.ToString() + ".json"))))
+        {
+            var data = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(Path.Combine(Application.persistentDataPath, "Savedata", "Profile" + Profile.ToString() + ".json")));
+            DatInd = SavedNotifIDIndex(data, channel);
+            NotifId = Prof + channel + DatInd.ToString();
+        }
         Process.Start(new ProcessStartInfo()
         {
             FileName = "powershell",

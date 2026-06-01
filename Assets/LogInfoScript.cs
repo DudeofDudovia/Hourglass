@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using TMPro;
 using UnityEngine;
-#if UNITY_ANDROID
+#if UNITY_ANDROID&& !UNITY_EDITOR
 using UnityEngine.Android;
 #endif
 public class LogInfoScript : MonoBehaviour

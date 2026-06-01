@@ -1,7 +1,7 @@
 //Dude_of_dudovia vERBOS logging System = Derboss.
 using UnityEngine;
 using System.IO;
-#if UNITY_ANDROID
+#if UNITY_ANDROID&& !UNITY_EDITOR
 using UnityEngine.Android;
 # endif
 public static class Derboss

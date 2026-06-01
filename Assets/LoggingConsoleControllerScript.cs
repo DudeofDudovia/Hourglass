@@ -2,7 +2,12 @@ using System.IO;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Playables;
-
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+#if UNITY_EDITOR
+[ExecuteAlways]
+#endif
 public class LoggingConsoleControllerScript : MonoBehaviour
 {
     public TextMeshProUGUI TMP;
@@ -13,6 +18,19 @@ public class LoggingConsoleControllerScript : MonoBehaviour
     public bool LogMessages = false;
     public int LastSavedFrame = 0;
     public TimeControllerScript TCS;
+
+#if UNITY_EDITOR
+private void OnEnable()
+    {
+        if (Application.isPlaying)
+        {
+            return;
+        }
+        Changelog.text = File.ReadAllText(Application.dataPath + "/ChangeLog.txt");
+    }
+#endif
+
+
     public void ShowConsoleFunc(bool tog)
     {
         ShowConsole = tog;

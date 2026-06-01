@@ -7038,8 +7038,11 @@ MonoBehaviour:
     A Debug Console:\r\n\t\tThis is used for debugging and the toggle for it is at
     the bottom of the options menu, though in normal use it should be empty (unless
     something goes wrong or I forgot to remove a logger).\r\n\t\tThis doesn't exist
-    on Windows due to excessive lag.\r\n\tSkipped 0.7.1 lol.\r\n\t-1.0.0-rc1\r\n\t\tDecided
-    to make this the initial Release\r\n\t\tFixed Changelog for 0.8.0-rc6\r\n\t-0.8.0-rc6\r\n\t\tFixed
+    on Windows due to excessive lag.\r\n\tSkipped 0.7.1 lol.\r\n\t-1.0.0-rc2\r\n\t\tMade
+    the last update do something(I forgot to update the changelog again).\r\n\t\tAdded
+    some internal code to automatically update the changelog for me so that I can
+    stop writing these stupid messages.\r\n\t-1.0.0-rc1\r\n\t\tDecided to make this
+    the initial Release\r\n\t\tFixed Changelog for 0.8.0-rc6\r\n\t-0.8.0-rc6\r\n\t\tFixed
     a typo where the time and then minutes remaining would be together without a
     space on certain notifications.\r\n\t\tMade timer notifications be cancled when
     the timer isn't runing.\r\n\t\tRemoved typos from notifications.\r\n\t\tChanged
@@ -20881,7 +20884,7 @@ MonoBehaviour:
   LastConsoleLogs: 
   Changelog: {fileID: 1163517360}
   ShowConsole: 0
-  LogMessages: 0
+  LogMessages: 1
   LastSavedFrame: 0
   TCS: {fileID: 1829068701}
 --- !u!224 &1163517359
@@ -20925,33 +20928,49 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Made by Dude of Dudovia\r\n\tMade using Unity\r\n\r\nMore Readable Changelogs
     Can Be Found On The GitHub Page\r\n\tMaybe one day I'll add an hourglass shaped
-    time indicator.\r\nChangelog 0.8.0 - The Notification Update\r\n\tAdded Warnings\r\n\t\tThey
-    work on both Android and Windows.\r\n\t\tThey work with the timer to remind how
-    much longer it has and when it runs out\r\n\t\t\tThere are warning options for
-    low time, warning time, and half time:\r\n\t\t\t\tLow time will do that amount
-    of minutes from the end.\r\n\t\t\t\tWarning time will do that amount of minutes
-    from the beginning.\r\n\t\t\t\tHalf time will warn when the timer reaches half
-    of the remaining time.\r\n\tAdded margins to the changelog font size so it displays
-    propperly at small fonts.\r\n\r\n\tBugs:\r\n\t\tWindows siezes up when the timer
-    starts.\r\n\t\tTimer would (in theory send a notification even if they were disabled).\r\n\tFixed
-    Bugs:\r\n\t\tDeleting profiles doesn't work.\r\n\t\t0 minutes left at half time?\r\n\tAdded
+    time indicator.\r\nChangelog 1.0.0 - The Notification Update\r\n\tAdded Warnings\r\n\t\tThey
+    work on both Android and Windows:\r\n\t\t\tDue to programming limitations, the
+    warnings may arrive out of time by a couple seconds, but should be reasonably
+    acurate.\r\n\t\t\t\tBecause of this, I would not recomend using warning values
+    in the seconds, as they are often off by several seconds.\r\n\t\tThey work with
+    the timer to remind how much longer it has and when it runs out\r\n\t\t\tThere
+    are warning options for low time, warning time, and half time:\r\n\t\t\t\tLow
+    time will do that amount of minutes from the end.\r\n\t\t\t\tWarning time will
+    do that amount of minutes from the beginning.\r\n\t\t\t\tHalf time will warn
+    when the timer reaches half of the remaining time.\r\n\t\tThey are profile specific:\r\n\t\t\tThe
+    toggle \"Warnings\", however, is not profile specific, and disabling it will
+    disable all warnings.\r\n\tAdded margins to the changelog font size so it displays
+    propperly at small fonts.\r\n\r\n\tFixed Bugs:\r\n\t\tDeleting profiles doesn't
+    work.\r\n\t\t0 minutes left at half time?\r\n\t\tWindows siezes up when the timer
+    starts.\r\n\t\tTimer would (in theory send a notification even if they were disabled).\r\n\tAdded
     A Debug Console:\r\n\t\tThis is used for debugging and the toggle for it is at
     the bottom of the options menu, though in normal use it should be empty (unless
     something goes wrong or I forgot to remove a logger).\r\n\t\tThis doesn't exist
-    on Windows.\r\n\tSkipped 0.7.1 lol.\r\n\t-0.8.0-rc5\r\n\t\tMade notification
-    timing settings profile specific.\r\n\t\tFixed bugs:\r\n\t\t\tUpdated the changelog.\r\n\t-0.8.0-rc4\r\n\t-0.8.0-rc3\r\n\t\tRemoved
-    excessive log spam.\r\n\t-0.8.0-rc2\r\n\t\tRemoved the console on windows\r\n\t\t\tIt
-    caused the app not to function and wasn't neccesary\r\n\t\t\t\tIt is ironic that
-    PC doesn't get the console however.\r\n\t\tFixed Bugs:\r\n\t\t\tWindows siezes
-    up when the timer starts.\r\n\t\t\tTimer would (in theory send a notification
-    even if they were disabled).\r\n\t-0.8.0-rc1\r\n\t\tAdded Warnings\r\n\t\t\tThey
-    work on both Android and Windows.\r\n\t\t\tThey work with the timer to remind
-    how much longer it has and when it runs out\r\n\t\t\t\tThere are warning options
-    for low time, warning time, and half time:\r\n\t\t\t\t\tLow time will do that
-    amount of minutes from the end.\r\n\t\t\t\t\tWarning time will do that amount
-    of minutes from the beginning.\r\n\t\t\t\t\tHalf time will warn when the timer
-    reaches half of the remaining time.\r\n\t\tChanged Margins(Moved) for Version
-    Indicator\r\n\t\t\tOld coords were 72 Left, -14 Top, -25, 10\r\n\t\t\t\t0.8.0-rc1
+    on Windows due to excessive lag.\r\n\tSkipped 0.7.1 lol.\r\n\t-1.0.0-rc2\r\n\t\tMade
+    the last update do something(I forgot to update the changelog again).\r\n\t\tAdded
+    some internal code to automatically update the changelog for me so that I can
+    stop writing these stupid messages.\r\n\t-1.0.0-rc1\r\n\t\tDecided to make this
+    the initial Release\r\n\t\tFixed Changelog for 0.8.0-rc6\r\n\t-0.8.0-rc6\r\n\t\tFixed
+    a typo where the time and then minutes remaining would be together without a
+    space on certain notifications.\r\n\t\tMade timer notifications be cancled when
+    the timer isn't runing.\r\n\t\tRemoved typos from notifications.\r\n\t\tChanged
+    several times in the notifications to round down instead of up.\r\n\t\t\tGenerally
+    time used is rounded up and time remaining is rounded down.\r\n\t\tLogging 0
+    seconds(for the purposes of dividing I guess) is now supported.\r\n\t\tChanged
+    in app renderings of \"notifications\" to \"warnings\"\r\n\t-0.8.0-rc5\r\n\t\tMade
+    notification timing settings profile specific.\r\n\t\tFixed bugs:\r\n\t\t\tUpdated
+    the changelog.\r\n\t-0.8.0-rc4\r\n\t-0.8.0-rc3\r\n\t\tRemoved excessive log spam.\r\n\t-0.8.0-rc2\r\n\t\tRemoved
+    the console on windows\r\n\t\t\tIt caused the app not to function and wasn't
+    neccesary\r\n\t\t\t\tIt is ironic that PC doesn't get the console however.\r\n\t\tFixed
+    Bugs:\r\n\t\t\tWindows siezes up when the timer starts.\r\n\t\t\tTimer would
+    (in theory send a notification even if they were disabled).\r\n\t-0.8.0-rc1\r\n\t\tAdded
+    Warnings\r\n\t\t\tThey work on both Android and Windows.\r\n\t\t\tThey work with
+    the timer to remind how much longer it has and when it runs out\r\n\t\t\t\tThere
+    are warning options for low time, warning time, and half time:\r\n\t\t\t\t\tLow
+    time will do that amount of minutes from the end.\r\n\t\t\t\t\tWarning time will
+    do that amount of minutes from the beginning.\r\n\t\t\t\t\tHalf time will warn
+    when the timer reaches half of the remaining time.\r\n\t\tChanged Margins(Moved)
+    for Version Indicator\r\n\t\t\tOld coords were 72 Left, -14 Top, -25, 10\r\n\t\t\t\t0.8.0-rc1
     doesn't fit on the screen with these coords.\r\nChangelog 0.7.1\r\n\tMade improvement
     to the file system:\r\n\t\tMade the new file system create directories more properly.\r\n\t\tIt
     should now be more effecient and less prone to bugs (though it caused a TONNE
