@@ -38,7 +38,7 @@ private void OnEnable()
     public void Awake()
     {
         string AppVer = Application.version;
-        if (AppVer.Contains("x") || AppVer.Contains("X") || AppVer.Contains("rc"))
+        if (AppVer.Contains("x") || AppVer.Contains("X"))
         {
             LogMessages = true;
             Application.SetStackTraceLogType(LogType.Log, StackTraceLogType.Full);

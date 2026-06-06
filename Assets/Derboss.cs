@@ -32,7 +32,7 @@ public static class Derboss
     private static void Handlelog(string logString, string stackTrace, LogType type)
     {
         string AppVer = Application.version;
-        if (AppVer.Contains("x") || AppVer.Contains("X") || AppVer.Contains("rc") || Debug.isDebugBuild)
+        if (AppVer.Contains("x") || AppVer.Contains("X") || Debug.isDebugBuild)
         {
             Application.SetStackTraceLogType(LogType.Log, StackTraceLogType.Full);
             Application.SetStackTraceLogType(LogType.Warning, StackTraceLogType.Full);

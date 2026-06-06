@@ -7018,34 +7018,42 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Made by Dude of Dudovia\r\n\tMade using Unity\r\n\r\nMore Readable Changelogs
-    Can Be Found On The GitHub Page\r\n\tMaybe one day I'll add an hourglass shaped
-    time indicator.\r\nChangelog 1.0.0 - The Notification Update\r\n\tAdded Warnings\r\n\t\tThey
-    work on both Android and Windows:\r\n\t\t\tDue to programming limitations, the
-    warnings may arrive out of time by a couple seconds, but should be reasonably
-    acurate.\r\n\t\t\t\tBecause of this, I would not recomend using warning values
-    in the seconds, as they are often off by several seconds.\r\n\t\tThey work with
-    the timer to remind how much longer it has and when it runs out\r\n\t\t\tThere
+  m_text: "Made by Dude of Dudovia\r\n\tMade using Unity\r\n\r\nMore readable changelogs
+    and source code can be found on the GitHub page.\r\nChangelog 1.0.0 - The Notification
+    Update\r\n\tAdded Warnings\r\n\t\tThey work on both Android and Windows:\r\n\t\t\tDue
+    to programming limitations, the warnings may arrive out of time by a couple seconds,
+    but should be reasonably accurate.\r\n\t\t\t\tBecause of this, I would not recommend
+    using warning values in the seconds, as they are often off by several seconds.\r\n\t\tThey
+    work with the timer to remind how much longer it has and when it runs out\r\n\t\t\tThere
     are warning options for low time, warning time, and half time:\r\n\t\t\t\tLow
     time will do that amount of minutes from the end.\r\n\t\t\t\tWarning time will
     do that amount of minutes from the beginning.\r\n\t\t\t\tHalf time will warn
     when the timer reaches half of the remaining time.\r\n\t\tThey are profile specific:\r\n\t\t\tThe
     toggle \"Warnings\", however, is not profile specific, and disabling it will
     disable all warnings.\r\n\tAdded margins to the changelog font size so it displays
-    propperly at small fonts.\r\n\r\n\tFixed Bugs:\r\n\t\tDeleting profiles doesn't
-    work.\r\n\t\t0 minutes left at half time?\r\n\t\tWindows siezes up when the timer
+    properly at small fonts.\r\n\r\n\tFixed Bugs:\r\n\t\tDeleting profiles doesn't
+    work.\r\n\t\t0 minutes left at half time?\r\n\t\tWindows seizes up when the timer
     starts.\r\n\t\tTimer would (in theory send a notification even if they were disabled).\r\n\tAdded
     A Debug Console:\r\n\t\tThis is used for debugging and the toggle for it is at
     the bottom of the options menu, though in normal use it should be empty (unless
     something goes wrong or I forgot to remove a logger).\r\n\t\tThis doesn't exist
-    on Windows due to excessive lag.\r\n\tSkipped 0.7.1 lol.\r\n\t-1.0.0-rc2\r\n\t\tMade
+    on Windows due to excessive lag.\r\n\tSkipped 0.7.1 lol.\r\n\t-1.0.0-rc6\r\n\t\tRemoved
+    code to make \"-rc\" releases act as debug builds, and therefore all previous
+    \"-rc\" builds can be seen as \"-x\" builds going forward.\r\n\t\tHopefully this
+    is the last build before release.\r\n\t-1.0.0-rc5\r\n\t\tFixed Bugs:\r\n\t\t\tWarnings
+    don't get canceled.\r\n\t-1.0.0-rc4\r\n\t\tMade it so that all Windows notifications
+    don't have the id \"sad\".\r\n\t\tAdded Some safety for edge cases in the warning
+    scripts.\r\n                Fixed numerous typos\r\n                Fixed bugs:\r\n\t\tReset
+    App doesn't work on Windows.\r\n\t\t\tNOOOoOOOoooOoOo!\r\n\t\t\tit actually seems
+    that this was due to some Android code being run.\r\n\t-1.0.0-rc3\r\n\t\tApparently
+    I forget to update the version number now *sigh*.\r\n\t-1.0.0-rc2\r\n\t\tMade
     the last update do something(I forgot to update the changelog again).\r\n\t\tAdded
     some internal code to automatically update the changelog for me so that I can
     stop writing these stupid messages.\r\n\t-1.0.0-rc1\r\n\t\tDecided to make this
     the initial Release\r\n\t\tFixed Changelog for 0.8.0-rc6\r\n\t-0.8.0-rc6\r\n\t\tFixed
     a typo where the time and then minutes remaining would be together without a
-    space on certain notifications.\r\n\t\tMade timer notifications be cancled when
-    the timer isn't runing.\r\n\t\tRemoved typos from notifications.\r\n\t\tChanged
+    space on certain notifications.\r\n\t\tMade timer notifications be canceled when
+    the timer isn't running.\r\n\t\tRemoved typos from notifications.\r\n\t\tChanged
     several times in the notifications to round down instead of up.\r\n\t\t\tGenerally
     time used is rounded up and time remaining is rounded down.\r\n\t\tLogging 0
     seconds(for the purposes of dividing I guess) is now supported.\r\n\t\tChanged
@@ -7053,8 +7061,8 @@ MonoBehaviour:
     notification timing settings profile specific.\r\n\t\tFixed bugs:\r\n\t\t\tUpdated
     the changelog.\r\n\t-0.8.0-rc4\r\n\t-0.8.0-rc3\r\n\t\tRemoved excessive log spam.\r\n\t-0.8.0-rc2\r\n\t\tRemoved
     the console on windows\r\n\t\t\tIt caused the app not to function and wasn't
-    neccesary\r\n\t\t\t\tIt is ironic that PC doesn't get the console however.\r\n\t\tFixed
-    Bugs:\r\n\t\t\tWindows siezes up when the timer starts.\r\n\t\t\tTimer would
+    necessary\r\n\t\t\t\tIt is ironic that PC doesn't get the console however.\r\n\t\tFixed
+    Bugs:\r\n\t\t\tWindows seizes up when the timer starts.\r\n\t\t\tTimer would
     (in theory send a notification even if they were disabled).\r\n\t-0.8.0-rc1\r\n\t\tAdded
     Warnings\r\n\t\t\tThey work on both Android and Windows.\r\n\t\t\tThey work with
     the timer to remind how much longer it has and when it runs out\r\n\t\t\t\tThere
@@ -7237,6 +7245,7 @@ GameObject:
   m_Component:
   - component: {fileID: 347018490}
   - component: {fileID: 347018491}
+  - component: {fileID: 347018492}
   m_Layer: 5
   m_Name: Low Time Warning Time
   m_TagString: NotificationSlider
@@ -7273,7 +7282,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 347018489}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: da08d27b1a794094ca7fb1809fa85265, type: 3}
   m_Name: 
@@ -7288,6 +7297,20 @@ MonoBehaviour:
   EnabledColor: {r: 1, g: 1, b: 1, a: 1}
   tintstatus: 0
   wait: 0
+  FirstTicked: 0
+--- !u!114 &347018492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 347018489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f9aac4416bc8a945aaf04a775010a18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NotifOptionInfo
+  OptionTogg: {fileID: 473317911}
 --- !u!1 &355147684
 GameObject:
   m_ObjectHideFlags: 0
@@ -7492,6 +7515,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 200202167}
+  - {fileID: 1592970065}
   m_Father: {fileID: 591472250}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
@@ -9373,6 +9397,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1297262853}
+        m_TargetAssemblyTypeName: NotifOptionDisabledScript, Assembly-CSharp
+        m_MethodName: ChangeCol
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 1
 --- !u!1 &475059185
 GameObject:
@@ -11175,6 +11211,18 @@ MonoBehaviour:
       - m_Target: {fileID: 591472251}
         m_TargetAssemblyTypeName: SavableValueScript, Assembly-CSharp
         m_MethodName: SaveValue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1297262853}
+        m_TargetAssemblyTypeName: NotifOptionDisabledScript, Assembly-CSharp
+        m_MethodName: ChangeCol
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -20926,34 +20974,42 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Made by Dude of Dudovia\r\n\tMade using Unity\r\n\r\nMore Readable Changelogs
-    Can Be Found On The GitHub Page\r\n\tMaybe one day I'll add an hourglass shaped
-    time indicator.\r\nChangelog 1.0.0 - The Notification Update\r\n\tAdded Warnings\r\n\t\tThey
-    work on both Android and Windows:\r\n\t\t\tDue to programming limitations, the
-    warnings may arrive out of time by a couple seconds, but should be reasonably
-    acurate.\r\n\t\t\t\tBecause of this, I would not recomend using warning values
-    in the seconds, as they are often off by several seconds.\r\n\t\tThey work with
-    the timer to remind how much longer it has and when it runs out\r\n\t\t\tThere
+  m_text: "Made by Dude of Dudovia\r\n\tMade using Unity\r\n\r\nMore readable changelogs
+    and source code can be found on the GitHub page.\r\nChangelog 1.0.0 - The Notification
+    Update\r\n\tAdded Warnings\r\n\t\tThey work on both Android and Windows:\r\n\t\t\tDue
+    to programming limitations, the warnings may arrive out of time by a couple seconds,
+    but should be reasonably accurate.\r\n\t\t\t\tBecause of this, I would not recommend
+    using warning values in the seconds, as they are often off by several seconds.\r\n\t\tThey
+    work with the timer to remind how much longer it has and when it runs out\r\n\t\t\tThere
     are warning options for low time, warning time, and half time:\r\n\t\t\t\tLow
     time will do that amount of minutes from the end.\r\n\t\t\t\tWarning time will
     do that amount of minutes from the beginning.\r\n\t\t\t\tHalf time will warn
     when the timer reaches half of the remaining time.\r\n\t\tThey are profile specific:\r\n\t\t\tThe
     toggle \"Warnings\", however, is not profile specific, and disabling it will
     disable all warnings.\r\n\tAdded margins to the changelog font size so it displays
-    propperly at small fonts.\r\n\r\n\tFixed Bugs:\r\n\t\tDeleting profiles doesn't
-    work.\r\n\t\t0 minutes left at half time?\r\n\t\tWindows siezes up when the timer
+    properly at small fonts.\r\n\r\n\tFixed Bugs:\r\n\t\tDeleting profiles doesn't
+    work.\r\n\t\t0 minutes left at half time?\r\n\t\tWindows seizes up when the timer
     starts.\r\n\t\tTimer would (in theory send a notification even if they were disabled).\r\n\tAdded
     A Debug Console:\r\n\t\tThis is used for debugging and the toggle for it is at
     the bottom of the options menu, though in normal use it should be empty (unless
     something goes wrong or I forgot to remove a logger).\r\n\t\tThis doesn't exist
-    on Windows due to excessive lag.\r\n\tSkipped 0.7.1 lol.\r\n\t-1.0.0-rc2\r\n\t\tMade
+    on Windows due to excessive lag.\r\n\tSkipped 0.7.1 lol.\r\n\t-1.0.0-rc6\r\n\t\tRemoved
+    code to make \"-rc\" releases act as debug builds, and therefore all previous
+    \"-rc\" builds can be seen as \"-x\" builds going forward.\r\n\t\tHopefully this
+    is the last build before release.\r\n\t-1.0.0-rc5\r\n\t\tFixed Bugs:\r\n\t\t\tWarnings
+    don't get canceled.\r\n\t-1.0.0-rc4\r\n\t\tMade it so that all Windows notifications
+    don't have the id \"sad\".\r\n\t\tAdded Some safety for edge cases in the warning
+    scripts.\r\n                Fixed numerous typos\r\n                Fixed bugs:\r\n\t\tReset
+    App doesn't work on Windows.\r\n\t\t\tNOOOoOOOoooOoOo!\r\n\t\t\tit actually seems
+    that this was due to some Android code being run.\r\n\t-1.0.0-rc3\r\n\t\tApparently
+    I forget to update the version number now *sigh*.\r\n\t-1.0.0-rc2\r\n\t\tMade
     the last update do something(I forgot to update the changelog again).\r\n\t\tAdded
     some internal code to automatically update the changelog for me so that I can
     stop writing these stupid messages.\r\n\t-1.0.0-rc1\r\n\t\tDecided to make this
     the initial Release\r\n\t\tFixed Changelog for 0.8.0-rc6\r\n\t-0.8.0-rc6\r\n\t\tFixed
     a typo where the time and then minutes remaining would be together without a
-    space on certain notifications.\r\n\t\tMade timer notifications be cancled when
-    the timer isn't runing.\r\n\t\tRemoved typos from notifications.\r\n\t\tChanged
+    space on certain notifications.\r\n\t\tMade timer notifications be canceled when
+    the timer isn't running.\r\n\t\tRemoved typos from notifications.\r\n\t\tChanged
     several times in the notifications to round down instead of up.\r\n\t\t\tGenerally
     time used is rounded up and time remaining is rounded down.\r\n\t\tLogging 0
     seconds(for the purposes of dividing I guess) is now supported.\r\n\t\tChanged
@@ -20961,8 +21017,8 @@ MonoBehaviour:
     notification timing settings profile specific.\r\n\t\tFixed bugs:\r\n\t\t\tUpdated
     the changelog.\r\n\t-0.8.0-rc4\r\n\t-0.8.0-rc3\r\n\t\tRemoved excessive log spam.\r\n\t-0.8.0-rc2\r\n\t\tRemoved
     the console on windows\r\n\t\t\tIt caused the app not to function and wasn't
-    neccesary\r\n\t\t\t\tIt is ironic that PC doesn't get the console however.\r\n\t\tFixed
-    Bugs:\r\n\t\t\tWindows siezes up when the timer starts.\r\n\t\t\tTimer would
+    necessary\r\n\t\t\t\tIt is ironic that PC doesn't get the console however.\r\n\t\tFixed
+    Bugs:\r\n\t\t\tWindows seizes up when the timer starts.\r\n\t\t\tTimer would
     (in theory send a notification even if they were disabled).\r\n\t-0.8.0-rc1\r\n\t\tAdded
     Warnings\r\n\t\t\tThey work on both Android and Windows.\r\n\t\t\tThey work with
     the timer to remind how much longer it has and when it runs out\r\n\t\t\t\tThere
@@ -22765,6 +22821,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1297262852}
+  - component: {fileID: 1297262853}
   m_Layer: 5
   m_Name: Notifications
   m_TagString: Untagged
@@ -22794,6 +22851,37 @@ RectTransform:
   m_AnchoredPosition: {x: -40.625, y: -670}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1297262853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1297262851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b480ac5cc5282a40a6ac6bd222ac6c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  TCS: {fileID: 1829068701}
+  NotifPermsOld: 0
+  Mastertogg: {fileID: 591472252}
+  CompletelyDisabledColor: {r: 0.1, g: 0.1, b: 0.1, a: 1}
+  SuperDisabledColor: {r: 0.25, g: 0.25, b: 0.25, a: 1}
+  DisabledColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  EnabledColor: {r: 1, g: 1, b: 1, a: 1}
+  MasterToggs:
+  - {fileID: 500626950}
+  SecondLevelToggs:
+  - {fileID: 1622112007}
+  - {fileID: 931912800}
+  - {fileID: 275738083}
+  ThirdLevelToggs:
+  - {fileID: 347018489}
+  - {fileID: 1299329282}
+  XGameObj: {fileID: 1592970064}
+  CheckGameObj: {fileID: 200202166}
+  FirstTicked: 0
 --- !u!1 &1299329282
 GameObject:
   m_ObjectHideFlags: 0
@@ -22804,6 +22892,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1299329283}
   - component: {fileID: 1299329284}
+  - component: {fileID: 1299329285}
   m_Layer: 5
   m_Name: Custom Warning Time
   m_TagString: NotificationSlider
@@ -22840,7 +22929,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1299329282}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: da08d27b1a794094ca7fb1809fa85265, type: 3}
   m_Name: 
@@ -22855,6 +22944,20 @@ MonoBehaviour:
   EnabledColor: {r: 1, g: 1, b: 1, a: 1}
   tintstatus: 0
   wait: 0
+  FirstTicked: 0
+--- !u!114 &1299329285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1299329282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f9aac4416bc8a945aaf04a775010a18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  OptionTogg: {fileID: 1707428960}
 --- !u!1 &1309417407
 GameObject:
   m_ObjectHideFlags: 0
@@ -27545,6 +27648,81 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!1 &1592970064
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1592970065}
+  - component: {fileID: 1592970067}
+  - component: {fileID: 1592970066}
+  m_Layer: 5
+  m_Name: Checkmark (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1592970065
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1592970064}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.1, y: 1.1, z: 1.1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 364001221}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 20, y: 16}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1592970066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1592970064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.6509434, g: 0.6509434, b: 0.6509434, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: -4060459424184296162, guid: 0536153670292cd4eb98d211dcae0b41, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1592970067
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1592970064}
+  m_CullTransparentMesh: 1
 --- !u!1 &1594594830
 GameObject:
   m_ObjectHideFlags: 0
@@ -29535,6 +29713,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1707428959}
         m_TargetAssemblyTypeName: SavableValueScript, Assembly-CSharp
         m_MethodName: SaveValue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1297262853}
+        m_TargetAssemblyTypeName: NotifOptionDisabledScript, Assembly-CSharp
+        m_MethodName: ChangeCol
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -33908,7 +34098,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1984669632}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: da08d27b1a794094ca7fb1809fa85265, type: 3}
   m_Name: 
@@ -33923,6 +34113,7 @@ MonoBehaviour:
   EnabledColor: {r: 1, g: 1, b: 1, a: 1}
   tintstatus: 0
   wait: 0
+  FirstTicked: 0
 --- !u!1 &1989372970
 GameObject:
   m_ObjectHideFlags: 0

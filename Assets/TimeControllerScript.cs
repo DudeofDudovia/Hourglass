@@ -17,7 +17,6 @@ using System.Globalization;
 
 
 
-
 #if UNITY_ANDROID
 using Unity.Notifications.Android;
 using UnityEngine.Android;
@@ -162,7 +161,7 @@ public class TimeControllerScript : MonoBehaviour
     {
 
         string AppVer = Application.version;
-        if (AppVer.Contains("x") || AppVer.Contains("X") || AppVer.Contains("rc"))
+        if (AppVer.Contains("x") || AppVer.Contains("X"))
         {
             Application.SetStackTraceLogType(LogType.Log, StackTraceLogType.Full);
             Application.SetStackTraceLogType(LogType.Warning, StackTraceLogType.Full);
@@ -188,8 +187,8 @@ public class TimeControllerScript : MonoBehaviour
 
 #if UNITY_ANDROID && !UNITY_EDITOR
         StartCoroutine(RequestPerms());
-        NotificationSetup();
 #endif
+        NotificationSetup();
     }
     public void NotificationsEnabledfFunc(bool tog)
     {
@@ -215,20 +214,23 @@ public class TimeControllerScript : MonoBehaviour
     public bool NotificationWarningHalfTimeEnabledOld = true;
     public bool NotificationCustomTimeWarning = true;
     public bool NotificationCustomTimeWarningOld = true;
+    //public bool NotificationsEnabled = false;
     IEnumerator RequestPerms()
     {
-#if UNITY_ANDROID && !UNITY_EDITOR
+#if UNITY_ANDROID && !Unity_Editor
         string perm = "android.permission.POST_NOTIFICATIONS";
         if (!Permission.HasUserAuthorizedPermission(perm))
         {
             Permission.RequestUserPermission(perm);
         }
+        yield return new WaitUntil(() => Application.isFocused);
+        /*
         float timeout = 5f;
         while (!Permission.HasUserAuthorizedPermission(perm) && timeout >0f)
         {
             timeout -= Time.deltaTime;
             yield return null;
-        }
+        }*/
         NotificationPerms = Permission.HasUserAuthorizedPermission(perm);
 #else
         yield break;
@@ -251,6 +253,8 @@ public class TimeControllerScript : MonoBehaviour
             };
             AndroidNotificationCenter.RegisterNotificationChannel(channel);
         IsOnAndroid = true;
+#else
+        NotificationPerms = true;
 #endif
     }
     int[] ChannelIDs = new int[0];
@@ -313,34 +317,35 @@ public class TimeControllerScript : MonoBehaviour
         if (Profiles > 1) { Notiftext += "\nProfile: " + (ProfileName).ToString(); }
 
         if (channel < 6 || channel > 11) { channel = 8; }
-#if UNITY_ANDROID
+#if UNITY_ANDROID && !UNITY_EDITOR
+        if (!NotificationPerms) { return; }
         AndroidJavaClass unityPlayerAndr = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
-        AndroidJavaObject activityAndr = unityPlayerAndr.GetStatic<AndroidJavaObject>("currentActivity");
-        AndroidJavaObject contextAndr = activityAndr.Call<AndroidJavaObject>("getApplicationContext");
-        AndroidJavaObject alarmManager = contextAndr.Call<AndroidJavaObject>("getSystemService", "alarm");
-        AndroidNotification notification = new AndroidNotification();
-        notification.Title = NotifTitle;
-        notification.Text = Notiftext;
-        notification.FireTime = DateTime.Now.AddMinutes(FireMinutes);
-        notification.ShowTimestamp = true;
-        notification.ShouldAutoCancel = ForTimer;
-        notification.UsesStopwatch = UseStopWatch;
-        notification.Color = Color.HSVToRGB(BackgroundHue, BackgroundSat, BackgroundVal);
-        
-        notification.Style = NotificationStyle.BigPictureStyle;
-        int id = AndroidNotificationCenter.SendNotification(notification, "Hourglass_Channel" + NotificationChannel);
-        int DatInd = 0;
-        var data = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(Path.Combine(Application.persistentDataPath, "Savedata", "Profile" + Profile.ToString() + ".json")));
-        DatInd = SavedNotifIDIndex(data,channel);
-        //DatInd = int.Parse(RDfile(6, 0, true));
-        //if (DatInd == -792) DatInd = 0;
-        /*if (ForTimer)
-        {
-            MKfile(7, DatInd, id.ToString(), false);
-        }
-        else */
-        if (channel != 6) { MKfile(6, DatInd, id.ToString(), false); }
-        MKfile(channel, DatInd, id.ToString(), false);
+            AndroidJavaObject activityAndr = unityPlayerAndr.GetStatic<AndroidJavaObject>("currentActivity");
+            AndroidJavaObject contextAndr = activityAndr.Call<AndroidJavaObject>("getApplicationContext");
+            AndroidJavaObject alarmManager = contextAndr.Call<AndroidJavaObject>("getSystemService", "alarm");
+            AndroidNotification notification = new AndroidNotification();
+            notification.Title = NotifTitle;
+            notification.Text = Notiftext;
+            notification.FireTime = DateTime.Now.AddMinutes(FireMinutes);
+            notification.ShowTimestamp = true;
+            notification.ShouldAutoCancel = ForTimer;
+            notification.UsesStopwatch = UseStopWatch;
+            notification.Color = Color.HSVToRGB(BackgroundHue, BackgroundSat, BackgroundVal);
+
+            notification.Style = NotificationStyle.BigPictureStyle;
+            int id = AndroidNotificationCenter.SendNotification(notification, "Hourglass_Channel" + NotificationChannel);
+            int DatInd = 0;
+            var data = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(Path.Combine(Application.persistentDataPath, "Savedata", "Profile" + Profile.ToString() + ".json")));
+            DatInd = SavedNotifIDIndex(data, channel);
+            //DatInd = int.Parse(RDfile(6, 0, true));
+            //if (DatInd == -792) DatInd = 0;
+            /*if (ForTimer)
+            {
+                MKfile(7, DatInd, id.ToString(), false);
+            }
+            else */
+            if (channel != 6) { MKfile(6, DatInd, id.ToString(), false); }
+            MKfile(channel, DatInd, id.ToString(), false);
 #elif PLATFORM_STANDALONE_WIN || UNITY_EDITOR_WIN
         //Notif Id = Profile + Channel + ChannelIndex//
         Notiftext = NotifTitle + "\n" + Notiftext;
@@ -425,6 +430,7 @@ public class TimeControllerScript : MonoBehaviour
         //UnityEngine.Debug.Log("Notifs Canceled" + channel);
         //if (channel == 7) { CancelTimerNotif(Prof); return; }
 #if UNITY_ANDROID && !UNITY_EDITOR
+        if (!NotificationPerms){ return;}
         if (CancelAll)
         {
             AndroidNotificationCenter.CancelAllNotifications();

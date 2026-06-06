@@ -42,8 +42,14 @@ public class NotifOptionGrayOutScript : MonoBehaviour
 
 
     }
+    public bool FirstTicked;
     void Update()
     {
+        if (!FirstTicked)
+        {
+            ChangeCol();
+            FirstTicked = true;
+        }
         if (togg.isOn != toggold)
         {
             ChangeCol();
