@@ -10,13 +10,40 @@ public static class Derboss
     private static int cachedFrame;
     private static int cachedTimeIndex;
     private static bool initialized;
+    private static void SaveFile()
+    {
+        string Dir = Path.Combine(GetDLPath(), "HourglassLogs");
+        string dir = Path.Combine(Dir, "DerbossLog.txt");
+
+        using var unityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
+        using var activity = unityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
+        using var resolver = activity.Call<AndroidJavaObject>("getContentResolver");
+        using var values = new AndroidJavaObject("android.content.ContentValues");
+
+        values.Call("put", "display_name", "DerbossLog.txt");
+        values.Call("put", "mime_type", "text/plain");
+        values.Call("put", "relative_path", "Download");
+
+        using var downloads = new AndroidJavaClass("android.provider.MediaStore$Downloads");
+
+        AndroidJavaObject uri = resolver.Call<AndroidJavaObject>(
+            "insert",
+            downloads.GetStatic<AndroidJavaClass>("EXTERNAL_CONTENT_URI"),
+            values);
+
+        AndroidJavaObject output = resolver.Call<AndroidJavaObject>("openOutputSteam",uri);
+
+        byte[] bytes = System.Text.Encoding.UTF8.GetBytes(cachedConsole.ConsoleLogs);
+        output.Call("write", bytes);
+        output.Call("close");
+    }
     private static string GetDLPath()
     {
-#if UNITY_ANDROID && !UNITY_EDITOR
+#if UNITY_ANDROID //&& !UNITY_EDITOR
         using (var environment = new AndroidJavaClass("android.os.Environment"))
         {
             using (var downloadsDir = environment.CallStatic<AndroidJavaObject>(
-                "getExternalStoragePublicDirectory",
+                "getExternal/StoragePublicDirectory",
                 environment.GetStatic<string>("DIRECTORY_DOWNLOADS")
                 ))
             {
@@ -79,6 +106,7 @@ public static class Derboss
                     Directory.CreateDirectory(Dir);
                 }
                 File.WriteAllText(Path.Combine(Dir,"DerbossLog.txt"), cachedConsole.ConsoleLogs);*/
+                SaveFile();
 
             }
      

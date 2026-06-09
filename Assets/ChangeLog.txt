@@ -24,11 +24,25 @@ Changelog 1.0.0 - The Notification Update
 	Added A Debug Console:
 		This is used for debugging and the toggle for it is at the bottom of the options menu, though in normal use it should be empty (unless something goes wrong or I forgot to remove a logger).
 		This doesn't exist on Windows due to excessive lag.
+		The output will be saved in the Download directory on Android, and, despite being disabled, to the following path on Windows:
+			C:\Users\[USER]\AppData\LocalLow\DudeofDudovia\Hourglass\HourglassLogs\DerbossLog.txt.
 	Skipped 0.7.1 lol.
+	-1.0.0-x8
+		I was using an older vsion of the code which is why nothing was wokring.
+	-1.0.0-x7
+		Further testing.
+	-1.0.0-x6
+		Tried to find more info into the issue.
+	-1.0.0-x5
+        Warnings don't get canceled.
+	-1.0.0-x4
+		2nd test of fixing the errors.
+	-1.0.0-x3
+		First test of fixing the errors relating to permission to save the logs on Android to the Download directory.
 	-1.0.0-x2
 		Did some more slight changes to get the app to respond to notiifcation settings changes better on Android.
 		Forgot to update the changelog for -x1.
-	-x1
+	-1.0.0-x1
 		Made changes to the way notifications are handled when permission is denied on Android.
 	-1.0.0-rc6
 		Removed code to make "-rc" releases act as debug builds, and therefore all previous "-rc" builds can be seen as "-x" builds going forward.

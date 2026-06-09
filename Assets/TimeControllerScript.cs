@@ -317,7 +317,7 @@ public class TimeControllerScript : MonoBehaviour
         if (Profiles > 1) { Notiftext += "\nProfile: " + (ProfileName).ToString(); }
 
         if (channel < 6 || channel > 11) { channel = 8; }
-#if UNITY_ANDROID && !UNITY_EDITOR
+#if UNITY_ANDROID //&& !UNITY_EDITOR
         if (!NotificationPerms) { return; }
         AndroidJavaClass unityPlayerAndr = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
             AndroidJavaObject activityAndr = unityPlayerAndr.GetStatic<AndroidJavaObject>("currentActivity");
@@ -346,6 +346,7 @@ public class TimeControllerScript : MonoBehaviour
             else */
             if (channel != 6) { MKfile(6, DatInd, id.ToString(), false); }
             MKfile(channel, DatInd, id.ToString(), false);
+            Derboss.Log("Notification Sent: " + NotifTitle + " | " + Notiftext + " | Channel: " + channel.ToString() + " | Id: " + id.ToString() + " | FireTime: " + notification.FireTime.ToString());
 #elif PLATFORM_STANDALONE_WIN || UNITY_EDITOR_WIN
         //Notif Id = Profile + Channel + ChannelIndex//
         Notiftext = NotifTitle + "\n" + Notiftext;
@@ -426,30 +427,34 @@ public class TimeControllerScript : MonoBehaviour
     }
     public void CancelNotifications(int Prof, int channel ,bool CancelAll)
     {
+        Derboss.Log("cancelingC1");
         if (channel < 6 || channel > 11) { channel = 6; }
         //UnityEngine.Debug.Log("Notifs Canceled" + channel);
-        //if (channel == 7) { CancelTimerNotif(Prof); return; }
-#if UNITY_ANDROID && !UNITY_EDITOR
+        //if (channel == 7) { CancelTimerNotif(Prof); return; }//
+#if UNITY_ANDROID// && !UNITY_EDITOR
+        Derboss.Log("C2Notifications Canceled: Channel " + channel.ToString() + " | C2 ");
         if (!NotificationPerms){ return;}
         if (CancelAll)
         {
             AndroidNotificationCenter.CancelAllNotifications();
             return;
         }
-        if (File.Exists(File.ReadAllText(Path.Combine(Application.persistentDataPath, "Savedata", "Profile" + Profile.ToString() + ".json"))))
+        if (File.Exists(Path.Combine(Application.persistentDataPath, "Savedata", "Profile" + Profile.ToString() + ".json")))
             {
             var data = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(Path.Combine(Application.persistentDataPath, "Savedata", "Profile" + Profile.ToString() + ".json")));
             int[] NotifIndex = SavedNotifIDs(data, channel);
+            Derboss.Log("C3 Filepath: " + Path.Combine(Application.persistentDataPath, "Savedata", "Profile" + Profile.ToString() + ".json"));
             foreach (int ID in NotifIndex)
             {
                 AndroidNotificationCenter.CancelNotification(ID);
+                Derboss.Log("C4Notifications Canceled: Channel " + channel.ToString() + " | Profile: " + Prof.ToString() + " | CancelAll: " + CancelAll.ToString() + " |  ID: " + ID);
             }
         }
-        
-        
 
-        
-       
+
+
+
+
         MKfile(channel, 0, "", 0, false);
 #elif PLATFORM_STANDALONE_WIN || UNITY_EDITOR
         //                                    "$notifier.GetScheduledToastNotifications() | Select Id, DeliveryTime;" +
