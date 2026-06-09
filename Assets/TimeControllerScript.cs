@@ -430,7 +430,7 @@ public class TimeControllerScript : MonoBehaviour
         Derboss.Log("cancelingC1");
         if (channel < 6 || channel > 11) { channel = 6; }
         //UnityEngine.Debug.Log("Notifs Canceled" + channel);
-        //if (channel == 7) { CancelTimerNotif(Prof); return; }//
+        //if (channel == 7) { CancelTimerNotif(Prof); return; }
 #if UNITY_ANDROID// && !UNITY_EDITOR
         Derboss.Log("C2Notifications Canceled: Channel " + channel.ToString() + " | C2 ");
         if (!NotificationPerms){ return;}
