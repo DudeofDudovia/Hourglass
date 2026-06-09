@@ -27,6 +27,8 @@ Changelog 1.0.0 - The Notification Update
 		The output will be saved in the Download directory on Android, and, despite being disabled, to the following path on Windows:
 			C:\Users\[USER]\AppData\LocalLow\DudeofDudovia\Hourglass\HourglassLogs\DerbossLog.txt.
 	Skipped 0.7.1 lol.
+	-1.0.0-rc8
+		Removed debug log messages used for markers.
 	-1.0.0-rc7
 		Moved from -x to -rc because I fixed all bugs that I remember.
 	-1.0.0-x8

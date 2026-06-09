@@ -346,7 +346,6 @@ public class TimeControllerScript : MonoBehaviour
             else */
             if (channel != 6) { MKfile(6, DatInd, id.ToString(), false); }
             MKfile(channel, DatInd, id.ToString(), false);
-            Derboss.Log("Notification Sent: " + NotifTitle + " | " + Notiftext + " | Channel: " + channel.ToString() + " | Id: " + id.ToString() + " | FireTime: " + notification.FireTime.ToString());
 #elif PLATFORM_STANDALONE_WIN || UNITY_EDITOR_WIN
         //Notif Id = Profile + Channel + ChannelIndex//
         Notiftext = NotifTitle + "\n" + Notiftext;
@@ -427,12 +426,10 @@ public class TimeControllerScript : MonoBehaviour
     }
     public void CancelNotifications(int Prof, int channel ,bool CancelAll)
     {
-        Derboss.Log("cancelingC1");
         if (channel < 6 || channel > 11) { channel = 6; }
         //UnityEngine.Debug.Log("Notifs Canceled" + channel);
         //if (channel == 7) { CancelTimerNotif(Prof); return; }
-#if UNITY_ANDROID// && !UNITY_EDITOR
-        Derboss.Log("C2Notifications Canceled: Channel " + channel.ToString() + " | C2 ");
+#if UNITY_ANDROID && !UNITY_EDITOR
         if (!NotificationPerms){ return;}
         if (CancelAll)
         {
@@ -443,11 +440,9 @@ public class TimeControllerScript : MonoBehaviour
             {
             var data = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(Path.Combine(Application.persistentDataPath, "Savedata", "Profile" + Profile.ToString() + ".json")));
             int[] NotifIndex = SavedNotifIDs(data, channel);
-            Derboss.Log("C3 Filepath: " + Path.Combine(Application.persistentDataPath, "Savedata", "Profile" + Profile.ToString() + ".json"));
             foreach (int ID in NotifIndex)
             {
                 AndroidNotificationCenter.CancelNotification(ID);
-                Derboss.Log("C4Notifications Canceled: Channel " + channel.ToString() + " | Profile: " + Prof.ToString() + " | CancelAll: " + CancelAll.ToString() + " |  ID: " + ID);
             }
         }
 
