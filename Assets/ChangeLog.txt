@@ -2,6 +2,8 @@ Made by Dude of Dudovia
 	Made using Unity
 
 More readable changelogs and source code can be found on the GitHub page.
+Future Features:
+	A toggle to have rainbow logs be affacted by the hue slider, so that you can have completely random, or random within a customizable distance from the custom color.
 Changelog 1.0.0 - The Notification Update
 	Added Warnings
 		They work on both Android and Windows:
