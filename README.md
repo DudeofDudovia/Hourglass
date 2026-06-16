@@ -3,7 +3,7 @@ An App to Help Keep Track of Time
 The way this application functions is that it enables you to log how much time has been used, and displays how much is left.
   The app also has a timer, which will keep track of time for you (granted you remember to stop it).
 
-Changelog 1.0.0 - The Notification Update
+	Changelog 1.0.0 - The Notification Update
 	Added Warnings
 		They work on both Android and Windows:
 			Due to programming limitations, the warnings may arrive out of time by a couple seconds, but should be reasonably accurate.
