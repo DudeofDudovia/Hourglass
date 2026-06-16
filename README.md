@@ -104,7 +104,7 @@ Changelog 1.0.0 - The Notification Update
 		Changed Margins(Moved) for Version Indicator
 			Old coords were 72 Left, -14 Top, -25, 10
 				0.8.0-rc1 doesn't fit on the screen with these coords.
-Changelog 0.7.1
+	- Changelog 0.7.1
 	Made improvement to the file system:
 		Made the new file system create directories more properly.
 		It should now be more effecient and less prone to bugs (though it caused a TONNE in the process).
