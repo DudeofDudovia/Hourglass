@@ -138,7 +138,7 @@ The way this application functions is that it enables you to log how much time h
 				Previous time logs won't be able to propperly display when they were logged(They all display the current time), but no one uses this app anyway so...
 			-x1
 				I forgot to make the millisecond toggle do anything for the displays at the top.
-		Forgot to update the changelog for -rc 7.
-		Not a -rc because there are known bugs
-	-rc 7
-		The timer wouldn't change the time but it would create a log.
+				Forgot to update the changelog for -rc 7.
+				Not a -rc because there are known bugs
+			-rc 7
+				The timer wouldn't change the time but it would create a log.
