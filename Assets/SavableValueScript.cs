@@ -1,9 +1,10 @@
 using System.Collections.Generic;
+using System.Net;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-
 public class SavableValueScript : MonoBehaviour
 {
     public string Label;
@@ -23,6 +24,7 @@ public class SavableValueScript : MonoBehaviour
     public bool DefaultBool = false;
     public bool flot;
     public float DefaultFloat = -1;
+    public bool DontEnforceMax;
     public bool integr;
     public int DefaultInt = -1;
 
@@ -33,8 +35,11 @@ public class SavableValueScript : MonoBehaviour
     
     public bool ForceLoadSaved = false;
 
+    public bool HardLimit = false;
+    public bool DontSave = false;
     public void SaveValue()
     {
+
         if (FirstFrame) { return; }
         if (toggle)
         {
@@ -44,42 +49,61 @@ public class SavableValueScript : MonoBehaviour
             {
                 VarToToggle.Invoke(Togg.isOn);
             }
+            if (DontSave)
+            { return; }
             TCS.MKfile(ObjectLayer, DataLayer, tog.ToString(), Default);
             
         }
         if (flot)
         {
+
             VarToFloat.Invoke(Slide.value);
-            TCS.MKfile(ObjectLayer, DataLayer, Slide.value.ToString(), Default);
             if (VarToFloat != null)
             {
                 VarToFloat.Invoke(Slide.value);
             }
-            if (Slide.value > SliderMinValue) { Slide.minValue = SliderMinValue; }
-            if (Slide.value < SliderMaxValue) { Slide.maxValue = SliderMaxValue; }
+            if (Slide.value > SliderMinValue && !DontEnforceMax) { Slide.minValue = SliderMinValue; }
+            if (Slide.value < SliderMaxValue && !DontEnforceMax) { Slide.maxValue = SliderMaxValue; }
+            if (DontSave)
+            { return; }
+            TCS.MKfile(ObjectLayer, DataLayer, Slide.value.ToString(), Default);
         }
         if (integr)
         {
             VarToInt.Invoke((int)Slide.value);
-            TCS.MKfile(ObjectLayer, DataLayer, Slide.value.ToString(), Default);
             if (VarToInt != null)
             {
                 VarToInt.Invoke((int)Slide.value);
             }
-            if (Slide.value > SliderMinValue) { Slide.minValue = SliderMinValue; }
-            if (Slide.value < SliderMaxValue) { Slide.maxValue = SliderMaxValue; }
+            if (Slide.value > SliderMinValue && !DontEnforceMax) { Slide.minValue = SliderMinValue; }
+            if (Slide.value < SliderMaxValue && !DontEnforceMax) { Slide.maxValue = SliderMaxValue; }
+            if (DontSave)
+            { return; }
+            TCS.MKfile(ObjectLayer, DataLayer, Slide.value.ToString(), Default);
         }
     }
     public void Awake()
     {
        
         if (TCS == null) { TCS = Object.FindFirstObjectByType<TimeControllerScript>().gameObject.GetComponent<TimeControllerScript>(); }
-        int Prof = int.Parse(TCS.RDfile(0, 0, true));
+        int Prof = 0;
+        try { Prof = int.Parse(TCS.RDfile(0, 0, true)); }
+        catch { Prof = 0; }
         LoadProfile(Prof);
     }
     public void Update()
     {
 
+        if (flot)
+        {
+            if (Slide.value > SliderMinValue && !DontEnforceMax) { Slide.minValue = SliderMinValue; }
+            if (Slide.value < SliderMaxValue && !DontEnforceMax) { Slide.maxValue = SliderMaxValue; }
+        }
+        if (integr)
+        {
+            if (Slide.value > SliderMinValue && !DontEnforceMax) { Slide.minValue = SliderMinValue; }
+            if (Slide.value < SliderMaxValue && !DontEnforceMax) { Slide.maxValue = SliderMaxValue; }
+        }
 
         FirstFrame = false;
         if (LoadOnProfileChange)
@@ -94,7 +118,10 @@ public class SavableValueScript : MonoBehaviour
         {
             LoadProfile(TCS.Profile);
         }
-
+        if (TCS.BigReset)
+        {
+            LoadProfile(-2);
+        }
         if (Resetable)
         {
             MouseDown = false;
@@ -127,19 +154,24 @@ public class SavableValueScript : MonoBehaviour
     public void LoadProfile(int Prof)
     {
         if (Prof == -1) { Prof = TCS.Profile; }
+       
         if (toggle)
         {
-            try
-            {
-                int tog = int.Parse(TCS.RDfile(ObjectLayer, DataLayer,Default));
-                if (tog == -792)
+            if (Prof != -2) {
+                try
                 {
-                    Togg.isOn = DefaultBool;
+                    int tog = int.Parse(TCS.RDfile(ObjectLayer, DataLayer, Default));
+                    if (tog == -792)
+                    {
+                        Togg.isOn = DefaultBool;
+                    }
+                    if (tog == 1) { Togg.isOn = true; }
+                    if (tog == 0) { Togg.isOn = false; }
+
                 }
-                if (tog == 1) { Togg.isOn = true; }
-                if (tog == 0) { Togg.isOn = false; }
+                catch { Togg.isOn = DefaultBool; }
             }
-            catch { Togg.isOn = DefaultBool; }
+            else { Togg.isOn = DefaultBool; }
             if (VarToToggle != null)
             {
                 VarToToggle.Invoke(Togg.isOn);
@@ -147,24 +179,51 @@ public class SavableValueScript : MonoBehaviour
         }
         if (flot)
         {
-            if (SliderMaxValue == -792) { SliderMaxValue = Slide.maxValue; }
-            else { SliderMaxValue = Slide.maxValue; }
-            if (SliderMinValue == -792) { SliderMinValue = Slide.minValue; }
-            else { SliderMinValue = Slide.minValue; }
-            try
+            if (!HardLimit)
             {
-                Slide.maxValue = SliderMaxValue;
-                Slide.minValue = SliderMinValue;
-                float val = float.Parse(TCS.RDfile(ObjectLayer, DataLayer, Default));
-                if ( val == -792)
-                {
-                    val = DefaultFloat;
-                }
-                if (val > Slide.maxValue) { Slide.maxValue = val; }
-                if (val < Slide.minValue) { Slide.minValue = val; }
-                Slide.value = val;
+                if (SliderMaxValue == -792 && !DontEnforceMax) { SliderMaxValue = Slide.maxValue; }
+                else if (!DontEnforceMax) { SliderMaxValue = Slide.maxValue; }
+                if (SliderMinValue == -792 && !DontEnforceMax) { SliderMinValue = Slide.minValue; }
+                else if (!DontEnforceMax) { SliderMinValue = Slide.minValue; }
             }
-            catch { Slide.value = DefaultFloat; }
+            if (Prof != -2)
+            {
+                try
+                {
+                    Slide.maxValue = SliderMaxValue;
+                    Slide.minValue = SliderMinValue;
+                    float val = float.Parse(TCS.RDfile(ObjectLayer, DataLayer, Default));
+                    if (val == -792)
+                    {
+                        val = DefaultFloat;
+                    }
+                    if (val > Slide.maxValue) { Slide.maxValue = val; }
+                    if (val < Slide.minValue) { Slide.minValue = val; }
+                    Slide.value = val;
+                }
+                catch { Slide.value = DefaultFloat; }
+            }
+            else
+            {
+                try
+                {
+                    if (!DontEnforceMax)
+                    {
+                        Slide.maxValue = SliderMaxValue;
+                        Slide.minValue = SliderMinValue;
+                    }
+                }
+                catch
+                {
+                    if (!DontEnforceMax)
+                    {
+                        Slide.maxValue = 1;
+                        Slide.minValue = 0;
+                    }
+                }
+                Slide.value = DefaultFloat;
+            }
+
             if (VarToFloat != null)
             {
                 VarToFloat.Invoke(Slide.value);
@@ -173,29 +232,51 @@ public class SavableValueScript : MonoBehaviour
         if (integr)
         {
             if (DefaultInt == -1) { DefaultInt = (int)DefaultFloat; }
-
-
-            if (SliderMaxValue == -792) { SliderMaxValue = Slide.maxValue; }
-            else { SliderMaxValue = Slide.maxValue; }
-            if (SliderMinValue == -792) { SliderMinValue = Slide.minValue; }
-            else { SliderMinValue = Slide.minValue; }
-            try
+            if (!HardLimit)
             {
-                Slide.maxValue = SliderMaxValue;
-                Slide.minValue = SliderMinValue;
-                float vali = int.Parse(TCS.RDfile(ObjectLayer, DataLayer, Default));
-                if (vali == -792)
-                {
-                    vali = DefaultInt;
-                }
-                if (vali > Slide.maxValue) { Slide.maxValue = vali; }
-                if (vali < Slide.minValue) { Slide.minValue = vali; }
-                Slide.value = vali;
+                if (SliderMaxValue == -792) { SliderMaxValue = Slide.maxValue; }
+                else { SliderMaxValue = Slide.maxValue; }
+                if (SliderMinValue == -792) { SliderMinValue = Slide.minValue; }
+                else { SliderMinValue = Slide.minValue; }
             }
-            catch { Slide.value = DefaultInt; }
+            if (Prof != -2 && !DontEnforceMax)
+            {
+                try
+                {
+                    Slide.maxValue = SliderMaxValue;
+                    Slide.minValue = SliderMinValue;
+                    float vali = int.Parse(TCS.RDfile(ObjectLayer, DataLayer, Default));
+                    if (vali == -792)
+                    {
+                        vali = DefaultInt;
+                    }
+                    if (vali > Slide.maxValue) { Slide.maxValue = vali; }
+                    if (vali < Slide.minValue) { Slide.minValue = vali; }
+                    Slide.value = vali;
+                }
+                catch { Slide.value = DefaultInt; }
+            }
+            else
+            {
+                if (!DontEnforceMax)
+                {
+                    try
+                    {
+                        Slide.maxValue = SliderMaxValue;
+                        Slide.minValue = SliderMinValue;
+                    }
+                    catch
+                    {
+                        Slide.maxValue = 1;
+                        Slide.minValue = 0;
+                    }
+                Slide.value = DefaultInt;
+                 }
+            }
             if (VarToInt != null)
             {
                 VarToInt.Invoke((int)Slide.value);
+
             }
         }
     }

@@ -9,6 +9,8 @@ TagManager:
   - ProfileDelete
   - AddedTimes
   - BeingRemoved
+  - LoggingConsole
+  - NotificationSlider
   layers:
   - Default
   - TransparentFX
@@ -43,6 +45,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: New Layer 1
+    uniqueID: 2160525811
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

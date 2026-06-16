@@ -1,8 +1,26 @@
 using System;
+using System.Collections;
+using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
+using System.IO.Enumeration;
 using TMPro;
+
+using UnityEditor;
+//using Unity.Notifications.iOS;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Rendering.Universal;
+using System.Globalization;
+
+
+
+
+
+#if UNITY_ANDROID
+using Unity.Notifications.Android;
+using UnityEngine.Android;
+# endif
 public class TimeControllerScript : MonoBehaviour
 {
     public bool DebugOutput;
@@ -48,6 +66,11 @@ public class TimeControllerScript : MonoBehaviour
     public bool MSTimer = true;
     public bool ResetValues = false;
     public int ResetValuesTimer = 1;
+    public bool BigReset = false;
+    public bool NotificationPerms = false;
+    public bool IsOnAndroid = false;
+
+
     public void MSTimerFunc(bool tog)
     {
         MSTimer = tog;
@@ -78,6 +101,23 @@ public class TimeControllerScript : MonoBehaviour
     {
         DeletedProfLifeTime = inte;
     }
+
+    public float BackgroundHue = 0.3333333f;
+    public void BackgroundHueFunc(float flot)
+    {
+        BackgroundHue = flot;
+    }
+    public float BackgroundSat = 1;
+    public void BackgroundSatFunc(float flot)
+    {
+        BackgroundSat = flot;
+    }
+    public float BackgroundVal = 1;
+    public void BackgroundValFunc(float flot)
+    {
+        BackgroundVal = flot;
+    }
+
     public float AddedTimesHue;
     public void AddedTimesHueFunc(float flot)
     {
@@ -115,12 +155,351 @@ public class TimeControllerScript : MonoBehaviour
         AddedTimesRainbow = tog;
     }
 
+    public int Reset = -1;
 
     void Awake()
     {
-        Profile = int.Parse(RDfile(0, 0, true));
+
+        string AppVer = Application.version;
+        if (AppVer.Contains("x") || AppVer.Contains("X"))
+        {
+            Application.SetStackTraceLogType(LogType.Log, StackTraceLogType.Full);
+            Application.SetStackTraceLogType(LogType.Warning, StackTraceLogType.Full);
+            Application.SetStackTraceLogType(LogType.Error, StackTraceLogType.Full);
+#if !(PLATFORM_STANDALONE_WIN || UNITY_EDITOR_WIN)
+            Derboss.Init();
+#endif
+        }
+        Profile = 0;
+        try { Profile = int.Parse(RDfile(0, 0, true)); }
+        catch { Profile = 0; }
         if (Profile == -792) { Profile = 0; }
+        if (!CheckFile(Profile))
+        {
+            Load(Profile, true);
+            return;
+        }
         Load(Profile);
+
+    }
+    private void Start()
+    {
+
+#if UNITY_ANDROID && !UNITY_EDITOR
+        StartCoroutine(RequestPerms());
+#endif
+        NotificationSetup();
+    }
+    public void NotificationsEnabledfFunc(bool tog)
+    {
+        NotificationsEnabled = tog;
+    }
+    public void NotificationWarningsEnabledfFunc(bool tog)
+    {
+        NotificationsEnabled = tog;
+    }
+    public void NotificationWarningHalfTimeEnabledfFunc(bool tog)
+    {
+        NotificationWarningHalfTimeEnabled = tog;
+    }
+    public void NotificationCustomTimeWarningFunc(bool tog)
+    {
+        NotificationCustomTimeWarning = tog;
+    }
+    public bool NotificationsEnabledOld = true;
+    public bool NotificationsEnabled = true;
+    public bool NotificationLowWarningsEnabled = true;
+    public bool NotificationLowWarningsEnabledOld = true;
+    public bool NotificationWarningHalfTimeEnabled = true;
+    public bool NotificationWarningHalfTimeEnabledOld = true;
+    public bool NotificationCustomTimeWarning = true;
+    public bool NotificationCustomTimeWarningOld = true;
+    //public bool NotificationsEnabled = false;
+    IEnumerator RequestPerms()
+    {
+#if UNITY_ANDROID && !Unity_Editor
+        string perm = "android.permission.POST_NOTIFICATIONS";
+        if (!Permission.HasUserAuthorizedPermission(perm))
+        {
+            Permission.RequestUserPermission(perm);
+        }
+        yield return new WaitUntil(() => Application.isFocused);
+        /*
+        float timeout = 5f;
+        while (!Permission.HasUserAuthorizedPermission(perm) && timeout >0f)
+        {
+            timeout -= Time.deltaTime;
+            yield return null;
+        }*/
+        NotificationPerms = Permission.HasUserAuthorizedPermission(perm);
+#else
+        yield break;
+#endif
+    }
+    private string NotificationChannel = "V2";
+    public void NotificationSetup()
+    {
+#if UNITY_ANDROID && !UNITY_EDITOR
+            var channel = new AndroidNotificationChannel()
+            {
+                Id = "Hourglass_Channel" + NotificationChannel,
+                Name = "Timer Channel",
+                Importance = Importance.High,
+                Description = "Hourglass Notifications",
+                EnableVibration = true,
+                CanShowBadge = true,
+                LockScreenVisibility = LockScreenVisibility.Public,
+                VibrationPattern = new long[] { 0, 500, 200, 500 },// wait, vibrate, pause, vibrate
+            };
+            AndroidNotificationCenter.RegisterNotificationChannel(channel);
+        IsOnAndroid = true;
+#else
+        NotificationPerms = true;
+#endif
+    }
+    int[] ChannelIDs = new int[0];
+    int SavedNotifIDIndex(SaveObjectList data, int channel)
+    {
+        if (data?.Objects == null || data.Objects.Length <= channel)
+        { return 0;
+        }
+        if (data.Objects[channel] == null) { return 0; }
+        if (data.Objects[channel].datas == null) { return 0; }
+        if (data.Objects[channel].datas.Length == 0) { return 0; }
+        if (data.Objects[channel].datas[0] == "-792") { return 0; }
+        return data.Objects[channel].datas.Length;
+    }
+    int[] SavedNotifIDs(SaveObjectList data, int channel)
+    {
+
+        if (data?.Objects == null || data.Objects.Length <= channel)
+        {
+            int[] IDIndex = new int[1];
+            IDIndex[0] = 0;
+            return IDIndex;
+        }
+        int length = data.Objects[channel].datas.Length;
+        int[] IDIndexS = new int[length];
+        for (int i = 0; i < length; i++)
+        {
+            IDIndexS[i] = data.Objects[channel].datas[i] != null ? int.TryParse(data.Objects[channel].datas[i], out int result) ? result : 0 : 0;
+        }
+        return IDIndexS;
+    }
+    public float LowWarningTime = 5f;
+    public void LowWarningTimeFunc(float flot)
+    {
+        LowWarningTime = flot;
+    }
+    public float CustomWarningTime = 5f;
+    public void CustomWarningTimeFunc(float flot)
+    {
+        CustomWarningTime = flot;
+    }
+    public void Notify(float FireMinutes, string NotifTitle, int channel, string Notiftext)
+    {
+        Notify(FireMinutes, NotifTitle, Notiftext, channel, false);
+    }
+    public void Notify(float FireMinutes, string NotifTitle, string Notiftext, int channel, bool UseStopWatch)
+    {
+        Notify(FireMinutes, NotifTitle, Notiftext, channel, UseStopWatch, false);
+    }
+    public void Notify(float FireMinutes, string NotifTitle, string Notiftext, int channel, bool UseStopWatch, bool ForTimer)
+    {
+#if DEBUG
+        //Notiftext += "\nProfile: " + (ProfileName).ToString() + "\nChannel:" + channel.ToString();
+        if (FireMinutes > 1.5 && DebugOutput)
+        {
+            Notify(0, NotifTitle, Notiftext + "\n***\nFireMinutes: " + FireMinutes +"\nFireTime: "+DateTime.Now.AddMinutes(FireMinutes) +"\n***", channel, UseStopWatch, ForTimer);
+        }
+        Notiftext += "\nChannel:" + channel.ToString();
+#endif
+        if (Profiles > 1) { Notiftext += "\nProfile: " + (ProfileName).ToString(); }
+
+        if (channel < 6 || channel > 11) { channel = 8; }
+#if UNITY_ANDROID //&& !UNITY_EDITOR
+        if (!NotificationPerms) { return; }
+        AndroidJavaClass unityPlayerAndr = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
+            AndroidJavaObject activityAndr = unityPlayerAndr.GetStatic<AndroidJavaObject>("currentActivity");
+            AndroidJavaObject contextAndr = activityAndr.Call<AndroidJavaObject>("getApplicationContext");
+            AndroidJavaObject alarmManager = contextAndr.Call<AndroidJavaObject>("getSystemService", "alarm");
+            AndroidNotification notification = new AndroidNotification();
+            notification.Title = NotifTitle;
+            notification.Text = Notiftext;
+            notification.FireTime = DateTime.Now.AddMinutes(FireMinutes);
+            notification.ShowTimestamp = true;
+            notification.ShouldAutoCancel = ForTimer;
+            notification.UsesStopwatch = UseStopWatch;
+            notification.Color = Color.HSVToRGB(BackgroundHue, BackgroundSat, BackgroundVal);
+
+            notification.Style = NotificationStyle.BigPictureStyle;
+            int id = AndroidNotificationCenter.SendNotification(notification, "Hourglass_Channel" + NotificationChannel);
+            int DatInd = 0;
+            var data = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(Path.Combine(Application.persistentDataPath, "Savedata", "Profile" + Profile.ToString() + ".json")));
+            DatInd = SavedNotifIDIndex(data, channel);
+            //DatInd = int.Parse(RDfile(6, 0, true));
+            //if (DatInd == -792) DatInd = 0;
+            /*if (ForTimer)
+            {
+                MKfile(7, DatInd, id.ToString(), false);
+            }
+            else */
+            if (channel != 6) { MKfile(6, DatInd, id.ToString(), false); }
+            MKfile(channel, DatInd, id.ToString(), false);
+#elif PLATFORM_STANDALONE_WIN || UNITY_EDITOR_WIN
+        //Notif Id = Profile + Channel + ChannelIndex//
+        Notiftext = NotifTitle + "\n" + Notiftext;
+        int DatInd = 0;
+        var data = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(Path.Combine(Application.persistentDataPath, "Savedata", "Profile" + Profile.ToString() + ".json")));
+        DatInd = SavedNotifIDIndex(data, channel);
+        string NotifId = Profile + channel + DatInd.ToString();
+        if (FireMinutes == 0)
+        {
+            Process.Start(new ProcessStartInfo()//
+            {
+                FileName = "powershell",
+                Arguments = "-Command \"[Windows.UI.Notifications.ToastNotificationManager, Windows.UI.Notifications, ContentType = WindowsRuntime] > $null;" +
+                "$template = [Windows.UI.Notifications.ToastTemplateType]::ToastText02;" +
+                "$xml = [Windows.UI.Notifications.ToastNotificationManager]::GetTemplateContent($template);" +
+                "$texts = $xml.GetElementsByTagName('text');" +
+                "$texts[0].AppendChild($xml.CreateTextNode('" + Notiftext + "')) > $null;" +
+                "$texts[1].AppendChild($xml.CreateTextNode('Notification Test')) > $null;" +
+                "$toast = [Windows.UI.Notifications.ToastNotification]::new($xml);" +
+                "$toast.Id = '" + NotifId + "';" +
+                "$notifier = [Windows.UI.Notifications.ToastNotificationManager]::CreateToastNotifier('HourGlass');" +
+                "$notifier.Show($toast);\""
+                ,
+                CreateNoWindow = true,
+                UseShellExecute = false,
+
+            });
+        }
+        else
+        {
+            float FireTime = (FireMinutes + .2f);
+            Process.Start(new ProcessStartInfo()
+            {
+                FileName = "powershell",
+                Arguments = "-Command \"[Windows.UI.Notifications.ToastNotificationManager, Windows.UI.Notifications, ContentType = WindowsRuntime] > $null;" +
+                "$template = [Windows.UI.Notifications.ToastTemplateType]::ToastText02;" +
+                "$xml = [Windows.UI.Notifications.ToastNotificationManager]::GetTemplateContent($template);" +
+                "$texts = $xml.GetElementsByTagName('text');" +
+                "$texts[0].AppendChild($xml.CreateTextNode('" + Notiftext + "')) > $null;" +
+                "$texts[1].AppendChild($xml.CreateTextNode('HourGlass')) > $null;" +
+                "$date = [DateTimeOffset]::Now.AddMinutes(" + (FireTime).ToString(CultureInfo.InvariantCulture) + ");" +
+                "$xml.DocumentElement.SetAttribute('launch', 'openapp');" +
+                "$scheduledToast = [Windows.UI.Notifications.ScheduledToastNotification]::new($xml,$date);" +
+                "$scheduledToast.Id = '" + NotifId + "';" +
+                "$notifier = [Windows.UI.Notifications.ToastNotificationManager]::CreateToastNotifier('HourGlass');" +
+                "$notifier.AddToSchedule($scheduledToast);\""
+                ,
+                CreateNoWindow = true,
+                UseShellExecute = false,
+            });
+        }
+
+#else
+
+#endif
+    }
+    /*public int CancelNotifications(bool ReturnVals)
+    {
+        if (ReturnVals) { } 
+        else { CancelNotifications();  }
+        return 0;
+    }*/
+    public void CancelMostNotifications()
+    {
+      
+         CancelNotifications(Profile, 8);
+         CancelNotifications(Profile, 9);
+         CancelNotifications(Profile, 10);
+         CancelNotifications(Profile, 11);
+    }
+    public void CancelNotifications(int channel)
+    {
+        CancelNotifications(Profile, channel, false);
+    }
+    public void CancelNotifications(int prof, int channel)
+    {
+        CancelNotifications(prof, channel, false);
+    }
+    public void CancelNotifications(int Prof, int channel ,bool CancelAll)
+    {
+        if (channel < 6 || channel > 11) { channel = 6; }
+        //UnityEngine.Debug.Log("Notifs Canceled" + channel);
+        //if (channel == 7) { CancelTimerNotif(Prof); return; }
+#if UNITY_ANDROID && !UNITY_EDITOR
+        if (!NotificationPerms){ return;}
+        if (CancelAll)
+        {
+            AndroidNotificationCenter.CancelAllNotifications();
+            return;
+        }
+        if (File.Exists(Path.Combine(Application.persistentDataPath, "Savedata", "Profile" + Profile.ToString() + ".json")))
+            {
+            var data = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(Path.Combine(Application.persistentDataPath, "Savedata", "Profile" + Profile.ToString() + ".json")));
+            int[] NotifIndex = SavedNotifIDs(data, channel);
+            foreach (int ID in NotifIndex)
+            {
+                AndroidNotificationCenter.CancelNotification(ID);
+            }
+        }
+
+
+
+
+
+        MKfile(channel, 0, "", 0, false);
+#elif PLATFORM_STANDALONE_WIN || UNITY_EDITOR
+        //                                    "$notifier.GetScheduledToastNotifications() | Select Id, DeliveryTime;" +
+        CancelAll = true;
+        if (CancelAll)
+        {
+            Process.Start(new ProcessStartInfo()
+            {
+                FileName = "powershell",
+                Arguments =
+                 "-Command \"[Windows.UI.Notifications.ToastNotificationManager, Windows.UI.Notifications, ContentType = WindowsRuntime] > $null;" +
+                    "$notifier = [Windows.UI.Notifications.ToastNotificationManager]::CreateToastNotifier('HourGlass');" +
+                    "$scheduled = $notifier.GetScheduledToastNotifications();" +
+                    "foreach ($toast in $scheduled) {" +
+                    "$notifier.RemoveFromSchedule($toast);" +
+                    "}\""
+                    ,
+                CreateNoWindow = true,
+                UseShellExecute = false,
+
+            });
+            return;
+        }
+        int DatInd = 0;
+        string NotifId = "sad";
+        if (File.Exists(File.ReadAllText(Path.Combine(Application.persistentDataPath, "Savedata", "Profile" + Profile.ToString() + ".json"))))
+        {
+            var data = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(Path.Combine(Application.persistentDataPath, "Savedata", "Profile" + Profile.ToString() + ".json")));
+            DatInd = SavedNotifIDIndex(data, channel);
+            NotifId = Prof + channel + DatInd.ToString();
+        }
+        Process.Start(new ProcessStartInfo()
+        {
+            FileName = "powershell",
+            Arguments = 
+                "-Command \"[Windows.UI.Notifications.ToastNotificationManager, Windows.UI.Notifications, ContentType = WindowsRuntime] > $null;" +
+                "$notifier = [Windows.UI.Notifications.ToastNotificationManager]::CreateToastNotifier('HourGlass');" +
+                "$scheduled = $notifier.GetScheduledToastNotifications();" +
+                "foreach ($toast in $scheduled) {" +
+                "if ($toast.Id -eq '" + NotifId +  "') {" +
+                "$notifier.RemoveFromSchedule($toast);" +
+                "}" +
+                "}\""
+                ,
+            CreateNoWindow = false,
+            UseShellExecute = false,
+
+        });
+#else
+#endif
     }
     [System.Serializable]
     public class SaveObjectList
@@ -139,23 +518,37 @@ public class TimeControllerScript : MonoBehaviour
         *2:Milli
         *3:Background
         *4:LoggedTimes
+        *5:LoggedTimesTime
+        *6:[All]NotificationIds
+        *7:TimerNotifID;
+        *8:OutNotificationIds;
+        *9:WarningIDs;
+        *10:HalfTimeIDs;
+        *11:CustomWarningIDs;
+        *12:Notification Settings
+        * -Execpt the Big Toggle.
+        * 0:Enable Low Time Warning
+        * 1:Low Time Warning Time
+        * 2:Enable Notification Warning Time 
+        * 3:Custom Warning Time
+        * 4:Enable Notification Warning Half Time (1)
+     *Settings[Default]
+        *9:EnableNotification [NotificationSettings Starts]
+        *10 - 13 are old values, no longer necessary
+        *10:EnableNotificationWarning
+        *11:EnableNotificationWarningAtHalfTime
+        *12:LowWarningTime 
+        *13:CustomWarningTime [NotificationSettings Ends]
      *added times will be in Object[0]
      *Things saved with the current save() func will be in Object[1]
      *Settings[0]:CurrentProfile[0-1] Countup[2] & Misc[3-5] & Animation[6-8] & all Other SuperProfile Settings[8+]
      */
 
-    public void MKfile(int Objindex, int Dataindex, string Data)
-    {
-        MKfile(Objindex, Dataindex, Data, -1);
-    }
     public void MKfile(int Objindex, int Dataindex, string Data, bool Default)
     {
         MKfile(Objindex, Dataindex, Data, -1, Default);
     }
-    public void MKfile(int Objindex, int Dataindex, string Data, int MaxData)
-    {
-        MKfile(Objindex, Dataindex, Data, MaxData, Profile);
-    }
+
     public void MKfile(int Objindex, int Dataindex, string Data, int MaxData, bool Default)
     {
         MKfile(Objindex, Dataindex, Data, MaxData, Profile, Default);
@@ -166,123 +559,59 @@ public class TimeControllerScript : MonoBehaviour
     }
     public void MKfile(int Objindex, int Dataindex, string Data, int MaxData, int Prof, bool Default)
     {
-        if (!Directory.Exists(Application.dataPath + @"\Savedata\")) { Directory.CreateDirectory(Application.dataPath + @"\Savedata\"); }
-
-        SaveObjectList sol = new SaveObjectList();
-        string FilePath = (@"\Savedata\Profile" + Prof.ToString() + ".json");
-        if (Default) { FilePath = (@"\Savedata\Settings.json"); }
-
-        if (File.Exists(Application.dataPath + FilePath))
+        if (Objindex < 0 || Dataindex < 0)
         {
-            int ObjLength = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(Application.dataPath + FilePath)).Objects.Length;
-            sol.Objects = new SaveObject[ObjLength];
-            if (Objindex + 1 >= ObjLength)
+            UnityEngine.Debug.Log("Small Obj or Data" + Objindex + ":" + Dataindex);
+            return;
+        }
+        if (!Directory.Exists(Path.Combine(Application.persistentDataPath, "Savedata"))) { Directory.CreateDirectory(Path.Combine(Application.persistentDataPath, "Savedata")); }
+        SaveObjectList sol = new SaveObjectList();
+        string TotalFilePath = Path.Combine(Application.persistentDataPath, "Savedata", "Profile" + Prof.ToString() + ".json");
+        if (Default) {  TotalFilePath = Path.Combine(Application.persistentDataPath, "Savedata", "Settings.json");}
+        if (File.Exists(TotalFilePath))
+            {
+            string FileContents = File.ReadAllText(TotalFilePath);
+            sol = JsonUtility.FromJson<SaveObjectList>(FileContents);
+
+            if (sol.Objects == null)
             {
                 sol.Objects = new SaveObject[Objindex + 1];
             }
-            for (int i = 0; i < sol.Objects.Length; i++)
+            if (Objindex >= sol.Objects.Length)
             {
-                SaveObject saveobj = new SaveObject();
-                int SaveObjIndex = 1;
-                try
-                {
-                    SaveObjIndex = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(Application.dataPath + FilePath)).Objects[i].datas.Length;
-                }
-                catch { }
-                saveobj.datas = new string[SaveObjIndex];
+                Array.Resize(ref sol.Objects, Objindex + 1);
+            }
+            if (sol.Objects[Objindex] == null)
+            {
+                sol.Objects[Objindex] = new SaveObject();
+            }
 
-                SaveObjIndex = saveobj.datas.Length;
-                for (int j = 0; j < SaveObjIndex; j++)
+            if (sol.Objects[Objindex].datas == null)
                 {
-                    try
+                sol.Objects[Objindex].datas = new string[Mathf.Max(Dataindex+1,1)];
+            }
+            if (MaxData >= 0)
+            {
+                if (Dataindex <= MaxData)
+                {
+                    if (sol.Objects[Objindex].datas.Length < Dataindex + 1)
                     {
-                        saveobj.datas[j] = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(Application.dataPath + FilePath)).Objects[i].datas[j];
+                        Array.Resize(ref sol.Objects[Objindex].datas, Dataindex + 1);
                     }
-                    catch (Exception e4) { saveobj.datas[j] = "#"; if (DebugOutput) { Debug.Log(e4); } }
-
+                    sol.Objects[Objindex].datas[Dataindex] = Data;
                 }
-                try
+                if (sol.Objects[Objindex].datas.Length != MaxData)
                 {
-                    if (i == Objindex)
-                    {
-                        saveobj.datas[Dataindex] = Data;
-                    }
+                    Array.Resize(ref sol.Objects[Objindex].datas, MaxData);
                 }
-                catch (Exception e)
-                {
-                    if (DebugOutput)
-                    {
-                        Debug.Log(e);
-                    }
-                    saveobj = new SaveObject();
-                    SaveObjIndex = 1;
-                    if (i == Objindex && MaxData > 0)
-                    {
-                        saveobj.datas = new string[MaxData + 1];
-                    }
-                    else
-                    {
-                        try
+            }
+            else
+            {
+                if (sol.Objects[Objindex].datas.Length <= Dataindex)
                         {
-                            SaveObjIndex = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(Application.dataPath + FilePath)).Objects[i].datas.Length;
-                        }
-                        catch { }
-                        if (Dataindex + 1 > SaveObjIndex && i == Objindex) { SaveObjIndex = Dataindex + 1; }
-                        saveobj.datas = new string[SaveObjIndex + 1];
-                    }
-
-                    SaveObjIndex = saveobj.datas.Length;
-                    if (Default && Objindex == 0) {  }
-                    for (int j = 0; j < SaveObjIndex; j++)
-                    {
-                        try
-                        {
-                            saveobj.datas[j] = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(Application.dataPath + FilePath)).Objects[i].datas[j];
-                        }
-                        catch (Exception e2)
-                        {
-
-                            saveobj.datas[j] = "#";
-                            if (DebugOutput)
-                            {
-                                Debug.Log(e2);
-                            }
-                        }
-
-                    }
-                    if (i == Objindex) { saveobj.datas[Dataindex] = Data; }
+                    Array.Resize(ref sol.Objects[Objindex].datas, Dataindex + 1);
                 }
-
-                if (i == Objindex && MaxData > 0)
-                {
-                    SaveObject saveobjtwo = new SaveObject();
-                    saveobjtwo.datas = new string[MaxData];
-                    for (int j = 0; j < saveobjtwo.datas.Length; j++)
-                    {
-                        try
-                        {
-                            saveobjtwo.datas[j] = saveobj.datas[j];
-                        }
-                        catch (Exception e3)
-                        {
-                            if (DebugOutput)
-                            {
-                                Debug.Log(e3);
-                            }
-                        }
-
-                    }
-                    if (i == Objindex && MaxData > 0)
-                    {
-                        saveobj.datas = new string[MaxData];
-                        if (Dataindex + 1 > MaxData && i == Objindex) { saveobj.datas = new string[Dataindex + 1]; }
-                    }
-                    sol.Objects[i] = saveobjtwo;
-                }
-                else
-                {
-                    sol.Objects[i] = saveobj;
-                }
+                sol.Objects[Objindex].datas[Dataindex] = Data;
             }
         }
         else
@@ -293,7 +622,7 @@ public class TimeControllerScript : MonoBehaviour
             sol.Objects = new SaveObject[Objindex + 1];
             sol.Objects[Objindex] = saveobj;
         }
-        File.WriteAllText(Application.dataPath + FilePath, JsonUtility.ToJson(sol));
+        File.WriteAllText(TotalFilePath, JsonUtility.ToJson(sol));
     }
 
     public string RDfile(int Objindex, int Dataindex)
@@ -312,20 +641,28 @@ public class TimeControllerScript : MonoBehaviour
     {
         string read = "-792";
         string FilePath = (@"\Savedata\Profile" + Prof.ToString() + ".json");
-        if (Default) { FilePath = (@"\Savedata\Settings.json"); }
+        string TotalFilePath = Path.Combine(Application.persistentDataPath, "Savedata", "Profile" + Prof.ToString() + ".json");
+        if (Default) { 
+            FilePath = (@"\Savedata\Settings.json");
+            TotalFilePath = Path.Combine(Application.persistentDataPath, "Savedata", "Settings.json");
+        }
+
+        //if (!File.Exists(Application.persistentDataPath + FilePath)) {return read; }
+        if (!File.Exists(TotalFilePath)) {return read; }
         try
         {
-            read = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(Application.dataPath + FilePath)).Objects[Objindex].datas[Dataindex];
-            if (Default) { read = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(Application.dataPath + FilePath)).Objects[Objindex].datas[Dataindex]; }
+            //read = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(Application.persistentDataPath + FilePath)).Objects[Objindex].datas[Dataindex];
+            //if (Default) { read = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(Application.persistentDataPath + FilePath)).Objects[Objindex].datas[Dataindex]; }
+            read = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(TotalFilePath)).Objects[Objindex].datas[Dataindex];
         }
         catch (Exception e)
         {
             if (DebugOutput && Default)
             {
-                Debug.LogError(e);
-                Debug.Log(Objindex);
-                Debug.Log(Dataindex);
-                Debug.Log(JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(Application.dataPath + FilePath)).Objects[Objindex].datas.Length);
+                UnityEngine.Debug.Log(e);
+                UnityEngine.Debug.Log(Objindex);
+                UnityEngine.Debug.Log(Dataindex);
+                // UnityEngine.Debug.Log(JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(Application.persistentDataPath + FilePath)).Objects[Objindex].datas.Length);
             }
         }
         return read;
@@ -336,8 +673,233 @@ public class TimeControllerScript : MonoBehaviour
     }
     public bool CheckFile(int Prof)
     {
-        if (File.Exists(Application.dataPath + @"\Savedata\Profile" + Prof.ToString() + ".json")) { return true; }
+        string TotalFilePath = Path.Combine(Application.persistentDataPath, "Savedata", "Profile" + Prof.ToString() + ".json");
+        //if (File.Exists(Application.persistentDataPath + @"\Savedata\Profile" + Prof.ToString() + ".json")) { return true; }
+        if (File.Exists(TotalFilePath)) { return true; }
         return false;
+    }
+    private void FixedUpdate()
+    {
+        if (!RunTimer) { timerresettime = 0; }
+        if (pendingreset)
+        {
+            resettime -= 1;
+            if (resettime <= 0) { pendingreset = false; }
+        }
+        if (pendingtimerreset)
+        {
+            timerresettime -= 1;
+            if (timerresettime <= 0) { pendingtimerreset = false; }
+        }
+        if (pendingappreset)
+        {
+            appresettime -= 1;
+            if (appresettime <= 0) { pendingappreset = false; }
+        }
+
+        if (ResetValuesTimer == 0)
+        {
+            ResetValues = false;
+            BigReset = false;
+        }
+        AddProfDelay -= 1;
+        if (AddProfDelay == 0)
+        {
+            AddProfPtwo(AddProf);
+            AddProf = -1;
+            AddProfDelay = -1;
+
+        }
+        ResetValuesTimer -= 1;
+
+    }
+    public void NotificationSender(float WorkingRemTime)
+    {
+        if (WorkingRemTime > 0.2f)
+        {
+            Notify(WorkingRemTime - 0.2f, "Time has run out!", "The timer has exceeded the total time.", 8, false);
+            if (NotificationLowWarningsEnabled && WorkingRemTime > (LowWarningTime) && WorkingRemTime > 0.2f)
+            {
+                //Why do I need to do this if persision isn't within 13 seconds.
+                if (LowWarningTime > 1) // Working Remaining Time Factored In
+                {
+                    float workingWarnTime = WorkingRemTime - LowWarningTime;
+                    if (workingWarnTime > 0)
+                    {
+                        if (LowWarningTime > 1)
+                        {
+                            if (workingWarnTime > 1)
+                            {
+                                Notify(workingWarnTime, Mathf.Floor(LowWarningTime).ToString() + " minutes left!", Mathf.Round(workingWarnTime).ToString() + " minutes have been used.", 9, false);
+                            }
+                            else
+                            {
+                                Notify(workingWarnTime, Mathf.Floor(LowWarningTime).ToString() + " minutes left!", Mathf.Round(workingWarnTime * 60).ToString("00") + " seconds have been used.", 9, false);
+                            }
+                        }
+                        else
+                        {
+                            if (workingWarnTime > 1)
+                            {
+                                Notify(workingWarnTime, Mathf.Floor(LowWarningTime * 60).ToString("00") + " seconds left!", Mathf.Round(workingWarnTime).ToString() + " minutes have been used.", 9, false);
+                            }
+                            else
+                            {
+                                Notify(workingWarnTime, Mathf.Floor(LowWarningTime * 60).ToString("00") + " seconds left!", Mathf.Round(workingWarnTime * 60).ToString("00") + " seconds have been used.", 9, false);
+                            }
+                        }
+                    }
+
+
+                }
+            }
+            if (NotificationWarningHalfTimeEnabled && WorkingRemTime > 5) // Working Remaining Time Factored In
+            {
+                float workingRemTime = UsedTime + (WorkingRemTime / 2);
+                Notify(WorkingRemTime / 2, Mathf.Floor(WorkingRemTime / 2).ToString() + " minutes left!", Mathf.Round(workingRemTime).ToString() + " minutes have been used.", 10, false);
+            }
+            if (NotificationCustomTimeWarning && CustomWarningTime < WorkingRemTime) // Needs help for Working Remaining Time
+            {
+                float workingUsedTime = UsedTime + (CustomWarningTime);
+                float workingRemainingTime = WorkingRemTime - CustomWarningTime;
+
+                if (workingUsedTime > 1)
+                {
+                    if (CustomWarningTime > 1)
+                    {
+                        if (workingRemainingTime > 1)
+                        {
+                            Notify(CustomWarningTime, Mathf.Round(CustomWarningTime).ToString() + " minutes have elapsed!", Mathf.Round(workingUsedTime).ToString() + " minutes have been used." +
+                                "\n" + Mathf.Floor(workingRemainingTime).ToString() + " minutes remain.", 11, false);
+                        }
+                        else
+                        {
+                            Notify(CustomWarningTime, Mathf.Round(CustomWarningTime).ToString() + " minutes have elapsed!", Mathf.Round(workingUsedTime).ToString() + " minutes have been used." +
+                                "\n" + Mathf.Floor(workingRemainingTime * 60).ToString("00") + " seconds remain.", 11, false);
+                        }
+                    }
+                    else
+                    {
+                        if (workingRemainingTime > 1)
+                        {
+                            Notify(CustomWarningTime, Mathf.Round(CustomWarningTime * 60).ToString("00") + " seconds have elapsed!", Mathf.Round(workingUsedTime).ToString() + " minutes have been used." +
+                                "\n" + Mathf.Floor(workingRemainingTime).ToString() + " minutes remain.", 11, false);
+                        }
+                        else
+                        {
+                            Notify(CustomWarningTime, Mathf.Round(CustomWarningTime * 60).ToString("00") + " seconds have elapsed!", Mathf.Round(workingUsedTime).ToString() + " minutes have been used." +
+                                "\n" + Mathf.Floor(workingRemainingTime * 60).ToString("00") + " seconds remain.", 11, false);
+                        }
+                    }
+                }
+                if (workingUsedTime <= 1)
+                {
+                    if (CustomWarningTime > 1)
+                    {
+                        //Notify(CustomWarningTime, Mathf.Round(CustomWarningTime).ToString() + " minutes have elapsed!", Mathf.Round(workingUsedTime*60).ToString("00") + " seconds have been used.", 11, false);
+                        if (workingRemainingTime > 1)
+                        {
+                            Notify(CustomWarningTime, Mathf.Round(CustomWarningTime).ToString() + " minutes have elapsed!", Mathf.Round(workingUsedTime * 60).ToString("00") + " seconds have been used." +
+                                "\n" + Mathf.Floor(workingRemainingTime).ToString() + " minutes remain.", 11, false);
+                        }
+                        else
+                        {
+                            Notify(CustomWarningTime, Mathf.Round(CustomWarningTime).ToString() + " minutes have elapsed!", Mathf.Round(workingUsedTime * 60).ToString("00") + " seconds have been used." +
+                                "\n" + Mathf.Floor(workingRemainingTime * 60).ToString("00") + " seconds remain.", 11, false);
+                        }
+                    }
+                    else
+                    {
+                        //Notify(CustomWarningTime, Mathf.Round(CustomWarningTime*60).ToString("00") + " seconds have elapsed!", Mathf.Round(workingUsedTime*60).ToString("00") + " seconds have been used.", 11, false);
+                        if (workingRemainingTime > 1)
+                        {
+                            Notify(CustomWarningTime, Mathf.Round(CustomWarningTime * 60).ToString("00") + " seconds have elapsed!", Mathf.Round(workingUsedTime * 60).ToString("00") + " seconds have been used." +
+                                "\n" + Mathf.Floor(workingRemainingTime).ToString() + " minutes remain.", 11, false);
+                        }
+                        else
+                        {
+                            Notify(CustomWarningTime, Mathf.Round(CustomWarningTime * 60).ToString("00") + " seconds have elapsed!", Mathf.Round(workingUsedTime * 60).ToString("00") + " seconds have been used." +
+                                "\n" + Mathf.Floor(workingRemainingTime * 60).ToString("00") + " seconds remain.", 11, false);
+                        }
+                    }
+                }
+
+
+            }
+        }
+        else
+        {
+            Notify(WorkingRemTime, "Time has run out!", "The timer has exceeded the total time.", 8, false);
+        }
+    }
+    public void ResendNotifs()
+    {
+        if (RunTimer)
+        {
+            CancelMostNotifications();
+            float timeattoggled = RemainingTime;
+            long tickdifference = (CurrentTick - TicksWhenTimerStarted);
+            float tickD = (float)tickdifference / 600000000;
+            float WorkingRemTime = RemainingTime - tickD;
+            if (WorkingRemTime > 0) { NotificationSender(WorkingRemTime); }
+            /*
+            if (WorkingRemTime >= 0)
+            {
+                if (NotificationsEnabled)
+                {
+                    if (WorkingRemTime > 0.2f)
+                    {
+                        Notify(WorkingRemTime - 0.2f, "Time has run out", "The timer has exceeded the total time.", 8, false);
+                        if (NotificationLowWarningsEnabled && WorkingRemTime > (LowWarningTime) && WorkingRemTime > 0.2f)
+                        {
+                            if (WorkingRemTime - ((LowWarningTime - 0.2f)) > 1) { Notify(WorkingRemTime - ((LowWarningTime - 0.2f)), Mathf.Round(LowWarningTime).ToString() + " minutes left!", "The timer has " + Mathf.Round((LowWarningTime - 0.2f)).ToString() + " minutes remaining.", 9, false); }
+                            else { Notify(WorkingRemTime - ((LowWarningTime - 0.2f)), Mathf.Round(LowWarningTime*60).ToString("00") + " Seconds left!", "The timer has " + Mathf.Round(LowWarningTime).ToString() + " Seconds remaining.", 9, false); }
+                        }
+
+                        else if (NotificationLowWarningsEnabled && WorkingRemTime > (LowWarningTime))
+                        {
+                            if (LowWarningTime > 1)
+                            {
+                                float workingUsedTime = WorkingRemTime - (LowWarningTime);
+                                if (WorkingRemTime - (LowWarningTime) > 1)
+                                {
+                                    Notify(WorkingRemTime - (LowWarningTime), Mathf.Round(LowWarningTime).ToString() + " minutes left!", Mathf.Round(workingUsedTime).ToString() + " minutes have been used.", 9, false);
+
+                                }
+                                else
+                                {
+                                    Notify(WorkingRemTime - (LowWarningTime), Mathf.Round(LowWarningTime*60).ToString("00") + " Seconds left!", Mathf.Round(workingUsedTime).ToString() + " seconds have been used.", 9, false);
+
+                                }
+                                
+                            }
+                        }
+                        if (NotificationWarningHalfTimeEnabled && WorkingRemTime > 5)
+                        {
+                            Notify(WorkingRemTime / 2, Mathf.Round(WorkingRemTime / 2).ToString() + " minutes used!", "The timer has " + Mathf.Round(WorkingRemTime / 2).ToString() + " minutes remaining.", 10, false);
+                        }
+                        if (NotificationCustomTimeWarning && CustomWarningTime < WorkingRemTime)
+                        {
+                            float WRemTime = WorkingRemTime - (CustomWarningTime / 60);
+                            if (CustomWarningTime > 1)
+                            {
+                                Notify(CustomWarningTime, Mathf.Round(CustomWarningTime).ToString() + " minutes used!", Mathf.Round(WRemTime).ToString() + " minutes have been used.", 11, false);
+                            }
+                            else {
+                                Notify(CustomWarningTime, Mathf.Round(CustomWarningTime).ToString("00") + " seconds used!", Mathf.Round(WRemTime).ToString() + " minutes have been used.", 11, false);
+                            }
+                            
+                        }
+                    }
+                    else
+                    {
+                        Notify(WorkingRemTime, "Time has run out", "The timer has exceeded the total time.", 8, false);
+                    }
+                }
+            }
+      */
+        }
+
     }
     void Update()
     {
@@ -356,21 +918,7 @@ public class TimeControllerScript : MonoBehaviour
         ResetReset = false;
         viewCurrentTick = CurrentTick;
         RemainingTime = TotalTime - UsedTime;
-        if (pendingreset)
-        {
-            resettime -= Time.deltaTime / TimeScale;
-            if (resettime <= 0) { pendingreset = false; }
-        }
-        if (pendingtimerreset)
-        {
-            timerresettime -= Time.deltaTime / TimeScale;
-            if (timerresettime <= 0) { pendingtimerreset = false; }
-        }
-        if (pendingappreset)
-        {
-            appresettime -= Time.deltaTime / TimeScale;
-            if (appresettime <= 0) { pendingappreset = false; }
-        }
+
         if (primesave)
         {
             Save(Profile);
@@ -379,6 +927,7 @@ public class TimeControllerScript : MonoBehaviour
         if (UsedTime != UsedTimeLastTick)
         {
             primesave = true;
+            ResendNotifs();
         }
         RunningTime = (float)(CurrentTick - TicksWhenTimerStarted) / 600000000;
         if (!RunTimer) { RunningTime = 0; }
@@ -387,40 +936,189 @@ public class TimeControllerScript : MonoBehaviour
         {
             WasRunTimer = true;
             TicksWhenTimerStarted = CurrentTick;
+            if (NotificationsEnabled)
+            {
+                if (RemainingTime > 1)
+                {
+                    Notify(0, "Timer Running", "The timer is running.\n" + Mathf.Floor(RemainingTime).ToString() + " minutes remained when the timer was started", 7, true, true);
+                }
+                else if (RemainingTime >= 0)
+                {
+                    Notify(0, "Timer Running", "The timer is running.\n" + Mathf.Floor(RemainingTime*60).ToString() + " seconds remained when the timer was started", 7, true, true);
+                }
+                else if (RemainingTime < 0 && RemainingTime >= -1)
+                {
+                    Notify(0, "Timer Running", "The timer is running.\n" + Mathf.Floor(RemainingTime * 60).ToString() + " seconds over when the timer was started", 7, true, true);
+                }
+                else if (RemainingTime < -1)
+                {
+                    Notify(0, "Timer Running", "The timer is running.\n" + Mathf.Floor(RemainingTime).ToString() + " minutes over when the timer was started", 7, true, true);
+                }
+                /*
+                if (RemainingTime >= 0)
+                {
+                    if (RemainingTime > 0.2f)
+                    {
+                        Notify(RemainingTime - 0.2f, "Time has run out", "The timer has exceeded the total time.", 8, false);
+                        if (NotificationLowWarningsEnabled && RemainingTime > (LowWarningTime) && RemainingTime > 0.2f)
+                        {
+                            //Why do I need to do this if persision isn't within 13 seconds.
+                            if (LowWarningTime > 1) // Working Remaining Time Factored In
+                            {
+                                float workingWarnTime = RemainingTime - LowWarningTime;
+                                if (workingWarnTime > 0)
+                                {
+                                    if (LowWarningTime > 1)
+                                    {
+                                        Derboss.Log("case1");
+                                        if (workingWarnTime > 1)
+                                        {
+                                            Derboss.Log("case1A");
+                                            Notify(workingWarnTime, Mathf.Floor(LowWarningTime).ToString() + " minutes left!", Mathf.Round(workingWarnTime).ToString() + " minutes have been used.", 9, false);
+                                        }
+                                        else
+                                        {
+                                            Derboss.Log("case1B");
+                                            Notify(workingWarnTime, Mathf.Floor(LowWarningTime).ToString() + " minutes left!", Mathf.Round(workingWarnTime * 60).ToString("00") + " seconds have been used.", 9, false);
+                                        }
+                                    }
+                                    else
+                                    {
+                                        Derboss.Log("case2");
+                                        if (workingWarnTime > 1)
+                                        {
+                                            Derboss.Log("case2A");
+                                            Notify(workingWarnTime, Mathf.Floor(LowWarningTime * 60).ToString("00") + " seconds left!", Mathf.Round(workingWarnTime).ToString() + " minutes have been used.", 9, false);
+                                        }
+                                        else
+                                        {
+                                            Derboss.Log("case2B");
+                                            Notify(workingWarnTime, Mathf.Floor(LowWarningTime * 60).ToString("00") + " seconds left!", Mathf.Round(workingWarnTime * 60).ToString("00") + " seconds have been used.", 9, false);
+                                        }
+                                    }
+                                }
+     
+
+                            }
+                        }
+                        if (NotificationWarningHalfTimeEnabled && RemainingTime > 5) // Working Remaining Time Factored In
+                        {
+                            float workingRemTime = UsedTime + (RemainingTime/2);
+                            Notify(RemainingTime / 2, Mathf.Floor(RemainingTime / 2).ToString() + " minutes left!",Mathf.Round(workingRemTime).ToString() + " minutes have been used.", 10, false);
+                        }
+                        if (NotificationCustomTimeWarning && CustomWarningTime < RemainingTime) // Needs help for Working Remaining Time
+                        {
+                            float workingUsedTime = UsedTime + (CustomWarningTime);
+                            float workingRemainingTime = RemainingTime - CustomWarningTime;
+
+                            if (workingUsedTime > 1)
+                            {
+                                if (CustomWarningTime > 1)
+                                {
+                                    if (workingRemainingTime > 1)
+                                    {
+                                        Notify(CustomWarningTime, Mathf.Round(CustomWarningTime).ToString() + " minutes have elapsed!", Mathf.Round(workingUsedTime).ToString() + " minutes have been used." +
+                                            "\n" + Mathf.Floor(workingRemainingTime).ToString() + " minutes remain.", 11, false);
+                                    }
+                                    else
+                                    {
+                                        Notify(CustomWarningTime, Mathf.Round(CustomWarningTime).ToString() + " minutes have elapsed!", Mathf.Round(workingUsedTime).ToString() + " minutes have been used." +
+                                            "\n" + Mathf.Floor(workingRemainingTime*60).ToString("00") + " seconds remain.", 11, false);
+                                    }
+                                }
+                                else
+                                {
+                                    if (workingRemainingTime > 1)
+                                    {
+                                        Notify(CustomWarningTime, Mathf.Round(CustomWarningTime * 60).ToString("00") + " seconds have elapsed!", Mathf.Round(workingUsedTime).ToString() + " minutes have been used." +
+                                            "\n" + Mathf.Floor(workingRemainingTime).ToString() + " minutes remain.", 11, false);
+                                    }
+                                    else
+                                    {
+                                        Notify(CustomWarningTime, Mathf.Round(CustomWarningTime * 60).ToString("00") + " seconds have elapsed!", Mathf.Round(workingUsedTime).ToString() + " minutes have been used." +
+                                            "\n" + Mathf.Floor(workingRemainingTime * 60).ToString("00") + " seconds remain.", 11, false);
+                                    }
+                                }
+                            }
+                            if (workingUsedTime <= 1)
+                            {
+                                if (CustomWarningTime > 1)
+                                {
+                                    //Notify(CustomWarningTime, Mathf.Round(CustomWarningTime).ToString() + " minutes have elapsed!", Mathf.Round(workingUsedTime*60).ToString("00") + " seconds have been used.", 11, false);
+                                    if (workingRemainingTime > 1)
+                                    {
+                                        Notify(CustomWarningTime, Mathf.Round(CustomWarningTime).ToString() + " minutes have elapsed!", Mathf.Round(workingUsedTime * 60).ToString("00") + " seconds have been used." +
+                                            "\n" + Mathf.Floor(workingRemainingTime).ToString() + " minutes remain.", 11, false);
+                                    }
+                                    else
+                                    {
+                                        Notify(CustomWarningTime, Mathf.Round(CustomWarningTime).ToString() + " minutes have elapsed!", Mathf.Round(workingUsedTime * 60).ToString("00") + " seconds have been used." +
+                                            "\n" + Mathf.Floor(workingRemainingTime * 60).ToString("00") + " seconds remain.", 11, false);
+                                    }
+                                }
+                                else
+                                {
+                                    //Notify(CustomWarningTime, Mathf.Round(CustomWarningTime*60).ToString("00") + " seconds have elapsed!", Mathf.Round(workingUsedTime*60).ToString("00") + " seconds have been used.", 11, false);
+                                    if (workingRemainingTime > 1)
+                                    {
+                                        Notify(CustomWarningTime, Mathf.Round(CustomWarningTime * 60).ToString("00") + " seconds have elapsed!", Mathf.Round(workingUsedTime * 60).ToString("00") + " seconds have been used." +
+                                            "\n" + Mathf.Floor(workingRemainingTime).ToString() + " minutes remain.", 11, false);
+                                    }
+                                    else
+                                    {
+                                        Notify(CustomWarningTime, Mathf.Round(CustomWarningTime * 60).ToString("00") + " seconds have elapsed!", Mathf.Round(workingUsedTime * 60).ToString("00") + " seconds have been used." +
+                                            "\n" + Mathf.Floor(workingRemainingTime * 60).ToString("00") + " seconds remain.", 11, false);
+                                    }
+                                }
+                            }
+
+
+                        }
+                    }
+                    else
+                    {
+                        Notify(RemainingTime, "Time has run out", "The timer has exceeded the total time.",8,false);
+                    }
+
+                }
+            */
+                if (RemainingTime >= 0)
+                {
+                    NotificationSender(RemainingTime);
+                }
+            }
             Save(Profile);
         }
         if (!RunTimer && WasRunTimer)
         {
-            UsedTime += (float)(CurrentTick - TicksWhenTimerStarted) / 600000000;
-            Instantiate(TimetoAdd, new Vector3((float)(CurrentTick - TicksWhenTimerStarted) / 600000000, transform.position.y, 0), transform.rotation, ContentView.transform);
+            long tickdifference = (CurrentTick - TicksWhenTimerStarted);
+            float tickD = (float)tickdifference / 600000000;
+            //Instantiate(TimetoAdd, new Vector3((float)(CurrentTick - TicksWhenTimerStarted) / 600000000, transform.position.y, 0), transform.rotation, ContentView.transform);
+            var logs = Instantiate(TimetoAdd, new Vector3(0, transform.position.y, 0), transform.rotation, ContentView.transform);
+            UsedTime += tickD;
+            logs.GetComponent<AddedTimesScript>().MinutesToAdd = tickD;
+            logs.GetComponent<AddedTimesScript>().BeingMade = true;
             WasRunTimer = false;
+            CancelNotifications(Profile,7);
+            CancelMostNotifications();
         }
-        AddProfDelay -= 1;
-        if (AddProfDelay == 0)
+        if (!NotificationsEnabled && NotificationsEnabledOld)
         {
-            AddProfPtwo(AddProf);
-            AddProf = -1;
-            AddProfDelay = -1;
-
+            CancelNotifications(0,6,true);
         }
-        if (ResetValuesTimer == 0)
-        {
-            ResetValues = false;
-        }
-        ResetValuesTimer -= 1;
+        NotificationsEnabledOld = NotificationsEnabled;
+        NotificationLowWarningsEnabledOld = NotificationLowWarningsEnabled;
+        NotificationWarningHalfTimeEnabledOld = NotificationWarningHalfTimeEnabled;
     }
-
-    private void Application_focusChanged(bool obj)
-    {
-        throw new NotImplementedException();
-    }
-
     public void Save(int Prof)
     {
         int Profs = 0;
         try
         {
-            Profs = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(Application.dataPath + @"\Savedata\Settings.json")).Objects[1].datas.Length;
+            //Profs = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(    Path.Combine(Application.persistentDataPath, "Savedata", "Settings.json"))).Objects[1].datas.Length;
+            Profs = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(    Path.Combine(Application.persistentDataPath, "Savedata", "Settings.json"))).Objects[1].datas.Length;
+           // Path.Combine(Application.persistentDataPath, "Savedata", "Profile" + Prof.ToString() + ".json")
+            //Path.Combine(Application.persistentDataPath, "Savedata", "Settings.json")
         }
         catch
         {
@@ -437,48 +1135,46 @@ public class TimeControllerScript : MonoBehaviour
         int objs = TimeMarkers.Length;
         for (int i = 0; i < objs; i++)
         {
-            if (TimeMarkers[i].GetComponent<AddedTimesScript>().MinutesAdded != 0)
-            {
-                MKfile(0, i, TimeMarkers[i].GetComponent<AddedTimesScript>().MinutesAdded.ToString(), objs);
-                MKfile(2, i, TimeMarkers[i].GetComponent<AddedTimesScript>().TimeWhenAdded.ToString(), objs);
-            }
+            //
+                MKfile(0, i, TimeMarkers[i].GetComponent<AddedTimesScript>().MinutesAdded.ToString(), objs, Prof);
+                MKfile(5, i, TimeMarkers[i].GetComponent<AddedTimesScript>().TimeWhenAdded.ToString(), objs, Prof);
         }
         if (objs == 0)
         {
             MKfile(0, 0, 0.ToString(), 0, Prof);
+            MKfile(5, 0, (-792).ToString(), 0, objs);
         }
         MKfile(0, 0, Prof.ToString(), true);
     }
     public UnityEvent LoadCalled;
-    public void Load()
-    {
-        Load(Profile, false);
-    }
     public void Load(int Prof)
     {
         Load(Prof, false);
     }
-    public void Load(int Prof, bool Internal)
+    public void Load(int Prof, bool Nofile)
     {
         LoadCalled.Invoke();
         int Profs = 0;
-        try
+        if (!Nofile)
         {
-            Profs = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(Application.dataPath + @"\Savedata\Settings.json")).Objects[1].datas.Length;
-        }
-        catch
-        {
-            Profs = 1;
+            try
+            {
+                //Profs = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(Application.persistentDataPath + @"\Savedata\Settings.json")).Objects[1].datas.Length;
+                Profs = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(    Path.Combine(Application.persistentDataPath, "Savedata", "Settings.json"))).Objects[1].datas.Length;
+            }
+            catch
+            {
+                Profs = 1;
+            }
         }
         Profiles = Profs;
         ProfilesView.GetComponent<TimesAdded>().TimesAppeneded = 0;
-        if (CheckFile(Prof))
+        if (CheckFile(Prof) && !Nofile)
         {
-            if (!Internal)
-            {
                 foreach (GameObject Obj in ProfileButtonCollection)
                 {
                     Destroy(Obj);
+                    
                 }
 
                 int objsProf = Profiles;
@@ -493,16 +1189,18 @@ public class TimeControllerScript : MonoBehaviour
                 {
                     Destroy(Obj);
                 }
-                int objs = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(Application.dataPath + @"\Savedata\Profile" + Profile.ToString() + ".json")).Objects[0].datas.Length;
-
+                //int objs = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(Application.persistentDataPath + @"\Savedata\Profile" + Profile.ToString() + ".json")).Objects[0].datas.Length;
+                int objs = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(Path.Combine(Application.persistentDataPath, "Savedata", "Profile" + Prof.ToString() + ".json"))).Objects[0].datas.Length;
                 for (int i = 0; i < objs; i++)
                 {
                     try
                     {
-                        if (float.Parse(RDfile(0, i)) != 0)
+                        //if (float.Parse(RDfile(0, i)) != 0)
                         {
-                            Instantiate(TimetoAdd, new Vector3(float.Parse(RDfile(0, i)), transform.position.y, long.Parse(RDfile(2, i))), transform.rotation, ContentView.transform);
-                        }
+                           var logs = Instantiate(TimetoAdd, new Vector3(float.Parse(RDfile(0, i)), transform.position.y, 0), transform.rotation, ContentView.transform);
+                           logs.GetComponent<AddedTimesScript>().BeingMade = true;
+                           logs.GetComponent<AddedTimesScript>().MinutesToAdd = float.Parse(RDfile(0, i));
+                    }
 
                     }
 
@@ -511,12 +1209,11 @@ public class TimeControllerScript : MonoBehaviour
 
                     }
                 }
-            }
 
             DefaultTime = float.Parse(RDfile(1, 1));
             if (DefaultTime == -792) { DefaultTime = 180; }
             UsedTime = float.Parse(RDfile(1, 2));
-            if (UsedTime == -792) { UsedTime = 1; }
+            if (UsedTime == -792) { UsedTime = 0; }
             TotalTime = float.Parse(RDfile(1, 3));
             if (TotalTime == -792) { TotalTime = 180; }
             ContentView.GetComponent<TimesAdded>().TimesAppeneded = 0;
@@ -544,7 +1241,7 @@ public class TimeControllerScript : MonoBehaviour
             ProfileName = RDfile(1, Prof, true);
             string ProfName = ("Profile" + Prof.ToString()).ToString();
             try { if (int.Parse(RDfile(1, Prof, true)) == -792) { ProfileName = ProfName; } }
-            catch { }
+            catch { ProfileName = ProfName; }
 
             Profile = Prof;
             MKfile(0, 0, Prof.ToString(), true);
@@ -554,7 +1251,32 @@ public class TimeControllerScript : MonoBehaviour
         {
             ResetTime(DefaultTime, true);
             string ProfName = ("Profile" + (Prof + 1).ToString()).ToString();
-            if (int.Parse(RDfile(1, Prof, true)) == -792) { ProfileName = ProfName; }
+            try { if (int.Parse(RDfile(1, Prof, true)) == -792) { ProfileName = ProfName; } }
+            catch { ProfileName = ProfName; }
+            if (Nofile) {
+                foreach (GameObject Obj in ProfileButtonCollection)
+                {
+                    Destroy(Obj);
+
+                }
+                Profiles = 1;
+                int objsProf = Profiles;
+                ProfileButtonCollection = new GameObject[objsProf];
+                ProfileButtonCollection[0] = Instantiate(ProfileToAdd, new Vector3(0, transform.position.y, 0), transform.rotation, ProfilesView.transform);
+                GameObject[] Delete = GameObject.FindGameObjectsWithTag("DelonReset");
+                foreach (GameObject Obj in Delete)
+                {
+                    Destroy(Obj);
+                }
+                DefaultTime = 180;
+                UsedTime = 0;
+                TotalTime = 180;
+                ContentView.GetComponent<TimesAdded>().TimesAppeneded = 0;
+                CountUp = false; 
+                RunTimer = false; WasRunTimer = false;
+                ProfileName = "Profile0";
+
+            }
             Profile = Prof;
             MKfile(0, 0, Prof.ToString(), true);
             MKfile(1, Prof, ProfileName, true);
@@ -593,17 +1315,18 @@ public class TimeControllerScript : MonoBehaviour
 
     public void DeleteProf(int Prof)
     {
+        CancelNotifications(Prof,6);
+        CancelNotifications(Prof,7);
         int Profs;
         try
         {
-            Profs = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(Application.dataPath + @"\Savedata\Settings.json")).Objects[1].datas.Length;
-
+            Profs = JsonUtility.FromJson<SaveObjectList>(File.ReadAllText(    Path.Combine(Application.persistentDataPath, "Savedata", "Settings.json"))).Objects[1].datas.Length;
         }
         catch
         {
             Profs = 1;
         }
-        File.Delete(Application.dataPath + @"\Savedata\Profile" + Prof.ToString() + ".json");
+        File.Delete(Application.persistentDataPath + @"\Savedata\Profile" + Prof.ToString() + ".json");
         if (Profs == 1)
         {
             return;
@@ -630,14 +1353,20 @@ public class TimeControllerScript : MonoBehaviour
             catch { }
             try
             {
-                if (!Directory.Exists(Application.dataPath + @"\Savedata\")) { Directory.CreateDirectory(Application.dataPath + @"\Savedata\"); }
+                if (!Directory.Exists(Path.Combine(Application.persistentDataPath, "Savedata"))) { Directory.CreateDirectory(Path.Combine(Application.persistentDataPath, "Savedata")); }
 
                 SaveObjectList sol = new SaveObjectList();
                 string FilePath = (@"\Savedata\Profile" + Prof.ToString() + ".json");
-                File.Copy(Application.dataPath + @"\Savedata\Profile" + (Prof + 1).ToString() + ".json", Application.dataPath + FilePath, true);
-                File.Delete(Application.dataPath + @"\Savedata\Profile" + TopProf.ToString() + ".json");
+                string TotalFilePath = Path.Combine(Application.persistentDataPath, "Savedata", "Profile" + Prof.ToString() + ".json");
+                string TotalNextFilePath = Path.Combine(Application.persistentDataPath, "Savedata", "Profile" + (Prof+1).ToString() + ".json");
+                string TotalTopFilePath = Path.Combine(Application.persistentDataPath, "Savedata", "Profile" + TopProf.ToString() + ".json");
+                //File.Copy(Application.persistentDataPath + @"\Savedata\Profile" + (Prof + 1).ToString() + ".json", Application.persistentDataPath + FilePath, true);
+                //File.Delete(Application.persistentDataPath + @"\Savedata\Profile" + TopProf.ToString() + ".json");
+
+                File.Copy(TotalNextFilePath, TotalFilePath, true);
+                File.Delete(TotalTopFilePath);
             }
-            catch (Exception e) { Debug.Log(e); }
+            catch (Exception e) { UnityEngine.Debug.Log(e); }
 
         }
     }
@@ -667,13 +1396,12 @@ public class TimeControllerScript : MonoBehaviour
         pendingreset = true;
         ResetTime();
         AddProf = NewProfile;
-        AddProfDelay = 50;
+        AddProfDelay = 100;
         Save(Profile);
         Load(Profile);
     }
     public void AddProfPtwo(int NewProfile)
     {
-        Debug.Log(NewProfile);
         Save(NewProfile);
         Load(NewProfile);
         pendingreset = true;
@@ -683,11 +1411,22 @@ public class TimeControllerScript : MonoBehaviour
     {
         ResetTime(ResetToTime, false);
     }
+    public void ResetTime()
+    {
+        ResetTime(DefaultTime);
+    }
+    public void ResetTime(bool Immeaiate)
+    {
+        ResetTime(DefaultTime, Immeaiate);
+    }
     public void ResetTime(float ResetToTime, bool Immeadiate)
     {
-        resettime = 0.4167f;
+        //resettime = 0.4167f;
+        resettime = 100f;
         if (pendingreset || Immeadiate)
         {
+            CancelNotifications(Profile, 7);
+            CancelMostNotifications();
             UsedTime = 0;
             TotalTime = ResetToTime;
 
@@ -707,15 +1446,15 @@ public class TimeControllerScript : MonoBehaviour
 
         pendingreset = true;
     }
-    public void ResetTime()
-    {
-        ResetTime(DefaultTime);
-    }
     public void ResetTimer()
     {
-        timerresettime = 0.4167f;
+
+        //timerresettime = 0.4167f;
+        timerresettime = 100f;
         if (pendingtimerreset)
         {
+            CancelNotifications(Profile,7);
+            CancelMostNotifications();
             TicksWhenTimerStarted = CurrentTick;
             MKfile(1, 0, (-1).ToString(), -1, false);
             RunTimer = false;
@@ -728,18 +1467,24 @@ public class TimeControllerScript : MonoBehaviour
 
     public void AppReset()
     {
-        appresettime = 0.2167f;
+        //appresettime = 0.2167f;
+        appresettime = 100f;
         if (pendingappreset)
         {
+            CancelNotifications(0,6, true);
             pendingappreset = false;
             pendingreset = true;
-            Directory.Delete(Application.dataPath + @"\Savedata\", true);
-            Directory.CreateDirectory(Application.dataPath + @"\Savedata\");
-            ResetTime();
-            Save(0);
-            Load(0);
+            if (Directory.Exists(Application.persistentDataPath + @"\Savedata\"))
+            {
+                Directory.Delete(Application.persistentDataPath + @"\Savedata\", true);
+            }
+            Directory.CreateDirectory(Application.persistentDataPath + @"\Savedata\");
+            pendingtimerappreset = true;
+            ResetTime(true);
+            Load(0,true);
             ResetValuesTimer = 1;
             ResetValues = true;
+            BigReset = true;
             return;
         }
 
@@ -748,33 +1493,23 @@ public class TimeControllerScript : MonoBehaviour
 
     public float Truncate(float number, int digits)
     {
-        number *= Mathf.Pow(10, digits);
-        number = (long)number;
-        number /= Mathf.Pow(10, digits);
-        return number;
+        long PowTen = (long)Math.Pow(10, digits);
+        double Dnum = number * PowTen;
+        Dnum = (long)Dnum;
+        Dnum /= PowTen;
+        return (float)Dnum;
     }
     public string TruncateFS(float number, int digits)
     {
-        string Numstring = number.ToString();
-        number *= Mathf.Pow(10, digits);
-        number = (long)number;
-        number /= Mathf.Pow(10, digits);
-        Numstring = number.ToString();
-        if (number < 10 && number >= 0) { Numstring = "0" + Numstring; }
-        return Numstring;
+        float truncatednum = Truncate(number, digits);
+
+        string formatstring = "F" + digits;
+        return truncatednum.ToString(formatstring);
     }
     public string TruncateForSeconds(float number, int digits)
     {
-        ;
-        string NumString = number.ToString();
-        float TheFloat = Truncate(number, digits);
-
-        NumString = TheFloat.ToString();
-        if (((TheFloat * 10) % 1) < 0.03f && (TheFloat != (long)TheFloat)) { NumString += "0"; }
-        if (((TheFloat * 10) % 1) < 0.03f && (TheFloat == (long)TheFloat)) { NumString += ".00"; }
-        if (((TheFloat * 10) % 1) > 0.98f) { NumString += "0"; }
-        if (TheFloat < 10 && TheFloat >= 0) { NumString = "0" + NumString; }
-        return NumString;
+        string formatstring = "F" + digits;
+        return number.ToString(formatstring);
     }
     public string TruncateForSecondsNM(float number, int digits)
     {
@@ -811,6 +1546,8 @@ public class TimeControllerScript : MonoBehaviour
     }
     public void CancelTimer()
     {
+        CancelNotifications(Profile, 7);
+        CancelMostNotifications();
         TicksWhenTimerStarted = CurrentTick;
         RunTimer = false;
         WasRunTimer = false;

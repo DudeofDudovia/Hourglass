@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -35,11 +36,15 @@ public class AddedTimesScript : MonoBehaviour
     public bool WasRainbow;
     public Color NormalColor;
     public Color FadeoutColor;
+
+    public bool BeingMade = false;
+    public bool BeingLoaded = false;
+    public float MinutesToAdd = 0;
     public void RainbowColors()
     {
         WasRainbow = true;
-        NormalColor = Color.HSVToRGB(Random.Range(1, 100) / 100f, Random.Range(50, 100) / 100f, Random.Range(50, 100) / 100f);
-        FadeoutColor = Color.HSVToRGB(Random.Range(1, 100) / 100f, Random.Range(50, 100) / 100f, Random.Range(50, 100) / 100f);
+        NormalColor = Color.HSVToRGB(UnityEngine.Random.Range(1, 100) / 100f, UnityEngine.Random.Range(50, 100) / 100f, UnityEngine.Random.Range(50, 100) / 100f);
+        FadeoutColor = Color.HSVToRGB(UnityEngine.Random.Range(1, 100) / 100f, UnityEngine.Random.Range(50, 100) / 100f, UnityEngine.Random.Range(50, 100) / 100f);
     }
     private void Start()
     {
@@ -50,16 +55,34 @@ public class AddedTimesScript : MonoBehaviour
             NormalColor = Color.HSVToRGB(TCS[0].GetComponent<TimeControllerScript>().AddedTimesHue, TCS[0].GetComponent<TimeControllerScript>().AddedTimesSat, TCS[0].GetComponent<TimeControllerScript>().AddedTimesVal);
             FadeoutColor = Color.HSVToRGB(TCS[0].GetComponent<TimeControllerScript>().AddedTimesFadeOutHue, TCS[0].GetComponent<TimeControllerScript>().AddedTimesFadeOutSat, TCS[0].GetComponent<TimeControllerScript>().AddedTimesFadeOutVal);
         }
+        AddedId = transform.parent.GetComponent<TimesAdded>().TimesAppeneded;
+
+        try
+        {
+            TimeWhenAdded = long.Parse(TCS[0].GetComponent<TimeControllerScript>().RDfile(5, AddedId));
+            if (TimeWhenAdded == -792) { TimeWhenAdded = DateTime.Now.Ticks;  }
+        } 
+        catch
+        {
+        TimeWhenAdded = DateTime.Now.Ticks;
+        }
+
         transform.parent.GetComponent<TimesAdded>().TimesAppeneded += 1;
         AddedId = transform.parent.GetComponent<TimesAdded>().TimesAppeneded;
-        MinutesAdded = transform.position.x;
-        TimeWhenAdded = long.Parse(TCS[0].GetComponent<TimeControllerScript>().RDfile(2, AddedId-1));
-        if (TimeWhenAdded == -792) {  TimeWhenAdded = TCS[0].GetComponent<TimeControllerScript>().viewCurrentTick; }
-        transform.localPosition = new Vector3(0, AddedId * -40 + 10, 0);
-
+        
         transform.localPosition = new Vector3(98, AddedId * -40 + 10, 0);
-        float OGMinutesAdded = MinutesAdded;
-        MinutesAddedDisplay = RoundFloat(MinutesAdded,5);
+
+        if (!BeingMade)
+        {
+            MinutesAdded = transform.position.x;
+        }
+        else
+        {
+            MinutesAdded = MinutesToAdd;
+            BeingMade = false;
+        }
+        //MinutesAddedDisplay = RoundFloat(MinutesAdded,5);
+        MinutesAddedDisplay = MinutesAdded;
     }
     public float Truncate(float number, int digits)
     {
@@ -84,6 +107,7 @@ public class AddedTimesScript : MonoBehaviour
     public float RoundFloat(float f, int digits)
     {
         f = f*Mathf.Pow(10, digits) + 5;
+       
         long I = (long)f;
         f = (float)I;
         f /= Mathf.Pow(10, digits);
@@ -117,7 +141,6 @@ public class AddedTimesScript : MonoBehaviour
     }
     void Update()
     {
-        
         if (BeingDeleted)
         {
             return;
@@ -224,7 +247,7 @@ public class AddedTimesScript : MonoBehaviour
     public void RemoveTime()
     {
         gameObject.tag = "BeingRemoved";
-        GameObject TCS = Object.FindFirstObjectByType<TimeControllerScript>().gameObject;
+        GameObject TCS = UnityEngine.Object.FindFirstObjectByType<TimeControllerScript>().gameObject;
         TCS.GetComponent<TimeControllerScript>().RemoTime(MinutesAdded);
         
         Life = TCS.GetComponent<TimeControllerScript>().DeletedProfLifeTime;
@@ -242,7 +265,7 @@ public class AddedTimesScript : MonoBehaviour
     }
     public void BeingRemoved()
     {
-        GameObject TCS = Object.FindFirstObjectByType<TimeControllerScript>().gameObject;
+        GameObject TCS = UnityEngine.Object.FindFirstObjectByType<TimeControllerScript>().gameObject;
         if (Life < LifeTime) { gameObject.tag = "Untagged"; }
         Life--;
         CanV.overrideSorting = true;
@@ -259,7 +282,7 @@ public class AddedTimesScript : MonoBehaviour
     }
     public void ShowTime()
     {
-        LogInfoScript LIS = Object.FindFirstObjectByType<LogInfoScript>();
+        LogInfoScript LIS = UnityEngine.Object.FindFirstObjectByType<LogInfoScript>();
         LIS.ShowLog(TimeWhenAdded);
     }
 }
