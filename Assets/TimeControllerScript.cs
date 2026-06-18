@@ -24,6 +24,7 @@ using UnityEngine.Android;
 public class TimeControllerScript : MonoBehaviour
 {
     public bool DebugOutput;
+    public bool ExplainMode;
     //Minutes, not hours
     public float DefaultTime = 180;
     public float TotalTime;

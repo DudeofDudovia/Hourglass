@@ -6638,7 +6638,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 306860254}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d4530afebc3de9943a6ac33caf311e1f, type: 3}
   m_Name: 
@@ -26131,7 +26131,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1473285670}
-  - component: {fileID: 1473285671}
   m_Layer: 0
   m_Name: Explainer
   m_TagString: Untagged
@@ -26155,28 +26154,6 @@ Transform:
   - {fileID: 850090279}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1473285671
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1473285669}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eebfec2101b60c5458821ce83a6bb8df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ExplainerTag
-  TagName: Error!
-  TagText: 'Something has gone wrong.
-
-    Hopefully clicking something that can
-    be explained will fix this'
-  NameColor: {r: 1, g: 0, b: 0, a: 1}
-  TextColor: {r: 0.6132076, g: 0, b: 0, a: 1}
-  BackgroundColor: {r: 0, g: 0, b: 0, a: 1}
-  InMenu: 0
-  Child: 0
 --- !u!1 &1479122028
 GameObject:
   m_ObjectHideFlags: 0
@@ -30062,6 +30039,7 @@ GameObject:
   - component: {fileID: 1657158903}
   - component: {fileID: 1657158907}
   - component: {fileID: 1657158906}
+  - component: {fileID: 1657158908}
   m_Layer: 5
   m_Name: ToggleConsoleLog
   m_TagString: Untagged
@@ -30128,6 +30106,34 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1657158902}
   m_CullTransparentMesh: 1
+--- !u!114 &1657158908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1657158902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eebfec2101b60c5458821ce83a6bb8df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  TagName: Console123q234qtgq2gwgsdgadf
+  TagText: 'Contains debug information if something goes wrong on Android (It doesn''t
+    function on Windows).
+
+    It saves it''s output to the downloads directory.
+
+    If
+    all goes well it will remain empty.
+
+    If possible, I would like to know what
+    it says.'
+  NameColor: {r: 1, g: 1, b: 1, a: 1}
+  TextColor: {r: 1, g: 1, b: 1, a: 1}
+  BackgroundColor: {r: 0, g: 0, b: 0, a: 1}
+  InMenu: 1
+  Child: 1
 --- !u!1 &1659587480
 GameObject:
   m_ObjectHideFlags: 0

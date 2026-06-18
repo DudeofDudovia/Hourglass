@@ -6,6 +6,7 @@ public class ChangeLogFontSizePreviewNumberScript : MonoBehaviour
 {
     public TMP_InputField TMP;
     public Slider CLFSS;
+    public TextMeshProUGUI ExplainerTMP;
     public TextMeshProUGUI CLTMP;
     public void SetSlider()
     {
@@ -22,6 +23,7 @@ public class ChangeLogFontSizePreviewNumberScript : MonoBehaviour
             TMP.text = ((float)CLFSS.value).ToString();
             TMP.text = Truncate(float.Parse(TMP.text), 2).ToString();
             CLTMP.fontSize = (float)CLFSS.value;
+            ExplainerTMP.fontSize = (float)CLFSS.value;
         }
         catch { }
     }

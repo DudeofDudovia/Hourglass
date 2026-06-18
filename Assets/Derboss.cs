@@ -15,6 +15,7 @@ public static class Derboss
         string Dir = Path.Combine(GetDLPath(), "HourglassLogs");
         string dir = Path.Combine(Dir, "DerbossLog.txt");
 
+#if UNITY_ANDROID && !UNITY_EDITOR
         using var unityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
         using var activity = unityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
         using var resolver = activity.Call<AndroidJavaObject>("getContentResolver");
@@ -36,10 +37,15 @@ public static class Derboss
         byte[] bytes = System.Text.Encoding.UTF8.GetBytes(cachedConsole.ConsoleLogs);
         output.Call("write", bytes);
         output.Call("close");
+#elif UNITY_STANDALONE_WIN
+    
+#else
+
+#endif
     }
     private static string GetDLPath()
     {
-#if UNITY_ANDROID //&& !UNITY_EDITOR
+#if UNITY_ANDROID && !UNITY_EDITOR
         using (var environment = new AndroidJavaClass("android.os.Environment"))
         {
             using (var downloadsDir = environment.CallStatic<AndroidJavaObject>(
