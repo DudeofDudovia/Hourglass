@@ -32,7 +32,8 @@ public class AddedTimesScript : MonoBehaviour
     public int Life;
     public int LifeTime;
     public Canvas CanV;
-
+    public float Div;
+    public float BackHue;
     public bool WasRainbow;
     public Color NormalColor;
     public Color FadeoutColor;
@@ -40,16 +41,74 @@ public class AddedTimesScript : MonoBehaviour
     public bool BeingMade = false;
     public bool BeingLoaded = false;
     public float MinutesToAdd = 0;
-    public void RainbowColors()
+    public void RainbowColors(TimeControllerScript TCS)
     {
+
         WasRainbow = true;
+
         NormalColor = Color.HSVToRGB(UnityEngine.Random.Range(1, 100) / 100f, UnityEngine.Random.Range(50, 100) / 100f, UnityEngine.Random.Range(50, 100) / 100f);
         FadeoutColor = Color.HSVToRGB(UnityEngine.Random.Range(1, 100) / 100f, UnityEngine.Random.Range(50, 100) / 100f, UnityEngine.Random.Range(50, 100) / 100f);
+
+        //13 - 36 - 47
+        //23 - 0 - 11
+        // Rand(Hue-23,Hue+11)
+        // Rand(Hue-23/360,Hue+11)
+        //Top left = 2/9
+        //Tcs hue = 1/4
+        //Bottom Right = 3/9
+
+
+        float DivTime = TCS.AddedTimesRainbowDivergence;
+        DivTime /= 2;
+        //float H = LoopedClamp(TCS.BackgroundHue - 1/9);
+        float H = TCS.BackgroundHue;
+        H = UnityEngine.Random.Range(H - 0.06388888888f, H + 0.03055555555f);
+        //H = UnityEngine.Random.Range(-DivTime, DivTime);
+        H += UnityEngine.Random.Range(-DivTime, DivTime);
+        H = LoopedClamp(H);
+        float HFO = TCS.BackgroundHue - 1 / 9; ;
+        HFO += UnityEngine.Random.Range(-DivTime, DivTime);
+        //HFO = LoopedClamp(H);
+        NormalColor = Color.HSVToRGB(H, UnityEngine.Random.Range(50, 100) / 100f, UnityEngine.Random.Range(50, 100) / 100f);
+        FadeoutColor = Color.HSVToRGB(H, UnityEngine.Random.Range(50, 100) / 100f, UnityEngine.Random.Range(50, 100) / 100f);
+
+
+    }
+    public float LoopedClamp(float f)
+    {
+        return LoopedClamp(f, 1);
+    }
+    public float LoopedClamp(float f, float top)
+    {
+        float loopval = f;
+        if (loopval < top && loopval > 0)
+        {
+            return loopval;
+        }
+        else
+        {
+            int recursion = 0;
+            while (loopval > top)
+            {
+                recursion++;
+                if (recursion > 500)
+                { break; }
+                loopval -= top;
+            }
+            while (loopval < 0)
+            {
+                recursion++;
+                if (recursion > 500)
+                { break; }
+                loopval += top;
+            }
+        }
+        return loopval;
     }
     private void Start()
     {
         GameObject[] TCS = GameObject.FindGameObjectsWithTag("TimeController");
-        if (TCS[0].GetComponent<TimeControllerScript>().AddedTimesRainbow) { RainbowColors();}
+        if (TCS[0].GetComponent<TimeControllerScript>().AddedTimesRainbow) { RainbowColors(TCS[0].GetComponent<TimeControllerScript>());}
         else { 
         
             NormalColor = Color.HSVToRGB(TCS[0].GetComponent<TimeControllerScript>().AddedTimesHue, TCS[0].GetComponent<TimeControllerScript>().AddedTimesSat, TCS[0].GetComponent<TimeControllerScript>().AddedTimesVal);
@@ -155,13 +214,23 @@ public class AddedTimesScript : MonoBehaviour
         GameObject[] TCS = GameObject.FindGameObjectsWithTag("TimeController");
         if (!TCS[0].GetComponent<TimeControllerScript>().AddedTimesRainbow) {WasRainbow = false; }
         if (TCS[0].GetComponent<TimeControllerScript>().AddedTimesRainbow && !WasRainbow) {
-            RainbowColors();
+            RainbowColors(TCS[0].GetComponent<TimeControllerScript>());
         }
         else if (!TCS[0].GetComponent<TimeControllerScript>().AddedTimesRainbow)
         {
             NormalColor = Color.HSVToRGB(TCS[0].GetComponent<TimeControllerScript>().AddedTimesHue, TCS[0].GetComponent<TimeControllerScript>().AddedTimesSat, TCS[0].GetComponent<TimeControllerScript>().AddedTimesVal);
             FadeoutColor = Color.HSVToRGB(TCS[0].GetComponent<TimeControllerScript>().AddedTimesFadeOutHue, TCS[0].GetComponent<TimeControllerScript>().AddedTimesFadeOutSat, TCS[0].GetComponent<TimeControllerScript>().AddedTimesFadeOutVal);
         }
+        if (Div != TCS[0].GetComponent<TimeControllerScript>().AddedTimesRainbowDivergence)
+        {
+            RainbowColors(TCS[0].GetComponent<TimeControllerScript>());
+        }
+        Div = TCS[0].GetComponent<TimeControllerScript>().AddedTimesRainbowDivergence;
+        if (BackHue != TCS[0].GetComponent<TimeControllerScript>().BackgroundHue)
+        {
+            RainbowColors(TCS[0].GetComponent<TimeControllerScript>());
+        }
+        BackHue = TCS[0].GetComponent<TimeControllerScript>().BackgroundHue;
         ButtonToColorChange.color = NormalColor;
 
         if (TCS[0].gameObject.GetComponent<TimeControllerScript>() != null)

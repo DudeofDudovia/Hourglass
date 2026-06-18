@@ -45,12 +45,6 @@ public class ExplainerScript : MonoBehaviour
     public GameObject[] TMPInputsToEnable = new GameObject[0];
     public int WaitToShow;
     public bool IsShowing;
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetMouseButton(0) && TCS.ExplainMode && !ClickedBox(GetEventSystemRaycastResults()))
@@ -59,7 +53,6 @@ public class ExplainerScript : MonoBehaviour
             MouseClicked = 2;
             if (!ClickedSame(GetEventSystemRaycastResults()))
             {
-                //Debug.Log("???");
                 SetTextsFromHighest(GetEventSystemRaycastResults());
             }
         }
@@ -68,7 +61,6 @@ public class ExplainerScript : MonoBehaviour
         {
             if (MouseClicked == 1 && !Input.GetMouseButton(0))
             {
-                //Debug.Log(NamesPointerIsOver(GetEventSystemRaycastResults()));
                 if (!ClickedBox(GetEventSystemRaycastResults()))
                 {
                         HideExplaination();
@@ -94,12 +86,6 @@ public class ExplainerScript : MonoBehaviour
 
         if (TCS.ExplainMode)
         {
-
-            //EnableInteractables();
-            //DisableInteractables_Old(GetEventSystemRaycastResults());
-            //DisableInteractables(GetEventSystemRaycastResults());
-            //FindInteractables();
-            
         }
         else
         {
@@ -114,7 +100,6 @@ public class ExplainerScript : MonoBehaviour
             }
             else
             {
-                //Debug.Log("EnableT1");
                 EnableInteractables();
             }
         }
@@ -165,18 +150,6 @@ public class ExplainerScript : MonoBehaviour
         EventSystem.current.RaycastAll(eventData, raycastResults);
         return raycastResults;
     }
-    /*
-    public string NamePointerIsOver(List<RaycastResult> eventSystemRaycastResults)
-    {
-        string ret = "Hm1.";
-        for (int i = 0; i < eventSystemRaycastResults.Count; i++)
-        {
-            RaycastResult result = eventSystemRaycastResults[i];
-            //if (result.gameObject.layer == LayerMask.NameToLayer("Resetable Slider") && result.gameObject.transform.position == transform.position)
-            return ret;
-        }
-        return ret;
-    }*/
 
     public string NamesPointerIsOver(List<RaycastResult> eventSystemRaycastResults)
     {
@@ -218,7 +191,6 @@ public class ExplainerScript : MonoBehaviour
     }
     public bool IsFamilyOfExplainerTag(GameObject Obj)
     {
-       // Debug.Log("?");
         int Recursion = 0;
         bool FoundParent = false;
         GameObject ParentCandidate = Obj;
@@ -226,49 +198,21 @@ public class ExplainerScript : MonoBehaviour
         {
             if (ParentCandidate.GetComponent<ExplainerTag>() != null)
             {
-                //Debug.Log("3");
                 if (!ParentCandidate.GetComponent<ExplainerTag>().Child)
                 {
-                   // Debug.Log("o");
                     return true;
                 }
             }
-            //Debug.Log(ParentCandidate.name);
-            //Debug.Log(Recursion +":"+ ParentCandidate.name);
-            
             Recursion++;
             if (ParentCandidate.transform.parent != null)
             {
                 ParentCandidate = ParentCandidate.transform.parent.gameObject;
             }
-            /*else if (ParentCandidate.GetComponent<RectTransform>().parent != null)
-            {
-
-                Debug.Log("2");
-                ParentCandidate = gameObject.GetComponent<RectTransform>().parent.gameObject;
-                Debug.Log(ParentCandidate.name);
-            }*/
-            else
-            {
-                //Debug.Log(" :<> ");
-                //return false;
-            }
-            //Debug.Log(Recursion + ":" + ParentCandidate.name);
-
-            /*
-            if (ParentCandidate.name == "ToggleConsoleLog")
-            {
-                Debug.Log("!???!?!!?!??!?!");
-                Debug.Log(ParentExplainerTag.);
-            }
-            */
-
         }
         return false;
     }
     public GameObject FamilyExplainerTag(GameObject Obj)
     {
-       // Debug.Log("?");
         int Recursion = 0;
         bool FoundParent = false;
         GameObject ParentCandidate = Obj;
@@ -276,45 +220,16 @@ public class ExplainerScript : MonoBehaviour
         {
             if (ParentCandidate.GetComponent<ExplainerTag>() != null)
             {
-               // Debug.Log("3");
                 if (!ParentCandidate.GetComponent<ExplainerTag>().Child)
                 {
-                   // Debug.Log("o:" + ParentCandidate);
                     return ParentCandidate;
                 }
             }
-            //Debug.Log(ParentCandidate.name);
-           // Debug.Log(Recursion + ":" + ParentCandidate.name);
-
             Recursion++;
             if (ParentCandidate.transform.parent != null)
             {
                 ParentCandidate = ParentCandidate.transform.parent.gameObject;
-               // Debug.Log(ParentCandidate.name);
-               // Debug.Log("1");
             }
-            /*else if (ParentCandidate.GetComponent<RectTransform>().parent != null)
-            {
-
-                Debug.Log("2");
-                ParentCandidate = gameObject.GetComponent<RectTransform>().parent.gameObject;
-                Debug.Log(ParentCandidate.name);
-            }*/
-            else
-            {
-               // Debug.Log(" :<> ");
-                //return false;
-            }
-            //Debug.Log(Recursion + ":" + ParentCandidate.name);
-
-            /*
-            if (ParentCandidate.name == "ToggleConsoleLog")
-            {
-                Debug.Log("!???!?!!?!??!?!");
-                Debug.Log(ParentExplainerTag.);
-            }
-            */
-
         }
         return gameObject;
     }
@@ -330,8 +245,6 @@ public class ExplainerScript : MonoBehaviour
         for (int i = 0; i < eventSystemRaycastResults.Count; i++)
         {
             RaycastResult result = eventSystemRaycastResults[i];
-            //if (result.gameObject.layer == LayerMask.NameToLayer("Resetable Slider") && result.gameObject.transform.position == transform.position)
-            //ret += i + ":" + result.gameObject.name + "\n";
             if (IsFamilyOfExplainerTag(result.gameObject))
             {
 
@@ -340,13 +253,7 @@ public class ExplainerScript : MonoBehaviour
 
                 if (!(!ET.InMenu && Options.activeSelf))
                 {
-                    //Debug.Log(result.gameObject.name);
-                    //Debug.Log(result.gameObject.name + "AhA!");
                     if (ClickedSame(GetEventSystemRaycastResults())) { Debug.Log("Bye!, Same"); return; }
-
-
-                    
-
                     TagName = ET.TagName;
                     TagType = ET.TagType;
                     TagText = ET.TagText;
@@ -383,125 +290,11 @@ public class ExplainerScript : MonoBehaviour
                     Debug.Log("Parentx2:" + result.gameObject.transform.parent.transform.parent.name);
 
                 }
-            }/*else if (result.gameObject.GetComponent<ExplainerTag>() != null)
-            {
-                Debug.Log("Archeic");
-                ExplainerTag ET = result.gameObject.GetComponent<ExplainerTag>();
-
-
-
-                Debug.Log(result.gameObject.name);
-                //Debug.Log(result.gameObject.name + "AhA!");
-                if (ClickedSame(GetEventSystemRaycastResults())) { return; }
-
-                if (!ET.InMenu && Options.activeSelf)
-                {
-                    
-                    return;
-                }
-                
-
-                TagName = ET.TagName;
-                TagText= ET.TagText;
-                TMPName.text = TagName;
-                TMPText.text = TagText;
-                BackgroundColor = ET.BackgroundColor;
-                NameColor = ET.NameColor;
-                TextColor = ET.TextColor;
-
-
-                Background.color = BackgroundColor;
-                TMPName.color = NameColor;
-                TMPText.color = TextColor;
-                ShowExplaination();
-                //Debug.Log(ET.TagName);
-                return;
-            }*/
-
-            //Debug.Log(result.gameObject.name);
+            }
         }
-    }
-    public void CheckTogglables(GameObject Obj)
-    {
-        /*
-        if (Obj.GetComponent<Button>() != null)
-        {
-            if (Obj.GetComponent<Button>().interactable && Obj.tag != "MenuTogg")
-            {
-                Debug.Log(Obj.tag);
-                Array.Resize(ref ButtonsToEnable, ButtonsToEnable.Length + 1);
-                ButtonsToEnable[ButtonsToEnable.Length - 1] = Obj;
-                Obj.GetComponent<Button>().interactable = false;
-                Debug.Log("Button:" + Obj.name);
-            }
-            return;
-        }
-        if (Obj.GetComponent<Slider>() != null)
-        {
-            if (Obj.GetComponent<Slider>().interactable)
-            {
-                Array.Resize(ref SlidersToEnable, SlidersToEnable.Length + 1);
-                ButtonsToEnable[SlidersToEnable.Length - 1] = Obj;
-                Obj.GetComponent<Slider>().interactable = false;
-                Debug.Log("Slider:" + Obj.name);
-            }
-            return;
-        }
-        if (Obj.GetComponent<Toggle>() != null)
-        {
-            if (Obj.GetComponent<Toggle>().interactable)
-            {
-                Array.Resize(ref TogglesToEnable, TogglesToEnable.Length + 1);
-                TogglesToEnable[TogglesToEnable.Length - 1] = Obj;
-                Debug.Log("Toggle:" + Obj.name);
-                Obj.GetComponent<Toggle>().interactable = false;
-            }
-            return;
-        }*/
-    }
-    public void CheckTogglablesChildren(GameObject Obj)
-    {
-        /*
-        if (Obj.GetComponentInChildren<Button>() != null)
-        {
-            if (Obj.GetComponentInChildren<Button>().interactable)
-            {
-                Array.Resize(ref ButtonsToEnable, ButtonsToEnable.Length + 1);
-                ButtonsToEnable[ButtonsToEnable.Length - 1] = Obj.GetComponentInChildren<Button>().gameObject;
-                Obj.GetComponentInChildren<Button>().interactable = false;
-            }
-            return;
-        }
-        if (Obj.GetComponentInChildren<Slider>() != null)
-        {
-
-
-
-
-            if (Obj.GetComponentInChildren<Slider>().interactable)
-            {
-                Array.Resize(ref SlidersToEnable, SlidersToEnable.Length + 1);
-                ButtonsToEnable[SlidersToEnable.Length - 1] = Obj.GetComponentInChildren<Slider>().gameObject;
-                Obj.GetComponentInChildren<Slider>().interactable = false;
-            }
-            return;
-        }
-        if (Obj.GetComponentInChildren<Toggle>() != null)
-        {
-            if (Obj.GetComponentInChildren<Toggle>().interactable)
-            {
-                Array.Resize(ref TogglesToEnable, TogglesToEnable.Length + 1);
-                TogglesToEnable[TogglesToEnable.Length - 1] = Obj.GetComponentInChildren<Toggle>().gameObject;
-                Obj.GetComponentInChildren<Toggle>().interactable = false;
-            }
-            return;
-        }*/
     }
     public void FindInteractables()
     {
-        //Just find everything once
-        //GameObject[] AllToggles = FindObjectOfType(typeof(GameObject)) as GameObject[];
-
         ButtonsToEnable = new GameObject[0];
         SlidersToEnable = new GameObject[0];
         TogglesToEnable = new GameObject[0];
@@ -554,8 +347,6 @@ public class ExplainerScript : MonoBehaviour
                 }
             }
             }
-
-            //FindObjectsOfTypeAll
         }
     public void DisableInteractables()
     {
@@ -580,59 +371,19 @@ public class ExplainerScript : MonoBehaviour
     {
         foreach (GameObject Obj in TogglesToEnable)
         {
-            //Debug.Log("Toggle: " + Obj.name);
             Obj.GetComponent<Toggle>().interactable = true;
         }
         foreach (GameObject Obj in ButtonsToEnable)
         {
-            //Debug.Log("Button: " + Obj.name);
             Obj.GetComponent<Button>().interactable = true;
         }
         foreach (GameObject Obj in SlidersToEnable)
         {
-            //Debug.Log("Slider: " + Obj.name);
             Obj.GetComponent<Slider>().interactable = true;
         }
         foreach (GameObject Obj in TMPInputsToEnable)
         {
-            //Debug.Log("TMP: " + Obj.name);
             Obj.GetComponent<TMP_InputField>().interactable = true;
         }
-        /*ButtonsToEnable = new GameObject[0];
-        SlidersToEnable = new GameObject[0];
-        TogglesToEnable = new GameObject[0];*/
     }
-    public void DisableInteractables_Old(List<RaycastResult> eventSystemRaycastResults)
-    {
-        //string ret = "Hmm.";
-        for (int i = 0; i < eventSystemRaycastResults.Count; i++)
-        {
-
-            RaycastResult result = eventSystemRaycastResults[i];
-            //if (result.gameObject.layer == LayerMask.NameToLayer("Resetable Slider") && result.gameObject.transform.position == transform.position)
-            // ret += i + ":" + result.gameObject.name + "\n";
-            CheckTogglables(result.gameObject);
-            CheckTogglablesChildren(result.gameObject);
-            /*
-                //Debug.Log(result.gameObject.name + "AhA!");
-                TagName = result.gameObject.GetComponent<ExplainerTag>().TagName;
-                TagText = result.gameObject.GetComponent<ExplainerTag>().TagText;
-                TMPName.text = TagName;
-                TMPText.text = TagText;
-                BackgroundColor = result.gameObject.GetComponent<ExplainerTag>().BackgroundColor;
-                NameColor = result.gameObject.GetComponent<ExplainerTag>().NameColor;
-                TextColor = result.gameObject.GetComponent<ExplainerTag>().TextColor;
-
-
-                Background.color = BackgroundColor;
-                TMPName.color = NameColor;
-                TMPText.color = TextColor;
-                ShowExplaination();
-            */
-            //Debug.Log(result.gameObject.GetComponent<ExplainerTag>().TagName);
-
-            //Debug.Log(result.gameObject.name);
-        }
-    }
-
 }

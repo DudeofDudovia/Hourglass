@@ -155,7 +155,11 @@ public class TimeControllerScript : MonoBehaviour
     {
         AddedTimesRainbow = tog;
     }
-
+    public float AddedTimesRainbowDivergence;
+    public void AddedTimesRainbowDivergenceFunc(float flot)
+    {
+        AddedTimesRainbowDivergence = flot;
+    }
     public int Reset = -1;
 
     void Awake()
@@ -519,6 +523,8 @@ public class TimeControllerScript : MonoBehaviour
         *2:Milli
         *3:Background
         *4:LoggedTimes
+            6: Rainbow Logs
+            7: Divirgance
         *5:LoggedTimesTime
         *6:[All]NotificationIds
         *7:TimerNotifID;
