@@ -4,15 +4,18 @@ using UnityEngine;
 public class ExplainerTag : MonoBehaviour
 {
     public string TagName;
+    public string TagType;
     [TextArea]
     public string TagText;
     public Color NameColor = Color.white;
+    public Color TypeColor = Color.white;
     public Color TextColor = Color.white;
     public Color BackgroundColor = Color.black;
 
     public bool InMenu;
     public bool Child;
     // Update is called once per frame
+    /*
     void Awake()
     {
         //if (Child)
@@ -31,11 +34,13 @@ public class ExplainerTag : MonoBehaviour
                 {
                     ParentCandidate = gameObject.transform.parent.gameObject;
                 }
-                else if (ParentCandidate.GetComponent<RectTransform>().parent != null)
+                else if (ParentCandidate.GetComponent<RectTransform>() != null)
                 {
-
-                    ParentCandidate = gameObject.GetComponent<RectTransform>().parent.gameObject;
-                    Debug.Log(ParentCandidate.name);
+                    if (ParentCandidate.GetComponent<RectTransform>().parent != null)
+                    {
+                        ParentCandidate = gameObject.GetComponent<RectTransform>().parent.gameObject;
+                        //Debug.Log(ParentCandidate.name);
+                    }
                 }
                 else
                 {
@@ -54,7 +59,7 @@ public class ExplainerTag : MonoBehaviour
                         BackgroundColor = ParentTag.BackgroundColor;
                         InMenu = ParentTag.InMenu;
                         FoundParent = true;
-                        Debug.Log(ParentCandidate.name);
+                       // Debug.Log(ParentCandidate.name);
                     }
                 }
             }
@@ -76,7 +81,8 @@ public class ExplainerTag : MonoBehaviour
                     TextColor = ParentTag.TextColor;
                     BackgroundColor = ParentTag.BackgroundColor;
                 }
-            }*/
-        }
-    }
+            }
+        
+}
+    }*/
 }

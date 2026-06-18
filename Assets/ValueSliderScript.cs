@@ -15,13 +15,16 @@ public class ValueSliderScript : MonoBehaviour
     public TextMeshProUGUI TMP;
     public TimeControllerScript TCS;
     public int OldProfile;
+    public ExplainerTag ET;
     public void Start()
     {
         Adjusted = false;
     }
     public void Update()
     {
-        if (Adjusted) { TMP.color = Color.HSVToRGB(HueSlider.value, SatSlider.value, Slider.value); }
+        if (Adjusted) { TMP.color = Color.HSVToRGB(HueSlider.value, SatSlider.value, Slider.value);
+            ET.NameColor = Color.HSVToRGB(HueSlider.value, SatSlider.value, Slider.value);
+        }
     }
     public void AdjVal()
     {

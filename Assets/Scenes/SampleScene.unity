@@ -469,6 +469,7 @@ GameObject:
   - component: {fileID: 13356457}
   - component: {fileID: 13356456}
   - component: {fileID: 13356455}
+  - component: {fileID: 13356458}
   m_Layer: 5
   m_Name: Logo
   m_TagString: Untagged
@@ -550,6 +551,29 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 13356453}
   m_CullTransparentMesh: 1
+--- !u!114 &13356458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 13356453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eebfec2101b60c5458821ce83a6bb8df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ExplainerTag
+  TagName: Logo
+  TagType: 
+  TagText: 'HourGlass logo (Left)
+
+    Dude of Dudovia Logo (Right)'
+  NameColor: {r: 0.10980393, g: 0.34901962, b: 0, a: 1}
+  TypeColor: {r: 1, g: 1, b: 1, a: 1}
+  TextColor: {r: 1, g: 1, b: 1, a: 1}
+  BackgroundColor: {r: 0, g: 0, b: 0, a: 1}
+  InMenu: 1
+  Child: 1
 --- !u!1 &17028222
 GameObject:
   m_ObjectHideFlags: 0
@@ -559,6 +583,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 17028223}
+  - component: {fileID: 17028224}
   m_Layer: 0
   m_Name: Commit[Legacy] Log Time
   m_TagString: Untagged
@@ -582,6 +607,30 @@ Transform:
   - {fileID: 215751708}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &17028224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 17028222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eebfec2101b60c5458821ce83a6bb8df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ExplainerTag
+  TagName: Log Time
+  TagType: Button
+  TagText: 'This button logs whatever time is in the Add Time (Blue, above) box.
+
+    It
+    logs the time to the Time Log, which is below.'
+  NameColor: {r: 1, g: 1, b: 1, a: 1}
+  TypeColor: {r: 0.83137256, g: 1, b: 0, a: 1}
+  TextColor: {r: 1, g: 1, b: 1, a: 1}
+  BackgroundColor: {r: 0, g: 0, b: 0, a: 1}
+  InMenu: 0
+  Child: 0
 --- !u!1 &17779348
 GameObject:
   m_ObjectHideFlags: 0
@@ -632,6 +681,7 @@ GameObject:
   - component: {fileID: 24582993}
   - component: {fileID: 24582992}
   - component: {fileID: 24582996}
+  - component: {fileID: 24582997}
   m_Layer: 5
   m_Name: Exit App
   m_TagString: Untagged
@@ -787,6 +837,27 @@ MonoBehaviour:
   pendingquit: 0
   quitresettime: 0.4167
   LCCS: {fileID: 0}
+--- !u!114 &24582997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 24582989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eebfec2101b60c5458821ce83a6bb8df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ExplainerTag
+  TagName: Exit Application
+  TagType: 
+  TagText: Closes the Application
+  NameColor: {r: 1, g: 0, b: 0, a: 1}
+  TypeColor: {r: 1, g: 1, b: 1, a: 1}
+  TextColor: {r: 1, g: 1, b: 1, a: 1}
+  BackgroundColor: {r: 0, g: 0, b: 0, a: 1}
+  InMenu: 1
+  Child: 0
 --- !u!1 &26396110
 GameObject:
   m_ObjectHideFlags: 0
@@ -876,6 +947,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   TagName: Console
+  TagType: 
   TagText: 'Contains debug information if something goes wrong on Android (It doesn''t
     function on Windows).
 
@@ -887,6 +959,7 @@ MonoBehaviour:
     If possible, I would like to know what
     it says.'
   NameColor: {r: 1, g: 1, b: 1, a: 1}
+  TypeColor: {r: 1, g: 1, b: 1, a: 1}
   TextColor: {r: 1, g: 1, b: 1, a: 1}
   BackgroundColor: {r: 0, g: 0, b: 0, a: 1}
   InMenu: 0
@@ -1058,11 +1131,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 185528865}
+  m_Father: {fileID: 1278386067}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -90, y: 12.000061}
+  m_AnchoredPosition: {x: -62.5, y: 0}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &39000395
@@ -1174,6 +1247,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 40618834}
+  - component: {fileID: 40618835}
   m_Layer: 5
   m_Name: Added Time Fade Out Timer
   m_TagString: Untagged
@@ -1203,6 +1277,28 @@ RectTransform:
   m_AnchoredPosition: {x: 147.5, y: -110}
   m_SizeDelta: {x: 175, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &40618835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 40618833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eebfec2101b60c5458821ce83a6bb8df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ExplainerTag
+  TagName: Logged Times Fade Out
+  TagType: Slider
+  TagText: Changes the time it takes for logged times to fade out when dragged out
+    of the scrollbox.
+  NameColor: {r: 0, g: 1, b: 0, a: 1}
+  TypeColor: {r: 1, g: 0.64280593, b: 0, a: 1}
+  TextColor: {r: 1, g: 1, b: 1, a: 1}
+  BackgroundColor: {r: 0, g: 0, b: 0, a: 1}
+  InMenu: 1
+  Child: 0
 --- !u!1 &40646553
 GameObject:
   m_ObjectHideFlags: 0
@@ -2423,6 +2519,7 @@ GameObject:
   - component: {fileID: 147670988}
   - component: {fileID: 147670987}
   - component: {fileID: 147670991}
+  - component: {fileID: 147670992}
   m_Layer: 5
   m_Name: Version and Changelog
   m_TagString: Untagged
@@ -2550,6 +2647,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   SR: {fileID: 147670988}
+--- !u!114 &147670992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 147670985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eebfec2101b60c5458821ce83a6bb8df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ExplainerTag
+  TagName: Version and Changelog
+  TagType: Display
+  TagText: Contains the Name, version, link to GitHub, and the changelog.
+  NameColor: {r: 1, g: 1, b: 1, a: 1}
+  TypeColor: {r: 1, g: 1, b: 1, a: 1}
+  TextColor: {r: 0, g: 1, b: 0.7529412, a: 1}
+  BackgroundColor: {r: 0, g: 0, b: 0, a: 1}
+  InMenu: 0
+  Child: 0
 --- !u!1 &147721000
 GameObject:
   m_ObjectHideFlags: 0
@@ -3135,7 +3253,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 185528864}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3143,12 +3261,11 @@ RectTransform:
   - {fileID: 1382889835}
   - {fileID: 615437953}
   - {fileID: 1432460157}
-  - {fileID: 39000394}
-  m_Father: {fileID: 889682245}
+  m_Father: {fileID: 1664029689}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 175, y: 45.5}
+  m_AnchoredPosition: {x: 27.5, y: 13}
   m_SizeDelta: {x: 120, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &185528866
@@ -3274,6 +3391,7 @@ MonoBehaviour:
   TMP: {fileID: 1077904104}
   TCS: {fileID: 1829068701}
   OldProfile: 0
+  ET: {fileID: 1664029690}
 --- !u!114 &185528868
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4025,6 +4143,65 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 204817692}
   m_CullTransparentMesh: 1
+--- !u!1 &205639858
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 205639859}
+  - component: {fileID: 205639860}
+  m_Layer: 5
+  m_Name: Hue
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &205639859
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 205639858}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1127454507}
+  - {fileID: 983779114}
+  m_Father: {fileID: 1376031260}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 147.5, y: -183}
+  m_SizeDelta: {x: 175, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &205639860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 205639858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eebfec2101b60c5458821ce83a6bb8df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ExplainerTag
+  TagName: Logged Times Hue
+  TagType: Slider
+  TagText: Changes the hue (color) of the background
+  NameColor: {r: 0, g: 1, b: 0, a: 1}
+  TypeColor: {r: 1, g: 0.64280593, b: 0, a: 1}
+  TextColor: {r: 1, g: 1, b: 1, a: 1}
+  BackgroundColor: {r: 0, g: 0, b: 0, a: 1}
+  InMenu: 1
+  Child: 0
 --- !u!1 &207152423
 GameObject:
   m_ObjectHideFlags: 0
@@ -4429,6 +4606,7 @@ GameObject:
   - component: {fileID: 228558943}
   - component: {fileID: 228558946}
   - component: {fileID: 228558945}
+  - component: {fileID: 228558947}
   m_Layer: 5
   m_Name: Option DIsplay
   m_TagString: Untagged
@@ -4494,6 +4672,29 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 228558942}
   m_CullTransparentMesh: 1
+--- !u!114 &228558947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 228558942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eebfec2101b60c5458821ce83a6bb8df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ExplainerTag
+  TagName: Options
+  TagType: Header
+  TagText: 'Header for all the Options.
+
+'
+  NameColor: {r: 0.5019608, g: 0, b: 0, a: 1}
+  TypeColor: {r: 0, g: 1, b: 0.11986828, a: 1}
+  TextColor: {r: 1, g: 1, b: 1, a: 1}
+  BackgroundColor: {r: 0, g: 0, b: 0, a: 1}
+  InMenu: 1
+  Child: 0
 --- !u!1 &234268304
 GameObject:
   m_ObjectHideFlags: 0
@@ -5236,7 +5437,6 @@ GameObject:
   - component: {fileID: 268871975}
   - component: {fileID: 268871974}
   - component: {fileID: 268871978}
-  - component: {fileID: 268871979}
   m_Layer: 0
   m_Name: TimeIndex
   m_TagString: Untagged
@@ -5364,28 +5564,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScrollEnabler
   SR: {fileID: 268871975}
---- !u!114 &268871979
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 268871972}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eebfec2101b60c5458821ce83a6bb8df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ExplainerTag
-  TagName: Time Index
-  TagText: 'This scrollbox contains the time logs.
-
-    If you drag a log out of
-    the scrollbox it gets un logged and its time is added back to the total.'
-  NameColor: {r: 1, g: 1, b: 1, a: 1}
-  TextColor: {r: 1, g: 1, b: 1, a: 1}
-  BackgroundColor: {r: 0, g: 0, b: 0, a: 1}
-  InMenu: 0
-  Child: 0
 --- !u!1 &271564848
 GameObject:
   m_ObjectHideFlags: 0
@@ -6494,6 +6672,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 301739423}
+  - component: {fileID: 301739424}
   m_Layer: 0
   m_Name: Timer Countrer And Reseter
   m_TagString: Untagged
@@ -6517,6 +6696,31 @@ Transform:
   - {fileID: 848509314}
   m_Father: {fileID: 838219046}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &301739424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 301739422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eebfec2101b60c5458821ce83a6bb8df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ExplainerTag
+  TagName: Timer Display
+  TagType: Button
+  TagText: 'Displays how long the Timer has been runing for and how much time will
+    be logged.
+
+    If it is cancled (click, with confirmation), the time will not
+    be logged and the Timer will stop.'
+  NameColor: {r: 1, g: 1, b: 1, a: 1}
+  TypeColor: {r: 0.83137256, g: 1, b: 0, a: 1}
+  TextColor: {r: 1, g: 1, b: 1, a: 1}
+  BackgroundColor: {r: 0, g: 0, b: 0, a: 1}
+  InMenu: 0
+  Child: 0
 --- !u!1 &306860254
 GameObject:
   m_ObjectHideFlags: 0
@@ -6638,7 +6842,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 306860254}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d4530afebc3de9943a6ac33caf311e1f, type: 3}
   m_Name: 
@@ -6947,6 +7151,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 325920479}
+  - component: {fileID: 325920480}
   m_Layer: 5
   m_Name: ChangelogFontSize
   m_TagString: Untagged
@@ -6976,6 +7181,28 @@ RectTransform:
   m_AnchoredPosition: {x: 22.5, y: -60}
   m_SizeDelta: {x: 175, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &325920480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 325920478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eebfec2101b60c5458821ce83a6bb8df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ExplainerTag
+  TagName: Font Size
+  TagType: Slider
+  TagText: This setting adjust the font size for adjustable things, which are the
+    changelog and the current display.
+  NameColor: {r: 0.5019608, g: 0, b: 0, a: 1}
+  TypeColor: {r: 1, g: 0.64280593, b: 0, a: 1}
+  TextColor: {r: 1, g: 1, b: 1, a: 1}
+  BackgroundColor: {r: 0, g: 0, b: 0, a: 1}
+  InMenu: 1
+  Child: 0
 --- !u!1 &329396987
 GameObject:
   m_ObjectHideFlags: 0
@@ -7220,10 +7447,12 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Made by Dude of Dudovia\r\n\tMade using Unity\r\n\r\nMore readable changelogs
+  m_text: "Made by Dude of Dudovia\r\n\tMade using Unity\r\n\tUsing The That'sAllRight
+    Font (Download and Link available on Github).\r\n\r\nMore readable changelogs
     and source code can be found on the GitHub page.\r\nFuture Features:\r\n\tA toggle
     to have rainbow logs be affacted by the hue slider, so that you can have completely
     random, or random within a customizable distance from the custom color.\r\nChangelog
+    1.1.0 - Questions And Colors\r\n\tPress menu to toggle Explain Mode.\r\nChangelog
     1.0.0 - The Notification Update\r\n\tAdded Warnings\r\n\t\tThey work on both
     Android and Windows:\r\n\t\t\tDue to programming limitations, the warnings may
     arrive out of time by a couple seconds, but should be reasonably accurate.\r\n\t\t\t\tBecause
@@ -7536,6 +7765,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 355147685}
+  - component: {fileID: 355147686}
   m_Layer: 5
   m_Name: Toggle Remaining Time
   m_TagString: Untagged
@@ -7563,6 +7793,27 @@ RectTransform:
   m_AnchoredPosition: {x: -3.75, y: -52.25}
   m_SizeDelta: {x: 160, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &355147686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 355147684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eebfec2101b60c5458821ce83a6bb8df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ExplainerTag
+  TagName: Milliseconds on Remaing Time
+  TagType: Toggle
+  TagText: Toggles whether or not to use Milliseconds on the Remaining Time Display.
+  NameColor: {r: 1, g: 1, b: 1, a: 1}
+  TypeColor: {r: 0.4117647, g: 1, b: 0, a: 1}
+  TextColor: {r: 1, g: 1, b: 1, a: 1}
+  BackgroundColor: {r: 0, g: 0, b: 0, a: 1}
+  InMenu: 1
+  Child: 0
 --- !u!1 &358597699
 GameObject:
   m_ObjectHideFlags: 0
@@ -8056,16 +8307,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 382403335}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 889682245}
+  m_Father: {fileID: 1610961385}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 85, y: 82.5}
+  m_AnchoredPosition: {x: -62.5, y: 0.000061035156}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &382403337
@@ -8264,11 +8515,11 @@ RectTransform:
   - {fileID: 1311964058}
   - {fileID: 908393305}
   - {fileID: 781891522}
-  m_Father: {fileID: 1376031260}
+  m_Father: {fileID: 1670030573}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 175, y: -200}
+  m_AnchoredPosition: {x: 27.5, y: 13}
   m_SizeDelta: {x: 120, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &382689594
@@ -8664,6 +8915,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 402938771}
+  - component: {fileID: 402938772}
   m_Layer: 5
   m_Name: Toggle Timer
   m_TagString: Untagged
@@ -8691,6 +8943,27 @@ RectTransform:
   m_AnchoredPosition: {x: -3.75, y: 8.25}
   m_SizeDelta: {x: 160, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &402938772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 402938770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eebfec2101b60c5458821ce83a6bb8df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ExplainerTag
+  TagName: Milliseconds on Timer
+  TagType: Toggle
+  TagText: Toggles whether or not to use Milliseconds on the Timer.
+  NameColor: {r: 1, g: 1, b: 1, a: 1}
+  TypeColor: {r: 0.4117647, g: 1, b: 0, a: 1}
+  TextColor: {r: 1, g: 1, b: 1, a: 1}
+  BackgroundColor: {r: 0, g: 0, b: 0, a: 1}
+  InMenu: 1
+  Child: 0
 --- !u!1 &408258173
 GameObject:
   m_ObjectHideFlags: 0
@@ -8802,7 +9075,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -20.000002}
+  m_AnchoredPosition: {x: 0, y: -30}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &421186585
@@ -9367,6 +9640,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 453780411}
+  - component: {fileID: 453780412}
   m_Layer: 5
   m_Name: Milliseconds Display
   m_TagString: Untagged
@@ -9394,6 +9668,30 @@ RectTransform:
   m_AnchoredPosition: {x: 21.25, y: 31}
   m_SizeDelta: {x: 125, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &453780412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 453780410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eebfec2101b60c5458821ce83a6bb8df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ExplainerTag
+  TagName: Millisecond Display Settings
+  TagType: Header
+  TagText: 'Header for all of the Millisecond Display settings.
+
+    These enable
+    (or disable) the use of milliseconds in various displays.'
+  NameColor: {r: 0.047058824, g: 0.36862746, b: 0, a: 1}
+  TypeColor: {r: 0, g: 1, b: 0.12156863, a: 1}
+  TextColor: {r: 1, g: 1, b: 1, a: 1}
+  BackgroundColor: {r: 0, g: 0, b: 0, a: 1}
+  InMenu: 1
+  Child: 0
 --- !u!1 &456048330
 GameObject:
   m_ObjectHideFlags: 0
@@ -10301,15 +10599,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 0.2, g: 0.2, b: 0.2, a: 0.2}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 7482667652216324306, guid: 886f29313592e2c478a48d42989f05c3, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -11563,6 +11861,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 573040676}
+  - component: {fileID: 573040677}
   m_Layer: 5
   m_Name: Background Display
   m_TagString: Untagged
@@ -11590,6 +11889,30 @@ RectTransform:
   m_AnchoredPosition: {x: 150, y: 115}
   m_SizeDelta: {x: 125, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &573040677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 573040675}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eebfec2101b60c5458821ce83a6bb8df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ExplainerTag
+  TagName: Background Settings
+  TagType: Header
+  TagText: 'Header for all of the Background settings.
+
+    These change the color
+    of the applications background.'
+  NameColor: {r: 0.3529412, g: 0.44705883, b: 0.17254902, a: 1}
+  TypeColor: {r: 0, g: 1, b: 0.12156863, a: 1}
+  TextColor: {r: 1, g: 1, b: 1, a: 1}
+  BackgroundColor: {r: 0, g: 0, b: 0, a: 1}
+  InMenu: 1
+  Child: 0
 --- !u!1 &589375228
 GameObject:
   m_ObjectHideFlags: 0
@@ -11602,8 +11925,9 @@ GameObject:
   - component: {fileID: 589375232}
   - component: {fileID: 589375231}
   - component: {fileID: 589375230}
+  - component: {fileID: 589375233}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: Toggle Timer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11692,6 +12016,31 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &589375233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 589375228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eebfec2101b60c5458821ce83a6bb8df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ExplainerTag
+  TagName: Toggle Timer
+  TagType: Button
+  TagText: 'This button toggles the Timer, when pressed again, the Timer is stopped
+    and the duration it ran for is logged.
+
+    If it is instead canceled (by pressing
+    the time, with confirmation), the time is not logged and the Timer is stopped.'
+  NameColor: {r: 0, g: 0, b: 1, a: 1}
+  TypeColor: {r: 0.83137256, g: 1, b: 0, a: 1}
+  TextColor: {r: 1, g: 1, b: 1, a: 1}
+  BackgroundColor: {r: 0, g: 0, b: 0, a: 1}
+  InMenu: 0
+  Child: 0
 --- !u!1 &591472249
 GameObject:
   m_ObjectHideFlags: 0
@@ -13408,6 +13757,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 667572244}
+  - component: {fileID: 667572245}
   m_Layer: 0
   m_Name: Timeindex(Scrollbox)
   m_TagString: Untagged
@@ -13431,6 +13781,30 @@ Transform:
   - {fileID: 1226569271}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &667572245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 667572243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eebfec2101b60c5458821ce83a6bb8df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ExplainerTag
+  TagName: Time Index
+  TagType: Interactable
+  TagText: 'This scrollbox contains the time logs.
+
+    If you drag a log out of
+    the scrollbox it gets un logged and its time is added back to the total.'
+  NameColor: {r: 1, g: 1, b: 1, a: 1}
+  TypeColor: {r: 0.8509804, g: 0.039448094, b: 0, a: 1}
+  TextColor: {r: 1, g: 1, b: 1, a: 1}
+  BackgroundColor: {r: 0, g: 0, b: 0, a: 1}
+  InMenu: 0
+  Child: 0
 --- !u!1 &674989045
 GameObject:
   m_ObjectHideFlags: 0
@@ -13636,8 +14010,9 @@ GameObject:
   m_Component:
   - component: {fileID: 696861757}
   - component: {fileID: 696861758}
+  - component: {fileID: 696861759}
   m_Layer: 5
-  m_Name: ToggleRichFormating (1)
+  m_Name: ToggleRichFormating
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13679,6 +14054,32 @@ MonoBehaviour:
   tmp3: {fileID: 237556193}
   togg: {fileID: 1875130798}
   tmp2: {fileID: 1166437313}
+--- !u!114 &696861759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 696861756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eebfec2101b60c5458821ce83a6bb8df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ExplainerTag
+  TagName: Rich Formatting
+  TagType: Toggle
+  TagText: 'This setting modifies the Add Time (blue) box, allowing the letters :
+    H, M, and S (not case sensitive): 1h 43M 23s (This will obviously add 1 hour
+    43 minutes and 23 seconds); as well as formating such as 1:45:23 (1 Hour 45 Minutes
+    and 23 Seconds) to be used.
+
+'
+  NameColor: {r: 0.5019608, g: 0, b: 0, a: 1}
+  TypeColor: {r: 0.4117647, g: 1, b: 0, a: 1}
+  TextColor: {r: 1, g: 1, b: 1, a: 1}
+  BackgroundColor: {r: 0, g: 0, b: 0, a: 1}
+  InMenu: 1
+  Child: 0
 --- !u!1 &701213178
 GameObject:
   m_ObjectHideFlags: 0
@@ -13763,6 +14164,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 717274070}
+  - component: {fileID: 717274071}
   m_Layer: 5
   m_Name: Up Or Down
   m_TagString: Untagged
@@ -13792,6 +14194,27 @@ RectTransform:
   m_AnchoredPosition: {x: 147.5, y: -30}
   m_SizeDelta: {x: 175, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &717274071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 717274069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eebfec2101b60c5458821ce83a6bb8df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ExplainerTag
+  TagName: Remaining/Used Time Swap
+  TagType: Slider
+  TagText: Changes the time it takes for the arrow to change direction.
+  NameColor: {r: 1, g: 1, b: 1, a: 1}
+  TypeColor: {r: 1, g: 0.64280593, b: 0, a: 1}
+  TextColor: {r: 1, g: 1, b: 1, a: 1}
+  BackgroundColor: {r: 0, g: 0, b: 0, a: 1}
+  InMenu: 1
+  Child: 0
 --- !u!1 &719098361
 GameObject:
   m_ObjectHideFlags: 0
@@ -14327,11 +14750,11 @@ RectTransform:
   - {fileID: 1332231095}
   - {fileID: 972712241}
   - {fileID: 2099507168}
-  m_Father: {fileID: 1376031260}
+  m_Father: {fileID: 1882877350}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 175, y: -230}
+  m_AnchoredPosition: {x: 27.5, y: 12.999878}
   m_SizeDelta: {x: 120, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &760707222
@@ -15085,6 +15508,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   TagName: Console
+  TagType: Button
   TagText: 'Contains debug information if something goes wrong on Android (It doesn''t
     function on Windows).
 
@@ -15096,6 +15520,7 @@ MonoBehaviour:
     If possible, I would like to know what
     it says.'
   NameColor: {r: 1, g: 1, b: 1, a: 1}
+  TypeColor: {r: 0.83137256, g: 1, b: 0, a: 1}
   TextColor: {r: 1, g: 1, b: 1, a: 1}
   BackgroundColor: {r: 0, g: 0, b: 0, a: 1}
   InMenu: 1
@@ -15825,6 +16250,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 834948009}
+  - component: {fileID: 834948010}
   m_Layer: 5
   m_Name: NotificationDisplay
   m_TagString: Untagged
@@ -15852,6 +16278,30 @@ RectTransform:
   m_AnchoredPosition: {x: 150, y: 0}
   m_SizeDelta: {x: 125, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &834948010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 834948008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eebfec2101b60c5458821ce83a6bb8df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ExplainerTag
+  TagName: Warning Settings
+  TagType: Header
+  TagText: 'Header for all of the warning settings.
+
+    Warnings take the form of
+    notifications on Windows and Android.'
+  NameColor: {r: 0, g: 0.1882353, b: 0.03529412, a: 1}
+  TypeColor: {r: 0, g: 1, b: 0.12156863, a: 1}
+  TextColor: {r: 1, g: 1, b: 1, a: 1}
+  BackgroundColor: {r: 0, g: 0, b: 0, a: 1}
+  InMenu: 1
+  Child: 0
 --- !u!1 &835316784
 GameObject:
   m_ObjectHideFlags: 0
@@ -16290,11 +16740,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   TagName: 
+  TagType: 
   TagText: 
   NameColor: {r: 1, g: 1, b: 1, a: 1}
+  TypeColor: {r: 1, g: 1, b: 1, a: 1}
   TextColor: {r: 1, g: 1, b: 1, a: 1}
   BackgroundColor: {r: 0.3, g: 0.3, b: 0.3, a: 1}
   TMPName: {fileID: 1788486760}
+  TMPType: {fileID: 1328170371}
   TMPText: {fileID: 476800526}
   MouseY: 0
   BSAP: {fileID: 1916290952}
@@ -16642,11 +17095,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1376031260}
+  m_Father: {fileID: 1882877350}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 85, y: -243}
+  m_AnchoredPosition: {x: -62.5, y: 0}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &874454851
@@ -16778,11 +17231,9 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 573040676}
-  - {fileID: 1465861245}
-  - {fileID: 382403336}
-  - {fileID: 2014016119}
-  - {fileID: 185528865}
-  - {fileID: 1077904103}
+  - {fileID: 1610961385}
+  - {fileID: 1278386067}
+  - {fileID: 1664029689}
   m_Father: {fileID: 1640083702}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -17343,6 +17794,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 918437832}
+  - component: {fileID: 918437833}
   m_Layer: 5
   m_Name: ToggleKeepLastAdded
   m_TagString: Untagged
@@ -17370,6 +17822,28 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -30}
   m_SizeDelta: {x: 160, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &918437833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 918437831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eebfec2101b60c5458821ce83a6bb8df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ExplainerTag
+  TagName: Keep Last Added Time
+  TagType: Toggle
+  TagText: This settings toggles whether or not the time in the Add Time (blue) box
+    gets cleared when the "Log Time" button is pressed.
+  NameColor: {r: 0.5019608, g: 0, b: 0, a: 1}
+  TypeColor: {r: 0.4117647, g: 1, b: 0, a: 1}
+  TextColor: {r: 1, g: 1, b: 1, a: 1}
+  BackgroundColor: {r: 0, g: 0, b: 0, a: 1}
+  InMenu: 1
+  Child: 0
 --- !u!1 &919856982
 GameObject:
   m_ObjectHideFlags: 0
@@ -18638,11 +19112,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1376031260}
+  m_Father: {fileID: 205639859}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 85, y: -183}
+  m_AnchoredPosition: {x: -62.5, y: 0.000061035156}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &986911965
@@ -19304,7 +19778,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 394590753}
   m_HandleRect: {fileID: 394590752}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -19653,6 +20127,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1058757615}
+  - component: {fileID: 1058757616}
   m_Layer: 5
   m_Name: Logged Times Display
   m_TagString: Untagged
@@ -19680,6 +20155,33 @@ RectTransform:
   m_AnchoredPosition: {x: 150, y: -150}
   m_SizeDelta: {x: 100, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1058757616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1058757614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eebfec2101b60c5458821ce83a6bb8df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ExplainerTag
+  TagName: Logged Times Settings
+  TagType: Header
+  TagText: 'Header for all of the Logged Times settings.
+
+    Logged Times are the
+    main functions of the app.
+
+    Logged Times are the times subtracted (and added)
+    from the total time.'
+  NameColor: {r: 0.19607843, g: 0.25490198, b: 0.08627451, a: 1}
+  TypeColor: {r: 0, g: 1, b: 0.12156863, a: 1}
+  TextColor: {r: 1, g: 1, b: 1, a: 1}
+  BackgroundColor: {r: 0, g: 0, b: 0, a: 1}
+  InMenu: 1
+  Child: 0
 --- !u!1 &1067888349
 GameObject:
   m_ObjectHideFlags: 0
@@ -19764,6 +20266,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1070148576}
+  - component: {fileID: 1070148577}
   m_Layer: 0
   m_Name: AddTime
   m_TagString: Untagged
@@ -19787,6 +20290,39 @@ Transform:
   - {fileID: 1081085763}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1070148577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1070148575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eebfec2101b60c5458821ce83a6bb8df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ExplainerTag
+  TagName: Add Time
+  TagType: Editable
+  TagText: 'This is where you input how much time to subtract from the total time.
+
+    When
+    the "Log Time" button is pressed, whatever value in this box will be logged,
+    or subtracted from the total (as long as it''s valid).
+
+    Pressing enter will
+    also log the time
+
+    The "Advanced Formatting" setting will allow the letters
+    : H, M, and S (not case sensitive): 1h 43M 23s (This will obviously add 1 hour
+    43 minutes and 23 seconds); as well as the formating such as 1:45:23 (1 Hour
+    45 Minutes and 23 Seconds).'
+  NameColor: {r: 0, g: 0.02745098, b: 0.5764706, a: 1}
+  TypeColor: {r: 0.23729663, g: 0.15472588, b: 0.5754717, a: 1}
+  TextColor: {r: 1, g: 1, b: 1, a: 1}
+  BackgroundColor: {r: 0, g: 0, b: 0, a: 1}
+  InMenu: 0
+  Child: 0
 --- !u!1 &1073875701
 GameObject:
   m_ObjectHideFlags: 0
@@ -20098,16 +20634,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1077904102}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 889682245}
+  m_Father: {fileID: 1664029689}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 85, y: 32.5}
+  m_AnchoredPosition: {x: -62.5, y: 0}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1077904104
@@ -21141,11 +21677,11 @@ RectTransform:
   - {fileID: 1989372971}
   - {fileID: 740464499}
   - {fileID: 726439185}
-  m_Father: {fileID: 1376031260}
+  m_Father: {fileID: 205639859}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 175, y: -170}
+  m_AnchoredPosition: {x: 27.5, y: 13.000061}
   m_SizeDelta: {x: 120, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1127454509
@@ -21685,6 +22221,138 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1149779901}
   m_CullTransparentMesh: 1
+--- !u!1 &1153228759
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1153228760}
+  - component: {fileID: 1153228763}
+  - component: {fileID: 1153228762}
+  - component: {fileID: 1153228761}
+  m_Layer: 9
+  m_Name: Close Explaination
+  m_TagString: ExplainerDisplay
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1153228760
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1153228759}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1916290951}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 82.5, y: 55}
+  m_SizeDelta: {x: 30, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1153228761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1153228759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1153228762}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 850090280}
+        m_TargetAssemblyTypeName: ExplainerScript, Assembly-CSharp
+        m_MethodName: HideExplaination
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1153228762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1153228759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: -4060459424184296162, guid: 0536153670292cd4eb98d211dcae0b41, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1153228763
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1153228759}
+  m_CullTransparentMesh: 1
 --- !u!1 &1153688960
 GameObject:
   m_ObjectHideFlags: 0
@@ -21815,11 +22483,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1376031260}
+  m_Father: {fileID: 1670030573}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 85, y: -213}
+  m_AnchoredPosition: {x: -62.5, y: -0.000061035156}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1155782891
@@ -21975,10 +22643,12 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Made by Dude of Dudovia\r\n\tMade using Unity\r\n\r\nMore readable changelogs
+  m_text: "Made by Dude of Dudovia\r\n\tMade using Unity\r\n\tUsing The That'sAllRight
+    Font (Download and Link available on Github).\r\n\r\nMore readable changelogs
     and source code can be found on the GitHub page.\r\nFuture Features:\r\n\tA toggle
     to have rainbow logs be affacted by the hue slider, so that you can have completely
     random, or random within a customizable distance from the custom color.\r\nChangelog
+    1.1.0 - Questions And Colors\r\n\tPress menu to toggle Explain Mode.\r\nChangelog
     1.0.0 - The Notification Update\r\n\tAdded Warnings\r\n\t\tThey work on both
     Android and Windows:\r\n\t\t\tDue to programming limitations, the warnings may
     arrive out of time by a couple seconds, but should be reasonably accurate.\r\n\t\t\t\tBecause
@@ -22614,6 +23284,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1219679500}
+  - component: {fileID: 1219679501}
   m_Layer: 5
   m_Name: Update Total Time
   m_TagString: Untagged
@@ -22643,6 +23314,27 @@ RectTransform:
   m_AnchoredPosition: {x: 147.5, y: -70}
   m_SizeDelta: {x: 175, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1219679501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1219679499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eebfec2101b60c5458821ce83a6bb8df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ExplainerTag
+  TagName: Update Total Time
+  TagType: Slider
+  TagText: Changes the time it takes for the circle to spin.
+  NameColor: {r: 0, g: 1, b: 0, a: 1}
+  TypeColor: {r: 1, g: 0.64280593, b: 0, a: 1}
+  TextColor: {r: 1, g: 1, b: 1, a: 1}
+  BackgroundColor: {r: 0, g: 0, b: 0, a: 1}
+  InMenu: 1
+  Child: 0
 --- !u!1 &1220287662
 GameObject:
   m_ObjectHideFlags: 0
@@ -23217,6 +23909,7 @@ GameObject:
   - component: {fileID: 1253178738}
   - component: {fileID: 1253178737}
   - component: {fileID: 1253178736}
+  - component: {fileID: 1253178739}
   m_Layer: 5
   m_Name: Reset App
   m_TagString: Untagged
@@ -23336,6 +24029,31 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   m_IsOn: 0
+--- !u!114 &1253178739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1253178734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eebfec2101b60c5458821ce83a6bb8df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ExplainerTag
+  TagName: Reset Application
+  TagType: Dangerous!
+  TagText: 'This button deletes ALL application data (with confirmation).
+
+    There
+    is no going back after pressing this button, and restarting is recomended (due
+    to my sloppy coding).'
+  NameColor: {r: 0.5019608, g: 0, b: 0, a: 1}
+  TypeColor: {r: 1, g: 0.007431207, b: 0, a: 1}
+  TextColor: {r: 1, g: 0, b: 0, a: 1}
+  BackgroundColor: {r: 0, g: 0, b: 0, a: 1}
+  InMenu: 1
+  Child: 0
 --- !u!1 &1254203174
 GameObject:
   m_ObjectHideFlags: 0
@@ -23675,6 +24393,65 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   TMP: {fileID: 1268652238}
   TCS: {fileID: 1829068701}
+--- !u!1 &1278386066
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1278386067}
+  - component: {fileID: 1278386068}
+  m_Layer: 5
+  m_Name: Sat
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1278386067
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1278386066}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2014016119}
+  - {fileID: 39000394}
+  m_Father: {fileID: 889682245}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 147.5, y: 57.50006}
+  m_SizeDelta: {x: 175, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1278386068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1278386066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eebfec2101b60c5458821ce83a6bb8df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ExplainerTag
+  TagName: Background Saturation
+  TagType: Slider
+  TagText: Changes the saturation (colored-ness) of the background
+  NameColor: {r: 1, g: 1, b: 1, a: 1}
+  TypeColor: {r: 1, g: 0.64280593, b: 0, a: 1}
+  TextColor: {r: 1, g: 1, b: 1, a: 1}
+  BackgroundColor: {r: 0, g: 0, b: 0, a: 1}
+  InMenu: 1
+  Child: 0
 --- !u!1 &1279855377
 GameObject:
   m_ObjectHideFlags: 0
@@ -24375,6 +25152,143 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1319612388}
   m_CullTransparentMesh: 1
+--- !u!1 &1328170369
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1328170370}
+  - component: {fileID: 1328170372}
+  - component: {fileID: 1328170371}
+  m_Layer: 9
+  m_Name: Type
+  m_TagString: ExplainerDisplay
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1328170370
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1328170369}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1916290951}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 2.4999757, y: -19.000015}
+  m_SizeDelta: {x: -5.0000486, y: -37.99997}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1328170371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1328170369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: Interactable
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 9211fcdd38f50ef4c8fd7ddcb1c03d12, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 9211fcdd38f50ef4c8fd7ddcb1c03d12, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 15.7
+  m_fontSizeBase: 23
+  m_fontWeight: 400
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 2
+  m_fontSizeMax: 20
+  m_fontStyle: 35
+  m_HorizontalAlignment: 1
+  m_VerticalAlignment: 256
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_characterHorizontalScale: 0.9
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: -8, y: 0, z: 86.9, w: 20}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &1328170372
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1328170369}
+  m_CullTransparentMesh: 1
 --- !u!1 &1332231094
 GameObject:
   m_ObjectHideFlags: 0
@@ -24652,6 +25566,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1361730466}
+  - component: {fileID: 1361730467}
   m_Layer: 5
   m_Name: AnimationDisplay
   m_TagString: Untagged
@@ -24679,6 +25594,33 @@ RectTransform:
   m_AnchoredPosition: {x: 150, y: 0}
   m_SizeDelta: {x: 125, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1361730467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1361730465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eebfec2101b60c5458821ce83a6bb8df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ExplainerTag
+  TagName: Animation Settings
+  TagType: Header
+  TagText: 'Header for all of the Animation settings.
+
+    These modify various animations.
+
+    The
+    time it takes logged times to fade out is under the Logged Times header (scroll
+    down).'
+  NameColor: {r: 0.2627451, g: 0, b: 0.5019608, a: 1}
+  TypeColor: {r: 0, g: 1, b: 0.12156863, a: 1}
+  TextColor: {r: 1, g: 1, b: 1, a: 1}
+  BackgroundColor: {r: 0, g: 0, b: 0, a: 1}
+  InMenu: 1
+  Child: 0
 --- !u!1 &1376031259
 GameObject:
   m_ObjectHideFlags: 0
@@ -24708,12 +25650,9 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1058757615}
-  - {fileID: 1127454507}
-  - {fileID: 983779114}
-  - {fileID: 382689592}
-  - {fileID: 1153688963}
-  - {fileID: 760707220}
-  - {fileID: 874454850}
+  - {fileID: 205639859}
+  - {fileID: 1670030573}
+  - {fileID: 1882877350}
   - {fileID: 1714403093}
   - {fileID: 565170335}
   - {fileID: 961813752}
@@ -25552,8 +26491,9 @@ GameObject:
   - component: {fileID: 1457342887}
   - component: {fileID: 1457342886}
   - component: {fileID: 1457342885}
+  - component: {fileID: 1457342888}
   m_Layer: 5
-  m_Name: Canvas (1)
+  m_Name: UpOrDown
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25642,6 +26582,33 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &1457342888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1457342883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eebfec2101b60c5458821ce83a6bb8df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ExplainerTag
+  TagName: Remaining/Used Time Swap
+  TagType: Toggle
+  TagText: 'Swaps the function of Remaining and Used Time.
+
+    When the arrow is
+    pointing up (default) , the Remaining Time is function Remaining Time.
+
+    The
+    speed of the animation is editable in settings.'
+  NameColor: {r: 1, g: 1, b: 1, a: 1}
+  TypeColor: {r: 0.41296303, g: 1, b: 0, a: 1}
+  TextColor: {r: 1, g: 1, b: 1, a: 1}
+  BackgroundColor: {r: 0, g: 0, b: 0, a: 1}
+  InMenu: 0
+  Child: 0
 --- !u!1 &1460108686
 GameObject:
   m_ObjectHideFlags: 0
@@ -25925,7 +26892,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1465861244}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -25933,11 +26900,11 @@ RectTransform:
   - {fileID: 2135927118}
   - {fileID: 1030644156}
   - {fileID: 1256999555}
-  m_Father: {fileID: 889682245}
+  m_Father: {fileID: 1610961385}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 175, y: 95.5}
+  m_AnchoredPosition: {x: 27.5, y: 13}
   m_SizeDelta: {x: 120, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1465861246
@@ -26061,6 +27028,7 @@ MonoBehaviour:
   TMP: {fileID: 382403337}
   TCS: {fileID: 1829068701}
   OldProfile: 0
+  ET: {fileID: 1610961386}
 --- !u!114 &1465861248
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26168,11 +27136,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ExplainerTag
   TagName: Error!
+  TagType: 
   TagText: 'Something has gone wrong.
 
     Hopefully clicking something that can
     be explained will fix this'
   NameColor: {r: 1, g: 0, b: 0, a: 1}
+  TypeColor: {r: 1, g: 1, b: 1, a: 1}
   TextColor: {r: 0.6132076, g: 0, b: 0, a: 1}
   BackgroundColor: {r: 0, g: 0, b: 0, a: 1}
   InMenu: 0
@@ -26586,6 +27556,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1504491956}
+  - component: {fileID: 1504491957}
   m_Layer: 5
   m_Name: Toggle Added
   m_TagString: Untagged
@@ -26613,6 +27584,27 @@ RectTransform:
   m_AnchoredPosition: {x: -3.75, y: -22.25}
   m_SizeDelta: {x: 160, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1504491957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1504491955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eebfec2101b60c5458821ce83a6bb8df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ExplainerTag
+  TagName: Milliseconds on Time Logs
+  TagType: Toggle
+  TagText: Toggles whether or not to use Milliseconds on Time Logs.
+  NameColor: {r: 1, g: 1, b: 1, a: 1}
+  TypeColor: {r: 0.4117647, g: 1, b: 0, a: 1}
+  TextColor: {r: 1, g: 1, b: 1, a: 1}
+  BackgroundColor: {r: 0, g: 0, b: 0, a: 1}
+  InMenu: 1
+  Child: 0
 --- !u!1 &1505764616
 GameObject:
   m_ObjectHideFlags: 0
@@ -27844,6 +28836,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1557264155}
+  - component: {fileID: 1557264156}
   m_Layer: 5
   m_Name: miscellaneous Display
   m_TagString: Untagged
@@ -27871,6 +28864,30 @@ RectTransform:
   m_AnchoredPosition: {x: 25, y: 24}
   m_SizeDelta: {x: 125, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1557264156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1557264154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eebfec2101b60c5458821ce83a6bb8df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ExplainerTag
+  TagName: Miscellaneous Settings
+  TagType: Header
+  TagText: 'Header for all of the Miscellaneous settings.
+
+    These settings don''t
+    fit into any of the other Headers.'
+  NameColor: {r: 0, g: 0.5019608, b: 0.4745098, a: 1}
+  TypeColor: {r: 0, g: 1, b: 0.12156863, a: 1}
+  TextColor: {r: 1, g: 1, b: 1, a: 1}
+  BackgroundColor: {r: 0, g: 0, b: 0, a: 1}
+  InMenu: 1
+  Child: 0
 --- !u!1 &1561267500
 GameObject:
   m_ObjectHideFlags: 0
@@ -28410,8 +29427,9 @@ GameObject:
   - component: {fileID: 1589985562}
   - component: {fileID: 1589985561}
   - component: {fileID: 1589985560}
+  - component: {fileID: 1589985563}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: ChangeTotalTime
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28500,6 +29518,30 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &1589985563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1589985558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eebfec2101b60c5458821ce83a6bb8df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ExplainerTag
+  TagName: Update Total Time
+  TagType: Button
+  TagText: 'This button immeadiately updates the remaining time to reflect the total
+    time.
+
+    The speed of the animation is editable in settings.'
+  NameColor: {r: 1, g: 1, b: 1, a: 1}
+  TypeColor: {r: 0.83137256, g: 1, b: 0, a: 1}
+  TextColor: {r: 1, g: 1, b: 1, a: 1}
+  BackgroundColor: {r: 0, g: 0, b: 0, a: 1}
+  InMenu: 0
+  Child: 0
 --- !u!1 &1590662693
 GameObject:
   m_ObjectHideFlags: 0
@@ -28897,6 +29939,7 @@ GameObject:
   - component: {fileID: 1594594833}
   - component: {fileID: 1594594832}
   - component: {fileID: 1594594836}
+  - component: {fileID: 1594594837}
   m_Layer: 5
   m_Name: ProfileIndex
   m_TagString: Untagged
@@ -29024,6 +30067,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScrollEnabler
   SR: {fileID: 1594594833}
+--- !u!114 &1594594837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1594594830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eebfec2101b60c5458821ce83a6bb8df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ExplainerTag
+  TagName: Profile Index
+  TagType: Interactable
+  TagText: 'This scrollbox contains the profiles.
+
+    Each Profile is practically
+    a separate instance of the app (a few settings carry across, they should be obvious).
+
+    If
+    you drag a profile out of the scrollbox it gets deleted.'
+  NameColor: {r: 1, g: 1, b: 1, a: 1}
+  TypeColor: {r: 0.8509804, g: 0.043137256, b: 0, a: 1}
+  TextColor: {r: 1, g: 1, b: 1, a: 1}
+  BackgroundColor: {r: 0, g: 0, b: 0, a: 1}
+  InMenu: 0
+  Child: 0
 --- !u!1 &1600189517
 GameObject:
   m_ObjectHideFlags: 0
@@ -29202,6 +30272,65 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 25
   m_TargetDisplay: 0
+--- !u!1 &1610961384
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1610961385}
+  - component: {fileID: 1610961386}
+  m_Layer: 5
+  m_Name: Hue
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1610961385
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1610961384}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1465861245}
+  - {fileID: 382403336}
+  m_Father: {fileID: 889682245}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 147.5, y: 82.5}
+  m_SizeDelta: {x: 175, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1610961386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1610961384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eebfec2101b60c5458821ce83a6bb8df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ExplainerTag
+  TagName: Background Hue
+  TagType: Slider
+  TagText: Changes the hue (color) of the background
+  NameColor: {r: 0, g: 1, b: 0, a: 1}
+  TypeColor: {r: 1, g: 0.64280593, b: 0, a: 1}
+  TextColor: {r: 1, g: 1, b: 1, a: 1}
+  BackgroundColor: {r: 0, g: 0, b: 0, a: 1}
+  InMenu: 1
+  Child: 0
 --- !u!1 &1613864853
 GameObject:
   m_ObjectHideFlags: 0
@@ -30163,7 +31292,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 200, y: 130}
+  m_SizeDelta: {x: 200, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1659587482
 MonoBehaviour:
@@ -30203,6 +31332,65 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1659587480}
   m_CullTransparentMesh: 1
+--- !u!1 &1664029688
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1664029689}
+  - component: {fileID: 1664029690}
+  m_Layer: 5
+  m_Name: Val
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1664029689
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1664029688}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 185528865}
+  - {fileID: 1077904103}
+  m_Father: {fileID: 889682245}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 147.5, y: 32.5}
+  m_SizeDelta: {x: 175, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1664029690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1664029688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eebfec2101b60c5458821ce83a6bb8df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ExplainerTag
+  TagName: Background Value
+  TagType: Slider
+  TagText: Changes the value (brightness) of the background
+  NameColor: {r: 1, g: 1, b: 1, a: 1}
+  TypeColor: {r: 1, g: 0.64280593, b: 0, a: 1}
+  TextColor: {r: 1, g: 1, b: 1, a: 1}
+  BackgroundColor: {r: 0, g: 0, b: 0, a: 1}
+  InMenu: 1
+  Child: 0
 --- !u!1 &1664172756
 GameObject:
   m_ObjectHideFlags: 0
@@ -30428,6 +31616,65 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1668997421}
   m_CullTransparentMesh: 1
+--- !u!1 &1670030572
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1670030573}
+  - component: {fileID: 1670030574}
+  m_Layer: 5
+  m_Name: Sat
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1670030573
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1670030572}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 382689592}
+  - {fileID: 1153688963}
+  m_Father: {fileID: 1376031260}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 147.5, y: -213}
+  m_SizeDelta: {x: 175, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1670030574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1670030572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eebfec2101b60c5458821ce83a6bb8df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ExplainerTag
+  TagName: Logged Times Saturation
+  TagType: Slider
+  TagText: Changes the saturation (colored-ness) of the background
+  NameColor: {r: 1, g: 1, b: 1, a: 1}
+  TypeColor: {r: 1, g: 0.64280593, b: 0, a: 1}
+  TextColor: {r: 1, g: 1, b: 1, a: 1}
+  BackgroundColor: {r: 0, g: 0, b: 0, a: 1}
+  InMenu: 1
+  Child: 0
 --- !u!1 &1671273125
 GameObject:
   m_ObjectHideFlags: 0
@@ -31055,6 +32302,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1714403093}
+  - component: {fileID: 1714403094}
   m_Layer: 5
   m_Name: Logged Times Fade Out Color Animation
   m_TagString: Untagged
@@ -31082,6 +32330,30 @@ RectTransform:
   m_AnchoredPosition: {x: 150, y: -270}
   m_SizeDelta: {x: 100, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1714403094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1714403092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eebfec2101b60c5458821ce83a6bb8df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ExplainerTag
+  TagName: Logged Times Settings
+  TagType: Sub-Header
+  TagText: 'Sub-Header for all of the Logged Times Fade Out settings.
+
+    Logged
+    Times Fade Out when dragged out of the scrollbox.'
+  NameColor: {r: 0.19607843, g: 0.25490198, b: 0.08627451, a: 1}
+  TypeColor: {r: 0, g: 0.5943396, b: 0.07225308, a: 1}
+  TextColor: {r: 1, g: 1, b: 1, a: 1}
+  BackgroundColor: {r: 0, g: 0, b: 0, a: 1}
+  InMenu: 1
+  Child: 0
 --- !u!1 &1740367195
 GameObject:
   m_ObjectHideFlags: 0
@@ -31582,6 +32854,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1770203900}
+  - component: {fileID: 1770203901}
   m_Layer: 0
   m_Name: UsedTime
   m_TagString: Untagged
@@ -31605,6 +32878,28 @@ Transform:
   - {fileID: 506569816}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1770203901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1770203899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eebfec2101b60c5458821ce83a6bb8df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ExplainerTag
+  TagName: Used Time Display
+  TagType: Display
+  TagText: Displays how much time has been used, unless its function is swapped with
+    that of the Remaining Time Display.
+  NameColor: {r: 1, g: 1, b: 1, a: 1}
+  TypeColor: {r: 0, g: 1, b: 0.7511432, a: 1}
+  TextColor: {r: 1, g: 1, b: 1, a: 1}
+  BackgroundColor: {r: 0, g: 0, b: 0, a: 1}
+  InMenu: 0
+  Child: 0
 --- !u!1 &1773694148
 GameObject:
   m_ObjectHideFlags: 0
@@ -31614,6 +32909,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1773694149}
+  - component: {fileID: 1773694150}
   m_Layer: 5
   m_Name: Toggle Used Time
   m_TagString: Untagged
@@ -31641,6 +32937,27 @@ RectTransform:
   m_AnchoredPosition: {x: -3.75, y: -82.25}
   m_SizeDelta: {x: 160, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1773694150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1773694148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eebfec2101b60c5458821ce83a6bb8df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ExplainerTag
+  TagName: Milliseconds on Used Time
+  TagType: Toggle
+  TagText: Toggles whether or not to use Milliseconds on the Used Time Display.
+  NameColor: {r: 1, g: 1, b: 1, a: 1}
+  TypeColor: {r: 0.4117647, g: 1, b: 0, a: 1}
+  TextColor: {r: 1, g: 1, b: 1, a: 1}
+  BackgroundColor: {r: 0, g: 0, b: 0, a: 1}
+  InMenu: 1
+  Child: 0
 --- !u!1 &1788486758
 GameObject:
   m_ObjectHideFlags: 0
@@ -31675,8 +32992,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -0.000030517578}
+  m_SizeDelta: {x: 0, y: 0.000059127808}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1788486760
 MonoBehaviour:
@@ -31725,7 +33042,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40
+  m_fontSize: 35.8
   m_fontSizeBase: 23
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -31764,7 +33081,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -1, y: 0, z: 7.35, w: 0}
+  m_margin: {x: -8, y: 0, z: 26, w: 110}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -31865,8 +33182,9 @@ GameObject:
   - component: {fileID: 1793668990}
   - component: {fileID: 1793668989}
   - component: {fileID: 1793668988}
+  - component: {fileID: 1793668991}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: ResetTimeTo(Total Time)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31955,6 +33273,28 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: -21
   m_TargetDisplay: 0
+--- !u!114 &1793668991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1793668986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eebfec2101b60c5458821ce83a6bb8df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ExplainerTag
+  TagName: Default Time
+  TagType: Editable
+  TagText: This is the Default Time, in minutes, which is what the remaining time
+    (white display, down) will be set to when reset (click, with confirmation).
+  NameColor: {r: 1, g: 1, b: 1, a: 1}
+  TypeColor: {r: 0.23921569, g: 0.15686275, b: 0.5764706, a: 1}
+  TextColor: {r: 1, g: 1, b: 1, a: 1}
+  BackgroundColor: {r: 0, g: 0, b: 0, a: 1}
+  InMenu: 0
+  Child: 0
 --- !u!1 &1807798603
 GameObject:
   m_ObjectHideFlags: 0
@@ -33323,6 +34663,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1869384026}
+  - component: {fileID: 1869384027}
   m_Layer: 0
   m_Name: TimeRemaining
   m_TagString: Untagged
@@ -33346,6 +34687,31 @@ Transform:
   - {fileID: 1462977726}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1869384027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1869384025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eebfec2101b60c5458821ce83a6bb8df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ExplainerTag
+  TagName: Remaining Time
+  TagType: Button/Display
+  TagText: 'Displays how much time remains, unless its function is swapped with that
+    of the Used Time Display.
+
+    It also resets the profile to have no logs and
+    no used time ("flips" the hourglass you could say) when clicked (with confirmation).'
+  NameColor: {r: 1, g: 1, b: 1, a: 1}
+  TypeColor: {r: 0.83137256, g: 1, b: 0, a: 1}
+  TextColor: {r: 1, g: 1, b: 1, a: 1}
+  BackgroundColor: {r: 0, g: 0, b: 0, a: 1}
+  InMenu: 0
+  Child: 0
 --- !u!1 &1872157907
 GameObject:
   m_ObjectHideFlags: 0
@@ -33877,6 +35243,65 @@ MonoBehaviour:
   TCS: {fileID: 1829068701}
   TMP: {fileID: 1877585385}
   ATFOS: {fileID: 1920042889}
+--- !u!1 &1882877349
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1882877350}
+  - component: {fileID: 1882877351}
+  m_Layer: 5
+  m_Name: Val
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1882877350
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1882877349}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 760707220}
+  - {fileID: 874454850}
+  m_Father: {fileID: 1376031260}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 147.5, y: -243}
+  m_SizeDelta: {x: 175, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1882877351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1882877349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eebfec2101b60c5458821ce83a6bb8df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ExplainerTag
+  TagName: Logged Times Value
+  TagType: Slider
+  TagText: Changes the value (brightness) of the background
+  NameColor: {r: 0, g: 1, b: 0, a: 1}
+  TypeColor: {r: 1, g: 0.64280593, b: 0, a: 1}
+  TextColor: {r: 1, g: 1, b: 1, a: 1}
+  BackgroundColor: {r: 0, g: 0, b: 0, a: 1}
+  InMenu: 1
+  Child: 0
 --- !u!1 &1891326449
 GameObject:
   m_ObjectHideFlags: 0
@@ -34406,13 +35831,15 @@ RectTransform:
   m_Children:
   - {fileID: 1659587481}
   - {fileID: 1788486759}
+  - {fileID: 1328170370}
+  - {fileID: 1153228760}
   - {fileID: 421186584}
   m_Father: {fileID: 850090279}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 385.6}
-  m_SizeDelta: {x: 180, y: 130}
+  m_SizeDelta: {x: 180, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1916290952
 MonoBehaviour:
@@ -36381,7 +37808,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2014016118}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -36389,11 +37816,11 @@ RectTransform:
   - {fileID: 1129330796}
   - {fileID: 1816969192}
   - {fileID: 733092422}
-  m_Father: {fileID: 889682245}
+  m_Father: {fileID: 1278386067}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 175, y: 70.5}
+  m_AnchoredPosition: {x: 27.5, y: 12.999878}
   m_SizeDelta: {x: 120, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2014016120
@@ -36518,6 +37945,7 @@ MonoBehaviour:
   TMP: {fileID: 39000395}
   TCS: {fileID: 1829068701}
   OldProfile: 0
+  ET: {fileID: 1278386068}
 --- !u!114 &2014016122
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38771,17 +40199,17 @@ SceneRoots:
   m_Roots:
   - {fileID: 519420032}
   - {fileID: 619394802}
-  - {fileID: 1869384026}
   - {fileID: 440751579}
   - {fileID: 1473285670}
+  - {fileID: 1869384026}
   - {fileID: 1770203900}
-  - {fileID: 1070148576}
   - {fileID: 150002400}
   - {fileID: 2007807657}
   - {fileID: 1829068702}
+  - {fileID: 838219046}
+  - {fileID: 1070148576}
   - {fileID: 17028223}
   - {fileID: 667572244}
-  - {fileID: 838219046}
   - {fileID: 966479439}
   - {fileID: 1340966942}
   - {fileID: 1163517359}

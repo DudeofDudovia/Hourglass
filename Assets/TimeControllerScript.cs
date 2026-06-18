@@ -318,7 +318,7 @@ public class TimeControllerScript : MonoBehaviour
         if (Profiles > 1) { Notiftext += "\nProfile: " + (ProfileName).ToString(); }
 
         if (channel < 6 || channel > 11) { channel = 8; }
-#if UNITY_ANDROID //&& !UNITY_EDITOR
+#if UNITY_ANDROID && !UNITY_EDITOR
         if (!NotificationPerms) { return; }
         AndroidJavaClass unityPlayerAndr = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
             AndroidJavaObject activityAndr = unityPlayerAndr.GetStatic<AndroidJavaObject>("currentActivity");
@@ -904,6 +904,10 @@ public class TimeControllerScript : MonoBehaviour
     }
     void Update()
     {
+        if (Input.GetKey(KeyCode.Menu))
+        {
+            ExplainMode = !ExplainMode;
+        }
         FillProfileButtonCollection();
         Application.targetFrameRate = (int)Screen.currentResolution.refreshRateRatio.value;
         if (!Application.isFocused) { Application.targetFrameRate = 24; }

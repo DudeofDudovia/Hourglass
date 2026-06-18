@@ -14,13 +14,16 @@ public class SaturationSliderScript : MonoBehaviour
     public TextMeshProUGUI TMP;
     public TimeControllerScript TCS;
     public int OldProfile;
+    public ExplainerTag ET;
     public void Start()
     {
         Adjusted = false;
     }
     public void Update()
     {
-        if (Adjusted) { TMP.color = Color.HSVToRGB(HueSlider.value, Slider.value, 1); }
+        if (Adjusted) { TMP.color = Color.HSVToRGB(HueSlider.value, Slider.value, 1);
+            ET.NameColor = Color.HSVToRGB(HueSlider.value, Slider.value, 1);
+        }
     }
     public void AdjSat()
     {

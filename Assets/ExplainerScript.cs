@@ -11,13 +11,16 @@ using static Unity.Burst.Intrinsics.X86.Avx;
 public class ExplainerScript : MonoBehaviour
 {
     public string TagName;
+    public string TagType;
     [TextArea]
     public string TagText;
     public Color NameColor = Color.white;
+    public Color TypeColor = Color.white;
     public Color TextColor = Color.white;
     public Color BackgroundColor = Color.gray3;
 
     public TextMeshProUGUI TMPName;
+    public TextMeshProUGUI TMPType;
     public TextMeshProUGUI TMPText;
 
     public float MouseY;
@@ -56,7 +59,7 @@ public class ExplainerScript : MonoBehaviour
             MouseClicked = 2;
             if (!ClickedSame(GetEventSystemRaycastResults()))
             {
-                Debug.Log("???");
+                //Debug.Log("???");
                 SetTextsFromHighest(GetEventSystemRaycastResults());
             }
         }
@@ -80,6 +83,8 @@ public class ExplainerScript : MonoBehaviour
 
         float HeightPercent = 0;
         HeightPercent = MouseY / Screen.height;
+        if (HeightPercent > 0.825) { HeightPercent = 0.825f; }
+        if (HeightPercent < 0.17) { HeightPercent = 0.17f; }
         BSAP.value = HeightPercent + .5f;
 
         if (Menu.activeSelf != OldMenuActive) {
@@ -98,7 +103,7 @@ public class ExplainerScript : MonoBehaviour
         }
         else
         {
-            //DisableInteractables();
+            HideExplaination();
         }
         if (TCS.ExplainMode != TCSEXPLAINOLD)
         {
@@ -109,7 +114,7 @@ public class ExplainerScript : MonoBehaviour
             }
             else
             {
-                Debug.Log("EnableT1");
+                //Debug.Log("EnableT1");
                 EnableInteractables();
             }
         }
@@ -131,15 +136,21 @@ public class ExplainerScript : MonoBehaviour
 
         TagName = "";
         TagText = "";
-        BackgroundColor = Color.gray;
         NameColor = Color.gray;
         TextColor = Color.gray;
+        TypeColor = Color.gray;
+        BackgroundColor = Color.gray;
+        NameColor = Color.gray;
+        TypeColor = Color.gray;
+        TextColor = Color.gray;
+        
     }
     public void ShowExplaination()
     {
         MouseY = Input.mousePosition.y;
         ExplainationDisplay.SetActive(true);
         TMPName.text = TagName;
+        TMPType.text = TagType;
         TMPText.text = TagText;
 
 
@@ -207,7 +218,7 @@ public class ExplainerScript : MonoBehaviour
     }
     public bool IsFamilyOfExplainerTag(GameObject Obj)
     {
-        Debug.Log("?");
+       // Debug.Log("?");
         int Recursion = 0;
         bool FoundParent = false;
         GameObject ParentCandidate = Obj;
@@ -215,22 +226,20 @@ public class ExplainerScript : MonoBehaviour
         {
             if (ParentCandidate.GetComponent<ExplainerTag>() != null)
             {
-                Debug.Log("3");
+                //Debug.Log("3");
                 if (!ParentCandidate.GetComponent<ExplainerTag>().Child)
                 {
-                    Debug.Log("o");
+                   // Debug.Log("o");
                     return true;
                 }
             }
             //Debug.Log(ParentCandidate.name);
-            Debug.Log(Recursion +":"+ ParentCandidate.name);
+            //Debug.Log(Recursion +":"+ ParentCandidate.name);
             
             Recursion++;
             if (ParentCandidate.transform.parent != null)
             {
                 ParentCandidate = ParentCandidate.transform.parent.gameObject;
-                Debug.Log(ParentCandidate.name);
-                Debug.Log("1");
             }
             /*else if (ParentCandidate.GetComponent<RectTransform>().parent != null)
             {
@@ -241,10 +250,10 @@ public class ExplainerScript : MonoBehaviour
             }*/
             else
             {
-                Debug.Log(" :<> ");
+                //Debug.Log(" :<> ");
                 //return false;
             }
-            Debug.Log(Recursion + ":" + ParentCandidate.name);
+            //Debug.Log(Recursion + ":" + ParentCandidate.name);
 
             /*
             if (ParentCandidate.name == "ToggleConsoleLog")
@@ -259,7 +268,7 @@ public class ExplainerScript : MonoBehaviour
     }
     public GameObject FamilyExplainerTag(GameObject Obj)
     {
-        Debug.Log("?");
+       // Debug.Log("?");
         int Recursion = 0;
         bool FoundParent = false;
         GameObject ParentCandidate = Obj;
@@ -267,22 +276,22 @@ public class ExplainerScript : MonoBehaviour
         {
             if (ParentCandidate.GetComponent<ExplainerTag>() != null)
             {
-                Debug.Log("3");
+               // Debug.Log("3");
                 if (!ParentCandidate.GetComponent<ExplainerTag>().Child)
                 {
-                    Debug.Log("o");
+                   // Debug.Log("o:" + ParentCandidate);
                     return ParentCandidate;
                 }
             }
             //Debug.Log(ParentCandidate.name);
-            Debug.Log(Recursion + ":" + ParentCandidate.name);
+           // Debug.Log(Recursion + ":" + ParentCandidate.name);
 
             Recursion++;
             if (ParentCandidate.transform.parent != null)
             {
                 ParentCandidate = ParentCandidate.transform.parent.gameObject;
-                Debug.Log(ParentCandidate.name);
-                Debug.Log("1");
+               // Debug.Log(ParentCandidate.name);
+               // Debug.Log("1");
             }
             /*else if (ParentCandidate.GetComponent<RectTransform>().parent != null)
             {
@@ -293,10 +302,10 @@ public class ExplainerScript : MonoBehaviour
             }*/
             else
             {
-                Debug.Log(" :<> ");
+               // Debug.Log(" :<> ");
                 //return false;
             }
-            Debug.Log(Recursion + ":" + ParentCandidate.name);
+            //Debug.Log(Recursion + ":" + ParentCandidate.name);
 
             /*
             if (ParentCandidate.name == "ToggleConsoleLog")
@@ -323,48 +332,58 @@ public class ExplainerScript : MonoBehaviour
             RaycastResult result = eventSystemRaycastResults[i];
             //if (result.gameObject.layer == LayerMask.NameToLayer("Resetable Slider") && result.gameObject.transform.position == transform.position)
             //ret += i + ":" + result.gameObject.name + "\n";
-            Debug.Log("Big Test");
             if (IsFamilyOfExplainerTag(result.gameObject))
             {
-
-                Debug.Log("Child of ExplainerTag");
-
-
 
                 ExplainerTag ET = FamilyExplainerTag(result.gameObject).GetComponent<ExplainerTag>();
 
 
-
-                Debug.Log(result.gameObject.name);
-                //Debug.Log(result.gameObject.name + "AhA!");
-                if (ClickedSame(GetEventSystemRaycastResults())) { return; }
-
-                if (!ET.InMenu && Options.activeSelf)
+                if (!(!ET.InMenu && Options.activeSelf))
                 {
+                    //Debug.Log(result.gameObject.name);
+                    //Debug.Log(result.gameObject.name + "AhA!");
+                    if (ClickedSame(GetEventSystemRaycastResults())) { Debug.Log("Bye!, Same"); return; }
 
-                    return;
+
+                    
+
+                    TagName = ET.TagName;
+                    TagType = ET.TagType;
+                    TagText = ET.TagText;
+                    TMPName.text = TagName;
+                    TMPType.text = TagType;
+                    TMPText.text = TagText;
+                    BackgroundColor = ET.BackgroundColor;
+                    NameColor = ET.NameColor;
+                    TypeColor = ET.TypeColor;
+                    TextColor = ET.TextColor;
+
+
+                    Background.color = BackgroundColor;
+                    TMPName.color = NameColor;
+                    TMPType.color = TypeColor;
+                    TMPText.color = TextColor;
+                    ShowExplaination();
+                    //Debug.Log(ET.TagName);
                 }
-
-
-                TagName = ET.TagName;
-                TagText = ET.TagText;
-                TMPName.text = TagName;
-                TMPText.text = TagText;
-                BackgroundColor = ET.BackgroundColor;
-                NameColor = ET.NameColor;
-                TextColor = ET.TextColor;
-
-
-                Background.color = BackgroundColor;
-                TMPName.color = NameColor;
-                TMPText.color = TextColor;
-                ShowExplaination();
-                //Debug.Log(ET.TagName);
-                return;
-
-
             }
-            else if (result.gameObject.GetComponent<ExplainerTag>() != null)
+            if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.LeftAlt))
+            {
+                if (result.gameObject.GetComponent<ExplainerTag>() != null)
+                {
+                    Debug.Log(result.gameObject.name);
+                }
+            }
+            else if (Input.GetKey(KeyCode.LeftShift))
+            {
+                Debug.Log(result.gameObject.name);
+                if (result.gameObject.transform.parent != null && Input.GetKey(KeyCode.LeftControl))
+                {
+                    Debug.Log("Parent:" + result.gameObject.transform.parent.name);
+                    Debug.Log("Parentx2:" + result.gameObject.transform.parent.transform.parent.name);
+
+                }
+            }/*else if (result.gameObject.GetComponent<ExplainerTag>() != null)
             {
                 Debug.Log("Archeic");
                 ExplainerTag ET = result.gameObject.GetComponent<ExplainerTag>();
@@ -397,15 +416,8 @@ public class ExplainerScript : MonoBehaviour
                 ShowExplaination();
                 //Debug.Log(ET.TagName);
                 return;
-            }
-            if (Input.GetKey(KeyCode.LeftShift))
-            {
-                Debug.Log(result.gameObject.name);
-                if (result.gameObject.transform.parent != null)
-                {
-                    Debug.Log(result.gameObject.transform.parent.name);
-                }
-            }
+            }*/
+
             //Debug.Log(result.gameObject.name);
         }
     }
@@ -499,46 +511,52 @@ public class ExplainerScript : MonoBehaviour
         {
             if (Obj.tag == "MenuTogg")
             {
-                Debug.Log(Obj.tag);
+                //Debug.Log(Obj.tag);
                 continue;
             }
-            
-            if (Obj.GetComponent<Button>() != null)
+            if (Obj.tag != "ExplainerDisplay")
             {
-                if (Obj.GetComponent<Button>().interactable)
-                {
-                    Array.Resize(ref ButtonsToEnable, ButtonsToEnable.Length + 1);
-                    ButtonsToEnable[ButtonsToEnable.Length - 1] = Obj.GetComponentInChildren<Button>().gameObject;
-                }
-            }
-            if (Obj.GetComponent<Slider>() != null)
-            {
-                if (Obj.GetComponent<Slider>().interactable)
-                {
-                    Array.Resize(ref SlidersToEnable, SlidersToEnable.Length + 1);
-                    SlidersToEnable[SlidersToEnable.Length - 1] = Obj.GetComponentInChildren<Slider>().gameObject;
-                }
-            }
-            if (Obj.GetComponent<Toggle>() != null)
-            {
-                if (Obj.GetComponent<Toggle>().interactable)
-                {
-                    Array.Resize(ref TogglesToEnable, TogglesToEnable.Length + 1);
-                    TogglesToEnable[TogglesToEnable.Length - 1] = Obj.GetComponentInChildren<Toggle>().gameObject;
-                }
-            }
-            if (Obj.GetComponent<TMP_InputField>() != null)
-            {
-                if (Obj.GetComponent<TMP_InputField>().interactable)
-                {
-                    Array.Resize(ref TMPInputsToEnable, TMPInputsToEnable.Length + 1);
-                    TMPInputsToEnable[TMPInputsToEnable.Length - 1] = Obj.GetComponentInChildren<TMP_InputField>().gameObject;
-                }
-            }
-        }
 
-        //FindObjectsOfTypeAll
-    }
+
+                if (Obj.GetComponent<Button>() != null)
+                {
+                    if (Obj.GetComponent<Button>().interactable)
+                    {
+
+                        Array.Resize(ref ButtonsToEnable, ButtonsToEnable.Length + 1);
+                        ButtonsToEnable[ButtonsToEnable.Length - 1] = Obj.GetComponentInChildren<Button>().gameObject;
+                    }
+                }
+
+                if (Obj.GetComponent<Slider>() != null)
+                {
+                    if (Obj.GetComponent<Slider>().interactable)
+                    {
+                        Array.Resize(ref SlidersToEnable, SlidersToEnable.Length + 1);
+                        SlidersToEnable[SlidersToEnable.Length - 1] = Obj.GetComponentInChildren<Slider>().gameObject;
+                    }
+                }
+                if (Obj.GetComponent<Toggle>() != null)
+                {
+                    if (Obj.GetComponent<Toggle>().interactable)
+                    {
+                        Array.Resize(ref TogglesToEnable, TogglesToEnable.Length + 1);
+                        TogglesToEnable[TogglesToEnable.Length - 1] = Obj.GetComponentInChildren<Toggle>().gameObject;
+                    }
+                }
+                if (Obj.GetComponent<TMP_InputField>() != null)
+                {
+                    if (Obj.GetComponent<TMP_InputField>().interactable)
+                    {
+                        Array.Resize(ref TMPInputsToEnable, TMPInputsToEnable.Length + 1);
+                        TMPInputsToEnable[TMPInputsToEnable.Length - 1] = Obj.GetComponentInChildren<TMP_InputField>().gameObject;
+                    }
+                }
+            }
+            }
+
+            //FindObjectsOfTypeAll
+        }
     public void DisableInteractables()
     {
         foreach (GameObject Obj in TogglesToEnable)

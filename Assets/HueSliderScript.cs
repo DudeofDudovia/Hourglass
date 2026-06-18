@@ -16,6 +16,7 @@ public class HueSliderScript : MonoBehaviour
     public TextMeshProUGUI TMP;
     public TimeControllerScript TCS;
     public int OldProfile;
+    public ExplainerTag ET;
 
     public void Start()
     {
@@ -23,7 +24,10 @@ public class HueSliderScript : MonoBehaviour
     }
     public void Update()
     {
-        if (Adjusted) { TMP.color = Color.HSVToRGB(Slider.value, 1, 1); }
+        if (Adjusted) { 
+            TMP.color = Color.HSVToRGB(Slider.value, 1, 1);
+            ET.NameColor = Color.HSVToRGB(Slider.value, 1, 1);
+        }
 
     }
 
