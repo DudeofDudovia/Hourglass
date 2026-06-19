@@ -910,7 +910,7 @@ public class TimeControllerScript : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKey(KeyCode.Menu))
+        if (Input.GetKey(KeyCode.Menu) || (Input.GetKey(KeyCode.RightAlt) && Input.GetKey(KeyCode.RightControl)))
         {
             ExplainMode = !ExplainMode;
         }
