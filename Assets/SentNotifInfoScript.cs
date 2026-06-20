@@ -1,17 +1,18 @@
 using System;
+using System.Collections.Generic;
 using System.Globalization;
-using System.Runtime.InteropServices;
-using System.Text;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-#if UNITY_ANDROID&& !UNITY_EDITOR
-using UnityEngine.Android;
-#elif PLATFORM_STANDALONE_WIN || UNITY_EDITOR
-//using UnityEngine.Windows;
-#endif
-public class LogInfoScript : MonoBehaviour
+public class SentNotifInfoScript : MonoBehaviour
 {
+
+    public TextMeshProUGUI TMPName;
+    public TextMeshProUGUI TMPType;
+    public TextMeshProUGUI TMPText;
+
+
     public GameObject InfoDisplay;
     public TextMeshProUGUI TMP;
     public long DisplayTicks;
@@ -20,6 +21,9 @@ public class LogInfoScript : MonoBehaviour
     public ButtonSizeAndPositioner BSAP;
     public bool MouseDown;
     public GameObject Menu;
+
+
+
 #if PLATFORM_STANDALONE_WIN
     [DllImport("kernel32.dll")]
     static extern int GetLocaleInfoEx(
@@ -55,52 +59,81 @@ public class LogInfoScript : MonoBehaviour
         pattern = sb.ToString();
 #endif
 
-            TMP.text = DateTime.FromBinary(DisplayTicks).ToString("t", CultureInfo.CurrentCulture);
+       // TMP.text = DateTime.FromBinary(DisplayTicks).ToString("t", CultureInfo.CurrentCulture);
         if (pattern.Contains("H"))
         {
-            TMP.text = System.DateTime.FromBinary(DisplayTicks).ToString("MM/dd/yyyy HH:mm:ss", CultureInfo.CurrentCulture);
+          //  TMP.text = System.DateTime.FromBinary(DisplayTicks).ToString("MM/dd/yyyy HH:mm:ss", CultureInfo.CurrentCulture);
         }
-        else {
-            TMP.text = System.DateTime.FromBinary(DisplayTicks).ToString();
+        else
+        {
+           // TMP.text = System.DateTime.FromBinary(DisplayTicks).ToString();
         }
         //TMP.text = System.DateTime.FromBinary(DisplayTicks).ToLocalTime().ToString();
         if (HideDelay < 0)
         {
-            if (MouseDown != Input.GetMouseButton(0))
+            if (MouseDown != Input.GetMouseButton(0) && !ClickedBox(GetEventSystemRaycastResults()))
             {
-                HideLog();
+                Debug.Log("That'sWrong!");
+                HideInfo();
             }
         }
-        
+
         MouseDown = false;
         if (Input.GetMouseButton(0)) { MouseDown = true; }
 
         float HeightPercent = 0;
-        HeightPercent = MouseY/Screen.height;
+        HeightPercent = MouseY / Screen.height;
         BSAP.value = HeightPercent + .5f;
 
-        if (Menu.activeSelf) {   HideLog();  }
+        if (!Menu.activeSelf) { HideInfo(); }
     }
+    public bool ClickedBox(List<RaycastResult> eventSystemRaycastResults)
+    {
+        for (int i = 0; i < eventSystemRaycastResults.Count; i++)
+        {
+            RaycastResult result = eventSystemRaycastResults[i];
+            if (result.gameObject.tag == "ExplainerDisplay")
+            {
+
+                return true;
+            }
+        }
+        return false;
+    }
+    static List<RaycastResult> GetEventSystemRaycastResults()
+    {
+        PointerEventData eventData = new PointerEventData(EventSystem.current);
+        eventData.position = Input.mousePosition;
+        List<RaycastResult> raycastResults = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(eventData, raycastResults);
+        return raycastResults;
+    }
+
     private void FixedUpdate()
     {
         HideDelay -= 1;
     }
-    public void HideLog()
+    public void HideInfo()
     {
+        Debug.Log("Culprint");
         InfoDisplay.SetActive(false);
     }
-    public void ShowLog()
+    public void ShowInfo()
     {
         InfoDisplay.SetActive(true);
-        TMP.text = System.DateTime.FromBinary(DisplayTicks).ToString();
-        TMP.text = System.DateTime.FromBinary(DisplayTicks).ToShortDateString();
 
         MouseY = Input.mousePosition.y;
+        Debug.Log("1/1/1/");
         HideDelay = 20;
     }
-    public void ShowLog(long L)
+    public void ShowInfo(long L, string Name, string Text, string Type)
     {
+        Debug.Log("1WHY!?");
         DisplayTicks = L;
-        ShowLog();
+        TMPName.text = Name;
+        TMPText.text = Text;
+        TMPType.text = Type;
+        ShowInfo();
+        Debug.Log("WHY!?");
     }
 }

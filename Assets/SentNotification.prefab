@@ -144,7 +144,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 540.00006, y: 1204, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8707709313723639447}
@@ -157,7 +157,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3311102170427947228}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 002f3ac27e71ab54f956a87f5a156d59, type: 3}
   m_Name: 
@@ -194,6 +194,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c225e4ef808f89f4da3a0f9e9714917b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  TMP: {fileID: 7213664351882538633}
+  AddedId: 0
+  ScheduledTime: 0
+  Channel: 0
+  ChannelId: 0
+  BClicked1: 0
+  BClicked2: 0
+  MouseDown: 0
+  MouseD2: 0
+  MouseUp: 0
+  WasMouseUp: 0
+  initpos: 0
+  initposY: 0
+  diff: 0
+  exitdiff: 300
+  Ishovering: 0
+  OriginalPosX: 0
+  OriginalPosY: 0
+  diffY: 0
+  exitdiffY: 400
+  ButtonToColorChange: {fileID: 8238307281153491}
+  TCS: {fileID: 0}
 --- !u!1 &5235476781833121559
 GameObject:
   m_ObjectHideFlags: 0
@@ -452,9 +474,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4619662731618808064}
-        m_TargetAssemblyTypeName: ProfileButton, Assembly-CSharp
-        m_MethodName: ChangeProfile
+      - m_Target: {fileID: 4968340849529679664}
+        m_TargetAssemblyTypeName: SentNotificationScript, Assembly-CSharp
+        m_MethodName: ShowInfo
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
