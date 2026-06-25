@@ -12,6 +12,8 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Rendering.Universal;
 using System.Globalization;
+using UnityEngine.SceneManagement;
+
 
 
 
@@ -1324,6 +1326,7 @@ public class TimeControllerScript : MonoBehaviour
             ResetValuesTimer = 1;
             ResetValues = true;
             BigReset = true;
+            SceneManager.LoadSceneAsync(0);
             return;
         }
 
