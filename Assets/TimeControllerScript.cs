@@ -370,7 +370,7 @@ public class TimeControllerScript : MonoBehaviour
                 MKfile(7, DatInd, id.ToString(), false);
             }
             else */
-            logs.GetComponent<SentNotificationScript>().ChannelId = id;
+            logs.GetComponent<SentNotificationScript>().ChannelId = id.ToString();
             if (channel != 6) { MKfile(6, DatInd, id.ToString(), false); }
             MKfile(channel, DatInd, id.ToString(), false);
 #elif PLATFORM_STANDALONE_WIN || UNITY_EDITOR_WIN
