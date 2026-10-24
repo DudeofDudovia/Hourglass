@@ -88,6 +88,7 @@ public class TimeAdder : MonoBehaviour
                 TCS.UsedTime += timeadded;
                 var logs = Instantiate(StoreValues, new Vector3(0, transform.position.y, 0), transform.rotation, ViewportContent.transform);
                 logs.GetComponent<AddedTimesScript>().MinutesToAdd = timeadded;
+                logs.GetComponent<AddedTimesScript>().BeingMade = true;
             }
             else if (!Multiple)
             {

@@ -8210,26 +8210,28 @@ MonoBehaviour:
     to have rainbow logs be affacted by the hue slider, so that you can have completely
     random, or random within a customizable distance from the custom color.\r\nChangelog
     1.1.0 - Questions And Colors\r\n\tPress menu or (right alt + right control) to
-    toggle Explain Mode.\r\nChangelog 1.0.0 - The Notification Update\r\n\tAdded
-    Warnings\r\n\t\tThey work on both Android and Windows:\r\n\t\t\tDue to programming
-    limitations, the warnings may arrive out of time by a couple seconds, but should
-    be reasonably accurate.\r\n\t\t\t\tBecause of this, I would not recommend using
-    warning values in the seconds, as they are often off by several seconds.\r\n\t\tThey
-    work with the timer to remind how much longer it has and when it runs out\r\n\t\t\tThere
-    are warning options for low time, warning time, and half time:\r\n\t\t\t\tLow
-    time will do that amount of minutes from the end.\r\n\t\t\t\tWarning time will
-    do that amount of minutes from the beginning.\r\n\t\t\t\tHalf time will warn
-    when the timer reaches half of the remaining time.\r\n\t\tThey are profile specific:\r\n\t\t\tThe
-    toggle \"Warnings\", however, is not profile specific, and disabling it will
-    disable all warnings.\r\n\tAdded margins to the changelog font size so it displays
-    properly at small fonts.\r\n\r\n\tFixed Bugs:\r\n\t\tDeleting profiles doesn't
-    work.\r\n\t\t0 minutes left at half time?\r\n\t\tWindows seizes up when the timer
-    starts.\r\n\t\tTimer would (in theory send a notification even if they were disabled).\r\n\tAdded
-    A Debug Console:\r\n\t\tThis is used for debugging and the toggle for it is at
-    the bottom of the options menu, though in normal use it should be empty (unless
-    something goes wrong or I forgot to remove a logger).\r\n\t\tThis doesn't exist
-    on Windows due to excessive lag.\r\n\t\tThe output will be saved in the Download
-    directory on Android, and, despite being disabled, to the following path on Windows:\r\n\t\t\tC:\\Users\\[USER]\\AppData\\LocalLow\\DudeofDudovia\\Hourglass\\HourglassLogs\\DerbossLog.txt.\r\n\tSkipped
+    toggle Explain Mode.\r\n\tMade the app reset reset more.\r\nChangelog 1.0.0 -
+    The Notification Update\r\n\tAdded Warnings\r\n\t\tThey work on both Android
+    and Windows:\r\n\t\t\tDue to programming limitations, the warnings may arrive
+    out of time by a couple seconds, but should be reasonably accurate.\r\n\t\t\t\tBecause
+    of this, I would not recommend using warning values in the seconds, as they are
+    often off by several seconds.\r\n\t\tThey work with the timer to remind how much
+    longer it has and when it runs out\r\n\t\t\tThere are warning options for low
+    time, warning time, and half time:\r\n\t\t\t\tLow time will do that amount of
+    minutes from the end.\r\n\t\t\t\tWarning time will do that amount of minutes
+    from the beginning.\r\n\t\t\t\tHalf time will warn when the timer reaches half
+    of the remaining time.\r\n\t\tThey are profile specific:\r\n\t\t\tThe toggle
+    \"Warnings\", however, is not profile specific, and disabling it will disable
+    all warnings.\r\n\tAdded margins to the changelog font size so it displays properly
+    at small fonts.\r\n\r\n\tFixed Bugs:\r\n\t\tDeleting profiles doesn't work.\r\n\t\t0
+    minutes left at half time?\r\n\t\tWindows seizes up when the timer starts.\r\n\t\tTimer
+    would (in theory send a notification even if they were disabled).\r\n\t\tUsing
+    advanced formatting makes logged times display 9 hours.\r\n\tAdded A Debug Console:\r\n\t\tThis
+    is used for debugging and the toggle for it is at the bottom of the options menu,
+    though in normal use it should be empty (unless something goes wrong or I forgot
+    to remove a logger).\r\n\t\tThis doesn't exist on Windows due to excessive lag.\r\n\t\tThe
+    output will be saved in the Download directory on Android, and, despite being
+    disabled, to the following path on Windows:\r\n\t\t\tC:\\Users\\[USER]\\AppData\\LocalLow\\DudeofDudovia\\Hourglass\\HourglassLogs\\DerbossLog.txt.\r\n\tSkipped
     0.7.1 lol.\r\n\t-1.0.0-rc8\r\n\t\tRemoved debug log messages used for markers.\r\n\t-1.0.0-rc7\r\n\t\tMoved
     from -x to -rc because I fixed all bugs that I remember.\r\n\t-1.0.0-x8\r\n\t\tI
     was using an older vsion of the code which is why nothing was wokring.\r\n\t-1.0.0-x7\r\n\t\tFurther
@@ -11155,7 +11157,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -300, y: 12500}
+  m_SizeDelta: {x: -300, y: 1400}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &500626950
 GameObject:
@@ -24294,26 +24296,28 @@ MonoBehaviour:
     to have rainbow logs be affacted by the hue slider, so that you can have completely
     random, or random within a customizable distance from the custom color.\r\nChangelog
     1.1.0 - Questions And Colors\r\n\tPress menu or (right alt + right control) to
-    toggle Explain Mode.\r\nChangelog 1.0.0 - The Notification Update\r\n\tAdded
-    Warnings\r\n\t\tThey work on both Android and Windows:\r\n\t\t\tDue to programming
-    limitations, the warnings may arrive out of time by a couple seconds, but should
-    be reasonably accurate.\r\n\t\t\t\tBecause of this, I would not recommend using
-    warning values in the seconds, as they are often off by several seconds.\r\n\t\tThey
-    work with the timer to remind how much longer it has and when it runs out\r\n\t\t\tThere
-    are warning options for low time, warning time, and half time:\r\n\t\t\t\tLow
-    time will do that amount of minutes from the end.\r\n\t\t\t\tWarning time will
-    do that amount of minutes from the beginning.\r\n\t\t\t\tHalf time will warn
-    when the timer reaches half of the remaining time.\r\n\t\tThey are profile specific:\r\n\t\t\tThe
-    toggle \"Warnings\", however, is not profile specific, and disabling it will
-    disable all warnings.\r\n\tAdded margins to the changelog font size so it displays
-    properly at small fonts.\r\n\r\n\tFixed Bugs:\r\n\t\tDeleting profiles doesn't
-    work.\r\n\t\t0 minutes left at half time?\r\n\t\tWindows seizes up when the timer
-    starts.\r\n\t\tTimer would (in theory send a notification even if they were disabled).\r\n\tAdded
-    A Debug Console:\r\n\t\tThis is used for debugging and the toggle for it is at
-    the bottom of the options menu, though in normal use it should be empty (unless
-    something goes wrong or I forgot to remove a logger).\r\n\t\tThis doesn't exist
-    on Windows due to excessive lag.\r\n\t\tThe output will be saved in the Download
-    directory on Android, and, despite being disabled, to the following path on Windows:\r\n\t\t\tC:\\Users\\[USER]\\AppData\\LocalLow\\DudeofDudovia\\Hourglass\\HourglassLogs\\DerbossLog.txt.\r\n\tSkipped
+    toggle Explain Mode.\r\n\tMade the app reset reset more.\r\nChangelog 1.0.0 -
+    The Notification Update\r\n\tAdded Warnings\r\n\t\tThey work on both Android
+    and Windows:\r\n\t\t\tDue to programming limitations, the warnings may arrive
+    out of time by a couple seconds, but should be reasonably accurate.\r\n\t\t\t\tBecause
+    of this, I would not recommend using warning values in the seconds, as they are
+    often off by several seconds.\r\n\t\tThey work with the timer to remind how much
+    longer it has and when it runs out\r\n\t\t\tThere are warning options for low
+    time, warning time, and half time:\r\n\t\t\t\tLow time will do that amount of
+    minutes from the end.\r\n\t\t\t\tWarning time will do that amount of minutes
+    from the beginning.\r\n\t\t\t\tHalf time will warn when the timer reaches half
+    of the remaining time.\r\n\t\tThey are profile specific:\r\n\t\t\tThe toggle
+    \"Warnings\", however, is not profile specific, and disabling it will disable
+    all warnings.\r\n\tAdded margins to the changelog font size so it displays properly
+    at small fonts.\r\n\r\n\tFixed Bugs:\r\n\t\tDeleting profiles doesn't work.\r\n\t\t0
+    minutes left at half time?\r\n\t\tWindows seizes up when the timer starts.\r\n\t\tTimer
+    would (in theory send a notification even if they were disabled).\r\n\t\tUsing
+    advanced formatting makes logged times display 9 hours.\r\n\tAdded A Debug Console:\r\n\t\tThis
+    is used for debugging and the toggle for it is at the bottom of the options menu,
+    though in normal use it should be empty (unless something goes wrong or I forgot
+    to remove a logger).\r\n\t\tThis doesn't exist on Windows due to excessive lag.\r\n\t\tThe
+    output will be saved in the Download directory on Android, and, despite being
+    disabled, to the following path on Windows:\r\n\t\t\tC:\\Users\\[USER]\\AppData\\LocalLow\\DudeofDudovia\\Hourglass\\HourglassLogs\\DerbossLog.txt.\r\n\tSkipped
     0.7.1 lol.\r\n\t-1.0.0-rc8\r\n\t\tRemoved debug log messages used for markers.\r\n\t-1.0.0-rc7\r\n\t\tMoved
     from -x to -rc because I fixed all bugs that I remember.\r\n\t-1.0.0-x8\r\n\t\tI
     was using an older vsion of the code which is why nothing was wokring.\r\n\t-1.0.0-x7\r\n\t\tFurther
@@ -33522,7 +33526,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 40.625, y: 376}
+  m_AnchoredPosition: {x: 40.625, y: 445}
   m_SizeDelta: {x: 343.75, y: 492.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1644617788

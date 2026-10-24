@@ -1,12 +1,10 @@
-using Mono.Cecil.Cil;
+
 using System;
 using System.Collections.Generic;
 using TMPro;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using static Unity.Burst.Intrinsics.X86.Avx;
 
 public class ExplainerScript : MonoBehaviour
 {

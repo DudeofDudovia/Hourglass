@@ -27,6 +27,7 @@ Changelog 1.0.0 - The Notification Update
 		0 minutes left at half time?
 		Windows seizes up when the timer starts.
 		Timer would (in theory send a notification even if they were disabled).
+		Using advanced formatting makes logged times display 9 hours.
 	Added A Debug Console:
 		This is used for debugging and the toggle for it is at the bottom of the options menu, though in normal use it should be empty (unless something goes wrong or I forgot to remove a logger).
 		This doesn't exist on Windows due to excessive lag.

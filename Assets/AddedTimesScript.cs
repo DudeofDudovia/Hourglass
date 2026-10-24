@@ -131,7 +131,7 @@ public class AddedTimesScript : MonoBehaviour
         
         transform.localPosition = new Vector3(98, AddedId * -40 + 10, 0);
 
-        if (!BeingMade)
+       /*  if (!BeingMade)
         {
             MinutesAdded = transform.position.x;
         }
@@ -139,7 +139,9 @@ public class AddedTimesScript : MonoBehaviour
         {
             MinutesAdded = MinutesToAdd;
             BeingMade = false;
-        }
+        }*/
+        MinutesAdded = MinutesToAdd;
+        BeingMade = false;
         //MinutesAddedDisplay = RoundFloat(MinutesAdded,5);
         MinutesAddedDisplay = MinutesAdded;
     }
